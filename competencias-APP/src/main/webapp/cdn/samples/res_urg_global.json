@@ -1,0 +1,18 @@
+{
+    "gtype": "doughnut",
+    "series": [
+        {
+            "name": "Población que acude a urgencias (mes)",
+            "data": [
+                {
+                    "name": "Población que acude a urgencias (mes)",
+                    "y": 38578
+                },
+                {
+                    "name": "Resto",
+                    "y": 1831696
+                }
+            ]
+        }
+    ]
+}

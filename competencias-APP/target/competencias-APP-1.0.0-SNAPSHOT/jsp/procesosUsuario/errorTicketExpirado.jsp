@@ -1,0 +1,1 @@
+Usted ha ingresado un ticket expirado, por favor, pongase en contacto con la plataforma.

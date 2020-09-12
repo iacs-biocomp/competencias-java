@@ -1,0 +1,84 @@
+{
+    "config": {
+        "format": "3d",
+        "suffix": ""
+    },
+    "rootItem": {
+        "code": 1,
+        "name": "GRD",
+        "size": 0,
+        "link": "",
+        "children": [
+            {
+                "code": "560",
+                "name": "PARTO",
+                "size": "6611",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "194",
+                "name": "INSUFICIENCIA CARDÍ",
+                "size": "4298",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "144",
+                "name": "OTROS DIAGNÓSTICOS ",
+                "size": "3617",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "140",
+                "name": "ENFERMEDAD PULMONAR",
+                "size": "3210",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "139",
+                "name": "OTRA NEUMONÍA",
+                "size": "2802",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "228",
+                "name": "PROCEDIMIENTOS SOBR",
+                "size": "2083",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "956",
+                "name": "NO AGRUPABLE",
+                "size": "2077",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "463",
+                "name": "INFECCIONES DE RIÑÓ",
+                "size": "1941",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "284",
+                "name": "TRASTORNOS DEL TRAC",
+                "size": "1751",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": "254",
+                "name": "OTROS DIAGNÓSTICOS ",
+                "size": "1731",
+                "link": "",
+                "children": []
+            }
+        ]
+    }
+}

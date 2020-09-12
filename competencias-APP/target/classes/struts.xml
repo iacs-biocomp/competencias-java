@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <include file="midas-default.xml"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+
+    <package name="default" namespace="/" extends="midas-default">
+        <default-action-ref name="index" />
+
+        <action name="index" class="es.aragon.midas.action.DashboardAction" method="show">
+        	<param name="db">100</param>
+        	<result name="show" type="tiles">dashboard</result>
+        </action>
+        
+        <action name="misDatos" class="es.aragon.iacs.competencias.action.MisDatosAction" method="misDatos">
+             <result name="misDatos" type="tiles">misDatos</result>
+         </action>
+         
+         <action name="*Trabajadores" class="es.aragon.iacs.competencias.action.TrabajadoresAction" method="{1}">
+             <result name="trabajadores" type="tiles">trabajadores</result>
+         </action>
+         
+         <action name="*CatCompetenciales" class="es.aragon.iacs.competencias.action.CatCompetencialesAction" method="{1}">
+             <result name="catCompetenciales" type="tiles">catCompetenciales</result>
+         </action>
+         
+         <action name="*CatContractuales" class="es.aragon.iacs.competencias.action.CatContractualesAction" method="{1}">
+             <result name="catContractuales" type="tiles">catContractuales</result>
+         </action>
+         
+         <action name="*Competencias" class="es.aragon.iacs.competencias.action.CompetenciasAction" method="{1}">
+             <result name="misCompetencias" type="tiles">misCompetencias</result>
+             <result name="catCompetencialConcreta" type="tiles">catCompetencialConcreta</result>
+             <result name="competencias" type="tiles">competencias</result>
+         </action>
+         
+         <action name="*Niveles" class="es.aragon.iacs.competencias.action.NivelesAction" method="{1}">
+             <result name="niveles" type="tiles">niveles</result>
+         </action>
+         
+         <action name="*Comportamientos" class="es.aragon.iacs.competencias.action.ComportamientosAction" method="{1}">
+             <result name="comportamientos" type="tiles">comportamientos</result>
+         </action>
+        
+        <action name="*Pruebas" class="es.aragon.iacs.competencias.action.PruebasAction" method="{1}">
+             <result name="lista" type="tiles">listaPruebas</result>
+         </action>
+         
+
+        <action name="*Dashboard" class="es.aragon.midas.action.DashboardAction" method="{1}">
+        	<result name="show" type="tiles">dashboard</result>
+        </action>
+
+        <action name="*Site" class="es.aragon.midas.action.DashboardAction" method="{1}">
+        	<result name="show" type="tiles">site</result>
+        </action>
+        
+        <action name="*Printdb" class="es.aragon.midas.action.DashboardAction" method="{1}">
+        	<result name="show" type="tiles">printdb</result>
+        </action>
+
+        <action name="*DataSets" class="es.aragon.iacs.biganInves.action.MasterDataAction" method="{1}">
+        	<result name="list" type="tiles">listDataSets</result>
+        </action>
+        
+        <action name="*Editor" class="es.aragon.iacs.biganInves.action.MasterEditorAction" method="{1}">
+        	<result name="init" type="tiles">initEditor</result>
+        </action>
+        
+		 <!-- Cambiar contraseña sin session, login mediante ticket -->       
+        <action name="changePwd" class="es.aragon.iacs.biganInves.action.LoginManagerAction" method="changePwd">
+        	<result name="input">changePass</result>
+        	<result name="error_ticket" type="dispatcher">/jsp/procesosUsuario/errorTicket.jsp</result>
+        	<result name="error_user" type="dispatcher">/jsp/procesosUsuario/errorUser.jsp</result>
+        	<result name="error_ticket_exp" type="dispatcher">/jsp/procesosUsuario/errorTicketExpirado.jsp</result>
+        	<result name="ok" type="redirectAction"  >index</result>        	
+        </action>
+        
+         <!-- Cambio de contraseña con session, desde dentro de la aplicación -->   
+        <action name="changePassword" class="es.aragon.iacs.biganInves.action.LoginSessionManagerAction" method="changePwd">
+        	<result name="input">changePass</result>
+        	<result name="redirectSalud" type="dispatcher">/jsp/procesosUsuario/redirectSalud.jsp</result>
+        	<result name="ok" type="redirectAction" >index</result>        	
+        </action>       
+        
+        
+        <action name="formPwd" class="es.aragon.iacs.biganInves.action.LoginSessionManagerAction" method="formPwd">
+        	<result name="change" type="tiles">changePassSession</result>
+        	<result name="redirectSalud" type="dispatcher">/jsp/procesosUsuario/redirectSalud.jsp</result>    	
+        </action>
+                
+        <action name="loginTicket" class="es.aragon.iacs.biganInves.action.LoginManagerAction" method="loginTicket">
+        	<result name="change" type="tiles">changePass</result>
+        	<result name="error_ticket" type="dispatcher">/jsp/procesosUsuario/errorTicket.jsp</result>
+        	<result name="error_ticket_exp" type="dispatcher">/jsp/procesosUsuario/errorTicketExpirado.jsp</result>
+        </action>
+                
+        <action name="*Solicitud" class="es.aragon.iacs.biganInves.action.LoginManagerAction" method="{1}">
+        	<result name="newsolicitud" type="tiles">solicitudForm</result>
+        	<result name="input">solicitudForm</result>
+        	<result name="procesoinit" type="tiles">solicitudTramitada</result>
+        	<result name="user_exist" type="tiles">userExists</result>
+        </action>
+        
+        <action name="*Activiti" class="es.aragon.iacs.biganInves.action.AdminActivitiManagerAction" method="{1}">
+        	<result name="show" type="tiles">listTasks</result>
+        	<result name="input">listTasksError</result>
+        	<result name="claimed" type="redirectAction" >showTasksActiviti</result>
+        	<result name="completed" type="redirectAction" >showTasksActiviti</result>
+        </action>
+        
+        <action name="listDirectories" class="es.aragon.iacs.biganInves.action.HadoopManagerAction" method="listDirectories">
+        	<result name="list" type="tiles">listDirectories</result>
+        </action>
+        <action name="*File" class="es.aragon.iacs.biganInves.action.HadoopManagerAction" method="{1}">
+        	<result name="list" type="redirectAction" >listDirectories</result>
+        </action>
+         <!-- Cambiar Proyecto de trabajo -->       
+        <action name="changeProject" class="es.aragon.iacs.biganInves.action.ProjectManagerAction" method="changeProject">
+        	<result name="ok" type="redirectAction"  >index</result>        	
+        </action> 
+        
+         <action name="*Projects" class="es.aragon.iacs.biganInves.action.ProjectManagerAction" method="{1}">
+        	<result name="list" type="tiles">listProjects</result>
+        	<result name="create" type="tiles">formProjects</result>
+        	<result name="added" type="tiles">formProjects</result>      
+        	<result name="user" type="tiles">gestionUserProyectos</result>
+        	<result name="modify" type="redirectAction" >userProjects</result>
+        </action>            
+    </package>
+
+</struts>

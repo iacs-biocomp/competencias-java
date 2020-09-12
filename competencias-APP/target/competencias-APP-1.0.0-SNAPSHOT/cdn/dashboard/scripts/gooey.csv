@@ -1,0 +1,65 @@
+hospital,year,rate,feature,population,pathology
+Huesca,2010,0.1442307692,21,104,Ischemic_Ictus
+Barbastro,2010,0.1052631579,33,114,Ischemic_Ictus
+Zaragoza I,2010,0.1153846154,34,156,Ischemic_Ictus
+Zaragoza II,2010,0.1081677704,43,453,Ischemic_Ictus
+Zaragoza III,2010,0.1463414634,59,287,Ischemic_Ictus
+Calatayud,2010,0.0855263158,34,152,Ischemic_Ictus
+Teruel,2010,0.1604938272,27,81,Ischemic_Ictus
+Alcaniz,2010,0.1842105263,14,38,Ischemic_Ictus
+Huesca,2011,0.0970873786,21,103,Ischemic_Ictus
+Barbastro,2011,0.2089552239,33,134,Ischemic_Ictus
+Zaragoza I,2011,0.1136363636,34,132,Ischemic_Ictus
+Zaragoza II,2011,0.119760479,43,501,Ischemic_Ictus
+Zaragoza III,2011,0.1447368421,59,304,Ischemic_Ictus
+Calatayud,2011,0.0610687023,34,131,Ischemic_Ictus
+Teruel,2011,0.1834862385,27,109,Ischemic_Ictus
+Alcaniz,2011,0.2,14,45,Ischemic_Ictus
+Huesca,2012,0.0958083832,26,167,Ischemic_Ictus
+Barbastro,2012,0.1066666667,26,150,Ischemic_Ictus
+Zaragoza I,2012,0.1094890511,35,137,Ischemic_Ictus
+Zaragoza II,2012,0.094488189,33,508,Ischemic_Ictus
+Zaragoza III,2012,0.1611721612,43,273,Ischemic_Ictus
+Calatayud,2012,0.1650485437,20,103,Ischemic_Ictus
+Teruel,2012,0.106557377,24,122,Ischemic_Ictus
+Alcaniz,2012,0.1904761905,32,21,Ischemic_Ictus
+Huesca,2013,0.0946745562,24,169,Ischemic_Ictus
+Barbastro,2013,0.1151515152,22,165,Ischemic_Ictus
+Zaragoza I,2013,0.1363636364,34,154,Ischemic_Ictus
+Zaragoza II,2013,0.09375,30,480,Ischemic_Ictus
+Zaragoza III,2013,0.147766323,36,291,Ischemic_Ictus
+Calatayud,2013,0.0933333333,26,75,Ischemic_Ictus
+Teruel,2013,0.0823529412,22,85,Ischemic_Ictus
+Alcaniz,2013,0.1904761905,36,21,Ischemic_Ictus
+Huesca,2014,0.0734463277,28,177,Ischemic_Ictus
+Barbastro,2014,0.1349206349,25,126,Ischemic_Ictus
+Zaragoza I,2014,0.1458333333,39,144,Ischemic_Ictus
+Zaragoza II,2014,0.0995260664,32,422,Ischemic_Ictus
+Zaragoza III,2014,0.1561461794,40,301,Ischemic_Ictus
+Calatayud,2014,0.1538461538,18,91,Ischemic_Ictus
+Teruel,2014,0.1818181818,21,44,Ischemic_Ictus
+Alcaniz,2014,0.2,34,10,Ischemic_Ictus
+Huesca,2015,0.0691489362,29,188,Ischemic_Ictus
+Barbastro,2015,0.1525423729,13,118,Ischemic_Ictus
+Zaragoza I,2015,0.1614906832,37,161,Ischemic_Ictus
+Zaragoza II,2015,0.1137254902,30,510,Ischemic_Ictus
+Zaragoza III,2015,0.2080536913,36,298,Ischemic_Ictus
+Calatayud,2015,0.1351351351,17,74,Ischemic_Ictus
+Teruel,2015,0.1235955056,19,89,Ischemic_Ictus
+Alcaniz,2015,0.2941176471,27,17,Ischemic_Ictus
+Huesca,2016,0.0479207076,21,199,Ischemic_Ictus
+Barbastro,2016,0.1723114927,27,110,Ischemic_Ictus
+Zaragoza I,2016,0.1709603802,32,178,Ischemic_Ictus
+Zaragoza II,2016,0.1195015565,26,598,Ischemic_Ictus
+Zaragoza III,2016,0.2164335477,36,295,Ischemic_Ictus
+Calatayud,2016,0.1956479556,19,57,Ischemic_Ictus
+Teruel,2016,0.2230607463,20,134,Ischemic_Ictus
+Alcaniz,2016,0.3036414566,28,24,Ischemic_Ictus
+Huesca,2017,0.0436233161,27,210,Ischemic_Ictus
+Barbastro,2017,0.1899332306,16,102,Ischemic_Ictus
+Zaragoza I,2017,0.1866177301,36,195,Ischemic_Ictus
+Zaragoza II,2017,0.1337009804,34,686,Ischemic_Ictus
+Zaragoza III,2017,0.2683410595,34,292,Ischemic_Ictus
+Calatayud,2017,0.1769369369,18,40,Ischemic_Ictus
+Teruel,2017,0.1648380701,21,179,Ischemic_Ictus
+Alcaniz,2017,0.3977591036,20,31,Ischemic_Ictus

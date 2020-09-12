@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="listaPruebas" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/listaPruebas.jsp"/>
+     </definition>
+
+	<definition name="misDatos" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/misDatos.jsp"/>
+     </definition>
+     
+     <definition name="trabajadores" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/trabajadores.jsp"/>
+     </definition>
+     
+     <definition name="catCompetenciales" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/catCompetenciales.jsp"/>
+     </definition>
+     
+     <definition name="catCompetencialConcreta" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/catCompetencial.jsp"/>
+     </definition>
+     
+     <definition name="nuevaCatCompetencial" extends="loggedLayout">
+	    <put-attribute name="body"   value="/jsp/catCompetenciales.jsp"/>      
+	</definition>
+     
+     <definition name="catContractuales" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/catContractuales.jsp"/>
+     </definition>
+
+	<definition name="competencias" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/competencias.jsp"/>
+     </definition>
+     
+     <definition name="niveles" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/niveles.jsp"/>
+     </definition>
+
+	 <definition name="comportamientos" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/comportamientos.jsp"/>
+     </definition>
+
+
+	<!--  Modificamos la definición de login para cambiar formulario de entrada 
+			incluyendo recordatorio de contraseña y registro -->
+	<definition name="login" extends="basicLayout">
+	    <put-attribute name="body"   value="/midas/login_ext.jsp"/>      
+	</definition>
+
+
+	<definition name="barLoggedLayout" extends="loggedLayout">
+	    <put-attribute name="topbar"   value="/jsp/topbar.jsp"/>      
+	</definition>
+	
+	<definition name="dashboard" extends="loggedLayout">
+		<put-attribute name="body" value="/jsp/plainContent.jsp"/>
+		<put-attribute name="script" value="/jsp/scriptContent.jsp"/>
+		<put-attribute name="breadcrumb" value="/jsp/breadcrumb.jsp"/>
+    </definition>
+
+	<definition name="site" template="/jsp/externalSiteLayout.jsp">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="menu"   value="/midas/menu.jsp"/>
+		<put-attribute name="body" value="/jsp/plainContent.jsp"/>
+		<put-attribute name="script" value="/jsp/scriptContent.jsp"/>		
+	</definition>
+	
+	<definition name="printdb" template="/jsp/printDashboardLayout.jsp">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/plainContent.jsp"/>
+		<put-attribute name="script" value="/jsp/scriptContent.jsp"/>		
+	</definition>
+	
+	<definition name="iconHome" extends="loggedLayout">
+	    <put-attribute name="body"   value="/midas/iconHome.jsp"/>      
+	</definition>
+	
+	<definition name="showMfmTables" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/catalog/showMfm.jsp"/>
+	</definition>	
+	
+	<definition name="listDataSets" extends="barLoggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/catalog/listDatasets.jsp"/>
+	</definition>
+	
+	<definition name="initEditor" extends="barLoggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/editorgrafico/editor.jsp"/>
+	</definition>
+	
+	
+	<definition name="changePass" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/changePassForm.jsp"/>
+	</definition>
+	
+	<definition name="changePassSession" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/changePassFormSession.jsp"/>
+	</definition>
+	<definition name="changePassSession" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/changePassFormSession.jsp"/>
+	</definition>
+	<definition name="solicitudForm" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/solicitudForm.jsp"/>
+	</definition>
+	
+	<definition name="userExists" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/userExists.jsp"/>
+	</definition>
+	
+	<definition name="solicitudTramitada" extends="basicLayout">		
+		<put-attribute name="body" value="/jsp/procesosUsuario/initGenerateTicket.jsp"/>
+	</definition>
+	
+	<definition name="listTasks" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/activiti/listTasks.jsp"/>
+	</definition>
+	
+	<definition name="listTasksError" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/activiti/listTasksError.jsp"/>
+	</definition>
+	
+	<definition name="listDirectories" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/hadoop/listDirectories.jsp"/>
+	</definition>
+	<definition name="listProjects" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/projects/listProjects.jsp"/>
+	</definition>
+	<definition name="formProjects" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/projects/formProjects.jsp"/>
+	</definition>
+	<definition name="gestionUserProyectos" extends="loggedLayout">
+        <put-attribute name="title" value="/jsp/title.jsp" />		
+		<put-attribute name="body" value="/jsp/projects/UserProjects.jsp"/>
+	</definition>
+</tiles-definitions>
