@@ -52,7 +52,6 @@ public class CompTrabajadoresDAO implements ICompTrabajadoresDAO {
 		t.setUnidad(unidad);;
 		t.setDepartamento(departamento);
 		t.setAntiguedad(antiguedad);
-		t.setDni(dni);
 		//if cat is not null comprobar
 		em.merge(t);
 		em.flush();
@@ -69,8 +68,12 @@ public class CompTrabajadoresDAO implements ICompTrabajadoresDAO {
 		e.setApellidos(apellidos);
 		e.setEmail(email);
 		e.setInstituciones(instituciones);
-		e.setPosiblesuperior(posibleSuperior);
-		e.setDni(dni);
+		if(posibleSuperior!=null && posibleSuperior) {
+			e.setPosiblesuperior(posibleSuperior);
+		}
+		else {
+			e.setPosiblesuperior(false);
+		}
 		//if cat is not null comprobar
 		em.merge(e);
 		em.flush();

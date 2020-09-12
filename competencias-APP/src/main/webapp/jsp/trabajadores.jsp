@@ -107,10 +107,10 @@ pageEncoding="UTF-8"%>
 						<td><select name="catcontractual">
 						<s:iterator value="catContractuales">
 						<s:if test="%{nombre == catcontractual}">
-							<option selected value="<s:property value="id"/>"><s:property value="nombre"/></option>
+							<option selected value="<s:property value="nombre"/>"><s:property value="nombre"/></option>
 						</s:if>
 						<s:else>
-							<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
+							<option value="<s:property value="nombre"/>"><s:property value="nombre"/></option>
 						</s:else>
 						</s:iterator>
 						</select></td>
@@ -130,7 +130,7 @@ pageEncoding="UTF-8"%>
 						<td><input id="unidad" name="unidad" type="text" value="<s:property value="unidad"/>"></td>
 						<td><input id="departamento" name="departamento" type="text" value="<s:property value="departamento"/>"></td>
 						<td><input id="antiguedad" name="antiguedad" type="date" value="<s:property value="antiguedad"/>"></td>
-						<td><input id="dni" name="dni" type="text" value="<s:property value="dni"/>"></td>
+						<td><s:property value="dni"/><input id="dni" name="dni" type="hidden" value="<s:property value="dni"/>"></td>
 						<td><input type="Submit" value="Guardar">
 						</td>
 		   </tr>
@@ -178,9 +178,15 @@ pageEncoding="UTF-8"%>
 			  <td><input id="apellidos" name="apellidos" type="text" value="<s:property value="apellidos"/>"></td>
 				<td><input id="email" name="email" type="text" value="<s:property value="email"/>"></td>
 				<td><input id="instituciones" name="instituciones" type="text" value="<s:property value="instituciones"/>"></td>
-						
-				<td><input type="radio" name="posiblesuperior" value="posiblesuperior"> </td>
-				<td><input id="dni" name="dni" type="text" value="<s:property value="dni"/>"></td>
+				
+				<s:if test="%{posiblesuperior == true}">
+					<td><input type="checkbox" id="posiblesuperior" name="posiblesuperior" value="true" checked/> </td>
+				</s:if>
+		     	<s:else>
+					<td><input type="checkbox" id="posiblesuperior" name="posiblesuperior" value="true"/> </td>
+				</s:else>	
+				
+				<td><s:property value="dni"/><input id="dni" name="dni" type="hidden" value="<s:property value="dni"/>"></td>
 				<td><input type="Submit" value="Guardar">
 				</td>
 		   

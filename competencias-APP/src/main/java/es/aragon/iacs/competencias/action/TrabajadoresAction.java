@@ -38,6 +38,18 @@ public class TrabajadoresAction extends MidasActionSupport{
     
     private String dni;
     private String nombre;
+    private Integer codigo;
+    private String apellidos;
+    private String catcontractual;
+    private String catcompetencial;
+    private String area;
+    private String unidad;
+    private String departamento;
+    private String antiguedad;
+    private Integer id;
+    private String email;
+    private String instituciones;
+    private Boolean posiblesuperior;
     
     {
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
@@ -75,7 +87,7 @@ public class TrabajadoresAction extends MidasActionSupport{
 
     	log.debug("Editando trabajdor interno con dni="+dni+" nombre=" + nombre);
     	//HACER FUNCION EN DAO QUE EDITE
-    	//trabajadoresDao.editInterno(codigo,nombre,apellidos,catcontractual,catcompetencial,area,unidad,departamento,antiguedad,dni);
+    	trabajadoresDao.editInterno(codigo,nombre,apellidos,catcontractual,catcompetencial,area,unidad,departamento,antiguedad,dni);
         editar=false;
         listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
@@ -84,9 +96,9 @@ public class TrabajadoresAction extends MidasActionSupport{
     
     public String guardarExternos() {
 
-    	log.debug("Editando trabajdor externo con dni="+dni+" nombre=" + nombre);
+    	log.debug("Editando trabajdor externo con dni="+dni+" posiblesuperior=" + posiblesuperior);
     	//HACER FUNCION EN DAO QUE EDITE
-    	//trabajadoresDao.editExterno(id,nombre,apellidos,email,instituciones,posiblesuperior,dni);
+    	trabajadoresDao.editExterno(id,nombre,apellidos,email,instituciones,posiblesuperior,dni);
         editar=false;
         listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
@@ -160,6 +172,126 @@ lista
 
 	public void setCatCompetenciales(List<CompCatCompetenciales> catCompetenciales) {
 		this.catCompetenciales = catCompetenciales;
+	}
+
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+
+	public String getCatcontractual() {
+		return catcontractual;
+	}
+
+
+	public void setCatcontractual(String catcontractual) {
+		this.catcontractual = catcontractual;
+	}
+
+
+	public String getCatcompetencial() {
+		return catcompetencial;
+	}
+
+
+	public void setCatcompetencial(String catcompetencial) {
+		this.catcompetencial = catcompetencial;
+	}
+
+
+	public String getArea() {
+		return area;
+	}
+
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+
+	public String getUnidad() {
+		return unidad;
+	}
+
+
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+
+	public String getAntiguedad() {
+		return antiguedad;
+	}
+
+
+	public void setAntiguedad(String antiguedad) {
+		this.antiguedad = antiguedad;
+	}
+
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getInstituciones() {
+		return instituciones;
+	}
+
+
+	public void setInstituciones(String instituciones) {
+		this.instituciones = instituciones;
+	}
+
+
+	public Boolean getPosiblesuperior() {
+		return posiblesuperior;
+	}
+
+
+	public void setPosiblesuperior(Boolean posiblesuperior) {
+		this.posiblesuperior = posiblesuperior;
 	}
 
 
