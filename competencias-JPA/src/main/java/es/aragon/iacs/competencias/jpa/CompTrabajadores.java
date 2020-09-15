@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Table(name="comp_trabajadores")
 @NamedQueries({
 	@NamedQuery(name="CompTrabajadores.findAll", query="SELECT c FROM CompTrabajadores c"),
-	@NamedQuery(name="CompTrabajadores.findByDni", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni")
+	@NamedQuery(name="CompTrabajadores.findByDni", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni"),
+	@NamedQuery(name="CompTrabajadores.findById", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni")
 })
 public class CompTrabajadores implements Serializable{
 	private static final long serialVersionUID = 1L;

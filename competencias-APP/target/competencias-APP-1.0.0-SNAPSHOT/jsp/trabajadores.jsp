@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 <h1>Trabajadores</h1>
 
@@ -101,8 +102,8 @@ pageEncoding="UTF-8"%>
 		   <tr>
 		     <td>
 					     <input id="codigo" name="codigo" type="hidden" value="<s:property value="codigo"/>">
-					     <input id="nombre" name="nombre" type="text" value="<s:property value="nombre"/>"></td>
-						<td><input id="apellidos" name="apellidos" type="text" value="<s:property value="apellidos"/>"></td>
+					     <input id="nombre" name="nombre" type="text" value="<s:property value="nombre"/>" size="15"></td>
+						<td><input id="apellidos" name="apellidos" type="text" value="<s:property value="apellidos"/>" size="15"></td>
 						
 						<td><select name="catcontractual">
 						<s:iterator value="catContractuales">
@@ -127,9 +128,9 @@ pageEncoding="UTF-8"%>
 						</select></td>
 						
 						<td><input id="area" name="area" type="text" value="<s:property value="area"/>"></td>
-						<td><input id="unidad" name="unidad" type="text" value="<s:property value="unidad"/>"></td>
+						<td><input id="unidad" name="unidad" type="text" value="<s:property value="unidad"/>" size="15"></td>
 						<td><input id="departamento" name="departamento" type="text" value="<s:property value="departamento"/>"></td>
-						<td><input id="antiguedad" name="antiguedad" type="date" value="<s:property value="antiguedad"/>"></td>
+						<td><input id="antiguedad" name="antiguedad" type="date" value="<s:property value="antiguedad"/>" size="7"></td>
 						<td><s:property value="dni"/><input id="dni" name="dni" type="hidden" value="<s:property value="dni"/>"></td>
 						<td><input type="Submit" value="Guardar">
 						</td>
@@ -211,3 +212,7 @@ pageEncoding="UTF-8"%>
 	</tbody>
 	</table>
 </s:else>
+
+<div style="text-align:center">
+     <a href="todosOrganigramas" class="btn btn-success" >Ver organigramas</a>
+</div>

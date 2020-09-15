@@ -42,6 +42,11 @@
              <result name="niveles" type="tiles">niveles</result>
          </action>
          
+         <action name="*Organigramas" class="es.aragon.iacs.competencias.action.OrganigramasAction" method="{1}">
+             <result name="organigramas" type="tiles">organigramas</result>
+             <result name="organigramaConcreto" type="tiles">organigramaConcreto</result>
+         </action>
+         
          <action name="*Comportamientos" class="es.aragon.iacs.competencias.action.ComportamientosAction" method="{1}">
              <result name="comportamientos" type="tiles">comportamientos</result>
          </action>

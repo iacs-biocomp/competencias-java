@@ -5,6 +5,7 @@ C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JP
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompCompetenciasDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompComportamientosDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompPruebaDAO.java
+C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompPares.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompTrabajadores.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompObjetivosCompCatcomp.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompTrabajadoresDAO.java
@@ -15,13 +16,17 @@ C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JP
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompCatContractualesV.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompCatContractualesDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompExternos.java
+C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompOrganigramasDAO.java
+C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompOrganigramasDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompNivelesDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompObjetivos.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompComportamientosDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\ICompCatCompetencialesDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompCatCompetenciales.java
+C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompSuperiores.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompCatCompetencialesDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompCatContract.java
+C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompOrganigramas.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\jpa\CompPrueba.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompExternosDAO.java
 C:\Users\UX550\Documents\TFG\Entorno Desarrollo\iacsCompetencias\competencias-JPA\src\main\java\es\aragon\iacs\competencias\dao\CompTrabajadoresDAO.java

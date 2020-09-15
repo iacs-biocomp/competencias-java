@@ -42,6 +42,13 @@
          <put-attribute name="body" value="/jsp/niveles.jsp"/>
      </definition>
 
+	<definition name="organigramas" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/organigramas.jsp"/>
+     </definition>
+     <definition name="organigramaConcreto" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/organigramaConcreto.jsp"/>
+     </definition>
+     
 	 <definition name="comportamientos" extends="loggedLayout">
          <put-attribute name="body" value="/jsp/comportamientos.jsp"/>
      </definition>
