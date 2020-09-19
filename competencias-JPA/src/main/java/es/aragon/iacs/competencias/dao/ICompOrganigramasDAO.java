@@ -13,6 +13,18 @@ public interface ICompOrganigramasDAO {
 	List<CompPares> findPares(Integer id);
 
 	List<CompSuperiores> findSuperiores(Integer id);
+
+	void insertSuperior(Integer id, String dniTrabajador, String dniSuperior);
+
+	void insertPar(Integer id, String dniTrabajador, String dniPar);
+
+	void deleteSuperior(Integer id);
+
+	void deletePar(Integer id);
+
+	Integer getIdOrganigramaPar(Integer idRelacion);
+
+	Integer getIdOrganigramaSuperior(Integer idRelacion);
 	
 	
 }

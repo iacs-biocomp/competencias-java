@@ -31,7 +31,12 @@ public class OrganigramasAction extends MidasActionSupport{
 	private List<CompTrabajadores> listaTrabajadores;
 	private List<CompExternos> listaExternos;
 	
-	private Integer id;
+	private Integer idOrganigrama;
+	private String dniTrabajador;
+	private String dniSuperior;
+	private String dniPar;
+	
+	private Integer idRelacion;
 	
     public List<CompOrganigramas> getListaOrganigramas() {
 		return listaOrganigramas;
@@ -54,12 +59,9 @@ public class OrganigramasAction extends MidasActionSupport{
     }
     
     public String concreto() {
-//        listaNiveles = nivelesDao.findAll();
-        
-//        editar=false;
-    	log.debug("Buscando lista de pares y superiores con id: " + id);
-    	listaPares=organigramasDao.findPares(id);
-    	listaSuperiores=organigramasDao.findSuperiores(id);
+    	log.debug("Buscando lista de pares y superiores con id: " + idOrganigrama);
+    	listaPares=organigramasDao.findPares(idOrganigrama);
+    	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
     	listaTrabajadores=trabajadoresDao.findAll();
     	listaExternos=externosDao.findAll();
     	log.debug("Devolviendo lista de pares: " + listaPares.size()+ listaPares);
@@ -67,6 +69,67 @@ public class OrganigramasAction extends MidasActionSupport{
         return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
     }
+    
+    public String nuevoSuperior() {
+    	if (idOrganigrama!=null && dniSuperior!=null && dniTrabajador!=null) {
+    		organigramasDao.insertSuperior(idOrganigrama,dniTrabajador,dniSuperior);
+    		log.debug("Se ha insertado superior: id:" +idOrganigrama+" superior "+dniSuperior+" trabajador "+dniTrabajador);
+    	}
+//      editar=false;
+//  	log.debug("Buscando lista de pares y superiores con id: " + id);
+  	listaPares=organigramasDao.findPares(idOrganigrama);
+  	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
+  	listaTrabajadores=trabajadoresDao.findAll();
+  	listaExternos=externosDao.findAll();
+//  	log.debug("Devolviendo lista de pares: " + listaPares.size()+ listaPares);
+//  	
+      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
+    
+    public String nuevoPar() {
+    	log.debug("Se va a insertar par: id:" +idOrganigrama+" par "+dniPar+" trabajador "+dniTrabajador);
+    	if (idOrganigrama!=null && dniTrabajador!=null && dniPar!=null) {
+    		organigramasDao.insertPar(idOrganigrama,dniTrabajador,dniPar);
+    		log.debug("Se ha insertado par: id:" +idOrganigrama+" par "+dniPar+" trabajador "+dniTrabajador);
+    	}
+      	listaPares=organigramasDao.findPares(idOrganigrama);
+      	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
+      	listaTrabajadores=trabajadoresDao.findAll();
+      	listaExternos=externosDao.findAll();
+      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
+    
+    public String borrarSuperior() {
+    	log.debug("Se va a eliminar superior: id:" +idRelacion);
+    	if (idRelacion!=null) {
+    		idOrganigrama=organigramasDao.getIdOrganigramaSuperior(idRelacion);
+    		organigramasDao.deleteSuperior(idRelacion);
+    		log.debug("Se ha eliminado superior: id:" +idRelacion+" del organigrama con id:"+idOrganigrama);
+    	}
+    	listaPares=organigramasDao.findPares(idOrganigrama);
+      	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
+      	listaTrabajadores=trabajadoresDao.findAll();
+      	listaExternos=externosDao.findAll();
+      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
+    
+    public String borrarPar() {
+    	log.debug("Se va a eliminar par: id:" +idRelacion);
+    	if (idRelacion!=null) {
+    		idOrganigrama=organigramasDao.getIdOrganigramaPar(idRelacion);
+    		organigramasDao.deletePar(idRelacion);
+    		log.debug("Se ha eliminado par: id:" +idRelacion+" del organigrama con id:"+idOrganigrama);
+    	}
+    	listaPares=organigramasDao.findPares(idOrganigrama);
+      	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
+      	listaTrabajadores=trabajadoresDao.findAll();
+      	listaExternos=externosDao.findAll();
+      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
 
 	public List<CompPares> getListaPares() {
 		return listaPares;
@@ -84,12 +147,12 @@ public class OrganigramasAction extends MidasActionSupport{
 		this.listaSuperiores = listaSuperiores;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdOrganigrama() {
+		return idOrganigrama;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdOrganigrama(Integer idOrganigrama) {
+		this.idOrganigrama = idOrganigrama;
 	}
 
 	public List<CompTrabajadores> getListaTrabajadores() {
@@ -106,6 +169,39 @@ public class OrganigramasAction extends MidasActionSupport{
 
 	public void setListaExternos(List<CompExternos> listaExternos) {
 		this.listaExternos = listaExternos;
+	}
+
+	public String getDniTrabajador() {
+		return dniTrabajador;
+	}
+
+	public void setDniTrabajador(String dniTrabajador) {
+		this.dniTrabajador = dniTrabajador;
+	}
+
+	public String getDniSuperior() {
+		return dniSuperior;
+	}
+
+	public void setDniSuperior(String dniSuperior) {
+		this.dniSuperior = dniSuperior;
+	}
+
+	public String getDniPar() {
+		return dniPar;
+	}
+
+	public void setDniPar(String dniPar) {
+		this.dniPar = dniPar;
+	}
+
+
+	public Integer getIdRelacion() {
+		return idRelacion;
+	}
+
+	public void setIdRelacion(Integer idRelacion) {
+		this.idRelacion = idRelacion;
 	}
     
 

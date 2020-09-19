@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Table(name="comp_pares")
 @NamedQueries({
 	@NamedQuery(name="CompPares.findAll", query="SELECT c FROM CompPares c"),
-	@NamedQuery(name="CompPares.findByOrganigrama", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:idOrganigrama")
+	@NamedQuery(name="CompPares.findByOrganigrama", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:idOrganigrama"),
+	@NamedQuery(name="CompPares.findById", query="SELECT c FROM CompPares c WHERE c.id=:id")
 })
 public class CompPares implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -47,6 +48,14 @@ public class CompPares implements Serializable{
 
 	public void setDniPar(String dniPar) {
 		this.dniPar = dniPar;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

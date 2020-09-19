@@ -6,11 +6,20 @@ pageEncoding="UTF-8"%>
 
 <s:iterator value="listaTrabajadores">
 <h2> <s:property value="nombre"/>  <s:property value="apellidos"/></h2>
-	<h3> Superiores </h3>
+	<h3> Superiores  </h3> 
+	
+		<form action="/nuevoSuperiorOrganigramas" method="post">
+		    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
+		    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>" >
+		    <label for="dniSuperior">DNI superior:</label>
+			<input type="text" id="dniSuperior" name="dniSuperior" required>
+		  <input type="submit" value="Nuevo superior">
+		</form>
 	
 		<table class="table">
 		   <thead>
 		     <tr>
+		     	<th scope="col"></th>
 		       <th scope="col">DNI Superior</th>
 		       <th scope="col">Nombre Superior</th>
 		
@@ -20,6 +29,7 @@ pageEncoding="UTF-8"%>
 		<s:iterator value="listaSuperiores">
 			<s:if test="%{dniTrabajador == dni}">
 				   <tr>                
+				   	<td><a href="borrarSuperiorOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
 					 <td><s:property value="dniSuperior"/></td>
 					 <s:iterator value="listaTrabajadores">
 					 	<s:if  test="%{dniSuperior == dni}">
@@ -29,15 +39,24 @@ pageEncoding="UTF-8"%>
 				   </tr>
 			</s:if>
 		</s:iterator>
-			
+
 		</tbody>
 		</table>
 	
-	<h3> Pares </h3>
+	<h3> Pares   </h3>
+	
+	<form action="/nuevoParOrganigramas" method="post">
+		    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
+		    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>">
+		    <label for="dniPar">DNI par:</label>
+			<input type="text" id="dniPar" name="dniPar" required>
+		  <input type="submit" value="Nuevo par">
+		</form>
 	
 		<table class="table">
 		   <thead>
 		     <tr>
+		     	<th scope="col"></th>
 		       <th scope="col">DNI Par</th>
 				<th scope="col">Nombre Par</th>
 		     </tr>
@@ -46,6 +65,7 @@ pageEncoding="UTF-8"%>
 		<s:iterator value="listaPares">
 			<s:if test="%{dniTrabajador == dni}">
 				   <tr>                
+				   	<td><a href="borrarParOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
 					 <td><s:property value="dniPar"/></td>
 					 <s:iterator value="listaTrabajadores">
 					 	<s:if  test="%{dniPar == dni}">
@@ -55,6 +75,7 @@ pageEncoding="UTF-8"%>
 				   </tr>
 			</s:if>
 		</s:iterator>
+
 		</tbody>
 		</table>
 </s:iterator>

@@ -18,7 +18,7 @@ pageEncoding="UTF-8"%>
 	   <tbody>
 	<s:iterator value="listaOrganigramas">
 			   <tr>  
-			   <td><a href="concretoOrganigramas?id=<s:property value="id"/>"><i class="fas fa-mouse-pointer"></i></a></td>
+			   <td><a href="concretoOrganigramas?idOrganigrama=<s:property value="id"/>"><i class="fas fa-mouse-pointer"></i></a></td>
 			 	  <td><s:property value="id"/></td>                
 				 <td><s:property value="fechaIni"/></td>
 				 <td><s:property value="fechaFin"/></td>
