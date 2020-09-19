@@ -1,5 +1,8 @@
 package es.aragon.iacs.competencias.action;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -31,10 +34,16 @@ public class OrganigramasAction extends MidasActionSupport{
 	private List<CompTrabajadores> listaTrabajadores;
 	private List<CompExternos> listaExternos;
 	
+	private CompOrganigramas organigramaActual;
+	
 	private Integer idOrganigrama;
 	private String dniTrabajador;
 	private String dniSuperior;
 	private String dniPar;
+	private String fechaIni;
+	private String fechaFin;
+	private String fechaActual;
+	private boolean puedeEditar;
 	
 	private Integer idRelacion;
 	
@@ -49,6 +58,20 @@ public class OrganigramasAction extends MidasActionSupport{
 	{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
+	
+	private boolean puedeEditarF(String fechaFin) throws ParseException {
+		//Compara fechaFin con fecha Actual y devuelve true si es mayor la fechaFin, es decir, puede editar el organigrama
+		Date fechaActual = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaSistema=formateador.format(fechaActual);
+        Date fechaDate1 = formateador.parse(fechaFin);
+        Date fechaDate2 = formateador.parse(fechaSistema);
+		if ( fechaDate1.before(fechaDate2) ){
+		    return false;
+		}else{
+		     return true;
+		    }
+	}
 
     public String todos() {
         listaOrganigramas = organigramasDao.findAll();
@@ -58,8 +81,17 @@ public class OrganigramasAction extends MidasActionSupport{
                         // Sirve para indicar qué visualización queremos como resultado
     }
     
-    public String concreto() {
+    public String concreto() throws ParseException {
     	log.debug("Buscando lista de pares y superiores con id: " + idOrganigrama);
+    	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+    	fechaIni=organigramaActual.getFechaIni();
+    	fechaFin=organigramaActual.getFechaFin();
+    	if(fechaFin!=null) {
+    		puedeEditar=puedeEditarF(fechaFin);
+    	}
+    	else {
+    		puedeEditar=true;
+    	}
     	listaPares=organigramasDao.findPares(idOrganigrama);
     	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
     	listaTrabajadores=trabajadoresDao.findAll();
@@ -70,7 +102,7 @@ public class OrganigramasAction extends MidasActionSupport{
                         // Sirve para indicar qué visualización queremos como resultado
     }
     
-    public String nuevoSuperior() {
+    public String nuevoSuperior() throws ParseException {
     	if (idOrganigrama!=null && dniSuperior!=null && dniTrabajador!=null) {
     		organigramasDao.insertSuperior(idOrganigrama,dniTrabajador,dniSuperior);
     		log.debug("Se ha insertado superior: id:" +idOrganigrama+" superior "+dniSuperior+" trabajador "+dniTrabajador);
@@ -81,13 +113,22 @@ public class OrganigramasAction extends MidasActionSupport{
   	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
   	listaTrabajadores=trabajadoresDao.findAll();
   	listaExternos=externosDao.findAll();
+  	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+  	fechaIni=organigramaActual.getFechaIni();
+	fechaFin=organigramaActual.getFechaFin();
+	if(fechaFin!=null) {
+		puedeEditar=puedeEditarF(fechaFin);
+	}
+	else {
+		puedeEditar=true;
+	}
 //  	log.debug("Devolviendo lista de pares: " + listaPares.size()+ listaPares);
 //  	
       return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
                       // Sirve para indicar qué visualización queremos como resultado
   }
     
-    public String nuevoPar() {
+    public String nuevoPar() throws ParseException {
     	log.debug("Se va a insertar par: id:" +idOrganigrama+" par "+dniPar+" trabajador "+dniTrabajador);
     	if (idOrganigrama!=null && dniTrabajador!=null && dniPar!=null) {
     		organigramasDao.insertPar(idOrganigrama,dniTrabajador,dniPar);
@@ -97,11 +138,20 @@ public class OrganigramasAction extends MidasActionSupport{
       	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
       	listaTrabajadores=trabajadoresDao.findAll();
       	listaExternos=externosDao.findAll();
+      	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+      	fechaIni=organigramaActual.getFechaIni();
+    	fechaFin=organigramaActual.getFechaFin();
+    	if(fechaFin!=null) {
+    		puedeEditar=puedeEditarF(fechaFin);
+    	}
+    	else {
+    		puedeEditar=true;
+    	}
       return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
                       // Sirve para indicar qué visualización queremos como resultado
   }
     
-    public String borrarSuperior() {
+    public String borrarSuperior() throws ParseException {
     	log.debug("Se va a eliminar superior: id:" +idRelacion);
     	if (idRelacion!=null) {
     		idOrganigrama=organigramasDao.getIdOrganigramaSuperior(idRelacion);
@@ -112,11 +162,20 @@ public class OrganigramasAction extends MidasActionSupport{
       	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
       	listaTrabajadores=trabajadoresDao.findAll();
       	listaExternos=externosDao.findAll();
+      	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+      	fechaIni=organigramaActual.getFechaIni();
+    	fechaFin=organigramaActual.getFechaFin();
+    	if(fechaFin!=null) {
+    		puedeEditar=puedeEditarF(fechaFin);
+    	}
+    	else {
+    		puedeEditar=true;
+    	}
       return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
                       // Sirve para indicar qué visualización queremos como resultado
   }
     
-    public String borrarPar() {
+    public String borrarPar() throws ParseException {
     	log.debug("Se va a eliminar par: id:" +idRelacion);
     	if (idRelacion!=null) {
     		idOrganigrama=organigramasDao.getIdOrganigramaPar(idRelacion);
@@ -127,6 +186,15 @@ public class OrganigramasAction extends MidasActionSupport{
       	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
       	listaTrabajadores=trabajadoresDao.findAll();
       	listaExternos=externosDao.findAll();
+      	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+      	fechaIni=organigramaActual.getFechaIni();
+    	fechaFin=organigramaActual.getFechaFin();
+    	if(fechaFin!=null) {
+    		puedeEditar=puedeEditarF(fechaFin);
+    	}
+    	else {
+    		puedeEditar=true;
+    	}
       return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
                       // Sirve para indicar qué visualización queremos como resultado
   }
@@ -202,6 +270,46 @@ public class OrganigramasAction extends MidasActionSupport{
 
 	public void setIdRelacion(Integer idRelacion) {
 		this.idRelacion = idRelacion;
+	}
+
+	public CompOrganigramas getOrganigramaActual() {
+		return organigramaActual;
+	}
+
+	public void setOrganigramaActual(CompOrganigramas organigramaActual) {
+		this.organigramaActual = organigramaActual;
+	}
+
+	public String getFechaIni() {
+		return fechaIni;
+	}
+
+	public void setFechaIni(String fechaIni) {
+		this.fechaIni = fechaIni;
+	}
+
+	public String getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(String fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(String fechaActual) {
+		this.fechaActual = fechaActual;
+	}
+
+	public boolean isPuedeEditar() {
+		return puedeEditar;
+	}
+
+	public void setPuedeEditar(boolean puedeEditar) {
+		this.puedeEditar = puedeEditar;
 	}
     
 

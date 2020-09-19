@@ -2,20 +2,20 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<h1> Organigrama concreto </h1>
+<h1> Organigrama concreto: <s:property value="idOrganigrama"/> </h1><h3><s:property value="fechaIni"/>   -   <s:property value="fechaFin"/></h3>
 
 <s:iterator value="listaTrabajadores">
 <h2> <s:property value="nombre"/>  <s:property value="apellidos"/></h2>
 	<h3> Superiores  </h3> 
-	
-		<form action="/nuevoSuperiorOrganigramas" method="post">
-		    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
-		    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>" >
-		    <label for="dniSuperior">DNI superior:</label>
-			<input type="text" id="dniSuperior" name="dniSuperior" required>
-		  <input type="submit" value="Nuevo superior">
-		</form>
-	
+		<s:if test="%{puedeEditar == true}">
+			<form action="/nuevoSuperiorOrganigramas" method="post">
+			    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
+			    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>" >
+			    <label for="dniSuperior">DNI superior:</label>
+				<input type="text" id="dniSuperior" name="dniSuperior" required>
+			  <input type="submit" value="Nuevo superior">
+			</form>
+		</s:if>
 		<table class="table">
 		   <thead>
 		     <tr>
@@ -29,7 +29,7 @@ pageEncoding="UTF-8"%>
 		<s:iterator value="listaSuperiores">
 			<s:if test="%{dniTrabajador == dni}">
 				   <tr>                
-				   	<td><a href="borrarSuperiorOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
+				   	<td><s:if test="%{puedeEditar == true}"><a href="borrarSuperiorOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></s:if></td>
 					 <td><s:property value="dniSuperior"/></td>
 					 <s:iterator value="listaTrabajadores">
 					 	<s:if  test="%{dniSuperior == dni}">
@@ -44,15 +44,15 @@ pageEncoding="UTF-8"%>
 		</table>
 	
 	<h3> Pares   </h3>
-	
-	<form action="/nuevoParOrganigramas" method="post">
-		    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
-		    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>">
-		    <label for="dniPar">DNI par:</label>
-			<input type="text" id="dniPar" name="dniPar" required>
-		  <input type="submit" value="Nuevo par">
-		</form>
-	
+	<s:if test="%{puedeEditar == true}">
+		<form action="/nuevoParOrganigramas" method="post">
+			    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>">
+			    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>">
+			    <label for="dniPar">DNI par:</label>
+				<input type="text" id="dniPar" name="dniPar" required>
+			  <input type="submit" value="Nuevo par">
+			</form>
+	</s:if>
 		<table class="table">
 		   <thead>
 		     <tr>
@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
 		<s:iterator value="listaPares">
 			<s:if test="%{dniTrabajador == dni}">
 				   <tr>                
-				   	<td><a href="borrarParOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
+				   	<td><s:if test="%{puedeEditar == true}"><a href="borrarParOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></s:if></td>
 					 <td><s:property value="dniPar"/></td>
 					 <s:iterator value="listaTrabajadores">
 					 	<s:if  test="%{dniPar == dni}">

@@ -26,6 +26,15 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 		List<CompOrganigramas> projects = query.getResultList();
 		return projects;
 	}
+	@Override
+	public CompOrganigramas findByIdOrganigrama(Integer idOrganigrama) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompOrganigramas.findById");
+		query.setParameter("id", idOrganigrama);
+		@SuppressWarnings("unchecked")
+		CompOrganigramas c = (CompOrganigramas)query.getSingleResult();
+		return c;
+	}
 	
 	@Override
 	public List<CompPares> findPares(Integer id) {

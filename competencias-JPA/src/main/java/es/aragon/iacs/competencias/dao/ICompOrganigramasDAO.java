@@ -25,6 +25,8 @@ public interface ICompOrganigramasDAO {
 	Integer getIdOrganigramaPar(Integer idRelacion);
 
 	Integer getIdOrganigramaSuperior(Integer idRelacion);
+
+	CompOrganigramas findByIdOrganigrama(Integer idOrganigrama);
 	
 	
 }
