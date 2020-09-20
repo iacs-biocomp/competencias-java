@@ -27,6 +27,12 @@ public interface ICompOrganigramasDAO {
 	Integer getIdOrganigramaSuperior(Integer idRelacion);
 
 	CompOrganigramas findByIdOrganigrama(Integer idOrganigrama);
+
+	void insertOrganigrama(String nombre, String fechaIni, String fechaFin);
+
+	void deleteOrganigrama(Integer idOrganigrama);
+
+	void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin);
 	
 	
 }

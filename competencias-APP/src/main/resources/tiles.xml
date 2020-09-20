@@ -14,6 +14,19 @@
          <put-attribute name="body" value="/jsp/misDatos.jsp"/>
      </definition>
      
+     <definition name="evaluadores" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/evaluadores.jsp"/>
+     </definition>
+     
+     <definition name="evaluaciones" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/evaluaciones.jsp"/>
+     </definition>
+     
+      <definition name="supervisados" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/supervisados.jsp"/>
+     </definition>
+     
+     
      <definition name="trabajadores" extends="loggedLayout">
          <put-attribute name="body" value="/jsp/trabajadores.jsp"/>
      </definition>

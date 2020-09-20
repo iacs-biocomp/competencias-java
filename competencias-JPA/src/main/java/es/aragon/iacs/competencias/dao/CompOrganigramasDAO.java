@@ -57,6 +57,45 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	
 	@Override
+	public void insertOrganigrama(String nombre, String fechaIni, String fechaFin) {
+		// TODO Auto-generated method stu
+		CompOrganigramas nuevo=new CompOrganigramas();
+		nuevo.setNombre(nombre);
+		nuevo.setFechaIni(fechaIni);
+		nuevo.setFechaFin(fechaFin);
+		
+		em.persist(nuevo);
+		em.flush();
+	}
+	
+	@Override
+	public void deleteOrganigrama(Integer idOrganigrama) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompOrganigramas.findById");
+		query.setParameter("id", idOrganigrama);
+		@SuppressWarnings("unchecked")
+		CompOrganigramas c = (CompOrganigramas)query.getSingleResult();
+		
+		em.remove(c);
+		em.flush();
+	}
+	
+	@Override
+	public void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompOrganigramas.findById");
+		query.setParameter("id", idOrganigrama);
+		@SuppressWarnings("unchecked")
+		CompOrganigramas c = (CompOrganigramas)query.getSingleResult();
+		c.setNombre(nombre);
+		c.setFechaIni(fechaIni);
+		c.setFechaFin(fechaFin);
+		
+		em.merge(c);
+		em.flush();
+	}
+	
+	@Override
 	public void insertSuperior(Integer id,String dniTrabajador, String dniSuperior) {
 		// TODO Auto-generated method stu
 		CompSuperiores nueva=new CompSuperiores();

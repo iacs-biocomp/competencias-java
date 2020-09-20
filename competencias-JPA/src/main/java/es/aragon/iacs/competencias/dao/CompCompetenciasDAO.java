@@ -32,11 +32,24 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	public List<CompObjetivosCompCatcomp> porCatCompetencial(String codCatCompetencial) {
 		// TODO Auto-generated method stu
 		
-		String query="Select obj.codcompetencia,comp.descripcion,n.nombre as objetivo,catcomp.nombre as nombrecatcomp from comp_objetivos obj, comp_competencias comp, comp_niveles n, comp_cat_competenciales catcomp where comp.codigo=obj.codcompetencia and obj.idnivel=n.id and obj.codcatcomp='"+codCatCompetencial+"' and catcomp.codigo='"+ codCatCompetencial+ "';";
+		String query="Select n.id id, "
+					+ "		 obj.codcompetencia, "
+					+ "      comp.descripcion,"
+					+ "		 n.nombre as objetivo,"
+					+ "      catcomp.codigo codcatcomp, "
+					+ "      catcomp.nombre as nombrecatcomp "
+					+ "from comp_objetivos obj, "
+					+ "     comp_competencias comp, "
+					+ "     comp_niveles n, "
+					+ "     comp_cat_competenciales catcomp "
+					+ "where comp.codigo=obj.codcompetencia "
+					+ "  and obj.idnivel=n.id "
+					+ "  and obj.codcatcomp='"+codCatCompetencial+"' "
+					+ "  and catcomp.codigo='"+ codCatCompetencial+ "';";
 		@SuppressWarnings("unchecked")
+
 		List<CompObjetivosCompCatcomp> resultado=em.createNativeQuery(query,CompObjetivosCompCatcomp.class).getResultList();
 
-		
 		return resultado;
 	}
 	
@@ -79,6 +92,3 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 		em.flush();
 	}
 }
-
-
-

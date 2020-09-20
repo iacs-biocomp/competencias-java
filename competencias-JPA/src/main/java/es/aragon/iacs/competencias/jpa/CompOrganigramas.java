@@ -17,6 +17,7 @@ public class CompOrganigramas implements Serializable{
 	@SequenceGenerator(name="comp_organigramas_id_seq", sequenceName="comp_organigramas_id_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_organigramas_id_seq")
 	private int id;
+	private String nombre;
 	private String fechaIni;
 	private String fechaFin;
 	
@@ -46,6 +47,14 @@ public class CompOrganigramas implements Serializable{
 
 	public void setFechaFin(String fechaFin) {
 		this.fechaFin = fechaFin;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 }

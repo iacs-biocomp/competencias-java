@@ -40,10 +40,14 @@ public class OrganigramasAction extends MidasActionSupport{
 	private String dniTrabajador;
 	private String dniSuperior;
 	private String dniPar;
+	private String nombreOrganigrama;
 	private String fechaIni;
 	private String fechaFin;
 	private String fechaActual;
 	private boolean puedeEditar;
+	
+	private boolean editar;
+	private Integer idEditar;
 	
 	private Integer idRelacion;
 	
@@ -76,10 +80,52 @@ public class OrganigramasAction extends MidasActionSupport{
     public String todos() {
         listaOrganigramas = organigramasDao.findAll();
 //        log.debug("Devolviendo lista de pruebas: " + listaNiveles.size());
-//        editar=false;
+        editar=false;
         return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
     }
+    
+    public String nuevo(){
+    	if ( nombreOrganigrama!=null ) {
+    		organigramasDao.insertOrganigrama(nombreOrganigrama,fechaIni, fechaFin);
+    		log.debug("Se ha insertado organigrama: nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
+    	}
+    	listaOrganigramas = organigramasDao.findAll();
+    	editar=false;
+     	return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
+    public String borrar(){
+    	if (idOrganigrama!=null ) {
+    		organigramasDao.deleteOrganigrama(idOrganigrama);
+    		log.debug("Se ha eliminado organigrama: id:" +idOrganigrama);
+    	}
+    	listaOrganigramas = organigramasDao.findAll();
+    	editar=false;
+     	return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
+    public String editar(){
+//    	if (idOrganigrama!=null && nombreOrganigrama!=null ) {
+//    		organigramasDao.editOrganigrama(idOrganigrama, nombreOrganigrama,fechaIni, fechaFin);
+//    		log.debug("Se ha editado organigrama: id: "+idOrganigrama+" nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
+//    	}
+    	listaOrganigramas = organigramasDao.findAll();
+    	editar=true;
+    	idEditar=idOrganigrama;
+     	return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  } 
+    public String guardar(){
+    	if (idOrganigrama!=null && nombreOrganigrama!=null ) {
+    		organigramasDao.editOrganigrama(idOrganigrama, nombreOrganigrama,fechaIni, fechaFin);
+    		log.debug("Se ha editado organigrama: id: "+idOrganigrama+" nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
+    	}
+    	listaOrganigramas = organigramasDao.findAll();
+    	editar=false;
+     	return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
+                      // Sirve para indicar qué visualización queremos como resultado
+  }
     
     public String concreto() throws ParseException {
     	log.debug("Buscando lista de pares y superiores con id: " + idOrganigrama);
@@ -310,6 +356,30 @@ public class OrganigramasAction extends MidasActionSupport{
 
 	public void setPuedeEditar(boolean puedeEditar) {
 		this.puedeEditar = puedeEditar;
+	}
+
+	public String getNombreOrganigrama() {
+		return nombreOrganigrama;
+	}
+
+	public void setNombreOrganigrama(String nombreOrganigrama) {
+		this.nombreOrganigrama = nombreOrganigrama;
+	}
+
+	public boolean isEditar() {
+		return editar;
+	}
+
+	public void setEditar(boolean editar) {
+		this.editar = editar;
+	}
+
+	public Integer getIdEditar() {
+		return idEditar;
+	}
+
+	public void setIdEditar(Integer idEditar) {
+		this.idEditar = idEditar;
 	}
     
 

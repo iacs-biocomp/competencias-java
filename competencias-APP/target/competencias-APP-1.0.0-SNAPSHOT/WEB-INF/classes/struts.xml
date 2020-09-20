@@ -20,6 +20,19 @@
              <result name="misDatos" type="tiles">misDatos</result>
          </action>
          
+         <action name="*Evaluadores" class="es.aragon.iacs.competencias.action.EvaluadoresAction" method="{1}">
+             <result name="evaluadores" type="tiles">evaluadores</result>
+         </action>
+         
+         <action name="*Evaluaciones" class="es.aragon.iacs.competencias.action.EvaluacionesAction" method="{1}">
+             <result name="evaluaciones" type="tiles">evaluaciones</result>
+         </action>
+         
+         
+         <action name="*Supervisados" class="es.aragon.iacs.competencias.action.SupervisadosAction" method="{1}">
+             <result name="supervisados" type="tiles">supervisados</result>
+         </action>
+         
          <action name="*Trabajadores" class="es.aragon.iacs.competencias.action.TrabajadoresAction" method="{1}">
              <result name="trabajadores" type="tiles">trabajadores</result>
          </action>
