@@ -1,0 +1,119 @@
+{
+    "config": {
+        "format": ".2f",
+        "suffix": "%"
+    },
+    "rootItem": {
+        "code": 1,
+        "name": "BARBASTRO",
+        "size": 0,
+        "link": "",
+        "children": [
+            {
+                "code": 2,
+                "name": "DIABETES",
+                "size": "0.071414525093408129000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 3,
+                "name": "IC",
+                "size": "0.312567921423322535000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 4,
+                "name": "EPOC",
+                "size": "0.212173589045632847000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 5,
+                "name": "HTA",
+                "size": "0.267028224262308656000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 6,
+                "name": "DEPRESION",
+                "size": "0.045539697161013879000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 7,
+                "name": "VIH",
+                "size": "0.0010349931172957699831000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 8,
+                "name": "CI",
+                "size": "0.128339146544675478000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 9,
+                "name": "AVC",
+                "size": "0.171808857471097817000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 10,
+                "name": "IRC",
+                "size": "0.112814249785238928000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 11,
+                "name": "CIRROSIS",
+                "size": "0.0000000000000000000000000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 12,
+                "name": "OSTEOPOROSIS",
+                "size": "0.0041399724691830799325000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 13,
+                "name": "ARTROSIS",
+                "size": "0.103499311729576998000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 14,
+                "name": "ARTRITIS",
+                "size": "0.060029600803154659000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 15,
+                "name": "DEMENCIA",
+                "size": "0.0020699862345915399663000",
+                "link": "",
+                "children": []
+            },
+            {
+                "code": 16,
+                "name": "DOLOR",
+                "size": "0.0020699862345915399663000",
+                "link": "",
+                "children": []
+            }
+        ]
+    }
+}

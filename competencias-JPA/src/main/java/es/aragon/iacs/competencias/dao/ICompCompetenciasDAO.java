@@ -4,6 +4,7 @@ import java.util.List;
 
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
+import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 
 public interface ICompCompetenciasDAO {
 
@@ -13,11 +14,13 @@ public interface ICompCompetenciasDAO {
 
 	void insert(String codigo, String descripcion, String alta, String baja);
 
-	List<CompObjetivosCompCatcomp> porCatCompetencial(String codCatCompetencial);
-
 	void edit(String codigo, String descripcion, String alta, String baja);
 
+	List<CompObjetivosCompCatcomp> compPorCatComp(String codCatCompetencial);
 
-//	List<CompCompetencias> competenciasCatCompetencial(String catCompetencial);
+	List<CompRelCompCompleto> relacionesPorCatComp(String codCatCompetencial);
+
+	void deleteRelacion(Integer idRelacion);
+
 
 }

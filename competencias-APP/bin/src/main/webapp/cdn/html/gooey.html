@@ -1,0 +1,260 @@
+<style>
+text { fill: #333; }
+text.year {
+    font-family: monospace;
+    pointer-events: none;
+    font-size: 300px;
+}
+#controls {
+    position: absolute;
+    top: 15px; right: 15px;
+}
+</style>
+
+<div id="gooey" class="row col-md-6">
+</div>
+
+<div id="controls">
+    <button id="explode">Explode All</button>
+    <button id="collapse">Collapse All</button>
+    <button id="return">Return</button>
+</div>
+
+<script>
+var years = d3.range('2010', '2018')
+var interval = 3000
+
+var blurStable = '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -7'
+var blurIn = '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -11'
+var blurOut = '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -7'
+
+var margin = { top: 15, right: 15, bottom: 45, left: 55 }
+var width = 860 - margin.left - margin.right
+var height = 500 - margin.top - margin.bottom
+
+
+
+
+var svg = d3.select('#gooey')
+    .append('svg')
+    .attr('width', width + margin.left + margin.top)
+    .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+
+var x = d3.scaleLinear().range([0, width])
+var y = d3.scaleLinear().range([height, 0])
+var r = d3.scaleSqrt().range([0, 50])
+var color = d3.scaleOrdinal()
+    .range(['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#e6ab02', '#666666', '#00ff00', '#0000ff'])
+
+var xAxis = d3.axisBottom().scale(x)
+var yAxis = d3.axisLeft().scale(y)
+
+var yearLabel = svg.append('text')
+    .attr('class', 'year')
+    .attr('x', width / 2)
+    .attr('y', height / 2)
+    .attr('dy', '.28em')
+    .style('font-size', width )
+    .style('text-anchor', 'middle')
+    .style('font-weight', 'bold')
+    .style('opacity', 0.2)
+    .text('2010')
+
+d3.csv('static.action?src=/dashboard/scripts/gooey.csv', function (d) {
+    return {
+        hospital: d.hospital,
+        year: d.year,
+        rate: +d.rate,
+        feature: +d.feature,
+        population: +d.population,
+        pathology: d.pathology
+    }
+}, initialize)
+
+function initialize(error, data) {
+    if (error) { throw error }
+
+    x.domain([0, d3.max(data, function (d) { return d.feature })]).nice()
+    y.domain([0, d3.max(data, function (d) { return d.rate })]).nice()
+    r.domain([0, d3.max(data, function (d) { return d.population })])
+
+    data = d3.nest()
+        .key(function (d) { return d.year })
+        .key(function (d) { return d.pathology })
+        .entries(data)
+
+    data.forEach(function (d) {
+        d.values.forEach(function (e) {
+            e.population = d3.sum(e.values, function (f) { return f.population })
+            e.feature = d3.sum(e.values, function (f) {
+                return f.population * f.feature
+            }) / e.population
+            e.rate = d3.sum(e.values, function (f) {
+                return f.population * f.rate
+            }) / e.population
+            e.values.forEach(function (f) { f.parent = e })
+        })
+    })
+
+    var uniqueContinents = data[0].values.map(function (d) { return d.key })
+
+    // from http://www.visualcinnamon.com/2016/06/fun-data-visualizations-svg-gooey-effect.html
+    // modified to create a filter for each continent group, which can be individually transitioned
+    var filters = svg.append('defs')
+        .selectAll('filter')
+        .data(uniqueContinents)
+        .enter().append('filter')
+        .attr('id', function (d) { return 'gooeyCodeFilter-' + d.replace(' ', '-') })
+
+    filters.append('feGaussianBlur')
+        .attr('in', 'SourceGraphic')
+        .attr('stdDeviation', '10')
+        .attr('color-interpolation-filters', 'sRGB')
+        .attr('result', 'blur')
+
+    var blurValues = filters.append('feColorMatrix')
+        .attr('class', 'blurValues')
+        .attr('in', 'blur')
+        .attr('mode', 'matrix')
+        .attr('values', blurStable)
+        .attr('result', 'gooey')
+
+    filters.append('feBlend')
+        .attr('in', 'SourceGraphic')
+        .attr('in2', 'gooey')
+
+    svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis)
+        .append('text')
+        .attr('x', width)
+        .attr('y', 30)
+        .style('text-anchor', 'end')
+        .style('font-weight', 'bold')
+        .text('First assistance delay (min)')
+
+    svg.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis)
+        .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', 0)
+        .attr('y', -30)
+        .style('text-anchor', 'end')
+        .style('font-weight', 'bold')
+        .text('Mortality rate')
+
+    var yearIndex = 0
+    var year = '' + years[yearIndex]
+    var exploded = d3.set()
+    var blurTransition = d3.set()
+
+    d3.select('#explode').on('click', function () {
+        uniqueContinents.forEach(function (d) {
+            if (!exploded.has(d)) {
+                exploded.add(d)
+                blurTransition.add(d)
+            }
+        })
+    })
+
+    d3.select('#collapse').on('click', function () {
+        uniqueContinents.forEach(function (d) {
+            if (exploded.has(d)) {
+                exploded.remove(d)
+                blurTransition.add(d)
+            }
+        })
+    })
+
+    d3.select('#return').on('click', function () {
+        url = "showDashboard?db=997#team";
+        $( location ).attr("href", url);
+    })
+
+    var pathologies = svg.selectAll('.pathology')
+        .data(data[0].values)
+        .enter().append('g')
+        .attr('class', 'pathology')
+        .style('filter', function (d) { return 'url(#gooeyCodeFilter-' + d.key.replace(' ', '-') + ')' })
+
+    pathologies.append('circle')
+        .attr('class', 'aggregate')
+        .attr('cx', width / 2)
+        .attr('cy', height / 2)
+        .style('fill', function (d) { return color(d.key) })
+        .on('click', function (d) { exploded.add(d.key); blurTransition.add(d.pathology) })
+        .append('title').text(function (d) { return d.key })
+
+    update()
+    d3.interval(incrementYear, interval)
+
+    function incrementYear() {
+        year = '' + years[++yearIndex >= years.length ? yearIndex = 0 : yearIndex]
+        update()
+    }
+
+    function update() {
+        yearLabel.transition().duration(0).delay(interval / 2).text(year)
+        pathologies = pathologies.data(
+            data.find(function (d) { return d.key === year }).values,
+            function (d) { return d.key }
+        )
+
+        var hospitals = pathologies.selectAll('.hospital')
+            .data(function (d) { return d.values }, function (d) { return d.hospital })
+
+        hospitals.exit().remove()
+
+        var enterHospitals = hospitals.enter().insert('circle', '.aggregate')
+            .attr('class', 'hospital')
+            .attr('cx', width / 2)
+            .attr('cy', height / 2)
+            .style('fill', function (d) { return color(d.pathology) })
+            .on('click', function (d) { exploded.remove(d.pathology); blurTransition.add(d.pathology) })
+
+        enterHospitals.append('title').text(function (d) { return d.hospital })
+
+        hospitals = hospitals.merge(enterHospitals)
+
+        var t = d3.transition()
+            .ease(d3.easeLinear)
+            .duration(interval)
+
+        pathologies.select('.aggregate')
+            .transition(t)
+            .attr('r', function (d) { return exploded.has(d.key) ? 0 : r(d.population) })
+            .attr('cx', function (d) { return x(d.feature) })
+            .attr('cy', function (d) { return y(d.rate) })
+
+        hospitals
+            .transition(t)
+            .attr('r', function (d) { return r(d.population) })
+            .attr('cx', function (d) { return x((exploded.has(d.pathology) ? d : d.parent).feature) })
+            .attr('cy', function (d) { return y((exploded.has(d.pathology) ? d : d.parent).rate) })
+            .style('fill', function (d) { return color(d.hospital) })
+            
+
+        blurValues
+            .transition(t)
+            .attrTween('values', function (d) {
+                if (blurTransition.has(d)) {
+                    blurTransition.remove(d)
+
+                    if (exploded.has(d)) {
+                        return d3.interpolateString(blurIn, blurOut)
+                    } else {
+                        return d3.interpolateString(blurOut, blurIn)
+                    }
+                }
+
+                return function () { return blurStable }
+            })
+    }
+}
+
+</script>
+	

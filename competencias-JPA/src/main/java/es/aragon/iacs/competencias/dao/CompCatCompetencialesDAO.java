@@ -25,6 +25,16 @@ public class CompCatCompetencialesDAO implements ICompCatCompetencialesDAO {
 	}
 	
 	@Override
+	public CompCatCompetenciales findById(String codigo) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompCatCompetenciales.findById");
+		query.setParameter("codigo", codigo);
+		@SuppressWarnings("unchecked")
+		CompCatCompetenciales project = (CompCatCompetenciales)query.getSingleResult();
+		return project;
+	}
+	
+	@Override
 	public void delete(String codigo) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCatCompetenciales.findById");

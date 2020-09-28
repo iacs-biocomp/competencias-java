@@ -14,4 +14,6 @@ public interface ICompCatCompetencialesDAO {
 
 	void edit(String codigo, String nombre, String alta, String baja);
 
+	CompCatCompetenciales findById(String codigo);
+
 }

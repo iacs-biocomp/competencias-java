@@ -132,7 +132,7 @@ public class OrganigramasAction extends MidasActionSupport{
     	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
     	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null) {
+    	if(fechaFin!=null && !fechaFin.equals("")) {
     		puedeEditar=puedeEditarF(fechaFin);
     	}
     	else {
@@ -162,7 +162,7 @@ public class OrganigramasAction extends MidasActionSupport{
   	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
   	fechaIni=organigramaActual.getFechaIni();
 	fechaFin=organigramaActual.getFechaFin();
-	if(fechaFin!=null) {
+	if(fechaFin!=null && !fechaFin.equals("")) {
 		puedeEditar=puedeEditarF(fechaFin);
 	}
 	else {
@@ -187,7 +187,7 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null) {
+    	if(fechaFin!=null && !fechaFin.equals("")) {
     		puedeEditar=puedeEditarF(fechaFin);
     	}
     	else {
@@ -211,7 +211,7 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null) {
+    	if(fechaFin!=null && !fechaFin.equals("")) {
     		puedeEditar=puedeEditarF(fechaFin);
     	}
     	else {
@@ -235,7 +235,7 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null) {
+    	if(fechaFin!=null && !fechaFin.equals("")) {
     		puedeEditar=puedeEditarF(fechaFin);
     	}
     	else {
