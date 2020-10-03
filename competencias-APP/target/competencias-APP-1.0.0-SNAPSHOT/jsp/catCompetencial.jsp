@@ -4,8 +4,7 @@ pageEncoding="UTF-8"%>
 
 <h1><s:property value="nombreCatCompetencial"/></h1>
 <s:if test="%{editar == true}">
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir competencia <i class="fa fa-plus" aria-hidden="true" ></i></button>
-	<hr>
+	<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir competencia <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
 	
 	<div id="modal-2" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog modal-lg">
