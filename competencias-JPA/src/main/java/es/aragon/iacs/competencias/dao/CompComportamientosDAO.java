@@ -2,6 +2,7 @@ package es.aragon.iacs.competencias.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,6 +22,19 @@ public class CompComportamientosDAO implements ICompComportamientosDAO {
 	public List<CompComportamientos> findAll() {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompComportamientos.findAll");
+		@SuppressWarnings("unchecked")
+		List<CompComportamientos> projects = query.getResultList();
+		return projects;
+	}
+	
+	@Override
+	public List<CompComportamientos> findActivos() {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompComportamientos.findActivos");
+		Date fechaActual = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaHoy=formateador.format(fechaActual);
+		query.setParameter("fechaHoy", fechaHoy);
 		@SuppressWarnings("unchecked")
 		List<CompComportamientos> projects = query.getResultList();
 		return projects;

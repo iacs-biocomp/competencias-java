@@ -9,6 +9,7 @@ import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 public interface ICompCompetenciasDAO {
 
 	List<CompCompetencias> findAll();
+	List<CompCompetencias> findActivas();
 
 	void delete(String codigo);
 

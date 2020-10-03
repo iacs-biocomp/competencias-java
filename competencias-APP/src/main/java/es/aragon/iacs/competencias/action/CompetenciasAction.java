@@ -106,9 +106,10 @@ public class CompetenciasAction extends MidasActionSupport{
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
-    	listaCompetencias = competenciasDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
     	log.debug("Devolviendo lista de relCompCompleto: " + compRelCompCompleto.size()+ compRelCompCompleto);
-    	listaComportamientos = comportamientosDao.findAll();
+    	log.debug("Devolviendo lista de competencias activas: " + listaCompetencias.size()+ listaCompetencias);
+    	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
     	return "catCompetencialConcreta";
     }
@@ -123,8 +124,8 @@ public class CompetenciasAction extends MidasActionSupport{
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
     	listaNiveles=compNivelesDao.findAll();
-    	listaCompetencias = competenciasDao.findAll();
-    	listaComportamientos = comportamientosDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
     	editar=false;
         return "catCompetencialConcreta"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
@@ -142,8 +143,8 @@ public class CompetenciasAction extends MidasActionSupport{
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
-    	listaCompetencias = competenciasDao.findAll();
-    	listaComportamientos = comportamientosDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos =comportamientosDao.findActivos();
     	editar=true;
     	return "catCompetencialConcreta";
     }
@@ -158,8 +159,8 @@ public class CompetenciasAction extends MidasActionSupport{
     	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
-    	listaCompetencias = competenciasDao.findAll();
-    	listaComportamientos = comportamientosDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
     	return "catCompetencialConcreta";
     }
@@ -175,8 +176,8 @@ public class CompetenciasAction extends MidasActionSupport{
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
-    	listaCompetencias = competenciasDao.findAll();
-    	listaComportamientos = comportamientosDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
     	return "catCompetencialConcreta";
     }
@@ -191,8 +192,8 @@ public class CompetenciasAction extends MidasActionSupport{
     	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
-    	listaCompetencias = competenciasDao.findAll();
-    	listaComportamientos = comportamientosDao.findAll();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
     	return "catCompetencialConcreta";
     }

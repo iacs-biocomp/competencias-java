@@ -15,4 +15,5 @@ public interface ICompComportamientosDAO {
 
 	void edit(Integer codigo, String descripcion, String alta, String baja);
 
+	List<CompComportamientos> findActivos();
 }
