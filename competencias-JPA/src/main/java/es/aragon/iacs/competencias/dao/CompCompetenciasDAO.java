@@ -117,4 +117,56 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 		em.remove(o);
 		em.flush();
 	}
+	
+	@Override
+	public void insertRelacion(String codCompetencia, String codCatComp, Integer idNivel) {
+		CompObjetivos o=new CompObjetivos();
+		o.setCodcompetencia(codCompetencia);
+		o.setCodcatcomp(codCatComp);
+		o.setIdnivel(idNivel);
+		//if cat is not null comprobar
+		em.persist(o);
+		em.flush();
+	}
+	
+	@Override
+	public void insertRelacionComportamientos(String codCompetencia, String codCatComp, Integer idNivel, Integer idComportamiento) {
+		CompRelacionesComportamientos r=new CompRelacionesComportamientos();
+		r.setCodcomp(codCompetencia);
+		r.setCodcatcomp(codCatComp);
+		r.setIdnivel(idNivel);
+		r.setIdcomportamiento(idComportamiento);
+		//if cat is not null comprobar
+		em.persist(r);
+		em.flush();
+	}
+	
+	@Override
+	public void deleteRelacionComportamientos(String catCompetencial, String codCompetencia)  {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompRelacionesComportamientos.findByCatCompCompetencia");
+		query.setParameter("codcompetencia", codCompetencia).setParameter("codcatcomp", catCompetencial);
+//		@SuppressWarnings("unchecked")
+//		
+		//Lista de relaciones devueltas por la query hacer remove
+		List<CompRelacionesComportamientos> resultado=query.getResultList();
+		//COMPROBAR QE NO ES NUL Y HACER BUCLE ELIMINANDO TODOS LOS ELEMENTOS
+		
+		for (int i = 0; i < resultado.size(); ++i) {
+		    em.remove(resultado.get(i));
+		}
+		em.flush();
+	}
+	
+	@Override
+	public void deleteRelacionComportamientos(Integer idRelacion)  {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompRelacionesComportamientos.findById");
+		query.setParameter("id", idRelacion);
+
+		CompRelacionesComportamientos resultado=(CompRelacionesComportamientos)query.getSingleResult();
+		
+		em.remove(resultado);
+		em.flush();
+	}
 }

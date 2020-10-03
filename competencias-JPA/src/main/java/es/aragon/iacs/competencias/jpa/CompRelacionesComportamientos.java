@@ -7,13 +7,15 @@ import javax.persistence.*;
 @Table(name="comp_relaciones_comportamientos")
 @NamedQueries({
 	@NamedQuery(name="CompRelacionesComportamientos.findAll", query="SELECT c FROM CompRelacionesComportamientos c"),
-	@NamedQuery(name="CompRelacionesComportamientos.findById", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.id=:id")
+	@NamedQuery(name="CompRelacionesComportamientos.findById", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.id=:id"),
+	@NamedQuery(name="CompRelacionesComportamientos.findByCatCompCompetencia", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcompetencia")
 })
 public class CompRelacionesComportamientos implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="comp_relaciones_id_seq", sequenceName="comp_relaciones_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_relaciones_id_seq")
 	private int id;
 	private String codcatcomp;
 	private int idnivel;

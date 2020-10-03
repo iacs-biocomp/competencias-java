@@ -8,12 +8,14 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompObjetivos.findAll", query="SELECT c FROM CompObjetivos c"),
 	@NamedQuery(name="CompObjetivos.findById", query="SELECT c FROM CompObjetivos c WHERE c.id=:id")
+	
 })
 public class CompObjetivos implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="comp_objetivos_id_seq", sequenceName="comp_objetivos_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_objetivos_id_seq")
 	private int id;
 	private String codcompetencia;
 	private String codcatcomp;
