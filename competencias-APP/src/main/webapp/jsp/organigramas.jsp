@@ -27,37 +27,57 @@ pageEncoding="UTF-8"%>
 	</tbody>
 	</table>
 
-	<h4>Nuevo organigrama</h4>
-	
 	<div class="col-lg-6">
-		<form action="/nuevoOrganigramas" method="post">
-		 <ul>
-		 <li>
-		    <label for="nombreOrganigrama">Nombre nuevo organigrama:</label>
-			<input type="text" id="nombreOrganigrama" name="nombreOrganigrama" required>
-		</li>
-		  <li>
-		    <label for="fechaIni">Fecha de inicio de validez:</label>
-			<input type="date" id="fechaIni" name="fechaIni">
-		</li>
-		 <li>
-		    <label for="fechaFin">Fecha de fin de validez:</label>
-			<input type="date" id="fechaFin" name="fechaFin">
-		</li>
-		  <li class="button">
-			  <button type="submit">Crear organigrama</button>
-			</li>
-		 </ul>
-		 
-		</form>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Nuevo organigrama</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" action="/nuevoOrganigramas" method="post">
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Nombre: </label> 
+								<div class="col-sm-10"> 
+									<input type="text" id="nombreOrganigrama" name="nombreOrganigrama" required>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de inicio de validez: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="fechaIni" name="fechaIni" required>
+									</div>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de fin de validez: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="fechaFin" name="fechaFin">
+									</div>
+									<p class="help-block">No es necesario que lo rellenes ahora. Podrás añadirla más adelante.</p>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10"> 
+								<button class="btn btn-primary" type="submit">Crear organigrama</button> 
+							</div> 
+						</div> 
+					</form>
+				</div>
+			</div>
+		</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+		<br></br>
+	<br></br>
+	<br></br>
+		<br></br>
+	<br></br>
 	
-	</div>
-	<br></br>
-	<br></br>
-	<br></br>
-	<br></br>
-	<br></br>
-	<br></br>
 </s:if>
 <s:else>
 	<table class="table">

@@ -55,7 +55,6 @@ pageEncoding="UTF-8"%>
 		<s:iterator value="compObjCompCatcomp" status="incr">
 							<div class="panel accordion-group">
 								<div class="accordion-heading">
-									<script> </script>
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#incr.index"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
 									<h4 class="title" style="text-align:right"><a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3"><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
 								</div>

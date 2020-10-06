@@ -2,20 +2,41 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<h1>Mis Datos</h1>
+
+
 
 <s:iterator value="datos">
-   <ul>
-	<li type="disc"><strong>Código: </strong><s:property value="codigo"/></li>
-	<li type="disc"><strong>Nombre: </strong><s:property value="nombre"/></li>
-	<li type="disc"><strong>Apellidos: </strong><s:property value="apellidos"/></li>
-	<li type="disc"><strong>Categoría profesional contractual: </strong><s:property value="catcontractual"/></li>
-	<li type="disc"><strong>Categoría competencial: </strong><s:property value="catcompetencial"/></li>
-	<li type="disc"><strong>Área: </strong><s:property value="area"/></li>
-	<li type="disc"><strong>Unidad: </strong><s:property value="unidad"/></li>
-	<li type="disc"><strong>Departamento: </strong><s:property value="departamento"/></li>
-	<li type="disc"><strong>Fecha de antigüedad: </strong><s:property value="antiguedad"/></li>
-	<li type="disc"><strong>DNI: </strong><s:property value="dni"/></li>
-</ul>
-   
+<div class="col-md-6"> 
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix"> 
+			<h1>Mis Datos</h1>		 
+		</div> 
+		<div class="panel-body"> 
+			<p><strong>Código: </strong><s:property value="codigo"/></p>
+			<p><strong>Nombre: </strong><s:property value="nombre"/></p> 
+			<p><strong>Apellidos: </strong><s:property value="apellidos"/></p> 
+			<p><strong>Categoría profesional contractual: </strong><s:property value="catcontractual"/></p> 
+			<p><strong>Categoría competencial: </strong><s:property value="catcompetencial"/></p> 
+			<p><strong>Área: </strong><s:property value="area"/></p> 
+			<p><strong>Unidad: </strong><s:property value="unidad"/></p> 
+			<p><strong>Departamento: </strong><s:property value="departamento"/></p> 
+			<p><strong>Fecha de antigüedad: </strong><s:property value="antiguedad"/></p> 
+			<p><strong>DNI: </strong><s:property value="dni"/></p> 
+		</div> 
+	</div> 
+</div>
 </s:iterator>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+		<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+		<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
