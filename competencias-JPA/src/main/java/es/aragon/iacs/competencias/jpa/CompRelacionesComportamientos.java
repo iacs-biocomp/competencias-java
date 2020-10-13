@@ -6,9 +6,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_relaciones_comportamientos")
 @NamedQueries({
-	@NamedQuery(name="CompRelacionesComportamientos.findAll", query="SELECT c FROM CompRelacionesComportamientos c"),
+	@NamedQuery(name="CompRelacionesComportamientos.findAll", query="SELECT c FROM CompRelacionesComportamientos c ORDER BY c.id"),
 	@NamedQuery(name="CompRelacionesComportamientos.findById", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.id=:id"),
-	@NamedQuery(name="CompRelacionesComportamientos.findByCatCompCompetencia", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcompetencia")
+	@NamedQuery(name="CompRelacionesComportamientos.findByCatCompCompetencia", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcompetencia ORDER BY c.id")
 })
 public class CompRelacionesComportamientos implements Serializable{
 	private static final long serialVersionUID = 1L;

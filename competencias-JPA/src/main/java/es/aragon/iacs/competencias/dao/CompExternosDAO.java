@@ -23,4 +23,18 @@ public class CompExternosDAO implements ICompExternosDAO {
 		List<CompExternos> projects = query.getResultList();
 		return projects;
 	}
+	
+	@Override
+	public void insert(String nombre, String apellidos,String email, String institucion) {
+		CompExternos nuevo=new CompExternos();
+		nuevo.setDni("");
+		nuevo.setNombre(nombre);
+		nuevo.setApellidos(apellidos);
+		nuevo.setEmail(email);
+		nuevo.setInstituciones(institucion);
+		nuevo.setPosiblesuperior(false);
+		
+		em.persist(nuevo);
+		em.flush();
+	}
 }

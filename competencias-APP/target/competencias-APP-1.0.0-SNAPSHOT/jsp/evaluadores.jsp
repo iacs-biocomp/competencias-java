@@ -32,162 +32,582 @@ pageEncoding="UTF-8"%>
 
 <h1> Mis evaluadores</h1>
 
-<h2> Autoevaluación </h2>
 
-<h2> Personas que me organizan el trabajo </h2>
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="title">Autoevaluación</h2>
+<!-- 		<div class="accordion" id="accordion2"> -->
+<%-- 			<s:iterator value="evaluadoresInternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaTrabajadores"> --%>
+<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+			
+<%-- 			<s:iterator value="evaluadoresExternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaExternos"> --%>
+<%-- 							<s:if test="%{idevaluador == id}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<h3>DNI: </h3> -->
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+<!-- 		</div> -->
+	</div>
+</div>
 
-<h2> Personas a las que organizo el trabajo </h2>
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="title">Personas que me organizan el trabajo</h2>
+<!-- 		<div class="accordion" id="accordion2"> -->
+<%-- 			<s:iterator value="evaluadoresInternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaTrabajadores"> --%>
+<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+			
+<%-- 			<s:iterator value="evaluadoresExternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaExternos"> --%>
+<%-- 							<s:if test="%{idevaluador == id}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<h3>DNI: </h3> -->
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+<!-- 		</div> -->
+	</div>
+</div>
 
-<h2> Personas que trabajan conmigo </h2>
-
-<h2> Personas a las que entrego mi trabajo </h2>
-
-<%-- <s:iterator value="listaTrabajadores"> --%>
-<%-- <h2> <s:property value="nombre"/>  <s:property value="apellidos"/></h2> --%>
-<!-- 	<h3> Superiores  </h3>  -->
-<%-- 		<s:if test="%{puedeEditar == true}"> --%>
-<!-- 			<form action="/nuevoSuperiorOrganigramas" method="post"> -->
-<%-- 			    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>"> --%>
-<%-- 			    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>" > --%>
-<!-- 			    <label for="dniSuperior">DNI superior:</label> -->
-<!-- 				<input type="text" id="dniSuperior" name="dniSuperior" required> -->
-<!-- 			  <input type="submit" value="Nuevo superior"> -->
-<!-- 			</form> -->
-<%-- 		</s:if> --%>
-<!-- 		<table class="table"> -->
-<!-- 		   <thead> -->
-<!-- 		     <tr> -->
-<!-- 		     	<th scope="col"></th> -->
-<!-- 		       <th scope="col">DNI Superior</th> -->
-<!-- 		       <th scope="col">Nombre Superior</th> -->
-		
-<!-- 		     </tr> -->
-<!-- 		   </thead> -->
-<!-- 		   <tbody> -->
-<%-- 		<s:iterator value="listaSuperiores"> --%>
-<%-- 			<s:if test="%{dniTrabajador == dni}"> --%>
-<!-- 				   <tr>                 -->
-<%-- 				   	<td><s:if test="%{puedeEditar == true}"><a href="borrarSuperiorOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></s:if></td> --%>
-<%-- 					 <td><s:property value="dniSuperior"/></td> --%>
-<%-- 					 <s:iterator value="listaTrabajadores"> --%>
-<%-- 					 	<s:if  test="%{dniSuperior == dni}"> --%>
-<%-- 					 		<td><s:property value="nombre"/></td> --%>
-<%-- 					 	</s:if> --%>
-<%-- 					 </s:iterator> --%>
-<!-- 				   </tr> -->
-<%-- 			</s:if> --%>
-<%-- 		</s:iterator> --%>
-
-<!-- 		</tbody> -->
-<!-- 		</table> -->
-	
-<!-- 	<h3> Pares   </h3> -->
-<%-- 	<s:if test="%{puedeEditar == true}"> --%>
-<!-- 		<form action="/nuevoParOrganigramas" method="post"> -->
-<%-- 			    <input type="hidden" id="idOrganigrama" name="idOrganigrama" value="<s:property value="idOrganigrama"/>"> --%>
-<%-- 			    <input type="hidden" id="dniTrabajador" name="dniTrabajador" value="<s:property value="dni"/>"> --%>
-<!-- 			    <label for="dniPar">DNI par:</label> -->
-<!-- 				<input type="text" id="dniPar" name="dniPar" required> -->
-<!-- 			  <input type="submit" value="Nuevo par"> -->
-<!-- 			</form> -->
-<%-- 	</s:if> --%>
-<!-- 		<table class="table"> -->
-<!-- 		   <thead> -->
-<!-- 		     <tr> -->
-<!-- 		     	<th scope="col"></th> -->
-<!-- 		       <th scope="col">DNI Par</th> -->
-<!-- 				<th scope="col">Nombre Par</th> -->
-<!-- 		     </tr> -->
-<!-- 		   </thead> -->
-<!-- 		   <tbody> -->
-<%-- 		<s:iterator value="listaPares"> --%>
-<%-- 			<s:if test="%{dniTrabajador == dni}"> --%>
-<!-- 				   <tr>                 -->
-<%-- 				   	<td><s:if test="%{puedeEditar == true}"><a href="borrarParOrganigramas?idRelacion=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></s:if></td> --%>
-<%-- 					 <td><s:property value="dniPar"/></td> --%>
-<%-- 					 <s:iterator value="listaTrabajadores"> --%>
-<%-- 					 	<s:if  test="%{dniPar == dni}"> --%>
-<%-- 					 		<td><s:property value="nombre"/></td> --%>
-<%-- 					 	</s:if> --%>
-<%-- 					 </s:iterator> --%>
-<!-- 				   </tr> -->
-<%-- 			</s:if> --%>
-<%-- 		</s:iterator> --%>
-
-<!-- 		</tbody> -->
-<!-- 		</table> -->
-<%-- </s:iterator> --%>
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="title">Personas a las que organizo el trabajo</h2>
+<!-- 		<div class="accordion" id="accordion2"> -->
+<%-- 			<s:iterator value="evaluadoresInternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaTrabajadores"> --%>
+<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+			
+<%-- 			<s:iterator value="evaluadoresExternos"> --%>
+<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
+<!-- 					<div class="panel accordion-group"> -->
+<%-- 						<s:iterator value="listaExternos"> --%>
+<%-- 							<s:if test="%{idevaluador == id}"> --%>
+<!-- 								<div class="accordion-heading"> -->
+<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
+<!-- 								</div> -->
+<%-- 							</s:if> --%>
+<%-- 						</s:iterator> --%>
+<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
+<!-- 							<div class="accordion-inner"> -->
+<!-- 								<h3>DNI: </h3> -->
+<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
+<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
+<!-- 								<h3>Competencias que evalua: </h3> -->
+<%-- 								<h3><s:property value="comp1"/></h3> --%>
+<%-- 								<h3><s:property value="comp2"/></h3> --%>
+<%-- 								<h3><s:property value="comp3"/></h3> --%>
+<%-- 								<h3><s:property value="comp4"/></h3> --%>
+<%-- 								<h3><s:property value="comp5"/></h3> --%>
+<%-- 								<h3><s:property value="comp6"/></h3> --%>
+<%-- 								<h3><s:property value="comp7"/></h3> --%>
+<%-- 								<h3><s:property value="comp8"/></h3> --%>
+<%-- 								<h3><s:property value="comp9"/></h3> --%>
+<%-- 								<h3><s:property value="comp10"/></h3> --%>
+								 
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</s:if> --%>
+<%-- 			</s:iterator> --%>
+<!-- 		</div> -->
+	</div>
+</div>
 
 
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="title">Personas que trabajan conmigo</h2>
+		<div class="accordion" id="accordion2">
+			<s:iterator value="evaluadoresInternos" status="incr1">
+				<s:if test="%{dnitrabajador == dniActual && grupo == 1}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dnievaluador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr1.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr1.index}"/>" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<h3>DNI: <s:property value="dnievaluador"/></h3>
+								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<s:if test="%{validado == true}">
+									<h3>Validado: Sí</h3>
+								</s:if>
+								<s:else>
+									<h3>Validado: No</h3>
+								</s:else>
+								<h3>Competencias que evalua: </h3>
+								<h3><s:property value="comp1"/></h3>
+								<h3><s:property value="comp2"/></h3>
+								<h3><s:property value="comp3"/></h3>
+								<h3><s:property value="comp4"/></h3>
+								<h3><s:property value="comp5"/></h3>
+								<h3><s:property value="comp6"/></h3>
+								<h3><s:property value="comp7"/></h3>
+								<h3><s:property value="comp8"/></h3>
+								<h3><s:property value="comp9"/></h3>
+								<h3><s:property value="comp10"/></h3>
+								 
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+			
+			<s:iterator value="evaluadoresExternos"  status="incr2">
+				<s:if test="%{dnitrabajador == dniActual && grupo == 1}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaExternos" >
+							<s:if test="%{idevaluador == id}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<s:property value="%{#incr2.index}"/>2"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr2.index}"/>2" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<h3>DNI: </h3>
+								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<s:if test="%{validado == true}">
+									<h3>Validado: Sí</h3>
+								</s:if>
+								<s:else>
+									<h3>Validado: No</h3>
+								</s:else>
+								
+								<h3>Competencias que evalua: </h3>
+								<h3><s:property value="comp1"/></h3>
+								<h3><s:property value="comp2"/></h3>
+								<h3><s:property value="comp3"/></h3>
+								<h3><s:property value="comp4"/></h3>
+								<h3><s:property value="comp5"/></h3>
+								<h3><s:property value="comp6"/></h3>
+								<h3><s:property value="comp7"/></h3>
+								<h3><s:property value="comp8"/></h3>
+								<h3><s:property value="comp9"/></h3>
+								<h3><s:property value="comp10"/></h3>
+								 
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+		</div>
+	</div>
+</div>
 
-<p><strong>Agregar nueva propuesta de evaluador:</strong></p>
+<div class="row">
+	<div class="col-lg-12">
+		<h2 class="title">Personas a las que entrego mi trabajo</h2>
+		<div class="accordion" id="accordion2">
+			<s:iterator value="evaluadoresInternos"  status="incr3">
+				<s:if test="%{dnitrabajador == dniActual && grupo == 2}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dnievaluador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#<s:property value="%{#incr3.index}"/>3"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr3.index}"/>3" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<h3>DNI: <s:property value="dnievaluador"/></h3>
+								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<s:if test="%{validado == true}">
+									<h3>Validado: Sí</h3>
+								</s:if>
+								<s:else>
+									<h3>Validado: No</h3>
+								</s:else>
+								<h3>Competencias que evalua: </h3>
+								<h3><s:property value="comp1"/></h3>
+								<h3><s:property value="comp2"/></h3>
+								<h3><s:property value="comp3"/></h3>
+								<h3><s:property value="comp4"/></h3>
+								<h3><s:property value="comp5"/></h3>
+								<h3><s:property value="comp6"/></h3>
+								<h3><s:property value="comp7"/></h3>
+								<h3><s:property value="comp8"/></h3>
+								<h3><s:property value="comp9"/></h3>
+								<h3><s:property value="comp10"/></h3>
+								 
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+			
+			<s:iterator value="evaluadoresExternos"  status="incr4">
+				<s:if test="%{dnitrabajador == dniActual && grupo == 2}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaExternos">
+							<s:if test="%{idevaluador == id}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#<s:property value="%{#incr4.index}"/>4"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr4.index}"/>4" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<h3>DNI: </h3>
+								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<s:if test="%{validado == true}">
+									<h3>Validado: Sí</h3>
+								</s:if>
+								<s:else>
+									<h3>Validado: No</h3>
+								</s:else>
+								<h3>Competencias que evalua: </h3>
+								<h3><s:property value="comp1"/></h3>
+								<h3><s:property value="comp2"/></h3>
+								<h3><s:property value="comp3"/></h3>
+								<h3><s:property value="comp4"/></h3>
+								<h3><s:property value="comp5"/></h3>
+								<h3><s:property value="comp6"/></h3>
+								<h3><s:property value="comp7"/></h3>
+								<h3><s:property value="comp8"/></h3>
+								<h3><s:property value="comp9"/></h3>
+								<h3><s:property value="comp10"/></h3>
+								 
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+		</div>
+	</div>
+</div>
+
+
+<s:if test="%{interno == true}">
 	<div class="bs-example-group"> 
-		<div class="btn-group">
-							
-		<s:if test="%{interno == true}">
-							
+		<div class="btn-group">			
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Interno <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu">
 				<li><a href="">Interno</a></li>
-				<li><a href="/nuevaPropuestaExternoEvaluadores">Externo</a></li>
+				<li><a href="/formExternoEvaluadores">Externo</a></li>
 			</ul>
-			</div>
+		</div>
 	</div>
-				<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading clearfix">
-							<h3 class="panel-title">Nueva propuesta de evaluador interno</h3>
-	<!-- 						<ul class="panel-tool-options">  -->
-	<!-- 							<li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li> -->
-	<!-- 						</ul> -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Nueva propuesta de evaluador interno</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" method="post" action="/nuevaPropuestaInternoEvaluadores"> 	
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
+							<div class="col-sm-10"> 
+								<select class="form-control" name="dniEvaluador" required> 
+									<s:iterator value="listaTrabajadores">
+										<option value="<s:property value="dni"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+									</s:iterator>
+								</select>
+							</div> 
 						</div>
-						<div class="panel-body">
-							 <form class="form-horizontal">
-							 	
-								<div class="form-group"> 
-								 	<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
-									<div class="col-sm-10"> 
-										<select class="form-control"> 
-											<s:iterator value="listaTrabajadores">
-												<option><s:property value="nombre"/> <s:property value="apellidos"/></option> 
-											</s:iterator>
-										</select>
-									</div> 
-								</div>
-								<div class="line-dashed"></div>
-								<div class="form-group"> 
-								 	<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
-									<div class="col-sm-10"> 
-										<select class="form-control"> 
-											<option>Personas que trabajan conmigo</option> 
-											<option>Personas a las que entrego mi trabajo</option>
-										</select>
-									</div> 
-								</div>
-								<div class="line-dashed"></div>
-								<div class="form-group">
-										<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
-										
-										<div class="col-sm-offset-2 col-sm-10"> 
-											<s:iterator value="compObjCompCatcomp">
-												<div class="checkbox"> <label> <input type="checkbox"><s:property value="descripcion"/></label> </div> 
-											 </s:iterator>
-										 </div>
-									</div>
-								<div class="line-dashed"></div>
-							 <div class="form-group"> 
-							 	<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
+						<div class="line-dashed"></div>
+							<div class="form-group"> 
+								<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
 								<div class="col-sm-10"> 
-									<textarea placeholder="Textarea" class="form-control"></textarea> 
+									<select class="form-control" name="grupo" required> 
+										<option value="1">Personas que trabajan conmigo</option> 
+										<option value="2">Personas a las que entrego mi trabajo</option>
+									</select>
 								</div> 
 							</div>
+							<div class="line-dashed"></div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
+								<div class="col-sm-offset-2 col-sm-10"> 
+									<s:iterator value="compObjCompCatcomp" status="incr">
+										<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
+									 </s:iterator>
+								</div>
+							</div>
+							<div class="line-dashed"></div>
+							<div class="form-group"> 
+								<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
+								<div class="col-sm-10"> 
+									<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+								</div> 
+							</div>
+							<div class="line-dashed"></div>
+							<div class="form-group"> 
+								<div class="col-sm-offset-2 col-sm-10"> 
+									<button class="btn btn-default" type="submit">Añadir propuesta</button> 
+								</div> 
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+</s:if>
+<s:else>
+	<div class="bs-example-group"> 
+		<div class="btn-group">	
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Externo<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li><a href="/formInternoEvaluadores">Interno</a></li>
+				<li><a href="">Externo</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Nueva propuesta de evaluador externo </h3>
+					<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir evaluador externo <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
+				</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="post" action="/nuevaPropuestaExternoEvaluadores">
+							 	
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
+							<div class="col-sm-10"> 
+								<select class="form-control" name="idEvaluador" required> 
+									<s:iterator value="listaExternos">
+										<option value="<s:property value="id"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+									</s:iterator>
+								</select>
+							</div> 
+						</div>
+						<div class="line-dashed"></div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
+								<div class="col-sm-10"> 
+									<select class="form-control" name="grupo" required> 
+										<option value="1">Personas que trabajan conmigo</option> 
+										<option value="2">Personas a las que entrego mi trabajo</option>
+									</select>
+								</div> 
+						</div>
+						<div class="line-dashed"></div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
+										
+							<div class="col-sm-offset-2 col-sm-10"> 
+								<s:iterator value="compObjCompCatcomp" status="incr">
+									<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
+								 </s:iterator>
+							</div>
+						</div>
+						<div class="line-dashed"></div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
+							<div class="col-sm-10"> 
+								<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+							</div> 
+						</div>
+						<div class="line-dashed"></div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10"> 
+								<button class="btn btn-default" type="submit">Añadir propuesta</button> 
+							</div> 
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</s:else>
+		
+<div id="modal-2" class="modal fade" tabindex="-1" role="dialog">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Nuevo evaluador externo</h4>
+	      </div>
+	      <div class="modal-body">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						
+						<div class="panel-body">
+							 <form class="form-horizontal" method="post" action="/nuevoExternoEvaluadores">
+							 	<div class="form-group"> 
+									<label class="col-sm-2 control-label">Nombre</label> 
+									<div class="col-sm-10"> 
+										<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required> 
+									</div> 
+								</div>
+								<div class="line-dashed"></div>
+								<div class="form-group"> 
+									<label class="col-sm-2 control-label">Apellidos</label> 
+									<div class="col-sm-10"> 
+										<input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control" required> 
+									</div> 
+								</div>
+								<div class="line-dashed"></div>
+								<div class="form-group"> 
+									<label class="col-sm-2 control-label">Email</label> 
+									<div class="col-sm-10"> 
+										<input type="text" id="email" name="email" placeholder="Email" class="form-control" required> 
+									</div> 
+								</div>
+								 <div class="line-dashed"></div>
+								<div class="form-group"> 
+									<label class="col-sm-2 control-label">Institución a la que pertenece</label> 
+									<div class="col-sm-10"> 
+										<input type="text" id="institucion" name="institucion" placeholder="Institución" class="form-control" required> 
+									</div> 
+								</div>
+								
 								<div class="line-dashed"></div>
 								<div class="form-group"> 
 									<div class="col-sm-offset-2 col-sm-10"> 
-										<button class="btn btn-default" type="submit">Añadir propuesta</button> 
+										<button type="Submit" class="btn btn-primary">Añadir evaluador externo</button>
 									</div> 
 								</div>
 							</form>
@@ -195,84 +615,10 @@ pageEncoding="UTF-8"%>
 					</div>
 				</div>
 			</div>
-			
-		</s:if>
-		<s:else>
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Externo<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="/nuevaPropuestaInternoEvaluadores">Interno</a></li>
-				<li><a href="">Externo</a></li>
-			</ul>
-			</div>
+	    </div>
+	  </div>
 	</div>
-			
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-default">
-							<div class="panel-heading clearfix">
-								<h3 class="panel-title">Nueva propuesta de evaluador externo</h3>
-		<!-- 						<ul class="panel-tool-options">  -->
-		<!-- 							<li><a data-rel="collapse" href="#"><i class="icon-down-open"></i></a></li> -->
-		<!-- 						</ul> -->
-							</div>
-							<div class="panel-body">
-								 <form class="form-horizontal">
-								 	
-									<div class="form-group"> 
-									 	<label class="col-sm-2 control-label">Seleccione evaluador externo: </label> 
-										<div class="col-sm-10"> 
-											<select class="form-control"> 
-												<s:iterator value="listaExternos">
-													<option><s:property value="nombre"/> <s:property value="apellidos"/></option> 
-
-												</s:iterator>
-											</select>
-										</div> 
-									</div>
-									<div class="form-group"> 
-									 	<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece: </label> 
-										<div class="col-sm-10"> 
-											<select class="form-control"> 
-												<option>Personas que trabajan conmigo</option> 
-												<option>Personas a las que entrego mi trabajo</option>
-											</select>
-										</div> 
-									</div>
-									<div class="line-dashed"></div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
-										
-										<div class="col-sm-offset-2 col-sm-10"> 
-											<s:iterator value="compObjCompCatcomp">
-												<div class="checkbox"> <label> <input type="checkbox"><s:property value="descripcion"/></label> </div> 
-											 </s:iterator>
-										 </div>
-									</div>
-									<div class="line-dashed"></div>
-									 <div class="form-group"> 
-									 	<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
-										<div class="col-sm-10"> 
-											<textarea placeholder="Textarea" class="form-control"></textarea> 
-										</div> 
-									</div>
-									<div class="line-dashed"></div>
-									<div class="form-group"> 
-										<div class="col-sm-offset-2 col-sm-10"> 
-											<button class="btn btn-default" type="submit">Añadir propuesta</button> 
-										</div> 
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			
-		</s:else>
-		
-	
+</div>	
 
 
 </body>

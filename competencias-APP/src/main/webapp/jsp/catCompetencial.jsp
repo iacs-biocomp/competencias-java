@@ -51,44 +51,61 @@ pageEncoding="UTF-8"%>
 	  </div>
 	</div>
 	
-		<div class="accordion" id="accordion">
-		<s:iterator value="compObjCompCatcomp" status="incr">
+	<script>
+	function pasarCatComp(){
+		console.log( "Ejecutando función pasarCatComp()" );
+		var codCatCompVar = document.getElementById('catcomp').value;
+		var codCompVar = document.getElementById('compet').value;
+		console.log( "codCatComp: "+ codCatCompVar + " codComp: "+codCompVar );
+		console.log(document.getElementById('codCatComp').value );
+		console.log(document.getElementById('codComp').value);
+		document.getElementById('codCatComp').value=codCatCompVar;
+		document.getElementById('codComp').value=codCompVar;
+		console.log(document.getElementById('codCatComp').value );
+		console.log(document.getElementById('codComp').value);
+		}
+	</script>
+
+	<div class="accordion" id="accordion">
+	<s:iterator value="compObjCompCatcomp" status="incr">
+		<div class="panel accordion-group">
+			<div class="accordion-heading">
+				<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr.index}"/>"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
+				<input type="hidden" id="catcomp" value="<s:property value="codCatCompetencial"/>" />
+				<input type="hidden" id="compet" value="<s:property value="codcompetencia"/>" />
+				<h4 class="title" style="text-align:right"><a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3" onclick="pasarCatComp()" ><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
+			</div>
+			<div id="<s:property value="%{#incr.index}"/>" class="accordion-body collapse">
+				<div class="accordion-inner">
+					<div class="accordion" id="accordion2">
+						<s:iterator value="listaNiveles" status="stat">
 							<div class="panel accordion-group">
 								<div class="accordion-heading">
-									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#incr.index"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
-									<h4 class="title" style="text-align:right"><a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3"><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<s:property value="%{#incr.index}"/><s:property value="%{#stat.index}"/>"><s:property value="nombre"/></a></h4>
 								</div>
-								<div id="incr.index" class="accordion-body collapse in">
+								<div id="<s:property value="%{#incr.index}"/><s:property value="%{#stat.index}"/>" class="accordion-body collapse">
 									<div class="accordion-inner">
-										<div class="accordion" id="accordion2">
-											<s:iterator value="listaNiveles" status="stat">
-												<div class="panel accordion-group">
-													<div class="accordion-heading">
-														<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#stat.index" href="#collapseOne"><s:property value="nombre"/></a></h4>
-													</div>
-													<div id="stat.index" class="accordion-body collapse in">
-														<div class="accordion-inner">
-															<table class="table">
-																<s:iterator value="compRelCompCompleto">
-																<s:if test="%{id == idnivel && codcomp == codcompetencia && codcatcomp == codCatCompetencial}">
-																   <tr> 
-																     <td><a href="borrarRelacionComportamientosCompetencias?idRelacion=<s:property value="idRel"/>&catCompetencial=<s:property value="codcatcomp"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
-																     <td><s:property value="descripcion"/></td>
-																   </tr>
-																</s:if>
-																</s:iterator>
-																</table>   
-														</div>
-													</div>
-												</div>
+										<table class="table">
+											<s:iterator value="compRelCompCompleto">
+												<s:if test="%{id == idnivel && codcomp == codcompetencia && codcatcomp == codCatCompetencial}">
+												   <tr> 
+												     <td><a href="borrarRelacionComportamientosCompetencias?idRelacion=<s:property value="idRel"/>&catCompetencial=<s:property value="codcatcomp"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></td>
+												     <td><s:property value="descripcion"/></td>
+												   </tr>
+												</s:if>
 											</s:iterator>
-										</div>	
-											
+										</table>   
 									</div>
 								</div>
 							</div>
-		</s:iterator>	
+						</s:iterator>
+					</div>	
+											
+				</div>
+			</div>
 		</div>
+	</s:iterator>	
+	</div>
 		
 		<div id="modal-3" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog modal-lg">
@@ -110,8 +127,8 @@ pageEncoding="UTF-8"%>
 			<form name="formEdit" method="post" action="/nuevaRelacionComportamientosCompetencias">
 			   <tr>
 			     
-			     <td><input id="codCatCompetencial" name="codCatCompetencial" type="hidden" value="<s:property value="codCatCompetencial"/>" >
-			     <input id="idComportamiento" name="idComportamiento" type="hidden" value="<s:property value="id"/>" ><input id="codCompetencia" name="codCompetencia" type="hidden" value="<s:property value="codcompetencia"/>" ><s:property value="descripcion"/></td>    
+			     <td><input id="codCatComp" name="codCatComp" type="hidden"  value="" >
+			     <input id="idComportamiento" name="idComportamiento" type="hidden" value="<s:property value="id"/>" ><input id="codComp" name="codComp" type="hidden" value=""><s:property value="descripcion"/></td>    
 			     <td><select name="idNivel" required>
 							<s:iterator value="listaNiveles">
 								<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
@@ -136,17 +153,17 @@ pageEncoding="UTF-8"%>
 	<s:iterator value="compObjCompCatcomp" status="incr">
 		<div class="panel accordion-group">
 			<div class="accordion-heading">
-				<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#incr.index"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
+				<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr.index}"/>"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
 			</div>
-			<div id="incr.index" class="accordion-body collapse in">
+			<div id="<s:property value="%{#incr.index}"/>" class="accordion-body collapse">
 				<div class="accordion-inner">
 					<div class="accordion" id="accordion2">
 						<s:iterator value="listaNiveles" status="stat">
 							<div class="panel accordion-group">
 								<div class="accordion-heading">
-										<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#stat.index" href="#collapseOne"><s:property value="nombre"/></a></h4>
+										<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<s:property value="%{#incr.index}"/><s:property value="%{#stat.index}"/>"><s:property value="nombre"/></a></h4>
 								</div>
-								<div id="stat.index" class="accordion-body collapse in">
+								<div id="<s:property value="%{#incr.index}"/><s:property value="%{#stat.index}"/>" class="accordion-body collapse">
 									<div class="accordion-inner">
 										<table class="table">
 											<s:iterator value="compRelCompCompleto">

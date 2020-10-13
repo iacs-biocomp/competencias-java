@@ -60,8 +60,8 @@ public class CompTrabajadoresDAO implements ICompTrabajadoresDAO {
 	@Override
 	public void editExterno(Integer id, String nombre, String apellidos,String email,String instituciones,Boolean posibleSuperior, String dni) {
 		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompExternos.findByDni");
-		query.setParameter("dni", dni);
+		Query query = em.createNamedQuery("CompExternos.findById");
+		query.setParameter("id", id);
 		@SuppressWarnings("unchecked")
 		CompExternos e=(CompExternos)query.getSingleResult();
 		e.setNombre(nombre);

@@ -38,9 +38,10 @@ public class CompetenciasAction extends MidasActionSupport{
     
     private boolean editar;
     private String codEditar;
-    private String codcomp;
+    private String codComp;
     private String nombreCatCompetencial;
     private String codCatCompetencial;
+    private String codCatComp;
     
 	private List<CompCompetencias> listaCompetencias;
 	private List<CompComportamientos> listaComportamientos;
@@ -183,9 +184,9 @@ public class CompetenciasAction extends MidasActionSupport{
     }
 //    
     public String nuevaRelacionComportamientos() {
-    	log.debug("Se va a añadir relacionComportamiento entre competencia con codigo: "+codCompetencia+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
-    	competenciasDao.insertRelacionComportamientos(codCompetencia,codCatCompetencial,idNivel,idComportamiento);
-    	log.debug("Se ha añadido relacionComportamiento entre competencia con codigo: "+codCompetencia+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
+    	log.debug("Se va a añadir relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
+    	competenciasDao.insertRelacionComportamientos(codComp,codCatComp,idNivel,idComportamiento);
+    	log.debug("Se ha añadido relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatCompetencial);
     	listaNiveles=compNivelesDao.findAll();
@@ -309,12 +310,12 @@ lista
 		this.listaNiveles = listaNiveles;
 	}
 
-	public String getCodcomp() {
-		return codcomp;
+	public String getCodComp() {
+		return codComp;
 	}
 
-	public void setCodcomp(String codcomp) {
-		this.codcomp = codcomp;
+	public void setCodComp(String codComp) {
+		this.codComp = codComp;
 	}
 
 	public String getNombreCatCompetencial() {
@@ -371,5 +372,13 @@ lista
 
 	public void setIdComportamiento(Integer idComportamiento) {
 		this.idComportamiento = idComportamiento;
+	}
+
+	public String getCodCatComp() {
+		return codCatComp;
+	}
+
+	public void setCodCatComp(String codCatComp) {
+		this.codCatComp = codCatComp;
 	}
 }

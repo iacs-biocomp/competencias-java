@@ -7,8 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_superiores")
 @NamedQueries({
-	@NamedQuery(name="CompSuperiores.findAll", query="SELECT c FROM CompSuperiores c"),
-	@NamedQuery(name="CompSuperiores.findByOrganigrama", query="SELECT c FROM CompSuperiores c WHERE c.idOrganigrama=:idOrganigrama"),
+	@NamedQuery(name="CompSuperiores.findAll", query="SELECT c FROM CompSuperiores c ORDER BY c.id"),
+	@NamedQuery(name="CompSuperiores.findByOrganigrama", query="SELECT c FROM CompSuperiores c WHERE c.idOrganigrama=:idOrganigrama ORDER BY c.id"),
 	@NamedQuery(name="CompSuperiores.findById", query="SELECT c FROM CompSuperiores c WHERE c.id=:id")
 })
 public class CompSuperiores implements Serializable{

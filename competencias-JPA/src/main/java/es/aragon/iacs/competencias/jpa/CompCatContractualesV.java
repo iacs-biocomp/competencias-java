@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="vista_cat_contractuales")
 @NamedQueries({
-	@NamedQuery(name="CompCatContractualesV.findAll", query="SELECT c FROM CompCatContractualesV c"),
+	@NamedQuery(name="CompCatContractualesV.findAll", query="SELECT c FROM CompCatContractualesV c ORDER BY c.id"),
 	@NamedQuery(name="CompCatContractualesV.findById", query="SELECT c FROM CompCatContractualesV c WHERE c.id=:id")
 })
 public class CompCatContractualesV implements Serializable{

@@ -11,15 +11,16 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_externos")
 @NamedQueries({
-	@NamedQuery(name="CompExternos.findAll", query="SELECT c FROM CompExternos c"),
-	@NamedQuery(name="CompExternos.findByDni", query="SELECT c FROM CompExternos c WHERE c.dni=:dni")
+	@NamedQuery(name="CompExternos.findAll", query="SELECT c FROM CompExternos c ORDER BY c.id"),
+	@NamedQuery(name="CompExternos.findById", query="SELECT c FROM CompExternos c WHERE c.id=:id")
 })
 
 public class CompExternos implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="comp_externos_id_seq", sequenceName="comp_externos_id_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_externos_id_seq")
 	private Integer id;
 
 	private String nombre;

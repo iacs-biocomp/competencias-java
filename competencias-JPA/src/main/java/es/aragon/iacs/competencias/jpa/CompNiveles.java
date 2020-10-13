@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_niveles")
 @NamedQueries({
-	@NamedQuery(name="CompNiveles.findAll", query="SELECT c FROM CompNiveles c"),
+	@NamedQuery(name="CompNiveles.findAll", query="SELECT c FROM CompNiveles c ORDER BY c.id"),
 	@NamedQuery(name="CompNiveles.findById", query="SELECT c FROM CompNiveles c WHERE c.id=:id")
 })
 public class CompNiveles implements Serializable{

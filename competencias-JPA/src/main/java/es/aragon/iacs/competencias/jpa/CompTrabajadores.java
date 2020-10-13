@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_trabajadores")
 @NamedQueries({
-	@NamedQuery(name="CompTrabajadores.findAll", query="SELECT c FROM CompTrabajadores c"),
+	@NamedQuery(name="CompTrabajadores.findAll", query="SELECT c FROM CompTrabajadores c ORDER BY c.codigo"),
 	@NamedQuery(name="CompTrabajadores.findByDni", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni"),
 	@NamedQuery(name="CompTrabajadores.findById", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni")
 })

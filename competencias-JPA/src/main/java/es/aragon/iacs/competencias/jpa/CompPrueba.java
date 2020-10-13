@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="comp_prueba")
-@NamedQuery(name="CompPrueba.findAll", query="SELECT c FROM CompPrueba c")
+@NamedQuery(name="CompPrueba.findAll", query="SELECT c FROM CompPrueba c ORDER BY c.id")
 public class CompPrueba implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_objetivos")
 @NamedQueries({
-	@NamedQuery(name="CompObjetivos.findAll", query="SELECT c FROM CompObjetivos c"),
+	@NamedQuery(name="CompObjetivos.findAll", query="SELECT c FROM CompObjetivos c ORDER BY c.id"),
 	@NamedQuery(name="CompObjetivos.findById", query="SELECT c FROM CompObjetivos c WHERE c.id=:id")
 	
 })
