@@ -110,13 +110,20 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	@Override
 	public void insertPar(Integer id,String dniTrabajador, String dniPar) {
 		// TODO Auto-generated method stu
-		CompPares nueva=new CompPares();
-		nueva.setIdOrganigrama(id);
-		nueva.setDniTrabajador(dniTrabajador);
-		nueva.setDniPar(dniPar);
+//		Query query = em.createNamedQuery("CompPares.findPar");
+//		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniPar",dniPar);
+//		@SuppressWarnings("unchecked")
+//		CompPares par = (CompPares)query.getSingleResult();
+//		if(par==null) {
+			CompPares nueva=new CompPares();
+			nueva.setIdOrganigrama(id);
+			nueva.setDniTrabajador(dniTrabajador);
+			nueva.setDniPar(dniPar);
+			
+			em.persist(nueva);
+			em.flush();
+//		}
 		
-		em.persist(nueva);
-		em.flush();
 	}
 	
 	@Override
