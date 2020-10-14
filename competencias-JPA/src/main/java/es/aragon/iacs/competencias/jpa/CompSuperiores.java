@@ -9,7 +9,8 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompSuperiores.findAll", query="SELECT c FROM CompSuperiores c ORDER BY c.id"),
 	@NamedQuery(name="CompSuperiores.findByOrganigrama", query="SELECT c FROM CompSuperiores c WHERE c.idOrganigrama=:idOrganigrama ORDER BY c.id"),
-	@NamedQuery(name="CompSuperiores.findById", query="SELECT c FROM CompSuperiores c WHERE c.id=:id")
+	@NamedQuery(name="CompSuperiores.findById", query="SELECT c FROM CompSuperiores c WHERE c.id=:id"),
+	@NamedQuery(name="CompSuperiores.findSuperior", query="SELECT c FROM CompSuperiores c WHERE c.idOrganigrama=:id AND c.dniTrabajador=:dniTrabajador AND dniSuperior=:dniSuperior")
 })
 public class CompSuperiores implements Serializable{
 	private static final long serialVersionUID = 1L;

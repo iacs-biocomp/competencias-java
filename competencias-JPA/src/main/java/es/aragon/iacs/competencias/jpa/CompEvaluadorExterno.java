@@ -6,9 +6,10 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_evaluador_externo")
 @NamedQueries({
-	@NamedQuery(name="CompEvaluadorExterno.findAll", query="SELECT c FROM CompEvaluadorExterno c ORDER BY c.id"),
-	@NamedQuery(name="CompEvaluadorExterno.findByEvaluacion", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idevaluacion=:idevaluacion ORDER BY c.id"),
-	@NamedQuery(name="CompEvaluadorExterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorExterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.id")
+	@NamedQuery(name="CompEvaluadorExterno.findAll", query="SELECT c FROM CompEvaluadorExterno c ORDER BY c.idrelacion"),
+	@NamedQuery(name="CompEvaluadorExterno.findByEvaluacion", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idevaluacion=:idevaluacion ORDER BY c.idrelacion"),
+	@NamedQuery(name="CompEvaluadorExterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorExterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.idrelacion"),
+	@NamedQuery(name="CompEvaluadorExterno.findById", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idrelacion=:idrelacion")
 })
 public class CompEvaluadorExterno implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,7 @@ public class CompEvaluadorExterno implements Serializable{
 	@Id
 	@SequenceGenerator(name="comp_evaluador_externo_id_seq", sequenceName="comp_evaluador_externo_id_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_evaluador_externo_id_seq")
-	private Integer id;
+	private Integer idrelacion;
 	private String dnitrabajador;
 	private Integer idevaluador;
 	private Integer idevaluacion;
@@ -33,12 +34,7 @@ public class CompEvaluadorExterno implements Serializable{
 	private String comp10;
 	private String justificacion;
 	private Boolean validado;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public String getDnitrabajador() {
 		return dnitrabajador;
 	}
@@ -135,6 +131,12 @@ public class CompEvaluadorExterno implements Serializable{
 	}
 	public void setIdevaluador(Integer idevaluador) {
 		this.idevaluador = idevaluador;
+	}
+	public Integer getIdrelacion() {
+		return idrelacion;
+	}
+	public void setIdrelacion(Integer idrelacion) {
+		this.idrelacion = idrelacion;
 	}
 }
 

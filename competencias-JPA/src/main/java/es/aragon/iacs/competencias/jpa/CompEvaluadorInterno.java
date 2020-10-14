@@ -6,17 +6,19 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_evaluador_interno")
 @NamedQueries({
-	@NamedQuery(name="CompEvaluadorInterno.findAll", query="SELECT c FROM CompEvaluadorInterno c ORDER BY c.id"),
+	@NamedQuery(name="CompEvaluadorInterno.findAll", query="SELECT c FROM CompEvaluadorInterno c ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorInterno.findByEvaluacion", query="SELECT c FROM CompEvaluadorInterno c WHERE c.idevaluacion=:idevaluacion"),
-	@NamedQuery(name="CompEvaluadorInterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorInterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.id")
+	@NamedQuery(name="CompEvaluadorInterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorInterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.idrelacion"),
+	@NamedQuery(name="CompEvaluadorInterno.findById", query="SELECT c FROM CompEvaluadorInterno c WHERE c.idrelacion=:idrelacion")
 })
 public class CompEvaluadorInterno implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@SequenceGenerator(name="comp_evaluador_interno_id_seq", sequenceName="comp_evaluador_interno_id_seq", allocationSize=1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_evaluador_interno_id_seq")
-	private Integer id;
+	private Integer idrelacion;
 	private String dnitrabajador;
 	private String dnievaluador;
 	private Integer idevaluacion;
@@ -33,12 +35,14 @@ public class CompEvaluadorInterno implements Serializable{
 	private String comp10;
 	private String justificacion;
 	private Boolean validado;
-	public Integer getId() {
-		return id;
+
+	public Integer getIdrelacion() {
+		return idrelacion;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdrelacion(Integer idrelacion) {
+		this.idrelacion = idrelacion;
 	}
+	
 	public String getDnitrabajador() {
 		return dnitrabajador;
 	}

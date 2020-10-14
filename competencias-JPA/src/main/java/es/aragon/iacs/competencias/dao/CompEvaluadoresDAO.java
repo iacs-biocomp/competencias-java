@@ -86,6 +86,29 @@ public class CompEvaluadoresDAO implements ICompEvaluadoresDAO{
 		
 	}
 	
+	@Override
+	public void deleteExterno(Integer idRelacion) {
+		Query query = em.createNamedQuery("CompEvaluadorExterno.findById");
+		query.setParameter("idrelacion", idRelacion);
+		@SuppressWarnings("unchecked")
+		CompEvaluadorExterno n=(CompEvaluadorExterno)query.getSingleResult();
+		//if cat is not null comprobar
+		em.remove(n);
+		em.flush();
+	}
+	
+	@Override
+	public void deleteInterno(Integer idRelacion) {
+		Query query = em.createNamedQuery("CompEvaluadorInterno.findById");
+		query.setParameter("idrelacion", idRelacion);
+		@SuppressWarnings("unchecked")
+		CompEvaluadorInterno n=(CompEvaluadorInterno)query.getSingleResult();
+		//if cat is not null comprobar
+		em.remove(n);
+		em.flush();
+		
+	}
+	
 	
 	
 }

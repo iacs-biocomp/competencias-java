@@ -98,31 +98,54 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	@Override
 	public void insertSuperior(Integer id,String dniTrabajador, String dniSuperior) {
 		// TODO Auto-generated method stu
-		CompSuperiores nueva=new CompSuperiores();
-		nueva.setIdOrganigrama(id);
-		nueva.setDniTrabajador(dniTrabajador);
-		nueva.setDniSuperior(dniSuperior);
 		
-		em.persist(nueva);
-		em.flush();
+		Query query = em.createNamedQuery("CompSuperiores.findSuperior");
+		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniSuperior",dniSuperior);
+		@SuppressWarnings("unchecked")
+		List<CompSuperiores> superior = query.getResultList();
+		
+		if (superior.size() == 0) { //NO EXISTE 
+			CompSuperiores nueva=new CompSuperiores();
+			nueva.setIdOrganigrama(id);
+			nueva.setDniTrabajador(dniTrabajador);
+			nueva.setDniSuperior(dniSuperior);
+			
+			em.persist(nueva);
+			em.flush();
+		}
+		
 	}
 	
 	@Override
 	public void insertPar(Integer id,String dniTrabajador, String dniPar) {
 		// TODO Auto-generated method stu
-//		Query query = em.createNamedQuery("CompPares.findPar");
-//		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniPar",dniPar);
-//		@SuppressWarnings("unchecked")
-//		CompPares par = (CompPares)query.getSingleResult();
-//		if(par==null) {
-			CompPares nueva=new CompPares();
-			nueva.setIdOrganigrama(id);
-			nueva.setDniTrabajador(dniTrabajador);
-			nueva.setDniPar(dniPar);
+		Query query = em.createNamedQuery("CompPares.findPar");
+		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniPar",dniPar);
+		@SuppressWarnings("unchecked")
+		List<CompPares> par = query.getResultList();
+		
+		if (par.size() == 0) { //NO EXISTE 
+			//Comprobar que no existe la relación al reves
 			
-			em.persist(nueva);
-			em.flush();
-//		}
+			Query query2 = em.createNamedQuery("CompPares.findPar");
+			query.setParameter("id", id).setParameter("dniTrabajador",dniPar).setParameter("dniPar",dniTrabajador);
+			@SuppressWarnings("unchecked")
+			List<CompPares> par2 = query.getResultList();
+			
+			if (par2.size() == 0) {
+				CompPares nueva=new CompPares();
+				nueva.setIdOrganigrama(id);
+				nueva.setDniTrabajador(dniTrabajador);
+				nueva.setDniPar(dniPar);
+				
+				em.persist(nueva);
+				em.flush();
+			}
+			
+		}
+
+		
+
 		
 	}
 	

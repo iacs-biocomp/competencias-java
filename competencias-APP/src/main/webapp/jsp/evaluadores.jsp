@@ -36,219 +36,21 @@ pageEncoding="UTF-8"%>
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Autoevaluación</h2>
-<!-- 		<div class="accordion" id="accordion2"> -->
-<%-- 			<s:iterator value="evaluadoresInternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaTrabajadores"> --%>
-<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-			
-<%-- 			<s:iterator value="evaluadoresExternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaExternos"> --%>
-<%-- 							<s:if test="%{idevaluador == id}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<!-- 								<h3>DNI: </h3> -->
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-<!-- 		</div> -->
+
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Personas que me organizan el trabajo</h2>
-<!-- 		<div class="accordion" id="accordion2"> -->
-<%-- 			<s:iterator value="evaluadoresInternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaTrabajadores"> --%>
-<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-			
-<%-- 			<s:iterator value="evaluadoresExternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaExternos"> --%>
-<%-- 							<s:if test="%{idevaluador == id}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<!-- 								<h3>DNI: </h3> -->
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-<!-- 		</div> -->
+
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Personas a las que organizo el trabajo</h2>
-<!-- 		<div class="accordion" id="accordion2"> -->
-<%-- 			<s:iterator value="evaluadoresInternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaTrabajadores"> --%>
-<%-- 							<s:if test="%{dnievaluador == dni}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<%-- 								<h3>DNI: <s:property value="dnievaluador"/></h3> --%>
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-			
-<%-- 			<s:iterator value="evaluadoresExternos"> --%>
-<%-- 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}"> --%>
-<!-- 					<div class="panel accordion-group"> -->
-<%-- 						<s:iterator value="listaExternos"> --%>
-<%-- 							<s:if test="%{idevaluador == id}"> --%>
-<!-- 								<div class="accordion-heading"> -->
-<%-- 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><s:property value="nombre"/><s:property value="apellidos"/></a></h4> --%>
-<!-- 								</div> -->
-<%-- 							</s:if> --%>
-<%-- 						</s:iterator> --%>
-<!-- 						<div id="collapseOne" class="accordion-body collapse"> -->
-<!-- 							<div class="accordion-inner"> -->
-<!-- 								<h3>DNI: </h3> -->
-<%-- 								<h3>Justificación: <s:property value="justificacion"/></h3> --%>
-<%-- 								<h3>Validado: <s:property value="validado"/></h3> --%>
-<!-- 								<h3>Competencias que evalua: </h3> -->
-<%-- 								<h3><s:property value="comp1"/></h3> --%>
-<%-- 								<h3><s:property value="comp2"/></h3> --%>
-<%-- 								<h3><s:property value="comp3"/></h3> --%>
-<%-- 								<h3><s:property value="comp4"/></h3> --%>
-<%-- 								<h3><s:property value="comp5"/></h3> --%>
-<%-- 								<h3><s:property value="comp6"/></h3> --%>
-<%-- 								<h3><s:property value="comp7"/></h3> --%>
-<%-- 								<h3><s:property value="comp8"/></h3> --%>
-<%-- 								<h3><s:property value="comp9"/></h3> --%>
-<%-- 								<h3><s:property value="comp10"/></h3> --%>
-								 
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</s:if> --%>
-<%-- 			</s:iterator> --%>
-<!-- 		</div> -->
+
 	</div>
 </div>
 
@@ -264,31 +66,37 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{dnievaluador == dni}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr1.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
 						<div id="<s:property value="%{#incr1.index}"/>" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h3>DNI: <s:property value="dnievaluador"/></h3>
-								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<h4>DNI: <s:property value="dnievaluador"/></h4>
+								
 								<s:if test="%{validado == true}">
-									<h3>Validado: Sí</h3>
+									<h4>Validado: Sí</h4>
 								</s:if>
 								<s:else>
-									<h3>Validado: No</h3>
+									<h4>Validado: No</h4>
 								</s:else>
-								<h3>Competencias que evalua: </h3>
-								<h3><s:property value="comp1"/></h3>
-								<h3><s:property value="comp2"/></h3>
-								<h3><s:property value="comp3"/></h3>
-								<h3><s:property value="comp4"/></h3>
-								<h3><s:property value="comp5"/></h3>
-								<h3><s:property value="comp6"/></h3>
-								<h3><s:property value="comp7"/></h3>
-								<h3><s:property value="comp8"/></h3>
-								<h3><s:property value="comp9"/></h3>
-								<h3><s:property value="comp10"/></h3>
-								 
+								<h4>Competencias que evalua: </h4>
+								<h4><s:property value="comp1"/></h4>
+								<h4><s:property value="comp2"/></h4>
+								<h4><s:property value="comp3"/></h4>
+								<h4><s:property value="comp4"/></h4>
+								<h4><s:property value="comp5"/></h4>
+								<h4><s:property value="comp6"/></h4>
+								<h4><s:property value="comp7"/></h4>
+								<h4><s:property value="comp8"/></h4>
+								<h4><s:property value="comp9"/></h4>
+								<h4><s:property value="comp10"/></h4>
+								<s:if test="%{dniEditar == dnievaluador}">
+									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+								</s:if>
+								<s:else>
+									<h4>Justificación: <s:property value="justificacion"/></h4>
+								</s:else>
 							</div>
 						</div>
 					</div>
@@ -302,32 +110,38 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{idevaluador == id}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<s:property value="%{#incr2.index}"/>2"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
 						<div id="<s:property value="%{#incr2.index}"/>2" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h3>DNI: </h3>
-								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<h4>DNI: </h4>
+								
 								<s:if test="%{validado == true}">
-									<h3>Validado: Sí</h3>
+									<h4>Validado: Sí</h4>
 								</s:if>
 								<s:else>
-									<h3>Validado: No</h3>
+									<h4>Validado: No</h4>
 								</s:else>
 								
-								<h3>Competencias que evalua: </h3>
-								<h3><s:property value="comp1"/></h3>
-								<h3><s:property value="comp2"/></h3>
-								<h3><s:property value="comp3"/></h3>
-								<h3><s:property value="comp4"/></h3>
-								<h3><s:property value="comp5"/></h3>
-								<h3><s:property value="comp6"/></h3>
-								<h3><s:property value="comp7"/></h3>
-								<h3><s:property value="comp8"/></h3>
-								<h3><s:property value="comp9"/></h3>
-								<h3><s:property value="comp10"/></h3>
-								 
+								<h4>Competencias que evalua: </h4>
+								<h4><s:property value="comp1"/></h4>
+								<h4><s:property value="comp2"/></h4>
+								<h4><s:property value="comp3"/></h4>
+								<h4><s:property value="comp4"/></h4>
+								<h4><s:property value="comp5"/></h4>
+								<h4><s:property value="comp6"/></h4>
+								<h4><s:property value="comp7"/></h4>
+								<h4><s:property value="comp8"/></h4>
+								<h4><s:property value="comp9"/></h4>
+								<h4><s:property value="comp10"/></h4>
+								<s:if test="%{idEditar == idevaluador}">
+									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+								</s:if>
+								<s:else>
+									<h4>Justificación: <s:property value="justificacion"/></h4>
+								</s:else>
 							</div>
 						</div>
 					</div>
@@ -348,30 +162,38 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{dnievaluador == dni}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#<s:property value="%{#incr3.index}"/>3"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
 						<div id="<s:property value="%{#incr3.index}"/>3" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h3>DNI: <s:property value="dnievaluador"/></h3>
-								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<h4>DNI: <s:property value="dnievaluador"/></h4>
+								
 								<s:if test="%{validado == true}">
-									<h3>Validado: Sí</h3>
+									<h4>Validado: Sí</h4>
 								</s:if>
 								<s:else>
-									<h3>Validado: No</h3>
+									<h4>Validado: No</h4>
 								</s:else>
-								<h3>Competencias que evalua: </h3>
-								<h3><s:property value="comp1"/></h3>
-								<h3><s:property value="comp2"/></h3>
-								<h3><s:property value="comp3"/></h3>
-								<h3><s:property value="comp4"/></h3>
-								<h3><s:property value="comp5"/></h3>
-								<h3><s:property value="comp6"/></h3>
-								<h3><s:property value="comp7"/></h3>
-								<h3><s:property value="comp8"/></h3>
-								<h3><s:property value="comp9"/></h3>
-								<h3><s:property value="comp10"/></h3>
+								<h4>Competencias que evalua: </h4>
+								<h4><s:property value="comp1"/></h4>
+								<h4><s:property value="comp2"/></h4>
+								<h4><s:property value="comp3"/></h4>
+								<h4><s:property value="comp4"/></h4>
+								<h4><s:property value="comp5"/></h4>
+								<h4><s:property value="comp6"/></h4>
+								<h4><s:property value="comp7"/></h4>
+								<h4><s:property value="comp8"/></h4>
+								<h4><s:property value="comp9"/></h4>
+								<h4><s:property value="comp10"/></h4>
+								<s:if test="%{dniEditar == dnievaluador}">
+									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+								</s:if>
+								<s:else>
+									<h4>Justificación: <s:property value="justificacion"/></h4>
+								</s:else>
+								
 								 
 							</div>
 						</div>
@@ -386,31 +208,59 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{idevaluador == id}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#<s:property value="%{#incr4.index}"/>4"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
 						<div id="<s:property value="%{#incr4.index}"/>4" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h3>DNI: </h3>
-								<h3>Justificación: <s:property value="justificacion"/></h3>
+								<h4>DNI: <s:property value="dnievaluador"/> </h4>
+								
 								<s:if test="%{validado == true}">
-									<h3>Validado: Sí</h3>
+									<h4>Validado: Sí</h4>
 								</s:if>
 								<s:else>
-									<h3>Validado: No</h3>
+									<h4>Validado: No</h4>
 								</s:else>
-								<h3>Competencias que evalua: </h3>
-								<h3><s:property value="comp1"/></h3>
-								<h3><s:property value="comp2"/></h3>
-								<h3><s:property value="comp3"/></h3>
-								<h3><s:property value="comp4"/></h3>
-								<h3><s:property value="comp5"/></h3>
-								<h3><s:property value="comp6"/></h3>
-								<h3><s:property value="comp7"/></h3>
-								<h3><s:property value="comp8"/></h3>
-								<h3><s:property value="comp9"/></h3>
-								<h3><s:property value="comp10"/></h3>
-								 
+								<h4>Competencias que evalua: </h4>
+								<h4><s:property value="comp1"/></h4>
+								<h4><s:property value="comp2"/></h4>
+								<h4><s:property value="comp3"/></h4>
+								<h4><s:property value="comp4"/></h4>
+								<h4><s:property value="comp5"/></h4>
+								<h4><s:property value="comp6"/></h4>
+								<h4><s:property value="comp7"/></h4>
+								<h4><s:property value="comp8"/></h4>
+								<h4><s:property value="comp9"/></h4>
+								<h4><s:property value="comp10"/></h4>
+								<s:if test="%{idEditar == idevaluador}">
+									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+									
+									
+										<form class="form-horizontal" method="post" action="/guardarEvaluadorExternoEvaluadores"> 	
+
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Justificación:</label> 
+												<div class="col-sm-10"> 
+													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+												</div> 
+											</div>
+											<div class="form-group"> 
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<button class="btn btn-default" type="submit">Guardar</button> 
+												</div> 
+											</div>
+										</form>
+									
+									
+									
+									
+									
+									
+								</s:if>
+								<s:else>
+									<h4>Justificación: <s:property value="justificacion"/></h4>
+								</s:else>
 							</div>
 						</div>
 					</div>
@@ -517,7 +367,9 @@ pageEncoding="UTF-8"%>
 							<div class="col-sm-10"> 
 								<select class="form-control" name="idEvaluador" required> 
 									<s:iterator value="listaExternos">
-										<option value="<s:property value="id"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+										<s:if test="%{dni != null && dni != \"\"}">
+											<option value="<s:property value="id"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+										</s:if>
 									</s:iterator>
 								</select>
 							</div> 

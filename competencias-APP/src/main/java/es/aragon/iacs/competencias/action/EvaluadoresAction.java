@@ -61,6 +61,11 @@ public class EvaluadoresAction extends MidasActionSupport{
     private String justificacion; 
     private Integer idEvaluador;
     
+    private Integer idRelacion;
+    
+    private String dniEditar;
+    private Integer idEditar;
+    
 //    private Boolean externo;
     
     {
@@ -84,6 +89,8 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
         log.debug("Externos"+dniActual+": "+evaluadoresExternos.size()+evaluadoresExternos);
     	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
         return "evaluadores"; 
     }
     
@@ -103,6 +110,8 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
     	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
     	return "evaluadores";
     }
     
@@ -122,6 +131,8 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
     	interno=false;
+    	dniEditar="";
+    	idEditar=-1;
     	return "evaluadores";
     }
 
@@ -137,6 +148,8 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
     	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
     	return "evaluadores";
     }
     
@@ -152,6 +165,8 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
     	interno=false;
+    	dniEditar="";
+    	idEditar=-1;
     	return "evaluadores";
     }
     
@@ -168,6 +183,92 @@ public class EvaluadoresAction extends MidasActionSupport{
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
     	interno=false;
+    	dniEditar="";
+    	idEditar=-1;
+    	return "evaluadores";
+    }
+    
+    public String borrarEvaluadorExterno() {
+    	log.debug("Va a borrar evaluador externo con id "+idRelacion);
+    	dniActual=user.getIdd();
+    	
+    	evaluadoresDao.deleteExterno(idRelacion);
+    	
+    	
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+    	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
+    	return "evaluadores";
+    	
+    	
+    }
+    
+    public String borrarEvaluadorInterno() {
+    	log.debug("Va a borrar evaluador interno con id "+idRelacion);
+    	dniActual=user.getIdd();
+    	
+    	evaluadoresDao.deleteInterno(idRelacion);
+    	
+    	
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+        dniEditar="";
+        idEditar=-1;
+    	interno=true;
+    	return "evaluadores";
+    }
+    
+    public String editarEvaluadorInterno() {
+    	//dniEvaluador
+    	dniActual=user.getIdd();
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+    	interno=true;
+    	dniEditar=dniEvaluador;
+    	idEditar=-1;
+    	log.debug("dniEditar: "+dniEditar+" dniEvaluador: "+dniEvaluador);
+    	return "evaluadores";
+    }
+    
+    public String editarEvaluadorExterno() {
+    	//dniEvaluador
+    	dniActual=user.getIdd();
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+    	interno=true;
+    	dniEditar="";
+    	idEditar=idEvaluador;
+    	log.debug("dniEditar: "+idEditar+" dniEvaluador: "+idEvaluador);
+    	return "evaluadores";
+    }
+    
+    public String guardarEvaluadorExterno() {
     	return "evaluadores";
     }
 
@@ -377,6 +478,30 @@ public class EvaluadoresAction extends MidasActionSupport{
 
 	public void setDniActual(String dniActual) {
 		this.dniActual = dniActual;
+	}
+
+	public Integer getIdRelacion() {
+		return idRelacion;
+	}
+
+	public void setIdRelacion(Integer idRelacion) {
+		this.idRelacion = idRelacion;
+	}
+
+	public String getDniEditar() {
+		return dniEditar;
+	}
+
+	public void setDniEditar(String dniEditar) {
+		this.dniEditar = dniEditar;
+	}
+
+	public Integer getIdEditar() {
+		return idEditar;
+	}
+
+	public void setIdEditar(Integer idEditar) {
+		this.idEditar = idEditar;
 	}
 
 
