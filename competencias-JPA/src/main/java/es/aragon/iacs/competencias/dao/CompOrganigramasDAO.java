@@ -20,7 +20,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 
 	@Override
 	public List<CompOrganigramas> findAll() {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompOrganigramas.findAll");
 		@SuppressWarnings("unchecked")
 		List<CompOrganigramas> projects = query.getResultList();
@@ -28,7 +27,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	@Override
 	public CompOrganigramas findByIdOrganigrama(Integer idOrganigrama) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompOrganigramas.findById");
 		query.setParameter("id", idOrganigrama);
 		@SuppressWarnings("unchecked")
@@ -38,7 +36,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public List<CompPares> findPares(Integer id) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompPares.findByOrganigrama");
 		query.setParameter("idOrganigrama", id);
 		@SuppressWarnings("unchecked")
@@ -48,7 +45,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public List<CompSuperiores> findSuperiores(Integer id) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompSuperiores.findByOrganigrama");
 		query.setParameter("idOrganigrama", id);
 		@SuppressWarnings("unchecked")
@@ -58,19 +54,17 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public void insertOrganigrama(String nombre, String fechaIni, String fechaFin) {
-		// TODO Auto-generated method stu
 		CompOrganigramas nuevo=new CompOrganigramas();
 		nuevo.setNombre(nombre);
 		nuevo.setFechaIni(fechaIni);
 		nuevo.setFechaFin(fechaFin);
-		
+		//COGER TODOS LOS ORGANIGRAMAS DE LA BD Y COMPROBAR QUE NINGUNO TIENE FECHA FIN POSTERIOR A FECHA INI DEL NUEVO, O FECHA FIN = NULL O =""
 		em.persist(nuevo);
 		em.flush();
 	}
 	
 	@Override
 	public void deleteOrganigrama(Integer idOrganigrama) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompOrganigramas.findById");
 		query.setParameter("id", idOrganigrama);
 		@SuppressWarnings("unchecked")
@@ -82,7 +76,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompOrganigramas.findById");
 		query.setParameter("id", idOrganigrama);
 		@SuppressWarnings("unchecked")
@@ -97,8 +90,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public void insertSuperior(Integer id,String dniTrabajador, String dniSuperior) {
-		// TODO Auto-generated method stu
-		
 		Query query = em.createNamedQuery("CompSuperiores.findSuperior");
 		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniSuperior",dniSuperior);
 		@SuppressWarnings("unchecked")
@@ -118,15 +109,13 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public void insertPar(Integer id,String dniTrabajador, String dniPar) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompPares.findPar");
 		query.setParameter("id", id).setParameter("dniTrabajador",dniTrabajador).setParameter("dniPar",dniPar);
 		@SuppressWarnings("unchecked")
 		List<CompPares> par = query.getResultList();
 		
 		if (par.size() == 0) { //NO EXISTE 
-			//Comprobar que no existe la relación al reves
-			
+			//Comprueba que no existe la relación al reves
 			Query query2 = em.createNamedQuery("CompPares.findPar");
 			query.setParameter("id", id).setParameter("dniTrabajador",dniPar).setParameter("dniPar",dniTrabajador);
 			@SuppressWarnings("unchecked")
@@ -141,17 +130,11 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 				em.persist(nueva);
 				em.flush();
 			}
-			
 		}
-
-		
-
-		
 	}
 	
 	@Override
 	public void deleteSuperior(Integer id) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompSuperiores.findById");
 		query.setParameter("id", id);
 		@SuppressWarnings("unchecked")
@@ -164,7 +147,6 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	
 	@Override
 	public void deletePar(Integer id) {
-		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompPares.findById");
 		query.setParameter("id", id);
 		@SuppressWarnings("unchecked")

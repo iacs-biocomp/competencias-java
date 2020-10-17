@@ -106,10 +106,6 @@ public class OrganigramasAction extends MidasActionSupport{
                       // Sirve para indicar qué visualización queremos como resultado
   }
     public String editar(){
-//    	if (idOrganigrama!=null && nombreOrganigrama!=null ) {
-//    		organigramasDao.editOrganigrama(idOrganigrama, nombreOrganigrama,fechaIni, fechaFin);
-//    		log.debug("Se ha editado organigrama: id: "+idOrganigrama+" nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
-//    	}
     	listaOrganigramas = organigramasDao.findAll();
     	editar=true;
     	idEditar=idOrganigrama;
@@ -123,8 +119,7 @@ public class OrganigramasAction extends MidasActionSupport{
     	}
     	listaOrganigramas = organigramasDao.findAll();
     	editar=false;
-     	return "organigramas"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                      // Sirve para indicar qué visualización queremos como resultado
+     	return "organigramas"; 
   }
     
     public String concreto() throws ParseException {
@@ -153,25 +148,20 @@ public class OrganigramasAction extends MidasActionSupport{
     		organigramasDao.insertSuperior(idOrganigrama,dniTrabajador,dniSuperior);
     		log.debug("Se ha insertado superior: id:" +idOrganigrama+" superior "+dniSuperior+" trabajador "+dniTrabajador);
     	}
-//      editar=false;
-//  	log.debug("Buscando lista de pares y superiores con id: " + id);
-  	listaPares=organigramasDao.findPares(idOrganigrama);
-  	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
-  	listaTrabajadores=trabajadoresDao.findAll();
-  	listaExternos=externosDao.findAll();
-  	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
-  	fechaIni=organigramaActual.getFechaIni();
-	fechaFin=organigramaActual.getFechaFin();
-	if(fechaFin!=null && !fechaFin.equals("")) {
-		puedeEditar=puedeEditarF(fechaFin);
-	}
-	else {
-		puedeEditar=true;
-	}
-//  	log.debug("Devolviendo lista de pares: " + listaPares.size()+ listaPares);
-//  	
-      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                      // Sirve para indicar qué visualización queremos como resultado
+	  	listaPares=organigramasDao.findPares(idOrganigrama);
+	  	listaSuperiores=organigramasDao.findSuperiores(idOrganigrama);
+	  	listaTrabajadores=trabajadoresDao.findAll();
+	  	listaExternos=externosDao.findAll();
+	  	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
+	  	fechaIni=organigramaActual.getFechaIni();
+		fechaFin=organigramaActual.getFechaFin();
+		if(fechaFin!=null && !fechaFin.equals("")) {
+			puedeEditar=puedeEditarF(fechaFin);
+		}
+		else {
+			puedeEditar=true;
+		}
+      return "organigramaConcreto"; 
   }
     
     public String nuevoPar() throws ParseException {
@@ -193,8 +183,7 @@ public class OrganigramasAction extends MidasActionSupport{
     	else {
     		puedeEditar=true;
     	}
-      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                      // Sirve para indicar qué visualización queremos como resultado
+      return "organigramaConcreto";
   }
     
     public String borrarSuperior() throws ParseException {
@@ -217,8 +206,7 @@ public class OrganigramasAction extends MidasActionSupport{
     	else {
     		puedeEditar=true;
     	}
-      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                      // Sirve para indicar qué visualización queremos como resultado
+      return "organigramaConcreto"; 
   }
     
     public String borrarPar() throws ParseException {
@@ -241,8 +229,7 @@ public class OrganigramasAction extends MidasActionSupport{
     	else {
     		puedeEditar=true;
     	}
-      return "organigramaConcreto"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                      // Sirve para indicar qué visualización queremos como resultado
+      return "organigramaConcreto";
   }
 
 	public List<CompPares> getListaPares() {

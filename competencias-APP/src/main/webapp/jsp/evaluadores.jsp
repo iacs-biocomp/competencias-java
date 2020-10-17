@@ -36,7 +36,32 @@ pageEncoding="UTF-8"%>
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Autoevaluación</h2>
+		<div class="accordion" id="accordion2">
+			<s:iterator value="trabajador" status="incr1">
+			
+					<div class="panel accordion-group">
+						
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#yoAcordeon"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+							
+								</div>
+					
+						<div id="yoAcordeon" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<s:if test="%{dni != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dni"/></h5>
+								</s:if>
+								
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								
+							</div>
+						</div>
+					</div>
+			
+			</s:iterator>
+			
 
+		</div>
 	</div>
 </div>
 
@@ -44,12 +69,82 @@ pageEncoding="UTF-8"%>
 	<div class="col-lg-12">
 		<h2 class="title">Personas que me organizan el trabajo</h2>
 
+			<!-- 			SUPERIORES -->
+			<s:iterator value="listaSuperiores" status="incr8">
+				<s:if test="%{dniTrabajador == dniActual}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dniSuperior == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr8.index}"/>8"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<s:iterator value="listaExternos">
+							<s:if test="%{dniSuperior == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr8.index}"/>8"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr8.index}"/>8" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<s:if test="%{dniPar != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
+								</s:if>
+					
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								
+<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
+
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+
+
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Personas a las que organizo el trabajo</h2>
+
+			<!-- 			SUPERIORES -->
+			<s:iterator value="listaSuperiores" status="incr9">
+				<s:if test="%{dniSuperior == dniActual}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dniTrabajador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion9" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<s:iterator value="listaExternos">
+							<s:if test="%{dniTrabajador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion9" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr9.index}"/>9" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<s:if test="%{dniPar != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
+								</s:if>
+					
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								
+<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
+
+							</div>
+						</div>
+					</div>
+				</s:if>
+			</s:iterator>
+
 
 	</div>
 </div>
@@ -59,6 +154,74 @@ pageEncoding="UTF-8"%>
 	<div class="col-lg-12">
 		<h2 class="title">Personas que trabajan conmigo</h2>
 		<div class="accordion" id="accordion2">
+			
+<!-- 			PARES -->
+			<s:iterator value="listaPares" status="incr9">
+				<s:if test="%{dniTrabajador == dniActual}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dniPar == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<s:iterator value="listaExternos">
+							<s:if test="%{dniPar == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="%{#incr9.index}"/>9" class="accordion-body collapse">
+							<div class="accordion-inner">
+								<s:if test="%{dniPar != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
+								</s:if>
+					
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								
+<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
+
+							</div>
+						</div>
+					</div>
+				</s:if>
+				<s:else>
+					<s:if test="%{dniPar == dniActual}">
+					<div class="panel accordion-group">
+						<s:iterator value="listaTrabajadores">
+							<s:if test="%{dniTrabajador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6" href="#acc6<s:property value="%{#incr6.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<s:iterator value="listaExternos">
+							<s:if test="%{dniTrabajador == dni}">
+								<div class="accordion-heading">
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+								</div>
+							</s:if>
+						</s:iterator>
+						<div id="<s:property value="acc6%{#incr6.index}"/>" class="accordion-body collapse">
+							<div class="accordion-inner">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
+					
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								
+<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ?? -->
+
+							</div>
+						</div>
+					</div>
+				</s:if>
+				
+				</s:else>
+			</s:iterator>
+			
+		
+		
 			<s:iterator value="evaluadoresInternos" status="incr1">
 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}">
 					<div class="panel accordion-group">
@@ -72,30 +235,70 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr1.index}"/>" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h4>DNI: <s:property value="dnievaluador"/></h4>
-								
+								<s:if test="%{dnievaluador != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
+								</s:if>
 								<s:if test="%{validado == true}">
-									<h4>Validado: Sí</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
 								<s:else>
-									<h4>Validado: No</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> No</h5>
 								</s:else>
-								<h4>Competencias que evalua: </h4>
-								<h4><s:property value="comp1"/></h4>
-								<h4><s:property value="comp2"/></h4>
-								<h4><s:property value="comp3"/></h4>
-								<h4><s:property value="comp4"/></h4>
-								<h4><s:property value="comp5"/></h4>
-								<h4><s:property value="comp6"/></h4>
-								<h4><s:property value="comp7"/></h4>
-								<h4><s:property value="comp8"/></h4>
-								<h4><s:property value="comp9"/></h4>
-								<h4><s:property value="comp10"/></h4>
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								<s:iterator value="listaCompetencias">
+									<s:if test="%{comp1 != null && comp1 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp2 != null && comp2 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp3 != null && comp3 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp4 != null && comp4 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp5 != null && comp5 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp6 != null && comp6 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp7 != null && comp7 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp8 != null && comp8 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp9 != null && comp9 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp10 != null && comp10 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+								</s:iterator>	
+									
 								<s:if test="%{dniEditar == dnievaluador}">
-									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+									<form class="form-horizontal" method="post" action="/guardarEvaluadorInternoEvaluadores"> 	
+
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Justificación:</label> 
+												<div class="col-sm-10"> 
+													<input type="hidden" value="<s:property value="idrelacion"/>" name="idRelacion"/>
+													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+												</div> 
+											</div>
+											<div class="form-group"> 
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<button class="btn btn-default" type="submit">Guardar</button> 
+												</div> 
+											</div>
+										</form>
 								</s:if>
 								<s:else>
-									<h4>Justificación: <s:property value="justificacion"/></h4>
+									<h5><label class="col-sm-2 control-label">Justificación:</label><s:property value="justificacion"/> </h5>
+									
+									
 								</s:else>
 							</div>
 						</div>
@@ -116,31 +319,70 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr2.index}"/>2" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h4>DNI: </h4>
-								
+								<s:if test="%{dnievaluador != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
+								</s:if>
 								<s:if test="%{validado == true}">
-									<h4>Validado: Sí</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
 								<s:else>
-									<h4>Validado: No</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> No</h5>
 								</s:else>
 								
-								<h4>Competencias que evalua: </h4>
-								<h4><s:property value="comp1"/></h4>
-								<h4><s:property value="comp2"/></h4>
-								<h4><s:property value="comp3"/></h4>
-								<h4><s:property value="comp4"/></h4>
-								<h4><s:property value="comp5"/></h4>
-								<h4><s:property value="comp6"/></h4>
-								<h4><s:property value="comp7"/></h4>
-								<h4><s:property value="comp8"/></h4>
-								<h4><s:property value="comp9"/></h4>
-								<h4><s:property value="comp10"/></h4>
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								<s:iterator value="listaCompetencias">
+									<s:if test="%{comp1 != null && comp1 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp2 != null && comp2 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp3 != null && comp3 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp4 != null && comp4 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp5 != null && comp5 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp6 != null && comp6 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp7 != null && comp7 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp8 != null && comp8 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp9 != null && comp9 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp10 != null && comp10 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+								</s:iterator>	
 								<s:if test="%{idEditar == idevaluador}">
-									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+									
+									<form class="form-horizontal" method="post" action="/guardarEvaluadorExternoEvaluadores"> 	
+
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Justificación:</label> 
+												<div class="col-sm-10"> 
+													<input type="hidden" value="<s:property value="idrelacion"/>" name="idRelacion"/>
+													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+												</div> 
+											</div>
+											<div class="form-group"> 
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<button class="btn btn-default" type="submit">Guardar</button> 
+												</div> 
+											</div>
+										</form>
+									
 								</s:if>
 								<s:else>
-									<h4>Justificación: <s:property value="justificacion"/></h4>
+									<h5><label class="col-sm-2 control-label">Justificación:</label><s:property value="justificacion"/> </h5>
 								</s:else>
 							</div>
 						</div>
@@ -168,30 +410,67 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr3.index}"/>3" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h4>DNI: <s:property value="dnievaluador"/></h4>
-								
+								<s:if test="%{dnievaluador != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
+								</s:if>
 								<s:if test="%{validado == true}">
-									<h4>Validado: Sí</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
 								<s:else>
-									<h4>Validado: No</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> No</h5>
 								</s:else>
-								<h4>Competencias que evalua: </h4>
-								<h4><s:property value="comp1"/></h4>
-								<h4><s:property value="comp2"/></h4>
-								<h4><s:property value="comp3"/></h4>
-								<h4><s:property value="comp4"/></h4>
-								<h4><s:property value="comp5"/></h4>
-								<h4><s:property value="comp6"/></h4>
-								<h4><s:property value="comp7"/></h4>
-								<h4><s:property value="comp8"/></h4>
-								<h4><s:property value="comp9"/></h4>
-								<h4><s:property value="comp10"/></h4>
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								<s:iterator value="listaCompetencias">
+									<s:if test="%{comp1 != null && comp1 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp2 != null && comp2 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp3 != null && comp3 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp4 != null && comp4 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp5 != null && comp5 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp6 != null && comp6 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp7 != null && comp7 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp8 != null && comp8 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp9 != null && comp9 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp10 != null && comp10 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+								</s:iterator>	
 								<s:if test="%{dniEditar == dnievaluador}">
-									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
+									<form class="form-horizontal" method="post" action="/guardarEvaluadorInternoEvaluadores"> 	
+
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Justificación:</label> 
+												<div class="col-sm-10"> 
+													<input type="hidden" value="<s:property value="idrelacion"/>" name="idRelacion"/>
+													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+												</div> 
+											</div>
+											<div class="form-group"> 
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<button class="btn btn-default" type="submit">Guardar</button> 
+												</div> 
+											</div>
+										</form>
 								</s:if>
 								<s:else>
-									<h4>Justificación: <s:property value="justificacion"/></h4>
+									<h5><label class="col-sm-2 control-label">Justificación:</label><s:property value="justificacion"/> </h5>
 								</s:else>
 								
 								 
@@ -214,34 +493,54 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr4.index}"/>4" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h4>DNI: <s:property value="dnievaluador"/> </h4>
-								
+								<s:if test="%{dnievaluador != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
+								</s:if>
 								<s:if test="%{validado == true}">
-									<h4>Validado: Sí</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
 								<s:else>
-									<h4>Validado: No</h4>
+									<h5><label class="col-sm-2 control-label">Validado:</label> No</h5>
 								</s:else>
-								<h4>Competencias que evalua: </h4>
-								<h4><s:property value="comp1"/></h4>
-								<h4><s:property value="comp2"/></h4>
-								<h4><s:property value="comp3"/></h4>
-								<h4><s:property value="comp4"/></h4>
-								<h4><s:property value="comp5"/></h4>
-								<h4><s:property value="comp6"/></h4>
-								<h4><s:property value="comp7"/></h4>
-								<h4><s:property value="comp8"/></h4>
-								<h4><s:property value="comp9"/></h4>
-								<h4><s:property value="comp10"/></h4>
+								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
+								<s:iterator value="listaCompetencias">
+									<s:if test="%{comp1 != null && comp1 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp2 != null && comp2 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp3 != null && comp3 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp4 != null && comp4 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp5 != null && comp5 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp6 != null && comp6 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp7 != null && comp7 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp8 != null && comp8 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp9 != null && comp9 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+									<s:if test="%{comp10 != null && comp10 == codigo}">
+										<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+									</s:if>
+								</s:iterator>	
 								<s:if test="%{idEditar == idevaluador}">
-									<h4>Justificación (editar): <s:property value="justificacion"/></h4>
-									
-									
 										<form class="form-horizontal" method="post" action="/guardarEvaluadorExternoEvaluadores"> 	
-
 											<div class="form-group"> 
 												<label class="col-sm-2 control-label">Justificación:</label> 
 												<div class="col-sm-10"> 
+													<input type="hidden" value="<s:property value="idrelacion"/>" name="idRelacion"/>
 													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
 												</div> 
 											</div>
@@ -251,15 +550,9 @@ pageEncoding="UTF-8"%>
 												</div> 
 											</div>
 										</form>
-									
-									
-									
-									
-									
-									
 								</s:if>
 								<s:else>
-									<h4>Justificación: <s:property value="justificacion"/></h4>
+									<h5><label class="col-sm-2 control-label">Justificación:</label><s:property value="justificacion"/> </h5>
 								</s:else>
 							</div>
 						</div>

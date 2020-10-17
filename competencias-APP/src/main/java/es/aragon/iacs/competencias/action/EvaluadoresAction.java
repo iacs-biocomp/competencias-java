@@ -11,8 +11,12 @@ import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompExternos;
 import es.aragon.iacs.competencias.dao.ICompExternosDAO;
 import es.aragon.iacs.competencias.dao.ICompEvaluadoresDAO;
+import es.aragon.iacs.competencias.dao.ICompOrganigramasDAO;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
+import es.aragon.iacs.competencias.jpa.CompPares;
+import es.aragon.iacs.competencias.jpa.CompSuperiores;
+import es.aragon.iacs.competencias.jpa.CompCompetencias;
 
 //import es.aragon.iacs.competencias.dao.ICompTrabajadoresDAO;
 //import es.aragon.iacs.competencias.jpa.CompTrabajadores;
@@ -22,6 +26,8 @@ public class EvaluadoresAction extends MidasActionSupport{
     private static final long serialVersionUID = 2108264332221967943L;
     @EJB(name="CompCompetenciasDAO")
     private ICompCompetenciasDAO competenciasDao;
+    private List<CompCompetencias> listaCompetencias;
+    
     private Boolean interno;
     @EJB(name="CompTrabajadoresDAO")
     private ICompTrabajadoresDAO trabajadoresDao;
@@ -40,6 +46,12 @@ public class EvaluadoresAction extends MidasActionSupport{
     private List<CompEvaluadorInterno> evaluadoresInternos;
 //    private CompEvaluadores evaluador;
 
+    @EJB(name="CompOrganigramasDAO")
+    private ICompOrganigramasDAO organigramasDao;
+    private List<CompPares> listaPares;
+    private List<CompSuperiores> listaSuperiores;
+    
+    
     private String dniActual;
     
     private String nombre;
@@ -83,11 +95,17 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
         log.debug("Externos"+dniActual+": "+evaluadoresExternos.size()+evaluadoresExternos);
+        //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 4 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
+        log.debug("listaPares: "+listaPares.size()+listaPares);
+        log.debug("listaSuperiores: "+listaSuperiores.size()+listaSuperiores);
     	interno=true;
     	dniEditar="";
     	idEditar=-1;
@@ -105,10 +123,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=true;
     	dniEditar="";
     	idEditar=-1;
@@ -126,10 +148,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=false;
     	dniEditar="";
     	idEditar=-1;
@@ -143,10 +169,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=true;
     	dniEditar="";
     	idEditar=-1;
@@ -160,10 +190,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=false;
     	dniEditar="";
     	idEditar=-1;
@@ -178,10 +212,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=false;
     	dniEditar="";
     	idEditar=-1;
@@ -199,10 +237,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=true;
     	dniEditar="";
     	idEditar=-1;
@@ -222,10 +264,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
         dniEditar="";
         idEditar=-1;
     	interno=true;
@@ -239,10 +285,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=true;
     	dniEditar=dniEvaluador;
     	idEditar=-1;
@@ -257,10 +307,14 @@ public class EvaluadoresAction extends MidasActionSupport{
     	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
         evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
     	interno=true;
     	dniEditar="";
     	idEditar=idEvaluador;
@@ -269,6 +323,44 @@ public class EvaluadoresAction extends MidasActionSupport{
     }
     
     public String guardarEvaluadorExterno() {
+    	dniActual=user.getIdd();
+    	log.debug("idRelacion: "+idRelacion+ " justificacion: "+ justificacion);
+    	evaluadoresDao.editEvaluadorExterno(idRelacion,justificacion);
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	listaCompetencias=competenciasDao.findAll();
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
+    	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
+    	return "evaluadores";
+    }
+    
+    public String guardarEvaluadorInterno() {
+    	dniActual=user.getIdd();
+    	log.debug("idRelacion: "+idRelacion+ " justificacion: "+ justificacion);
+    	evaluadoresDao.editEvaluadorInterno(idRelacion,justificacion);
+    	trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	listaCompetencias=competenciasDao.findAll();
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+      //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 6 DE MOMENTO
+        listaPares=organigramasDao.findPares(4);
+        listaSuperiores=organigramasDao.findSuperiores(4);
+    	interno=true;
+    	dniEditar="";
+    	idEditar=-1;
     	return "evaluadores";
     }
 
@@ -502,6 +594,30 @@ public class EvaluadoresAction extends MidasActionSupport{
 
 	public void setIdEditar(Integer idEditar) {
 		this.idEditar = idEditar;
+	}
+
+	public List<CompPares> getListaPares() {
+		return listaPares;
+	}
+
+	public void setListaPares(List<CompPares> listaPares) {
+		this.listaPares = listaPares;
+	}
+
+	public List<CompSuperiores> getListaSuperiores() {
+		return listaSuperiores;
+	}
+
+	public void setListaSuperiores(List<CompSuperiores> listaSuperiores) {
+		this.listaSuperiores = listaSuperiores;
+	}
+
+	public List<CompCompetencias> getListaCompetencias() {
+		return listaCompetencias;
+	}
+
+	public void setListaCompetencias(List<CompCompetencias> listaCompetencias) {
+		this.listaCompetencias = listaCompetencias;
 	}
 
 
