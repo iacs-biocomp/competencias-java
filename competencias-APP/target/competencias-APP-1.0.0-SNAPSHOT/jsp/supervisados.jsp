@@ -187,7 +187,7 @@ pageEncoding="UTF-8"%>
 												<s:if test="%{dnievaluador == #trabajador.dni}">
 													<div class="accordion-heading">
 														<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr1.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-														<h4 class="title" style="text-align:right"><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+														<h4 class="title" style="text-align:right"><a href="borrarEvaluadorInternoSupervisados?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 													</div>
 												</s:if>
 											</s:iterator>
@@ -320,13 +320,14 @@ pageEncoding="UTF-8"%>
 							<h2 class="title">Personas a las que entrego mi trabajo</h2>
 							<div class="accordion" id="accordion2">
 								<s:iterator value="evaluadoresInternos"  status="incr3">
+								
 									<s:if test="%{dnitrabajador == #posiblesSupervisados.dni && grupo == 2}">
 										<div class="panel accordion-group">
 											<s:iterator value="listaTrabajadores" var="trabajador">
 												<s:if test="%{dnievaluador == #trabajador.dni}">
 													<div class="accordion-heading">
 														<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#<s:property value="%{#incr3.index}"/>3"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-														<h4 class="title" style="text-align:right"><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+														<h4 class="title" style="text-align:right"><a href="borrarEvaluadorInternoSupervisados?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
 													</div>
 												</s:if>
 											</s:iterator>

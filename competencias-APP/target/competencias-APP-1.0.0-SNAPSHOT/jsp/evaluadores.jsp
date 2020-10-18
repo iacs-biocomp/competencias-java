@@ -543,7 +543,7 @@ pageEncoding="UTF-8"%>
 
 
 <s:if test="%{interno == true}">
-	<div class="bs-example-group"> 
+	<div class="bs-example-group" id="formExterno"> 
 		<div class="btn-group">			
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Interno <span class="caret"></span>
@@ -612,7 +612,7 @@ pageEncoding="UTF-8"%>
 		</div>
 </s:if>
 <s:else>
-	<div class="bs-example-group"> 
+	<div class="bs-example-group" id="formInterno"> 
 		<div class="btn-group">	
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				Externo<span class="caret"></span>

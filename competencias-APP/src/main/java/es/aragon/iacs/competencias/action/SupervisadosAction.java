@@ -6,11 +6,15 @@ import es.aragon.iacs.competencias.jpa.CompSuperiores;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompTrabajadores;
 import es.aragon.iacs.competencias.jpa.CompExternos;
+import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
+import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
+import es.aragon.iacs.competencias.jpa.CompOrganigramas;
 
 import es.aragon.iacs.competencias.dao.ICompOrganigramasDAO;
 import es.aragon.iacs.competencias.dao.ICompCompetenciasDAO;
 import es.aragon.iacs.competencias.dao.ICompExternosDAO;
 import es.aragon.iacs.competencias.dao.ICompTrabajadoresDAO;
+import es.aragon.iacs.competencias.dao.ICompEvaluadoresDAO;
 
 import javax.ejb.EJB;
 
@@ -37,7 +41,13 @@ public class SupervisadosAction extends MidasActionSupport{
     @EJB(name="CompTrabajadoresDAO")
     private ICompTrabajadoresDAO trabajadoresDao;
     
+    @EJB(name="CompEvaluadoresDAO")
+    private ICompEvaluadoresDAO evaluadoresDao;
+    private List<CompEvaluadorExterno> evaluadoresExternos;
+    private List<CompEvaluadorInterno> evaluadoresInternos;
+    
     private String dniActual;
+    private Integer idRelacion;
     
     {
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
@@ -64,12 +74,14 @@ public class SupervisadosAction extends MidasActionSupport{
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
-//        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
-//        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+       evaluadoresExternos=evaluadoresDao.externosFindAll();
+       evaluadoresInternos=evaluadoresDao.internosFindAll();
 //        log.debug("Externos"+dniActual+": "+evaluadoresExternos.size()+evaluadoresExternos);
         //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 4 DE MOMENTO
-        listaPares=organigramasDao.findPares(4);
-        listaSuperiores=organigramasDao.findSuperiores(4);
+       CompOrganigramas actual=organigramasDao.findActivo();
+       Integer idActual=actual.getId();
+       listaPares=organigramasDao.findPares(idActual);
+       listaSuperiores=organigramasDao.findSuperiores(idActual);
        
     	
         return "supervisados"; // Este es el valor de retorno que struts.xml asocia a tiles.
@@ -79,6 +91,54 @@ public class SupervisadosAction extends MidasActionSupport{
 
 
 
+
+    public String borrarEvaluadorExterno() {
+    	log.debug("Va a borrar evaluador externo con id "+idRelacion);
+    	dniActual=user.getIdd();
+    	
+    	evaluadoresDao.deleteExterno(idRelacion);
+    	
+    	
+    	listaCompetencias=competenciasDao.findAll();
+//    	posiblesSupervisados = trabajadoresDao.findAll();
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+       evaluadoresExternos=evaluadoresDao.externosFindAll();
+       evaluadoresInternos=evaluadoresDao.internosFindAll();
+//        log.debug("Externos"+dniActual+": "+evaluadoresExternos.size()+evaluadoresExternos);
+        //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 4 DE MOMENTO
+       CompOrganigramas actual=organigramasDao.findActivo();
+       Integer idActual=actual.getId();
+       listaPares=organigramasDao.findPares(idActual);
+       listaSuperiores=organigramasDao.findSuperiores(idActual);
+       
+    	return "supervisados";
+    	
+    	
+    }
+    
+    public String borrarEvaluadorInterno() {
+    	log.debug("Va a borrar evaluador interno con id "+idRelacion);
+    	dniActual=user.getIdd();
+    	
+    	evaluadoresDao.deleteInterno(idRelacion);
+    	
+    	listaCompetencias=competenciasDao.findAll();
+//    	posiblesSupervisados = trabajadoresDao.findAll();
+    	listaTrabajadores = trabajadoresDao.findAll();
+        listaExternos = externosDao.findAll();
+       evaluadoresExternos=evaluadoresDao.externosFindAll();
+       evaluadoresInternos=evaluadoresDao.internosFindAll();
+//        log.debug("Externos"+dniActual+": "+evaluadoresExternos.size()+evaluadoresExternos);
+        //DEBERÍA PASARLE EL ID DE LA EVALUACION ACTUAL, LE PASO 4 DE MOMENTO
+       CompOrganigramas actual=organigramasDao.findActivo();
+       Integer idActual=actual.getId();
+       listaPares=organigramasDao.findPares(idActual);
+       listaSuperiores=organigramasDao.findSuperiores(idActual);
+       
+    	return "supervisados";
+    }
+    
 
 	public List<CompCompetencias> getListaCompetencias() {
 		return listaCompetencias;
@@ -159,6 +219,48 @@ public class SupervisadosAction extends MidasActionSupport{
 
 	public void setDniActual(String dniActual) {
 		this.dniActual = dniActual;
+	}
+
+
+
+
+	public List<CompEvaluadorExterno> getEvaluadoresExternos() {
+		return evaluadoresExternos;
+	}
+
+
+
+
+	public void setEvaluadoresExternos(List<CompEvaluadorExterno> evaluadoresExternos) {
+		this.evaluadoresExternos = evaluadoresExternos;
+	}
+
+
+
+
+	public List<CompEvaluadorInterno> getEvaluadoresInternos() {
+		return evaluadoresInternos;
+	}
+
+
+
+
+	public void setEvaluadoresInternos(List<CompEvaluadorInterno> evaluadoresInternos) {
+		this.evaluadoresInternos = evaluadoresInternos;
+	}
+
+
+
+
+	public Integer getIdRelacion() {
+		return idRelacion;
+	}
+
+
+
+
+	public void setIdRelacion(Integer idRelacion) {
+		this.idRelacion = idRelacion;
 	}
 
 

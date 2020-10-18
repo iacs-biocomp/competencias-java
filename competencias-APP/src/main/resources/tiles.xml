@@ -18,6 +18,13 @@
          <put-attribute name="body" value="/jsp/evaluadores.jsp"/>
      </definition>
      
+<!--      <definition name="evaluadoresFormInterno" extends="loggedLayout"> -->
+<!--          <put-attribute name="body" value="/jsp/evaluadores.jsp#formInterno"/> -->
+<!--      </definition> -->
+<!--      <definition name="evaluadoresFormExterno" extends="loggedLayout"> -->
+<!--          <put-attribute name="body" value="/jsp/evaluadores.jsp#formExterno"/> -->
+<!--      </definition> -->
+     
      <definition name="evaluaciones" extends="loggedLayout">
          <put-attribute name="body" value="/jsp/evaluaciones.jsp"/>
      </definition>

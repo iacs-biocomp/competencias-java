@@ -34,5 +34,6 @@ public interface ICompOrganigramasDAO {
 
 	void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin);
 	
+	CompOrganigramas findActivo();
 	
 }

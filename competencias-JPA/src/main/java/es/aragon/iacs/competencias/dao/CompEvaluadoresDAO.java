@@ -35,6 +35,24 @@ public class CompEvaluadoresDAO implements ICompEvaluadoresDAO{
 		
 	}
 	
+	@Override
+	public List<CompEvaluadorExterno> externosFindAll(){
+		Query query = em.createNamedQuery("CompEvaluadorExterno.findAll");
+		@SuppressWarnings("unchecked")
+		List<CompEvaluadorExterno> resultado=query.getResultList();
+		return resultado;
+		
+	}
+	
+	@Override
+	public List<CompEvaluadorInterno> internosFindAll(){
+		Query query = em.createNamedQuery("CompEvaluadorInterno.findAll");
+		@SuppressWarnings("unchecked")
+		List<CompEvaluadorInterno> resultado=query.getResultList();
+		return resultado;
+		
+	}
+	
 	
 	@Override
 	public void insertInterno(Integer idEvaluacion,String dniTrabajador,String dniEvaluador,Integer grupo,String comp0,String comp1,String comp2,String comp3,String comp4,String comp5,String comp6,String comp7,String comp8,String comp9,String justificacion) {

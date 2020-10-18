@@ -1,7 +1,9 @@
 package es.aragon.iacs.competencias.dao;
 
 
+import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -53,14 +55,39 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	
 	@Override
+	public CompOrganigramas findActivo() {
+		Query query =em.createNamedQuery("CompOrganigramas.findActivo");
+		Date fechaActual = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaHoy=formateador.format(fechaActual);
+		query.setParameter("fechaHoy",fechaHoy);
+		@SuppressWarnings("unchecked")
+		List<CompOrganigramas> busqueda=query.getResultList();
+		if(busqueda.size()==1) {
+			return busqueda.get(0);
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	@Override
 	public void insertOrganigrama(String nombre, String fechaIni, String fechaFin) {
-		CompOrganigramas nuevo=new CompOrganigramas();
-		nuevo.setNombre(nombre);
-		nuevo.setFechaIni(fechaIni);
-		nuevo.setFechaFin(fechaFin);
-		//COGER TODOS LOS ORGANIGRAMAS DE LA BD Y COMPROBAR QUE NINGUNO TIENE FECHA FIN POSTERIOR A FECHA INI DEL NUEVO, O FECHA FIN = NULL O =""
-		em.persist(nuevo);
-		em.flush();
+		Query query =em.createNamedQuery("CompOrganigramas.findActivos");
+		query.setParameter("fechaIni", fechaIni);
+		@SuppressWarnings("unchecked")
+		List<CompOrganigramas> busqueda=query.getResultList();
+		if(busqueda.size() == 0) {
+			CompOrganigramas nuevo=new CompOrganigramas();
+			nuevo.setNombre(nombre);
+			nuevo.setFechaIni(fechaIni);
+			nuevo.setFechaFin(fechaFin);
+			//COGER TODOS LOS ORGANIGRAMAS DE LA BD Y COMPROBAR QUE NINGUNO TIENE FECHA FIN POSTERIOR A FECHA INI DEL NUEVO, O FECHA FIN = NULL O =""
+			em.persist(nuevo);
+			em.flush();
+		}
+		
 	}
 	
 	@Override

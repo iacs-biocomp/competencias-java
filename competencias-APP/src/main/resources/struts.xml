@@ -22,6 +22,8 @@
          
          <action name="*Evaluadores" class="es.aragon.iacs.competencias.action.EvaluadoresAction" method="{1}">
              <result name="evaluadores" type="tiles">evaluadores</result>
+<!--              <result name="evaluadoresFormInterno" type="tiles">evaluadoresFormInterno</result> -->
+<!--              <result name="evaluadoresFormExterno" type="tiles">evaluadoresFormExterno</result> -->
          </action>
          
          <action name="*Evaluaciones" class="es.aragon.iacs.competencias.action.EvaluacionesAction" method="{1}">

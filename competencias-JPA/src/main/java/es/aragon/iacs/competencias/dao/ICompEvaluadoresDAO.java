@@ -13,5 +13,7 @@ public interface ICompEvaluadoresDAO {
 	void deleteExterno(Integer idRelacion);
 	void deleteInterno(Integer idRelacion);
 	void editEvaluadorExterno(Integer idRelacion, String justificacion);
-	void editEvaluadorInterno(Integer idRelacion, String justificacion) ;
+	void editEvaluadorInterno(Integer idRelacion, String justificacion);
+	List<CompEvaluadorExterno> externosFindAll();
+	List<CompEvaluadorInterno> internosFindAll();
 }
