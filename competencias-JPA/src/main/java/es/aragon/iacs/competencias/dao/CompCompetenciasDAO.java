@@ -97,13 +97,20 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	@Override
 	public void insert(String codigo, String descripcion, String alta, String baja) {
 		// TODO Auto-generated method stu
-		CompCompetencias nueva=new CompCompetencias();
-		nueva.setCodigo(codigo);
-		nueva.setDescripcion(descripcion);
-		nueva.setAlta(alta);
-		nueva.setBaja(baja);
-		em.persist(nueva);
-		em.flush();
+		Query query = em.createNamedQuery("CompCompetencias.findById");
+		query.setParameter("codigo", codigo);
+		@SuppressWarnings("unchecked")
+		List<CompCompetencias> busqueda = query.getResultList();
+		
+		if(busqueda.size()==0) {
+			CompCompetencias nueva=new CompCompetencias();
+			nueva.setCodigo(codigo);
+			nueva.setDescripcion(descripcion);
+			nueva.setAlta(alta);
+			nueva.setBaja(baja);
+			em.persist(nueva);
+			em.flush();
+		}
 	}
 	
 	@Override
@@ -135,25 +142,41 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	
 	@Override
 	public void insertRelacion(String codCompetencia, String codCatComp, Integer idNivel) {
-		CompObjetivos o=new CompObjetivos();
-		o.setCodcompetencia(codCompetencia);
-		o.setCodcatcomp(codCatComp);
-		o.setIdnivel(idNivel);
-		//if cat is not null comprobar
-		em.persist(o);
-		em.flush();
+		Query query = em.createNamedQuery("CompObjetivos.findRelacion");
+		query.setParameter("codcatcomp", codCatComp).setParameter("codcompetencia",codCompetencia);
+		@SuppressWarnings("unchecked")
+		List<CompObjetivos> busqueda = query.getResultList();
+		
+		if(busqueda.size()==0) {
+		
+			CompObjetivos o=new CompObjetivos();
+			o.setCodcompetencia(codCompetencia);
+			o.setCodcatcomp(codCatComp);
+			o.setIdnivel(idNivel);
+			//if cat is not null comprobar
+			em.persist(o);
+			em.flush();
+		}
 	}
 	
 	@Override
 	public void insertRelacionComportamientos(String codCompetencia, String codCatComp, Integer idNivel, Integer idComportamiento) {
-		CompRelacionesComportamientos r=new CompRelacionesComportamientos();
-		r.setCodcomp(codCompetencia);
-		r.setCodcatcomp(codCatComp);
-		r.setIdnivel(idNivel);
-		r.setIdcomportamiento(idComportamiento);
-		//if cat is not null comprobar
-		em.persist(r);
-		em.flush();
+		Query query = em.createNamedQuery("CompRelacionesComportamientos.findRelacion");
+		query.setParameter("codcatcomp", codCatComp).setParameter("codcomp",codCompetencia).setParameter("idcomportamiento",idComportamiento);
+		@SuppressWarnings("unchecked")
+		List<CompRelacionesComportamientos> busqueda = query.getResultList();
+		
+		if(busqueda.size()==0) {
+		
+			CompRelacionesComportamientos r=new CompRelacionesComportamientos();
+			r.setCodcomp(codCompetencia);
+			r.setCodcatcomp(codCatComp);
+			r.setIdnivel(idNivel);
+			r.setIdcomportamiento(idComportamiento);
+			//if cat is not null comprobar
+			em.persist(r);
+			em.flush();
+		}
 	}
 	
 	@Override

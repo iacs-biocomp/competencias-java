@@ -38,29 +38,23 @@ pageEncoding="UTF-8"%>
 		<h2 class="title">Autoevaluación</h2>
 		<div class="accordion" id="accordion2">
 			<s:iterator value="trabajador" status="incr1">
-			
 					<div class="panel accordion-group">
-						
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#yoAcordeon"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-							
 								</div>
-					
 						<div id="yoAcordeon" class="accordion-body collapse">
 							<div class="accordion-inner">
 								<s:if test="%{dni != null}">
 									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dni"/></h5>
 								</s:if>
-								
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-								
+								<s:iterator value="compObjCompCatcomp">
+									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+								</s:iterator>
 							</div>
 						</div>
 					</div>
-			
 			</s:iterator>
-			
-
 		</div>
 	</div>
 </div>
@@ -89,28 +83,24 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr8.index}"/>8" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dniPar != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
+								<s:if test="%{dniSuperior != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniSuperior"/></h5>
 								</s:if>
-					
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-								
-<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
-
+								<s:iterator value="compObjCompCatcomp">
+									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+								</s:iterator>
 							</div>
 						</div>
 					</div>
 				</s:if>
 			</s:iterator>
-
-
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title">Personas a las que organizo el trabajo</h2>
-
 			<!-- 			SUPERIORES -->
 			<s:iterator value="listaSuperiores" status="incr9">
 				<s:if test="%{dniSuperior == dniActual}">
@@ -131,24 +121,20 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr9.index}"/>9" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dniPar != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
+								<s:if test="%{dniTrabajador != null}">
+									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 								</s:if>
-					
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-								
-<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
-
+								<s:iterator value="compObjCompCatcomp">
+									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+								</s:iterator>
 							</div>
 						</div>
 					</div>
 				</s:if>
 			</s:iterator>
-
-
 	</div>
 </div>
-
 
 <div class="row">
 	<div class="col-lg-12">
@@ -178,11 +164,10 @@ pageEncoding="UTF-8"%>
 								<s:if test="%{dniPar != null}">
 									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
 								</s:if>
-					
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-								
-<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ??-->
-
+								<s:iterator value="compObjCompCatcomp">
+									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+								</s:iterator>
 							</div>
 						</div>
 					</div>
@@ -206,22 +191,17 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="acc6%{#incr6.index}"/>" class="accordion-body collapse">
 							<div class="accordion-inner">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
-					
+								<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-								
-<!-- 								PONER LAS 10 COMPETENCIAS DE LA CAT COMPETENCIAL DEL TRABAJADOR ?? -->
-
+								<s:iterator value="compObjCompCatcomp">
+									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+								</s:iterator>
 							</div>
 						</div>
 					</div>
-				</s:if>
-				
+					</s:if>
 				</s:else>
 			</s:iterator>
-			
-		
-		
 			<s:iterator value="evaluadoresInternos" status="incr1">
 				<s:if test="%{dnitrabajador == dniActual && grupo == 1}">
 					<div class="panel accordion-group">
@@ -297,8 +277,6 @@ pageEncoding="UTF-8"%>
 								</s:if>
 								<s:else>
 									<h5><label class="col-sm-2 control-label">Justificación:</label><s:property value="justificacion"/> </h5>
-									
-									
 								</s:else>
 							</div>
 						</div>

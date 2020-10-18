@@ -23,6 +23,7 @@ public class SupervisadosAction extends MidasActionSupport{
     
     private List<CompCompetencias> listaCompetencias;
 	private List<CompTrabajadores> listaTrabajadores;
+//	private List<CompTrabajadores> posiblesSupervisados;
     private List<CompExternos> listaExternos;
     private List<CompPares> listaPares;
     private List<CompSuperiores> listaSuperiores;
@@ -60,6 +61,7 @@ public class SupervisadosAction extends MidasActionSupport{
 //    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
 //    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
     	listaCompetencias=competenciasDao.findAll();
+//    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
 //        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -158,6 +160,20 @@ public class SupervisadosAction extends MidasActionSupport{
 	public void setDniActual(String dniActual) {
 		this.dniActual = dniActual;
 	}
+
+
+
+//
+//	public List<CompTrabajadores> getPosiblesSupervisados() {
+//		return posiblesSupervisados;
+//	}
+//
+//
+//
+//
+//	public void setPosiblesSupervisados(List<CompTrabajadores> posiblesSupervisados) {
+//		this.posiblesSupervisados = posiblesSupervisados;
+//	}
 
     
 }

@@ -40,14 +40,23 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 	@Override
 	public void insert(String nombre, float valorporcentual, String alta, String baja) {
 		// TODO Auto-generated method stu
-		CompNiveles nueva=new CompNiveles();
-		nueva.setNombre(nombre);
-		nueva.setValorporcentual(valorporcentual);
-		nueva.setAlta(alta);
-		nueva.setBaja(baja);
 		
-		em.persist(nueva);
-		em.flush();
+		Query query = em.createNamedQuery("CompNiveles.findByNombre");
+		query.setParameter("nombre", nombre);
+		@SuppressWarnings("unchecked")
+		List<CompNiveles> busqueda = query.getResultList();
+		
+		if(busqueda.size()==0) {
+		
+			CompNiveles nueva=new CompNiveles();
+			nueva.setNombre(nombre);
+			nueva.setValorporcentual(valorporcentual);
+			nueva.setAlta(alta);
+			nueva.setBaja(baja);
+			
+			em.persist(nueva);
+			em.flush();
+		}
 	}
 	
 	

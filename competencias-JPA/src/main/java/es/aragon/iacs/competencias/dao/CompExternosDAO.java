@@ -26,15 +26,24 @@ public class CompExternosDAO implements ICompExternosDAO {
 	
 	@Override
 	public void insert(String nombre, String apellidos,String email, String institucion) {
-		CompExternos nuevo=new CompExternos();
-		nuevo.setDni("");
-		nuevo.setNombre(nombre);
-		nuevo.setApellidos(apellidos);
-		nuevo.setEmail(email);
-		nuevo.setInstituciones(institucion);
-		nuevo.setPosiblesuperior(false);
 		
-		em.persist(nuevo);
-		em.flush();
+		Query query = em.createNamedQuery("CompExternos.findByEmail");
+		query.setParameter("email", email);
+		@SuppressWarnings("unchecked")
+		List<CompExternos> busqueda = query.getResultList();
+		
+		if(busqueda.size()==0) {
+		
+			CompExternos nuevo=new CompExternos();
+			nuevo.setDni("");
+			nuevo.setNombre(nombre);
+			nuevo.setApellidos(apellidos);
+			nuevo.setEmail(email);
+			nuevo.setInstituciones(institucion);
+			nuevo.setPosiblesuperior(false);
+			
+			em.persist(nuevo);
+			em.flush();
+		}
 	}
 }

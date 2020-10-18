@@ -8,7 +8,8 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompRelacionesComportamientos.findAll", query="SELECT c FROM CompRelacionesComportamientos c ORDER BY c.id"),
 	@NamedQuery(name="CompRelacionesComportamientos.findById", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.id=:id"),
-	@NamedQuery(name="CompRelacionesComportamientos.findByCatCompCompetencia", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcompetencia ORDER BY c.id")
+	@NamedQuery(name="CompRelacionesComportamientos.findByCatCompCompetencia", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcompetencia ORDER BY c.id"),
+	@NamedQuery(name="CompRelacionesComportamientos.findRelacion", query="SELECT c FROM CompRelacionesComportamientos c WHERE c.codcatcomp=:codcatcomp AND c.codcomp=:codcomp AND idcomportamiento=:idcomportamiento")
 })
 public class CompRelacionesComportamientos implements Serializable{
 	private static final long serialVersionUID = 1L;

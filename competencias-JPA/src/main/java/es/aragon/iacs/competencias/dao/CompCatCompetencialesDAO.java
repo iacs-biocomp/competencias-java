@@ -49,14 +49,21 @@ public class CompCatCompetencialesDAO implements ICompCatCompetencialesDAO {
 	@Override
 	public void insert(String codigo, String nombre, String alta, String baja) {
 		// TODO Auto-generated method stu
-		CompCatCompetenciales nueva=new CompCatCompetenciales();
-		nueva.setCodigo(codigo);
-		nueva.setNombre(nombre);
-		nueva.setAlta(alta);
-		nueva.setBaja(baja);
+		Query query = em.createNamedQuery("CompCatCompetenciales.findById");
+		query.setParameter("codigo", codigo);
+		@SuppressWarnings("unchecked")
+		List<CompCatCompetenciales> busqueda = query.getResultList();
 		
-		em.persist(nueva);
-		em.flush();
+		if(busqueda.size()==0) {
+			CompCatCompetenciales nueva=new CompCatCompetenciales();
+			nueva.setCodigo(codigo);
+			nueva.setNombre(nombre);
+			nueva.setAlta(alta);
+			nueva.setBaja(baja);
+			
+			em.persist(nueva);
+			em.flush();
+		}
 	}
 	
 	@Override

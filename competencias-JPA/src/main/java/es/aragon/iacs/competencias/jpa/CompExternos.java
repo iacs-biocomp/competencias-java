@@ -12,7 +12,8 @@ import javax.persistence.*;
 @Table(name="comp_externos")
 @NamedQueries({
 	@NamedQuery(name="CompExternos.findAll", query="SELECT c FROM CompExternos c ORDER BY c.id"),
-	@NamedQuery(name="CompExternos.findById", query="SELECT c FROM CompExternos c WHERE c.id=:id")
+	@NamedQuery(name="CompExternos.findById", query="SELECT c FROM CompExternos c WHERE c.id=:id"),
+	@NamedQuery(name="CompExternos.findByEmail", query="SELECT c FROM CompExternos c WHERE c.email=:email")
 })
 
 public class CompExternos implements Serializable{
