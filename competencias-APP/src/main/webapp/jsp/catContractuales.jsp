@@ -55,8 +55,6 @@ pageEncoding="UTF-8"%>
 			</form>
 		</td>
 
-<%-- 		<td> <a href="guardarCatContractuales?catContractual=<s:property value="id"/>&catCompetencial=<s:property value="catcomp"/>">Guardar relación</a></td> --%>
-<%-- 		<a href="concretaCompetencias?catCompetencial=<s:property value="codigo"/>"><s:property value="codigo"/></a> --%>
 	   </tr>
 	</s:iterator>
 	</tbody>

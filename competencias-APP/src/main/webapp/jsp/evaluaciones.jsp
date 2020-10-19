@@ -159,7 +159,7 @@ pageEncoding="UTF-8"%>
 	  </div>
 	</div>
 </div>
-<title>Mouldifi | Cards View</title>
+
 <!-- Site favicon -->
 <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
 <!-- /site favicon -->
@@ -194,13 +194,9 @@ pageEncoding="UTF-8"%>
   <div class="main-container">
  
 	
-	
-	
-	
 	<!-- Main content -->
     <div class="main-content">
-	
-		
+
 		
 		<div class="row">
 			<div class="col-md-12">

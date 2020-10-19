@@ -27,10 +27,6 @@ pageEncoding="UTF-8"%>
 			
 			
 			<s:iterator value="competencias">
-<%-- 				<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 					<s:if test="%{codcompetencia == codigo && codcatcomp == codCatCompetencial}"> --%>
-<%-- 					</s:if> --%>
-<%-- 					<s:else> --%>
 						<form name="formEdit" method="post" action="/nuevaRelacionCompetencias">
 						   <tr>
 						     <td><input id="codCatCompetencial" name="codCatCompetencial" type="hidden" value="<s:property value="codCatCompetencial"/>" ></td> 
@@ -44,8 +40,7 @@ pageEncoding="UTF-8"%>
 							<td><input type="Submit" value="Guardar"></td>
 						   </tr>
 						</form>   
-<%-- 					</s:else> --%>
-<%-- 				</s:iterator> --%>
+
 			</s:iterator>
 			</tbody>
 			</table>
@@ -81,7 +76,7 @@ pageEncoding="UTF-8"%>
 //        {
 //            alert("Launch Button ID='" + button.id + "'");
 //        }
-})
+// })
 		
 	</script>
 

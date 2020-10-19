@@ -458,16 +458,7 @@ pageEncoding="UTF-8"%>
 				</s:if>
 			</s:iterator>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 		</div>
 	</div>
 	</s:if>
