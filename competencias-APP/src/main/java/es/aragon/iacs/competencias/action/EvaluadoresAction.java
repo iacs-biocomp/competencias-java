@@ -29,7 +29,7 @@ public class EvaluadoresAction extends MidasActionSupport{
     private ICompCompetenciasDAO competenciasDao;
     private List<CompCompetencias> listaCompetencias;
     
-    private Boolean interno;
+//    private Boolean interno;
     @EJB(name="CompTrabajadoresDAO")
     private ICompTrabajadoresDAO trabajadoresDao;
     private CompTrabajadores trabajador;
@@ -103,7 +103,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         listaSuperiores=organigramasDao.findSuperiores(idActual);
         log.debug("listaPares: "+listaPares.size()+listaPares);
         log.debug("listaSuperiores: "+listaSuperiores.size()+listaSuperiores);
-    	interno=true;
+    //	interno=true;
     	dniEditar="";
     	idEditar=-1;
         return "evaluadores"; 
@@ -127,7 +127,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+    	//interno=true;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
@@ -151,55 +151,55 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=false;
+    	//interno=false;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
     }
-
-    public String formInterno() {
-    	log.debug("Nueva propuesta de tipo interno ");
-    	dniActual=user.getIdd();
-    	trabajador=trabajadoresDao.trabajador(dniActual);
-    	String catCompetencial=trabajador.getCatcompetencial();
-    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
-    	listaTrabajadores = trabajadoresDao.findAll();
-        listaExternos = externosDao.findAll();
-        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
-        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
-        CompOrganigramas actual=organigramasDao.findActivo();
-        Integer idActual=actual.getId();
-        listaPares=organigramasDao.findPares(idActual);
-        listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
-    	dniEditar="";
-    	idEditar=-1;
-    	return "evaluadores";
-    }
+//
+//    public String formInterno() {
+//    	log.debug("Nueva propuesta de tipo interno ");
+//    	dniActual=user.getIdd();
+//    	trabajador=trabajadoresDao.trabajador(dniActual);
+//    	String catCompetencial=trabajador.getCatcompetencial();
+//    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+//    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+//    	listaCompetencias=competenciasDao.findAll();
+//    	listaTrabajadores = trabajadoresDao.findAll();
+//        listaExternos = externosDao.findAll();
+//        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+//        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+//        CompOrganigramas actual=organigramasDao.findActivo();
+//        Integer idActual=actual.getId();
+//        listaPares=organigramasDao.findPares(idActual);
+//        listaSuperiores=organigramasDao.findSuperiores(idActual);
+//    	//interno=true;
+//    	dniEditar="";
+//    	idEditar=-1;
+//    	return "evaluadores";
+//    }
     
-    public String formExterno() {
-    	log.debug("Nueva propuesta de tipo externo ");
-    	dniActual=user.getIdd();
-    	trabajador=trabajadoresDao.trabajador(dniActual);
-    	String catCompetencial=trabajador.getCatcompetencial();
-    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
-    	listaTrabajadores = trabajadoresDao.findAll();
-        listaExternos = externosDao.findAll();
-        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
-        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
-        CompOrganigramas actual=organigramasDao.findActivo();
-        Integer idActual=actual.getId();
-        listaPares=organigramasDao.findPares(idActual);
-        listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=false;
-    	dniEditar="";
-    	idEditar=-1;
-    	return "evaluadores";
-    }
+//    public String formExterno() {
+//    	log.debug("Nueva propuesta de tipo externo ");
+//    	dniActual=user.getIdd();
+//    	trabajador=trabajadoresDao.trabajador(dniActual);
+//    	String catCompetencial=trabajador.getCatcompetencial();
+//    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+//    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
+//    	listaCompetencias=competenciasDao.findAll();
+//    	listaTrabajadores = trabajadoresDao.findAll();
+//        listaExternos = externosDao.findAll();
+//        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
+//        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
+//        CompOrganigramas actual=organigramasDao.findActivo();
+//        Integer idActual=actual.getId();
+//        listaPares=organigramasDao.findPares(idActual);
+//        listaSuperiores=organigramasDao.findSuperiores(idActual);
+//    	interno=false;
+//    	dniEditar="";
+//    	idEditar=-1;
+//    	return "evaluadores";
+//    }
     
     public String nuevoExterno() {
     	log.debug("Va a añadir evaluador externo con nombre "+nombre+" apellidos "+apellidos+" email "+email+" institucion "+institucion);
@@ -218,7 +218,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=false;
+    	//interno=false;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
@@ -241,7 +241,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+    	//interno=true;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
@@ -266,7 +266,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         listaSuperiores=organigramasDao.findSuperiores(idActual);
         dniEditar="";
         idEditar=-1;
-    	interno=true;
+    	//interno=true;
     	return "evaluadores";
     }
     
@@ -286,7 +286,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+    	//interno=true;
     	dniEditar=dniEvaluador;
     	idEditar=-1;
     	log.debug("dniEditar: "+dniEditar+" dniEvaluador: "+dniEvaluador);
@@ -309,7 +309,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+    //	interno=true;
     	dniEditar="";
     	idEditar=idEvaluador;
     	log.debug("dniEditar: "+idEditar+" dniEvaluador: "+idEvaluador);
@@ -332,7 +332,7 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+    //	interno=true;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
@@ -354,19 +354,19 @@ public class EvaluadoresAction extends MidasActionSupport{
         Integer idActual=actual.getId();
         listaPares=organigramasDao.findPares(idActual);
         listaSuperiores=organigramasDao.findSuperiores(idActual);
-    	interno=true;
+  //  	interno=true;
     	dniEditar="";
     	idEditar=-1;
     	return "evaluadores";
     }
 
-	public Boolean getInterno() {
-		return interno;
-	}
-
-	public void setInterno(Boolean interno) {
-		this.interno = interno;
-	}
+//	public Boolean getInterno() {
+//		return interno;
+//	}
+//
+//	public void setInterno(Boolean interno) {
+//		this.interno = interno;
+//	}
 
 	public CompTrabajadores getTrabajador() {
 		return trabajador;

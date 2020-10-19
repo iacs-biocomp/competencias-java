@@ -27,19 +27,25 @@ pageEncoding="UTF-8"%>
 			
 			
 			<s:iterator value="competencias">
-			<form name="formEdit" method="post" action="/nuevaRelacionCompetencias">
-			   <tr>
-			     <td><input id="codCatCompetencial" name="codCatCompetencial" type="hidden" value="<s:property value="codCatCompetencial"/>" ></td> 
-			     <td><input id="codigo" name="codigo" type="hidden" value="<s:property value="codigo"/>" ><s:property value="codigo"/></td>
-			     <td><s:property value="descripcion"/></td>    
-			     <td><select name="idNivel" required>
-							<s:iterator value="listaNiveles">
-								<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
-							</s:iterator>
-							</select></td>
-				<td><input type="Submit" value="Guardar"></td>
-			   </tr>
-			</form>   
+<%-- 				<s:iterator value="compObjCompCatcomp"> --%>
+<%-- 					<s:if test="%{codcompetencia == codigo && codcatcomp == codCatCompetencial}"> --%>
+<%-- 					</s:if> --%>
+<%-- 					<s:else> --%>
+						<form name="formEdit" method="post" action="/nuevaRelacionCompetencias">
+						   <tr>
+						     <td><input id="codCatCompetencial" name="codCatCompetencial" type="hidden" value="<s:property value="codCatCompetencial"/>" ></td> 
+						     <td><input id="codigo" name="codigo" type="hidden" value="<s:property value="codigo"/>" ><s:property value="codigo"/></td>
+						     <td><s:property value="descripcion"/></td>    
+						     <td><select name="idNivel" required>
+										<s:iterator value="listaNiveles">
+											<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
+										</s:iterator>
+										</select></td>
+							<td><input type="Submit" value="Guardar"></td>
+						   </tr>
+						</form>   
+<%-- 					</s:else> --%>
+<%-- 				</s:iterator> --%>
 			</s:iterator>
 			</tbody>
 			</table>
@@ -52,18 +58,31 @@ pageEncoding="UTF-8"%>
 	</div>
 	
 	<script>
-	function pasarCatComp(){
-		console.log( "Ejecutando función pasarCatComp()" );
-		var codCatCompVar = document.getElementById('catcomp').value;
-		var codCompVar = document.getElementById('compet').value;
-		console.log( "codCatComp: "+ codCatCompVar + " codComp: "+codCompVar );
-		console.log(document.getElementById('codCatComp').value );
-		console.log(document.getElementById('codComp').value);
-		document.getElementById('codCatComp').value=codCatCompVar;
-		document.getElementById('codComp').value=codCompVar;
-		console.log(document.getElementById('codCatComp').value );
-		console.log(document.getElementById('codComp').value);
-		}
+// 	function pasarCatComp(){
+// 		console.log( "Ejecutando función pasarCatComp()" );
+// 		var codCatCompVar = document.getElementById('catcomp').value;
+// 		var codCompVar = document.getElementById('compet').value;
+// 		console.log( "codCatComp: "+ codCatCompVar + " codComp: "+codCompVar );
+// 		console.log(document.getElementById('codCatComp').value );
+// 		console.log(document.getElementById('codComp').value);
+// 		document.getElementById('codCatComp').value=codCatCompVar;
+// 		document.getElementById('codComp').value=codCompVar;
+// 		console.log(document.getElementById('codCatComp').value );
+// 		console.log(document.getElementById('codComp').value);
+// 		}
+// 		$('#modal-3').on('show.bs.modal', function (e) {
+// 			alert("dentro de la funcion")
+// // 		    $(this).getElementById('codComp').value=e.relatedTarget.value;
+		    
+// 		})
+// 	$('#myModal').on('show.bs.modal', function (e) {
+//        var button = e.relatedTarget;
+//        if (button != null)
+//        {
+//            alert("Launch Button ID='" + button.id + "'");
+//        }
+})
+		
 	</script>
 
 	<div class="accordion" id="accordion">
@@ -73,7 +92,7 @@ pageEncoding="UTF-8"%>
 				<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr.index}"/>"><s:property value="descripcion"/></a> Objetivo: <s:property value="objetivo"/></h4>
 				<input type="hidden" id="catcomp" value="<s:property value="codCatCompetencial"/>" />
 				<input type="hidden" id="compet" value="<s:property value="codcompetencia"/>" />
-				<h4 class="title" style="text-align:right"><a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3" onclick="pasarCatComp()" ><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
+				<h4 class="title" style="text-align:right"><a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><button type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3" value="<s:property value="codcompetencia"/>" ><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
 			</div>
 			<div id="<s:property value="%{#incr.index}"/>" class="accordion-body collapse">
 				<div class="accordion-inner">

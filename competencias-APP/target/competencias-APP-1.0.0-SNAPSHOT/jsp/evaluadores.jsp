@@ -542,149 +542,6 @@ pageEncoding="UTF-8"%>
 </div>
 
 
-<s:if test="%{interno == true}">
-	<div class="bs-example-group" id="formExterno"> 
-		<div class="btn-group">			
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Interno <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="">Interno</a></li>
-				<li><a href="/formExternoEvaluadores">Externo</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading clearfix">
-					<h3 class="panel-title">Nueva propuesta de evaluador interno</h3>
-				</div>
-				<div class="panel-body">
-					<form class="form-horizontal" method="post" action="/nuevaPropuestaInternoEvaluadores"> 	
-						<div class="form-group"> 
-							<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
-							<div class="col-sm-10"> 
-								<select class="form-control" name="dniEvaluador" required> 
-									<s:iterator value="listaTrabajadores">
-										<option value="<s:property value="dni"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
-									</s:iterator>
-								</select>
-							</div> 
-						</div>
-						<div class="line-dashed"></div>
-							<div class="form-group"> 
-								<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
-								<div class="col-sm-10"> 
-									<select class="form-control" name="grupo" required> 
-										<option value="1">Personas que trabajan conmigo</option> 
-										<option value="2">Personas a las que entrego mi trabajo</option>
-									</select>
-								</div> 
-							</div>
-							<div class="line-dashed"></div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
-								<div class="col-sm-offset-2 col-sm-10"> 
-									<s:iterator value="compObjCompCatcomp" status="incr">
-										<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
-									 </s:iterator>
-								</div>
-							</div>
-							<div class="line-dashed"></div>
-							<div class="form-group"> 
-								<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
-								<div class="col-sm-10"> 
-									<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
-								</div> 
-							</div>
-							<div class="line-dashed"></div>
-							<div class="form-group"> 
-								<div class="col-sm-offset-2 col-sm-10"> 
-									<button class="btn btn-default" type="submit">Añadir propuesta</button> 
-								</div> 
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-</s:if>
-<s:else>
-	<div class="bs-example-group" id="formInterno"> 
-		<div class="btn-group">	
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Externo<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li><a href="/formInternoEvaluadores">Interno</a></li>
-				<li><a href="">Externo</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading clearfix">
-					<h3 class="panel-title">Nueva propuesta de evaluador externo </h3>
-					<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir evaluador externo <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
-				</div>
-			<div class="panel-body">
-				<form class="form-horizontal" method="post" action="/nuevaPropuestaExternoEvaluadores">
-							 	
-						<div class="form-group"> 
-							<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
-							<div class="col-sm-10"> 
-								<select class="form-control" name="idEvaluador" required> 
-									<s:iterator value="listaExternos">
-										<s:if test="%{dni != null && dni != \"\"}">
-											<option value="<s:property value="id"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
-										</s:if>
-									</s:iterator>
-								</select>
-							</div> 
-						</div>
-						<div class="line-dashed"></div>
-						<div class="form-group"> 
-							<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
-								<div class="col-sm-10"> 
-									<select class="form-control" name="grupo" required> 
-										<option value="1">Personas que trabajan conmigo</option> 
-										<option value="2">Personas a las que entrego mi trabajo</option>
-									</select>
-								</div> 
-						</div>
-						<div class="line-dashed"></div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
-										
-							<div class="col-sm-offset-2 col-sm-10"> 
-								<s:iterator value="compObjCompCatcomp" status="incr">
-									<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
-								 </s:iterator>
-							</div>
-						</div>
-						<div class="line-dashed"></div>
-						<div class="form-group"> 
-							<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
-							<div class="col-sm-10"> 
-								<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
-							</div> 
-						</div>
-						<div class="line-dashed"></div>
-						<div class="form-group"> 
-							<div class="col-sm-offset-2 col-sm-10"> 
-								<button class="btn btn-default" type="submit">Añadir propuesta</button> 
-							</div> 
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-</s:else>
-		
 <div id="modal-2" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
@@ -696,7 +553,6 @@ pageEncoding="UTF-8"%>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-						
 						<div class="panel-body">
 							 <form class="form-horizontal" method="post" action="/nuevoExternoEvaluadores">
 							 	<div class="form-group"> 
@@ -743,6 +599,134 @@ pageEncoding="UTF-8"%>
 	</div>
 </div>	
 
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="tabs-container">
+			<ul class="nav nav-tabs">
+				<li class="active"><a aria-expanded="true" href="#externo" data-toggle="tab">Externo</a></li>
+				<li><a aria-expanded="false" href="#interno" data-toggle="tab">Interno</a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="externo">
+					<div class="panel panel-default">
+						<div class="panel-heading clearfix">
+							<h3 class="panel-title">Nueva propuesta de evaluador externo </h3>
+							<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir evaluador externo <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
+						</div>
+						<div class="panel-body">
+							<form class="form-horizontal" method="post" action="/nuevaPropuestaExternoEvaluadores">
+								<div class="form-group"> 
+									<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
+									<div class="col-sm-10"> 
+										<select class="form-control" name="idEvaluador" required> 
+											<s:iterator value="listaExternos">
+												<s:if test="%{dni != null && dni != \"\"}">
+													<option value="<s:property value="id"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+												</s:if>
+											</s:iterator>
+										</select>
+									</div> 
+								</div>
+								<div class="line-dashed"></div>
+								<div class="form-group"> 
+									<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
+									<div class="col-sm-10"> 
+										<select class="form-control" name="grupo" required> 
+											<option value="1">Personas que trabajan conmigo</option> 
+											<option value="2">Personas a las que entrego mi trabajo</option>
+										</select>
+									</div> 
+								</div>
+								<div class="line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>		
+									<div class="col-sm-offset-2 col-sm-10"> 
+										<s:iterator value="compObjCompCatcomp" status="incr">
+											<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
+										</s:iterator>
+									</div>
+								</div>
+								<div class="line-dashed"></div>
+									<div class="form-group"> 
+										<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
+										<div class="col-sm-10"> 
+											<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+										</div> 
+									</div>
+									<div class="line-dashed"></div>
+										<div class="form-group"> 
+											<div class="col-sm-offset-2 col-sm-10"> 
+												<button class="btn btn-default" type="submit">Añadir propuesta</button> 
+											</div> 
+										</div>
+									</div>
+								</div>
+							</form>	
+						</div>
+						<div class="tab-pane" id="interno">
+							<div class="panel panel-default">
+								<div class="panel-heading clearfix">
+									<h3 class="panel-title">Nueva propuesta de evaluador interno </h3>
+									
+								</div>
+								<div class="panel-body">
+									<form class="form-horizontal" method="post" action="/nuevaPropuestaInternoEvaluadores"> 	
+										<div class="form-group"> 
+											<label class="col-sm-2 control-label">Seleccione trabajador del IACS:</label> 
+											<div class="col-sm-10"> 
+												<select class="form-control" name="dniEvaluador" required> 
+													<s:iterator value="listaTrabajadores">
+														<option value="<s:property value="dni"/>"><s:property value="nombre"/> <s:property value="apellidos"/></option> 
+													</s:iterator>
+												</select>
+											</div> 
+										</div>
+										<div class="line-dashed"></div>
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Seleccione grupo evaluador al que pertenece:</label> 
+												<div class="col-sm-10"> 
+													<select class="form-control" name="grupo" required> 
+														<option value="1">Personas que trabajan conmigo</option> 
+														<option value="2">Personas a las que entrego mi trabajo</option>
+													</select>
+												</div> 
+											</div>
+											<div class="line-dashed"></div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Marque las competencias a evaluar: </label>
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<s:iterator value="compObjCompCatcomp" status="incr">
+														<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
+													 </s:iterator>
+												</div>
+											</div>
+											<div class="line-dashed"></div>
+											<div class="form-group"> 
+												<label class="col-sm-2 control-label">Justifique por qué debe evaluarle:</label> 
+												<div class="col-sm-10"> 
+													<textarea placeholder="Justificación" class="form-control" name="justificacion" required></textarea> 
+												</div> 
+											</div>
+											<div class="line-dashed"></div>
+											<div class="form-group"> 
+												<div class="col-sm-offset-2 col-sm-10"> 
+													<button class="btn btn-default" type="submit">Añadir propuesta</button> 
+												</div> 
+											</div>
+										
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+</div>	
+
+
+		
 
 </body>
 
