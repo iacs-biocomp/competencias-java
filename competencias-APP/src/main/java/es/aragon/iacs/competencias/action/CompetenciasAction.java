@@ -1,23 +1,21 @@
 package es.aragon.iacs.competencias.action;
 
-import java.text.DateFormat;
 import java.util.List;
-import java.text.SimpleDateFormat;  
-import java.util.Date; 
+
 import javax.ejb.EJB;
 
+import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
 import es.aragon.iacs.competencias.dao.ICompCompetenciasDAO;
 import es.aragon.iacs.competencias.dao.ICompComportamientosDAO;
+import es.aragon.iacs.competencias.dao.ICompNivelesDAO;
 import es.aragon.iacs.competencias.dao.ICompTrabajadoresDAO;
+import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompComportamientos;
 import es.aragon.iacs.competencias.jpa.CompNiveles;
-import es.aragon.iacs.competencias.dao.ICompNivelesDAO;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 import es.aragon.iacs.competencias.jpa.CompTrabajadores;
-import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
-import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.midas.action.MidasActionSupport;
 
 public class CompetenciasAction extends MidasActionSupport{
@@ -42,6 +40,9 @@ public class CompetenciasAction extends MidasActionSupport{
     private String nombreCatCompetencial;
     private String codCatCompetencial;
     private String codCatComp;
+    
+    private Integer idEditar;
+    private Integer objetivo;
     
 	private List<CompCompetencias> listaCompetencias;
 	private List<CompComportamientos> listaComportamientos;
@@ -112,6 +113,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Devolviendo lista de competencias activas: " + listaCompetencias.size()+ listaCompetencias);
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
+    	idEditar=-1;
     	return "catCompetencialConcreta";
     }
     
@@ -147,6 +149,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos =comportamientosDao.findActivos();
     	editar=true;
+    	idEditar=-1;
     	return "catCompetencialConcreta";
     }
     
@@ -163,6 +166,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
+    	idEditar=-1;
     	return "catCompetencialConcreta";
     }
     
@@ -180,6 +184,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
+    	idEditar=-1;
     	return "catCompetencialConcreta";
     }
 //    
@@ -187,15 +192,16 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Se va a añadir relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
     	competenciasDao.insertRelacionComportamientos(codComp,codCatComp,idNivel,idComportamiento);
     	log.debug("Se ha añadido relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
-    	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatCompetencial);
-    	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatCompetencial);
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatComp);
+    	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatComp);
     	listaNiveles=compNivelesDao.findAll();
-    	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatCompetencial);
+    	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatComp);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=true;
+    	idEditar=-1;
     	return "catCompetencialConcreta";
     }
     
@@ -213,8 +219,42 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Editando competencia con codigo="+codigo+" descripcion=" + descripcion +"alta: "+ alta + " baja:" +baja);
         editar=false;
         listaCompetencias = competenciasDao.findAll();
+        
     	return "competencias";
     }
+    
+    public String editarRelacion() {
+    	log.debug("Quiere eliminar relacion con id: " + idRelacion);
+    	
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
+    	listaNiveles=compNivelesDao.findAll();
+    	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
+    	nombreCatCompetencial=cat.getNombre();
+    	codCatCompetencial=cat.getCodigo();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
+    	editar=true;
+    	idEditar=idRelacion;
+    	return "catCompetencialConcreta";
+    }
+    
+    public String guardarRelacion() {
+    	log.debug("Quiere guardar relacion con id: " + idRelacion+ " objetivo: "+ objetivo);
+    	competenciasDao.editRelacion(idRelacion,objetivo);
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
+    	listaNiveles=compNivelesDao.findAll();
+    	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
+    	nombreCatCompetencial=cat.getNombre();
+    	codCatCompetencial=cat.getCodigo();
+    	listaCompetencias = competenciasDao.findActivas();
+    	listaComportamientos = comportamientosDao.findActivos();
+    	editar=true;
+    	idEditar=-1;
+    	return "catCompetencialConcreta";
+    }
+    
     
 
     /**
@@ -380,5 +420,21 @@ lista
 
 	public void setCodCatComp(String codCatComp) {
 		this.codCatComp = codCatComp;
+	}
+
+	public Integer getIdEditar() {
+		return idEditar;
+	}
+
+	public void setIdEditar(Integer idEditar) {
+		this.idEditar = idEditar;
+	}
+
+	public Integer getObjetivo() {
+		return objetivo;
+	}
+
+	public void setObjetivo(Integer objetivo) {
+		this.objetivo = objetivo;
 	}
 }

@@ -28,31 +28,50 @@ pageEncoding="UTF-8"%>
 	</tbody>
 	</table>
 	
-	<h4>Nuevo comportamiento</h4>
 	<div class="col-lg-6">
-		<form action="/nuevoComportamientos" method="post">
-		 <ul>
-		  <li>
-		    <label for="descripcion">Descripción:</label>
-	<!-- 	    <input type="text" id="descripcion" name="descripcion" required> -->
-		   	 <textarea name="descripcion" id="descripcion" rows="2" cols="40" required></textarea>
-		  </li>
-		  <li>
-		    <label for="alta">Fecha de alta:</label>
-			<input type="date" id="alta" name="alta" required>
-		</li>
-		 <li>
-		    <label for="baja">Fecha de baja:</label>
-			<input type="date" id="baja" name="baja">
-		</li>
-		  <li class="button">
-			  <button type="submit">Crear comportamiento</button>
-			</li>
-		 </ul>
-		 
-		</form>
-	
-	</div>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Nuevo comportamiento</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" action="/nuevoComportamientos" method="post">
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Descripción: </label> 
+								<div class="col-sm-10"> 
+									<textarea name="descripcion" id="descripcion" rows="2" cols="40" required></textarea>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de alta: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="alta" name="alta" required>
+									</div>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de baja: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="baja" name="baja">	
+									</div>
+									<p class="help-block">No es necesario que lo rellenes ahora. Podrás añadirla más adelante.</p>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10"> 
+								<button class="btn btn-primary" type="submit">Crear comportamiento</button> 
+							</div> 
+						</div> 
+					</form>
+				</div>
+			</div>
+		</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
 	<br></br>
 	<br></br>
 	<br></br>

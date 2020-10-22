@@ -26,5 +26,7 @@ public interface ICompCompetenciasDAO {
 	void insertRelacionComportamientos(String codCompetencia, String codCatComp, Integer idNivel, Integer idComportamiento);
 	void deleteRelacionComportamientos(String catCompetencial, String codCompetencia);
 	void deleteRelacionComportamientos(Integer idRelacion);
+	List<CompObjetivosCompCatcomp> allObjCompCatcomp();
+	void editRelacion(Integer idRelacion, Integer objetivo);
 
 }

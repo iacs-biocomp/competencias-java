@@ -27,5 +27,10 @@ public class EvaluacionesAction extends MidasActionSupport{
         return "evaluaciones"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
     }
+    
+    public String concreta() {
+    	
+    	return "evaluacionConcreta";
+    }
 	
 }

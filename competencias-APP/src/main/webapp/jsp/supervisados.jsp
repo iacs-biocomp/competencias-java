@@ -27,9 +27,11 @@ pageEncoding="UTF-8"%>
 														<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="#posiblesSupervisados.dni"/></h5>
 													</s:if>
 													<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-<%-- 													<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 														<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5> --%>
-<%-- 													</s:iterator> --%>
+													<s:iterator value="compObjCompCatcomp">
+														<s:if test="%{ codcatcomp == #posiblesSupervisados.catcompetencial}">
+															<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
 										</div>
@@ -65,9 +67,11 @@ pageEncoding="UTF-8"%>
 														<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniSuperior"/></h5>
 													</s:if>
 													<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-<%-- 													<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 														<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5> --%>
-<%-- 													</s:iterator> --%>
+													<s:iterator value="compObjCompCatcomp"> 
+														<s:if test="%{ codcatcomp == #posiblesSupervisados.catcompetencial}">
+															<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
 										</div>
@@ -103,9 +107,11 @@ pageEncoding="UTF-8"%>
 														<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 													</s:if>
 													<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-<%-- 													<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 														<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5> --%>
-<%-- 													</s:iterator> --%>
+													<s:iterator value="compObjCompCatcomp">
+														<s:if test="%{ codcatcomp == #posiblesSupervisados.catcompetencial}">
+															<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
 										</div>
@@ -143,9 +149,11 @@ pageEncoding="UTF-8"%>
 														<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
 													</s:if>
 													<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-<%-- 													<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 														<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5> --%>
-<%-- 													</s:iterator> --%>
+													<s:iterator value="compObjCompCatcomp">
+														<s:if test="%{ codcatcomp == #posiblesSupervisados.catcompetencial}">
+															<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
 										</div>
@@ -171,9 +179,11 @@ pageEncoding="UTF-8"%>
 												<div class="accordion-inner">
 													<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 													<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
-<%-- 													<s:iterator value="compObjCompCatcomp"> --%>
-<%-- 														<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5> --%>
-<%-- 													</s:iterator> --%>
+													<s:iterator value="compObjCompCatcomp">
+														<s:if test="%{ codcatcomp == #posiblesSupervisados.catcompetencial}">
+															<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+														</s:if>
+													</s:iterator>
 												</div>
 											</div>
 										</div>

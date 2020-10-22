@@ -18,15 +18,20 @@
          <put-attribute name="body" value="/jsp/evaluadores.jsp"/>
      </definition>
      
-<!--      <definition name="evaluadoresFormInterno" extends="loggedLayout"> -->
-<!--          <put-attribute name="body" value="/jsp/evaluadores.jsp#formInterno"/> -->
-<!--      </definition> -->
-<!--      <definition name="evaluadoresFormExterno" extends="loggedLayout"> -->
-<!--          <put-attribute name="body" value="/jsp/evaluadores.jsp#formExterno"/> -->
-<!--      </definition> -->
+     <definition name="resultados" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/resultados.jsp"/>
+     </definition>
+     
+     <definition name="resultadosConcretos" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/resultadosConcretos.jsp"/>
+     </definition>
      
      <definition name="evaluaciones" extends="loggedLayout">
          <put-attribute name="body" value="/jsp/evaluaciones.jsp"/>
+     </definition>
+     
+     <definition name="evaluacionConcreta" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/evaluacionConcreta.jsp"/>
      </definition>
      
       <definition name="supervisados" extends="loggedLayout">

@@ -28,8 +28,17 @@
          
          <action name="*Evaluaciones" class="es.aragon.iacs.competencias.action.EvaluacionesAction" method="{1}">
              <result name="evaluaciones" type="tiles">evaluaciones</result>
+             <result name="evaluacionConcreta" type="tiles">evaluacionConcreta</result>
          </action>
          
+         <action name="*Resultados" class="es.aragon.iacs.competencias.action.ResultadosAction" method="{1}">
+             <result name="resultados" type="tiles">resultados</result>
+             <result name="resultadosConcretos" type="tiles">resultadosConcretos</result>
+         </action>
+         
+<!--          <action name="*Resultados" class="es.aragon.iacs.competencias.action.ResultadosAction" method="{1}"> -->
+<!--              <result name="resultados" type="tiles">resultados</result> -->
+<!--          </action> -->
          
          <action name="*Supervisados" class="es.aragon.iacs.competencias.action.SupervisadosAction" method="{1}">
              <result name="supervisados" type="tiles">supervisados</result>

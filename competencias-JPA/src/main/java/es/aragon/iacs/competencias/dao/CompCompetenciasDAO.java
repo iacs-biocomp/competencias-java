@@ -70,6 +70,27 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	}
 	
 	@Override
+	public List<CompObjetivosCompCatcomp> allObjCompCatcomp() {
+		// TODO Auto-generated method stu
+		
+		String query="Select obj.id id, "
+					+ "		 obj.codcompetencia, "
+					+ "      comp.descripcion,"
+					+ "		 n.nombre as objetivo,"
+					+ "      catcomp.codigo codcatcomp, "
+					+ "      catcomp.nombre as nombrecatcomp "
+					+ "from comp_objetivos obj, "
+					+ "     comp_competencias comp, "
+					+ "     comp_niveles n, "
+					+ "     comp_cat_competenciales catcomp "
+					+ "where comp.codigo=obj.codcompetencia "
+					+ "  and obj.idnivel=n.id and obj.codcatcomp=catcomp.codigo;";
+		@SuppressWarnings("unchecked")
+		List<CompObjetivosCompCatcomp> resultado=em.createNativeQuery(query,CompObjetivosCompCatcomp.class).getResultList();
+		return resultado;
+	}
+	
+	@Override
 	public List<CompRelCompCompleto> relacionesPorCatComp(String codCatCompetencial) {
 		// TODO Auto-generated method stu
 
@@ -194,6 +215,27 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 		    em.remove(resultado.get(i));
 		}
 		em.flush();
+	}
+	
+	@Override
+	public void editRelacion(Integer idRelacion, Integer objetivo)  {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompObjetivos.findById");
+		query.setParameter("id", idRelacion);
+		@SuppressWarnings("unchecked")
+//		
+		//Lista de relaciones devueltas por la query hacer remove
+		List<CompObjetivos> resultado=query.getResultList();
+		
+		
+		if(resultado.size()==1) {
+			CompObjetivos o=resultado.get(0);
+			
+			o.setIdnivel(objetivo);
+			em.merge(o);
+			em.flush();
+		}
+		
 	}
 	
 	@Override

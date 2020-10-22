@@ -9,6 +9,7 @@ import es.aragon.iacs.competencias.jpa.CompExternos;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
 import es.aragon.iacs.competencias.jpa.CompOrganigramas;
+import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 
 import es.aragon.iacs.competencias.dao.ICompOrganigramasDAO;
 import es.aragon.iacs.competencias.dao.ICompCompetenciasDAO;
@@ -46,6 +47,8 @@ public class SupervisadosAction extends MidasActionSupport{
     private List<CompEvaluadorExterno> evaluadoresExternos;
     private List<CompEvaluadorInterno> evaluadoresInternos;
     
+    private List<CompObjetivosCompCatcomp> compObjCompCatcomp;
+    
     private String dniActual;
     private Integer idRelacion;
     
@@ -68,7 +71,7 @@ public class SupervisadosAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	//trabajador=trabajadoresDao.trabajador(dniActual);
 //    	String catCompetencial=trabajador.getCatcompetencial();
-//    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+    	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
 //    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
     	listaCompetencias=competenciasDao.findAll();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
@@ -98,7 +101,7 @@ public class SupervisadosAction extends MidasActionSupport{
     	
     	evaluadoresDao.deleteExterno(idRelacion);
     	
-    	
+    	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
     	listaCompetencias=competenciasDao.findAll();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
@@ -122,7 +125,7 @@ public class SupervisadosAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	
     	evaluadoresDao.deleteInterno(idRelacion);
-    	
+    	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
     	listaCompetencias=competenciasDao.findAll();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
@@ -261,6 +264,20 @@ public class SupervisadosAction extends MidasActionSupport{
 
 	public void setIdRelacion(Integer idRelacion) {
 		this.idRelacion = idRelacion;
+	}
+
+
+
+
+	public List<CompObjetivosCompCatcomp> getCompObjCompCatcomp() {
+		return compObjCompCatcomp;
+	}
+
+
+
+
+	public void setCompObjCompCatcomp(List<CompObjetivosCompCatcomp> compObjCompCatcomp) {
+		this.compObjCompCatcomp = compObjCompCatcomp;
 	}
 
 

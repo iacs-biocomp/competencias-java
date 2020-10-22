@@ -30,37 +30,56 @@ pageEncoding="UTF-8"%>
 	</tbody>
 	</table>
 	
-	<h4>Nuevo nivel de comportamientos</h4>
-	<div class="col-lg-6">
-		<form action="/nuevoNiveles" method="post">
-		 <ul>
-		 <li>
-		    <label for="nombre">Nombre:</label>
-		    <input type="text" id="nombre" name="nombre" required>
-		  </li>
-		  <li>
-		    <label for="valorporcentual">Valor (peso):</label>
-		    <input type="text" id="valorporcentual" name="valorporcentual" required>
-		  </li>
-		  <li>
-		    <label for="alta">Fecha de alta:</label>
-			<input type="date" id="alta" name="alta"
-			       value=""
-			       min="2018-01-01" max="2050-12-31" required>
-		</li>
-		 <li>
-		    <label for="baja">Fecha de baja:</label>
-			<input type="date" id="baja" name="baja"
-			       value=""
-			       min="2018-01-01" max="2050-12-31">
-		</li>
-		  <li class="button">
-			  <button type="submit">Crear nivel de comportamientos</button>
-			</li>
-		 </ul>
-		 
-		</form>
-	</div>
+		<div class="col-lg-6">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Nuevo nivel de comportamientos</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" action="/nuevoNiveles" method="post">
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Nombre: </label> 
+								<div class="col-sm-10"> 
+									<input type="text" id="nombre" name="nombre" required>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Valor (peso): </label> 
+								<div class="col-sm-10"> 
+									<input type="text" id="valorporcentual" name="valorporcentual" required>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de alta: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="alta" name="alta" required>
+									</div>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<label class="col-sm-2 control-label">Fecha de baja: </label> 
+								<div class="col-sm-10"> 
+									<div id="date-popup" class="input-group date"> 
+										<input type="date" id="baja" name="baja">	
+									</div>
+									<p class="help-block">No es necesario que lo rellenes ahora. Podrás añadirla más adelante.</p>
+								</div> 
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10"> 
+								<button class="btn btn-primary" type="submit">Crear nivel de comportamientos</button> 
+							</div> 
+						</div> 
+					</form>
+				</div>
+			</div>
+		</div>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
+	<br></br>
 	<br></br>
 	<br></br>
 	<br></br>

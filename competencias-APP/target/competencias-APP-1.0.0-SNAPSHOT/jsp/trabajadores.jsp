@@ -213,5 +213,5 @@ pageEncoding="UTF-8"%>
 </s:else>
 
 <div style="text-align:center">
-     <a href="todosOrganigramas" class="btn btn-success" >Ver organigramas</a>
+	<button type="button" class="btn btn-primary" href="todosOrganigramas" >Ver organigramas </button>
 </div>

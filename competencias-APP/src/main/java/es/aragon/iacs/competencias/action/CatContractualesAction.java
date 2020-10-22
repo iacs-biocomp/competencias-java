@@ -30,12 +30,6 @@ public class CatContractualesAction extends MidasActionSupport{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
 
-
-
-    /**
-     * Muestra la lista de pruebas
-     * @return
-     */
     public String list() {
         listaCatContractuales = catContractualesDao.findAll();
         log.debug("Devolviendo lista de pruebas: " + listaCatContractuales.size());
@@ -68,10 +62,6 @@ public class CatContractualesAction extends MidasActionSupport{
 
     }
 
-    /**
-     * Esta función "getter" es la que utilizará JSP para visualizar la
-lista
-     */
     public List<CompCatContractualesV> getCatContractuales() {
         return listaCatContractuales;
     }
