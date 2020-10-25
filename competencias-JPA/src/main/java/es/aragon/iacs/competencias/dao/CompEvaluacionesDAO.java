@@ -33,6 +33,16 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 		
 		return e;
 	}
+	@Override
+	public String getCatcompetencial(Integer id) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompEvaluaciones.findById");
+		query.setParameter("id", id);
+		@SuppressWarnings("unchecked")
+		CompEvaluaciones e=(CompEvaluaciones)query.getSingleResult();
+		
+		return e.getCatcompetencial();
+	}
 	
 	@Override
 	public void insertInfo(Integer id, String comp1,String comp2,String comp3,String comp4,String comp5,String comp6,String comp7,String comp8,String comp9,String comp10) {

@@ -44,6 +44,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     @EJB(name="CompEvaluacionesDAO")
     private ICompEvaluacionesDAO evaluacionesDao;
     private List<CompEvaluaciones> listaEvaluaciones;
+    private CompEvaluaciones evaluacionActual;
     
     private List<CompObjetivosCompCatcomp> objCompCatcomp;
     
@@ -141,6 +142,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	log.debug("Se va a añadir: "+id+comp0+comp1+comp2+comp3+comp4);
     	evaluacionesDao.insertInfo(id, comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9);
     	log.debug("Se ha añadido: "+id+comp0+comp1+comp2+comp3+comp4);
+    	catcompetencial=evaluacionesDao.getCatcompetencial(id);
     	listaCatCompetenciales=catCompetencialesDao.findAll();
     	listaTrabajadores = trabajadoresDao.findByCatcomp(catcompetencial);
         listaEvaluaciones=evaluacionesDao.findAll();
@@ -156,7 +158,8 @@ public class EvaluacionesAction extends MidasActionSupport{
     	listaCatCompetenciales=catCompetencialesDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaEvaluaciones=evaluacionesDao.findAll();
-        objCompCatcomp=competenciasDao.allObjCompCatcomp();
+        catcompetencial=evaluacionesDao.getCatcompetencial(id);
+        objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
         listaCompetencias=competenciasDao.findAll();
         fechaActual=fechaActual();
     	editar=true;
@@ -171,7 +174,8 @@ public class EvaluacionesAction extends MidasActionSupport{
     	listaCatCompetenciales=catCompetencialesDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaEvaluaciones=evaluacionesDao.findAll();
-        objCompCatcomp=competenciasDao.allObjCompCatcomp();
+        catcompetencial=evaluacionesDao.getCatcompetencial(id);
+        objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
         listaCompetencias=competenciasDao.findAll();
         fechaActual=fechaActual();
     	editar=false;
@@ -181,7 +185,9 @@ public class EvaluacionesAction extends MidasActionSupport{
     }
     
     public String concreta() {
-    	
+    	log.debug("se va a evaluar evaluacion con id: "+id);
+    	evaluacionActual=evaluacionesDao.findById(id);
+    	listaTrabajadores = trabajadoresDao.findAll();
     	return "evaluacionConcreta";
     }
 
@@ -450,6 +456,14 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setComp0(String comp0) {
 		this.comp0 = comp0;
+	}
+
+	public CompEvaluaciones getEvaluacionActual() {
+		return evaluacionActual;
+	}
+
+	public void setEvaluacionActual(CompEvaluaciones evaluacionActual) {
+		this.evaluacionActual = evaluacionActual;
 	}
 
 

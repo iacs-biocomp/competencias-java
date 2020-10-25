@@ -266,7 +266,7 @@ pageEncoding="UTF-8"%>
 											<p><strong>Periodo de validación de evaluadores:</strong> <input id="inivalidacion" name="inivalidacion" type="date" value="<s:property value="inivalidacion"/>"> - <input id="finvalidacion" name="finvalidacion" type="date" value="<s:property value="finvalidacion"/>"></p>
 											<p><strong>Periodo de evaluación:</strong> <input id="inievaluacion" name="inievaluacion" type="date" value="<s:property value="inievaluacion"/>"> - <input id="finevaluacion" name="finevaluacion" type="date" value="<s:property value="finevaluacion"/>"></p>
 											<p><strong> Puestos de trabajo evaluados o personas evaluadas: </strong> 
-											<select name="catcompetencial" class="form-control">
+											<select name="catcompetencial">
 													<s:iterator value="listaCatCompetenciales">
 														<s:if test="%{codigo ==catcompetencial }">
 															<option selected value="<s:property value="codigo"/>"><s:property value="nombre"/></option>
@@ -281,6 +281,7 @@ pageEncoding="UTF-8"%>
 										
 											<div class="col-sm-offset-2 col-sm-10"> 
 												<s:iterator value="objCompCatcomp" status="incr">
+												
 													<s:if test="%{codcompetencia==comp1 || codcompetencia==comp2 || codcompetencia==comp3||codcompetencia==comp4||codcompetencia==comp5||codcompetencia==comp6||codcompetencia==comp7||codcompetencia==comp8||codcompetencia==comp9||codcompetencia==comp10}">
 														<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>" checked><s:property value="descripcion"/> </label> </div> 
 													</s:if>
@@ -374,7 +375,7 @@ pageEncoding="UTF-8"%>
 										</s:if>
 										
 										<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
-										<li><a href="concretaEvaluaciones">Evaluar</a></li>
+										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
 									</ul>
 								</div>
 								<!-- /card content -->
