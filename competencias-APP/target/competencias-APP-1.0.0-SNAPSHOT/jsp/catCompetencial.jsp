@@ -6,22 +6,16 @@ pageEncoding="UTF-8"%>
 	
 	<script>
 	function submitFormModal3(competencia, categoriaCompetencial){			
-// 			alert("competencia" + competencia + "categoriaCompetencial"+categoriaCompetencial);
-			//a codcomp de #modal-3 asignare el valor 
-			//Bucle mientras encuentre elemento formModalX, le asigna valor a codcomp
 			var i=0;
 			var idCompetencia="codComp"+i;
 			var idCatComp="codCatComp"+i;
-// 			alert(idCompetencia+idCatComp);
 			while (document.getElementById(idCompetencia) != null){
 				document.getElementById(idCompetencia).value=competencia;
 				document.getElementById(idCatComp).value=categoriaCompetencial;
 				i++;
 				idCompetencia="codComp"+i;
 				idCatComp="codCatComp"+i;
-// 				alert(id);
 				}
-		
 		}
 	</script>
 

@@ -7,6 +7,7 @@ import es.aragon.iacs.competencias.jpa.CompTrabajadores;
 public interface ICompTrabajadoresDAO {
 
 	List<CompTrabajadores> findAll();
+	List<CompTrabajadores> findByCatcomp(String codCatcomp);
 
 	CompTrabajadores trabajador(String dni);
 

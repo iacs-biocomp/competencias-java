@@ -28,6 +28,16 @@ public class CompTrabajadoresDAO implements ICompTrabajadoresDAO {
 	}
 	
 	@Override
+	public List<CompTrabajadores> findByCatcomp(String codCatcomp) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompTrabajadores.findByCatcomp");
+		query.setParameter("catcompetencial", codCatcomp);
+		@SuppressWarnings("unchecked")
+		List<CompTrabajadores> projects = query.getResultList();
+		return projects;
+	}
+	
+	@Override
 	public CompTrabajadores trabajador(String dni) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompTrabajadores.findById");
