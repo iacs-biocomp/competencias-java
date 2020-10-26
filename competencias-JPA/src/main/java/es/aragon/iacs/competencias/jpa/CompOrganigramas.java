@@ -8,9 +8,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_organigramas")
 @NamedQueries({
-	@NamedQuery(name="CompOrganigramas.findAll", query="SELECT c FROM CompOrganigramas c ORDER BY c.id"),
+	@NamedQuery(name="CompOrganigramas.findAll", query="SELECT c FROM CompOrganigramas c ORDER BY c.id DESC"),
 	@NamedQuery(name="CompOrganigramas.findById", query="SELECT c FROM CompOrganigramas c WHERE c.id=:id"),
-	@NamedQuery(name="CompOrganigramas.findActivos", query="SELECT c FROM CompOrganigramas c WHERE c.fechaFin='' OR c.fechaFin=null OR c.fechaFin>=:fechaIni"),
+	@NamedQuery(name="CompOrganigramas.findActivos", query="SELECT c FROM CompOrganigramas c WHERE c.fechaFin='' OR c.fechaFin=null OR c.fechaFin>=:fechaIni ORDER BY c.id DESC"),
 	@NamedQuery(name="CompOrganigramas.findActivo", query="SELECT c FROM CompOrganigramas c WHERE c.fechaFin='' OR c.fechaFin=null OR c.fechaFin>=:fechaHoy")
 })
 public class CompOrganigramas implements Serializable{

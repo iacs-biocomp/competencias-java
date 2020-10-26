@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_competencias")
 @NamedQueries({
-	@NamedQuery(name="CompCompetencias.findAll", query="SELECT c FROM CompCompetencias c ORDER BY c.codigo"),
+	@NamedQuery(name="CompCompetencias.findAll", query="SELECT c FROM CompCompetencias c ORDER BY c.descripcion"),
 	@NamedQuery(name="CompCompetencias.findById", query="SELECT c FROM CompCompetencias c WHERE c.codigo=:codigo"),
-	@NamedQuery(name="CompCompetencias.findActivas", query="SELECT c FROM CompCompetencias c WHERE c.baja=null OR c.baja='' OR c.baja>=:fechaHoy ORDER BY c.codigo")
+	@NamedQuery(name="CompCompetencias.findActivas", query="SELECT c FROM CompCompetencias c WHERE c.baja=null OR c.baja='' OR c.baja>=:fechaHoy ORDER BY c.descripcion")
 })
 public class CompCompetencias implements Serializable{
 	private static final long serialVersionUID = 1L;

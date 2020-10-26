@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_cat_competenciales")
 @NamedQueries({
-	@NamedQuery(name="CompCatCompetenciales.findAll", query="SELECT c FROM CompCatCompetenciales c ORDER BY c.codigo"),
+	@NamedQuery(name="CompCatCompetenciales.findAll", query="SELECT c FROM CompCatCompetenciales c ORDER BY c.nombre"),
 	@NamedQuery(name="CompCatCompetenciales.findById", query="SELECT c FROM CompCatCompetenciales c WHERE c.codigo=:codigo")
 })
 

@@ -11,10 +11,10 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_trabajadores")
 @NamedQueries({
-	@NamedQuery(name="CompTrabajadores.findAll", query="SELECT c FROM CompTrabajadores c ORDER BY c.codigo"),
+	@NamedQuery(name="CompTrabajadores.findAll", query="SELECT c FROM CompTrabajadores c ORDER BY c.nombre"),
 	@NamedQuery(name="CompTrabajadores.findByDni", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni"),
 	@NamedQuery(name="CompTrabajadores.findById", query="SELECT c FROM CompTrabajadores c WHERE c.dni=:dni"),
-	@NamedQuery(name="CompTrabajadores.findByCatcomp", query="SELECT c FROM CompTrabajadores c WHERE c.catcompetencial=:catcompetencial")
+	@NamedQuery(name="CompTrabajadores.findByCatcomp", query="SELECT c FROM CompTrabajadores c WHERE c.catcompetencial=:catcompetencial ORDER BY c.nombre")
 })
 public class CompTrabajadores implements Serializable{
 	private static final long serialVersionUID = 1L;

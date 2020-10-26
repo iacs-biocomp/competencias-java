@@ -39,4 +39,15 @@ public class CompCatContractualesDAO implements ICompCatContractualesDAO {
 		em.flush();
 	}
 	
+	@Override
+	public CompCatContractualesV findByCatcontractual(String catContractual) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompCatContractualesV.findByCatcontractual");
+		query.setParameter("catcontractual", catContractual);
+		@SuppressWarnings("unchecked")
+		CompCatContractualesV result = (CompCatContractualesV)query.getSingleResult();
+		//Cambiarle la catCompetencial por la nueva
+		return result;
+	}
+	
 }

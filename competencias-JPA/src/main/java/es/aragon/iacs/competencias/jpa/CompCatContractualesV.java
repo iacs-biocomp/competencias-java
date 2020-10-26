@@ -10,8 +10,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="vista_cat_contractuales")
 @NamedQueries({
-	@NamedQuery(name="CompCatContractualesV.findAll", query="SELECT c FROM CompCatContractualesV c ORDER BY c.id"),
-	@NamedQuery(name="CompCatContractualesV.findById", query="SELECT c FROM CompCatContractualesV c WHERE c.id=:id")
+	@NamedQuery(name="CompCatContractualesV.findAll", query="SELECT c FROM CompCatContractualesV c ORDER BY c.nombre"),
+	@NamedQuery(name="CompCatContractualesV.findById", query="SELECT c FROM CompCatContractualesV c WHERE c.id=:id"),
+	@NamedQuery(name="CompCatContractualesV.findByCatcontractual", query="SELECT c FROM CompCatContractualesV c WHERE c.nombre=:catcontractual")
 })
 public class CompCatContractualesV implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -43,11 +44,11 @@ public class CompCatContractualesV implements Serializable{
 		this.nombre = nombre;
 	}
 	
-	public String getCodCatComp() {
+	public String getCodcatcomp() {
 		return this.codcatcomp;
 	}
 
-	public void setCodCatComp(String codCatComp) {
+	public void setCodcatcomp(String codcatcomp) {
 		this.codcatcomp = codcatcomp;
 	}
 

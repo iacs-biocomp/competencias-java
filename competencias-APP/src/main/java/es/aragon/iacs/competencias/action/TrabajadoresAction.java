@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
+import es.aragon.iacs.competencias.jpa.CompCatContractualesV;
 import es.aragon.iacs.competencias.dao.ICompTrabajadoresDAO;
 import es.aragon.iacs.competencias.jpa.CompTrabajadores;
 import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
@@ -17,6 +18,11 @@ import es.aragon.midas.action.MidasActionSupport;
 public class TrabajadoresAction extends MidasActionSupport{
 
     private static final long serialVersionUID = 2108264332221967943L;
+    @EJB(name="CompCatContractualesDAO")
+    private ICompCatContractualesDAO catContractualesDao;
+    private List<CompCatContractualesV> listaCatContractuales;
+    private CompCatContractualesV contractual;
+    
     @EJB(name="CompTrabajadoresDAO")
     private ICompTrabajadoresDAO trabajadoresDao;
     private List<CompTrabajadores> listaTrabajadores;
@@ -24,10 +30,6 @@ public class TrabajadoresAction extends MidasActionSupport{
     @EJB(name="CompExternosDAO")
     private ICompExternosDAO externosDao;
     private List<CompExternos> listaExternos;
-    
-    @EJB(name="CompCatContractualesDAO")
-    private ICompCatContractualesDAO catContractualesDao;
-    private List<CompCatContractualesV> catContractuales;
 
     @EJB(name="CompCatCompetencialesDAO")
     private ICompCatCompetencialesDAO catCompetencialesDao;
@@ -64,7 +66,9 @@ public class TrabajadoresAction extends MidasActionSupport{
     public String list() {
         listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
+        listaCatContractuales = catContractualesDao.findAll();
         log.debug("Devolviendo lista de pruebas: " + listaTrabajadores.size());
+        log.debug("listaCatContractuales: "+listaCatContractuales);
         editar=false;
         return "trabajadores"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
@@ -74,10 +78,10 @@ public class TrabajadoresAction extends MidasActionSupport{
 
     public String editar() {
     	log.debug("Editando trabajdor con dni="+dni+" nombre=" + nombre);
-    	catContractuales = catContractualesDao.findAll();
         catCompetenciales = catCompetencialesDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
     	listaExternos = externosDao.findAll();
+    	listaCatContractuales = catContractualesDao.findAll();
     	editar=true;
     	dniEditar=dni;
     	return "trabajadores";
@@ -86,11 +90,20 @@ public class TrabajadoresAction extends MidasActionSupport{
     public String guardarInternos() {
 
     	log.debug("Editando trabajdor interno con dni="+dni+" nombre=" + nombre);
-    	//HACER FUNCION EN DAO QUE EDITE
-    	trabajadoresDao.editInterno(codigo,nombre,apellidos,catcontractual,catcompetencial,area,unidad,departamento,antiguedad,dni);
+    	//comprobar si catcompetencial es la que corresponde segun su catcontractual, si es la misma no guardar, sino guardar
+    	contractual=catContractualesDao.findByCatcontractual(catcontractual);
+    	String codCatComp=contractual.getCodcatcomp();
+    	if (codCatComp == catcompetencial) {
+    		trabajadoresDao.editInterno(codigo,nombre,apellidos,catcontractual,null,area,unidad,departamento,antiguedad,dni);
+    	}
+    	else {
+    		trabajadoresDao.editInterno(codigo,nombre,apellidos,catcontractual,catcompetencial,area,unidad,departamento,antiguedad,dni);
+    	}
+    	
         editar=false;
         listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
+        listaCatContractuales = catContractualesDao.findAll();
     	return "trabajadores";
     }
     
@@ -102,6 +115,7 @@ public class TrabajadoresAction extends MidasActionSupport{
         editar=false;
         listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
+        listaCatContractuales = catContractualesDao.findAll();
     	return "trabajadores";
     }
     
@@ -153,17 +167,6 @@ lista
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-	public List<CompCatContractualesV> getCatContractuales() {
-		return catContractuales;
-	}
-
-
-	public void setCatContractuales(List<CompCatContractualesV> catContractuales) {
-		this.catContractuales = catContractuales;
-	}
-
 
 	public List<CompCatCompetenciales> getCatCompetenciales() {
 		return catCompetenciales;
@@ -292,6 +295,26 @@ lista
 
 	public void setPosiblesuperior(Boolean posiblesuperior) {
 		this.posiblesuperior = posiblesuperior;
+	}
+
+
+	public List<CompCatContractualesV> getListaCatContractuales() {
+		return listaCatContractuales;
+	}
+
+
+	public void setListaCatContractuales(List<CompCatContractualesV> listaCatContractuales) {
+		this.listaCatContractuales = listaCatContractuales;
+	}
+
+
+	public CompCatContractualesV getContractual() {
+		return contractual;
+	}
+
+
+	public void setContractual(CompCatContractualesV contractual) {
+		this.contractual = contractual;
 	}
 
 

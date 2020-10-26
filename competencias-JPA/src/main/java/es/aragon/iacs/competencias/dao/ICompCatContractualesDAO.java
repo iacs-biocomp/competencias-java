@@ -9,5 +9,6 @@ public interface ICompCatContractualesDAO {
 	List<CompCatContractualesV> findAll();
 
 	void editId(int id, String catComp);
+	CompCatContractualesV findByCatcontractual(String catContractual);
 
 }
