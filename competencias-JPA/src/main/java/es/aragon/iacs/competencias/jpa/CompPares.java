@@ -10,7 +10,8 @@ import javax.persistence.*;
 	@NamedQuery(name="CompPares.findAll", query="SELECT c FROM CompPares c ORDER BY c.id"),
 	@NamedQuery(name="CompPares.findByOrganigrama", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:idOrganigrama ORDER BY c.id"),
 	@NamedQuery(name="CompPares.findById", query="SELECT c FROM CompPares c WHERE c.id=:id"),
-	@NamedQuery(name="CompPares.findPar", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:id AND c.dniTrabajador=:dniTrabajador AND dniPar=:dniPar")
+	@NamedQuery(name="CompPares.findPar", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:id AND c.dniTrabajador=:dniTrabajador AND dniPar=:dniPar"),
+	@NamedQuery(name="CompPares.findByTrabajador", query="SELECT c FROM CompPares c WHERE c.idOrganigrama=:idOrganigrama AND (c.dniTrabajador=:dniTrabajador OR dniPar=:dniTrabajador)")
 })
 public class CompPares implements Serializable{
 	private static final long serialVersionUID = 1L;

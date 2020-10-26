@@ -36,4 +36,7 @@ public interface ICompOrganigramasDAO {
 	
 	CompOrganigramas findActivo();
 	
+	List<CompPares> findParesTrabajador(Integer idOrganigrama, String dniTrabajador);
+	List<CompSuperiores> findSuperioresTrabajador(Integer idOrganigrama, String dniTrabajador);
+	
 }

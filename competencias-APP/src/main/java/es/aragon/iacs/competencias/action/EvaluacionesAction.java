@@ -4,6 +4,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.ejb.EJB;
+import java.util.ArrayList;
 
 import es.aragon.midas.action.MidasActionSupport;
 import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
@@ -14,13 +15,22 @@ import es.aragon.iacs.competencias.jpa.CompTrabajadores;
 import es.aragon.iacs.competencias.jpa.CompExternos;
 import es.aragon.iacs.competencias.dao.ICompExternosDAO;
 import es.aragon.iacs.competencias.dao.ICompEvaluacionesDAO;
+import es.aragon.iacs.competencias.dao.ICompOrganigramasDAO;
+import es.aragon.iacs.competencias.dao.ICompEvaluadoresDAO;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
 import es.aragon.iacs.competencias.jpa.CompObjetivos;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
+import es.aragon.iacs.competencias.jpa.CompPares;
+import es.aragon.iacs.competencias.jpa.CompSuperiores;
+import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
+import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
+import es.aragon.iacs.competencias.jpa.CompSuperiores;
 public class EvaluacionesAction extends MidasActionSupport{
 	private static final long serialVersionUID = 2108264332221967943L;
+	@EJB(name="CompOrganigramasDAO")
+    private ICompOrganigramasDAO organigramasDao;
 	
 	@EJB(name="CompCatCompetencialesDAO")
     private ICompCatCompetencialesDAO catCompetencialesDao;
@@ -47,6 +57,14 @@ public class EvaluacionesAction extends MidasActionSupport{
     private CompEvaluaciones evaluacionActual;
     
     private List<CompObjetivosCompCatcomp> objCompCatcomp;
+    
+    private List<CompPares> misPares;
+	private List<CompSuperiores> misSuperiores;
+	
+    @EJB(name="CompEvaluadoresDAO")
+    private ICompEvaluadoresDAO evaluadoresDao;
+    private List<CompEvaluadorExterno> evaluadoresExternos;
+    private List<CompEvaluadorInterno> evaluadoresInternos;
     
     private Integer id;
 	private String nombre;
@@ -79,6 +97,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 	
 	private Integer idNueva;
 	private CompEvaluaciones nuevaEvaluacion;
+	private Boolean mis;
 	
 	
 	{
@@ -94,7 +113,120 @@ public class EvaluacionesAction extends MidasActionSupport{
 	}
 	
     public String mis() {
+    	//List<CompEvaluaciones> listaEvaluaciones = new List<CompEvaluaciones>();
     	
+    	List<CompEvaluaciones> todasEvaluaciones=evaluacionesDao.findAll(); //DEBERIA DEVOLVER SOLO MIS EVALUACIONES
+    	String dniActual=user.getIdd();
+    	CompTrabajadores trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
+    	misPares=organigramasDao.findParesTrabajador(idActual,dniActual);
+        misSuperiores=organigramasDao.findSuperioresTrabajador(idActual,dniActual);
+    	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
+//    	evaluadoresExternos=evaluadoresDao.findByEvaluadorExt(dniActual);
+    	listaEvaluaciones=new ArrayList<CompEvaluaciones>();
+    	for(int i=0;i<todasEvaluaciones.size();i++) {
+    		
+    		//SOLO COMPRUEBA SI ES AUTOEVALUACION
+    		if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catCompetencial)) {
+    			listaEvaluaciones.add(todasEvaluaciones.get(i));
+
+    		}
+    		else {
+    			log.debug("no es autoevaluacion");
+    			for(int j=0;j<misPares.size();j++) {
+    				if(misPares.get(j).getDniTrabajador().equals(dniActual) ){
+        				CompTrabajadores par=trabajadoresDao.trabajador(misPares.get(j).getDniPar());
+        				String catPar=par.getCatcompetencial();
+        				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catPar)) {
+        					listaEvaluaciones.add(todasEvaluaciones.get(i));
+        					log.debug("Es par 1 ");
+        				}
+
+        			}
+    				else {
+    					if(misPares.get(j).getDniPar().equals(dniActual)) {
+    						CompTrabajadores par=trabajadoresDao.trabajador(misPares.get(j).getDniTrabajador());
+            				String catPar=par.getCatcompetencial();
+            				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catPar)) {
+            					listaEvaluaciones.add(todasEvaluaciones.get(i));
+            					log.debug("es par 2");
+            				}
+    						
+    					}
+    				
+    				}
+    				
+    			}
+    			//HACER BUCLE CON LOS SUPERIORES E INFERIORES, SI NO SE HA AÑADIDO YA
+    			if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
+    				for(int k=0;k<misSuperiores.size();k++) {
+    					log.debug("Dentro de bucle superiores");
+
+        				if(misSuperiores.get(k).getDniTrabajador().equals(dniActual) ){
+        					log.debug("Primer if");
+            				CompTrabajadores superior=trabajadoresDao.trabajador(misSuperiores.get(k).getDniSuperior());
+            				String catSuperior=superior.getCatcompetencial();
+            				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catSuperior)) {
+            					listaEvaluaciones.add(todasEvaluaciones.get(i));
+            					log.debug("es superior 1");
+            				}
+
+            			}
+        				else {
+        					if(misSuperiores.get(k).getDniSuperior().equals(dniActual)) {
+        						log.debug("Segundo if");
+        						CompTrabajadores superior=trabajadoresDao.trabajador(misSuperiores.get(k).getDniTrabajador());
+                				String catSuperior=superior.getCatcompetencial();
+                				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catSuperior)) {
+                					listaEvaluaciones.add(todasEvaluaciones.get(i));
+                					log.debug("es superior 2");
+                				}
+        						
+        					}
+        				
+        				}
+        				
+        			} //BUCLE CON LOS EVALUADORES INTERNOS Y EXTERNOS SI NO SE HA AÑADIDO YA
+    				if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
+    					for(int p=0;p<evaluadoresInternos.size();p++) {
+    						CompTrabajadores trabajador2=trabajadoresDao.trabajador(evaluadoresInternos.get(p).getDnitrabajador());
+            				String cat=trabajador2.getCatcompetencial();
+            				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(cat)) {
+            					listaEvaluaciones.add(todasEvaluaciones.get(i));
+            					log.debug("es evaluador interno");
+            				}
+    					}
+    					//SI FUESE EVALUADOR EXTERNO HABRIA QUE COMPROBARLO CON SU ID
+//    					if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
+//    						for(int p=0;p<evaluadoresExternos.size();p++) {
+//    							CompTrabajadores trabajador3=trabajadoresDao.trabajador(evaluadoresExternos.get(p).getDnitrabajador());
+//                				String cat=trabajador3.getCatcompetencial();
+//                				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(cat)) {
+//                					listaEvaluaciones.add(todasEvaluaciones.get(i));
+//                					log.debug("es evaluador externo");
+//                				}
+//        					}
+//    					}
+    					
+    				}
+    				
+    			}
+    			
+    		}
+    		
+    	}
+    	
+    	mis=true;
+    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaTrabajadores = trabajadoresDao.findAll();
+        
+        objCompCatcomp=competenciasDao.allObjCompCatcomp();
+        listaCompetencias=competenciasDao.findAll();
+        fechaActual=fechaActual();
+        editar=false;
+        editar2=false;
+        idEditar=-1;
 //        listaEvaluaciones = evaluacionesDao.findAll();
 //        log.debug("Devolviendo lista de pruebas: " + listaNiveles.size());
 //        editar=false;
@@ -111,6 +243,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         fechaActual=fechaActual();
         editar=false;
         editar2=false;
+        mis=false;
         idEditar=-1;
         log.debug("Listará sin editar");
 //        listaOrganigramas = organigramasDao.findAll();
@@ -135,6 +268,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	editar=false;
     	editar2=true;
         idEditar=-1;
+        mis=false;
     	return "evaluaciones"; 
     }
     
@@ -151,6 +285,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         fechaActual=fechaActual();
     	editar=false;
     	editar2=false;
+    	mis=false;
         idEditar=-1;
     	return "evaluaciones"; 
     }
@@ -164,6 +299,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         fechaActual=fechaActual();
     	editar=true;
     	 editar2=false;
+    	 mis=false;
     	idEditar=id;
     	return "evaluaciones"; 
     }
@@ -180,6 +316,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         fechaActual=fechaActual();
     	editar=false;
     	 editar2=false;
+    	 mis=false;
         idEditar=-1;
     	return "evaluaciones"; 
     }
@@ -464,6 +601,46 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setEvaluacionActual(CompEvaluaciones evaluacionActual) {
 		this.evaluacionActual = evaluacionActual;
+	}
+
+	public Boolean getMis() {
+		return mis;
+	}
+
+	public void setMis(Boolean mis) {
+		this.mis = mis;
+	}
+
+	public List<CompPares> getMisPares() {
+		return misPares;
+	}
+
+	public void setMisPares(List<CompPares> misPares) {
+		this.misPares = misPares;
+	}
+
+	public List<CompSuperiores> getMisSuperiores() {
+		return misSuperiores;
+	}
+
+	public void setMisSuperiores(List<CompSuperiores> misSuperiores) {
+		this.misSuperiores = misSuperiores;
+	}
+
+	public List<CompEvaluadorExterno> getEvaluadoresExternos() {
+		return evaluadoresExternos;
+	}
+
+	public void setEvaluadoresExternos(List<CompEvaluadorExterno> evaluadoresExternos) {
+		this.evaluadoresExternos = evaluadoresExternos;
+	}
+
+	public List<CompEvaluadorInterno> getEvaluadoresInternos() {
+		return evaluadoresInternos;
+	}
+
+	public void setEvaluadoresInternos(List<CompEvaluadorInterno> evaluadoresInternos) {
+		this.evaluadoresInternos = evaluadoresInternos;
 	}
 
 

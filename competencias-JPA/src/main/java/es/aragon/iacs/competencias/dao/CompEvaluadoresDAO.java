@@ -36,6 +36,26 @@ public class CompEvaluadoresDAO implements ICompEvaluadoresDAO{
 	}
 	
 	@Override
+	public List<CompEvaluadorExterno> findByEvaluadorExt(String dni){
+		Query query = em.createNamedQuery("CompEvaluadorExterno.findByEvaluador");
+		query.setParameter("dnievaluador", dni);
+		@SuppressWarnings("unchecked")
+		List<CompEvaluadorExterno> resultado=query.getResultList();
+		return resultado;
+		
+	}
+	
+	@Override
+	public List<CompEvaluadorInterno> findByEvaluadorInt(String dni){
+		Query query = em.createNamedQuery("CompEvaluadorInterno.findByEvaluador");
+		query.setParameter("dnievaluador", dni);
+		@SuppressWarnings("unchecked")
+		List<CompEvaluadorInterno> resultado=query.getResultList();
+		return resultado;
+		
+	}
+	
+	@Override
 	public List<CompEvaluadorExterno> externosFindAll(){
 		Query query = em.createNamedQuery("CompEvaluadorExterno.findAll");
 		@SuppressWarnings("unchecked")

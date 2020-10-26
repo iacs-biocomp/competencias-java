@@ -35,11 +35,12 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body>
-
+ <s:if test="%{mis ==false}">
   <!-- Main container -->
   <div style="width:90%;">
+
  
-	<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir evaluación <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
+		<h3 style="text-align: right"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Añadir evaluación <i class="fa fa-plus" aria-hidden="true" ></i></button></h3>
 
 	<div id="modal-2" class="modal fade" tabindex="-1" role="dialog">
 		  <div class="modal-dialog modal-lg">
@@ -370,12 +371,15 @@ pageEncoding="UTF-8"%>
 									</s:iterator>	
 									
 									<ul class="list-inline list-action">
+									
 										<s:if test="%{finevaluacion !=null && finevaluacion != \"\" && fechaActual>finevaluacion}">
 											<li><a href="evaluacionConcretaResultados">Calcular evaluación</a></li>
 										</s:if>
 										
 										<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
+									
 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
+									
 									</ul>
 								</div>
 								<!-- /card content -->
@@ -399,6 +403,117 @@ pageEncoding="UTF-8"%>
 	  
   </div>
   <!-- /main container -->
+ </s:if>
+ <s:else> 
+<!--  MIS EVALUACIONES -->
+ 
+ 
+   <!-- Main container -->
+  <div style="width:90%;">
+
+	
+	<!-- Main content -->
+    <div class="main-content" >
+
+		
+		<div class="row">
+			<div class="col-md-18">
+				<!-- Card list view -->
+				<div class="cards-container box-view">
+				
+			
+						
+						<s:iterator value="listaEvaluaciones">
+							<!-- Card -->
+							<div class="card" style="width:100%;">
+							
+								<!-- Card header -->
+								<div class="card-header" style="width:100%;">
+									
+									<!-- Card short description -->
+									<div class="card-short-description">
+										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
+										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+											<span class="badge badge-primary">Activa</span>
+										</s:if>
+										</h5>
+										
+									</div>
+									<!-- /card short description -->
+									
+								</div>
+								<!-- /card header -->
+								
+								<!-- Card content -->
+								<div class="card-content" style="width:100%;">
+								
+									<p><strong>Periodo evaluado:</strong> <s:property value="iniperiodo"/> - <s:property value="finperiodo"/></p>
+										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
+										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
+										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
+									<p><strong> Puestos de trabajo evaluados o personas evaluadas:</strong> <s:property value="catcompetencial"/>. </p>
+									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
+									<s:iterator value="listaCompetencias">
+										<s:if test="%{comp1 != null && comp1 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp2 != null && comp2 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp3 != null && comp3 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp4 != null && comp4 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp5 != null && comp5 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp6 != null && comp6 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp7 != null && comp7 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp8 != null && comp8 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp9 != null && comp9 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+										<s:if test="%{comp10 != null && comp10 == codigo}">
+											<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
+										</s:if>
+									</s:iterator>	
+									
+									<ul class="list-inline list-action">
+									<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
+									</s:if>
+									</ul>
+								</div>
+								<!-- /card content -->
+								
+							</div>
+							<!-- /card -->
+						</s:iterator>
+				</div>
+				<!-- /card list view -->
+				
+			</div>
+		</div>	
+		
+	  </div>
+	  <!-- /main content -->
+	  
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </s:else>
   
 </div>
 <!-- /page container -->

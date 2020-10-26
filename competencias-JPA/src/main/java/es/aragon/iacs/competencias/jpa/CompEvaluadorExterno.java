@@ -8,6 +8,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompEvaluadorExterno.findAll", query="SELECT c FROM CompEvaluadorExterno c ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorExterno.findByEvaluacion", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idevaluacion=:idevaluacion ORDER BY c.idrelacion"),
+	@NamedQuery(name="CompEvaluadorExterno.findByEvaluador", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idevaluador=:idevaluador ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorExterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorExterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorExterno.findById", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idrelacion=:idrelacion"),
 	@NamedQuery(name="CompEvaluadorExterno.findRelacion", query="SELECT c FROM CompEvaluadorExterno c WHERE c.idevaluacion=:idevaluacion AND c.idevaluador=:idevaluador AND c.dnitrabajador=:dnitrabajador")

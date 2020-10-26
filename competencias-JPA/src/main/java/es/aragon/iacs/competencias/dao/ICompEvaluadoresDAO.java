@@ -16,4 +16,6 @@ public interface ICompEvaluadoresDAO {
 	void editEvaluadorInterno(Integer idRelacion, String justificacion);
 	List<CompEvaluadorExterno> externosFindAll();
 	List<CompEvaluadorInterno> internosFindAll();
+	List<CompEvaluadorExterno> findByEvaluadorExt(String dni);
+	List<CompEvaluadorInterno> findByEvaluadorInt(String dni);
 }
