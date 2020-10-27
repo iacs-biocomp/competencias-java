@@ -9,7 +9,7 @@ que quieras. Cuando se acaba la fecha de evaluar se quedan los guardados y ya no
 
 <s:iterator value="evaluacionActual" var="evaluacion">
 	<s:iterator value="listaTrabajadores" var="trabajador">
-		<s:if test="%{#evaluacion.catcompetencial==#trabajador.catcompetencial}">
+		
 			<div class="row">
 				<div class="col-lg-12">
 					<h2 class="title"><s:property value="nombre"/> <s:property value="apellidos"/></h2>
@@ -59,6 +59,6 @@ que quieras. Cuando se acaba la fecha de evaluar se quedan los guardados y ya no
 						</div>
 				</div>
 			</div>
-		</s:if>
+	
 	</s:iterator>
 </s:iterator>

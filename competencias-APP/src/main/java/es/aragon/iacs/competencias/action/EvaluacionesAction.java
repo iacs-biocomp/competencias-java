@@ -88,6 +88,8 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private String comp7;
 	private String comp8;
 	private String comp9;
+	
+	private List<String> compet;
 
 	
 	private Boolean editar;
@@ -187,27 +189,21 @@ public class EvaluacionesAction extends MidasActionSupport{
         				
         				}
         				
-        			} //BUCLE CON LOS EVALUADORES INTERNOS Y EXTERNOS SI NO SE HA AÑADIDO YA
+        			} //BUCLE CON LOS EVALUADORES INTERNOS  SI NO SE HA AÑADIDO YA
     				if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
+    					log.debug("dentro if internos");
     					for(int p=0;p<evaluadoresInternos.size();p++) {
+    						log.debug("dentro for internos");
     						CompTrabajadores trabajador2=trabajadoresDao.trabajador(evaluadoresInternos.get(p).getDnitrabajador());
             				String cat=trabajador2.getCatcompetencial();
+            				log.debug("cat: "+cat+" todasEvaluaciones.get(i).getCatcompetencial(): "+ todasEvaluaciones.get(i).getCatcompetencial());
             				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(cat)) {
             					listaEvaluaciones.add(todasEvaluaciones.get(i));
             					log.debug("es evaluador interno");
             				}
     					}
     					//SI FUESE EVALUADOR EXTERNO HABRIA QUE COMPROBARLO CON SU ID
-//    					if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
-//    						for(int p=0;p<evaluadoresExternos.size();p++) {
-//    							CompTrabajadores trabajador3=trabajadoresDao.trabajador(evaluadoresExternos.get(p).getDnitrabajador());
-//                				String cat=trabajador3.getCatcompetencial();
-//                				if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(cat)) {
-//                					listaEvaluaciones.add(todasEvaluaciones.get(i));
-//                					log.debug("es evaluador externo");
-//                				}
-//        					}
-//    					}
+//    					
     					
     				}
     				
@@ -274,6 +270,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     
     public String nuevaInfo() {
     	log.debug("Se va a añadir: "+id+comp0+comp1+comp2+comp3+comp4);
+//    	log.debug("PROBANDO COMPET: "+compet);
     	evaluacionesDao.insertInfo(id, comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9);
     	log.debug("Se ha añadido: "+id+comp0+comp1+comp2+comp3+comp4);
     	catcompetencial=evaluacionesDao.getCatcompetencial(id);
@@ -323,8 +320,91 @@ public class EvaluacionesAction extends MidasActionSupport{
     
     public String concreta() {
     	log.debug("se va a evaluar evaluacion con id: "+id);
+    	// Sacar la catcompetencial que se evalua en la evaluacion con id id
+    	// buscar de tus pares, superiores, inferiores, etc quienes tienen catcompetnecial y añadirlos a la lista de trabjaadores a evaluar
     	evaluacionActual=evaluacionesDao.findById(id);
-    	listaTrabajadores = trabajadoresDao.findAll();
+    	String cat=evaluacionActual.getCatcompetencial();
+    	String dniActual=user.getIdd();
+    	CompTrabajadores yo=trabajadoresDao.trabajador(dniActual);
+    	String catCompYo=yo.getCatcompetencial();
+    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
+    	misPares=organigramasDao.findParesTrabajador(idActual,dniActual);
+        misSuperiores=organigramasDao.findSuperioresTrabajador(idActual,dniActual);
+    	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
+    	
+    	listaTrabajadores=new ArrayList<CompTrabajadores>();
+    	
+    	//COMPRUEBA SI ES AUTOEVALUACION
+    	log.debug("catcompyo: "+catCompYo+" cat: "+cat);
+    	if(catCompYo.equals(cat)) {
+    		
+    		listaTrabajadores.add(yo);
+    		
+    	}
+    	
+    	//COMPRUEBA SI HAY PARES QUE EVALUAR
+    	for(int i=0;i<misPares.size();i++) {
+    		if(misPares.get(i).getDniTrabajador().equals(dniActual)) {
+    			log.debug("DENTRO PAR 1");
+    			String dniP=misPares.get(i).getDniPar();
+    			CompTrabajadores par=trabajadoresDao.trabajador(dniP);
+    			if(par.getCatcompetencial().equals(cat)) {
+    				listaTrabajadores.add(par);
+    			}
+    		}
+    		else {
+    			if(misPares.get(i).getDniPar().equals(dniActual)) {
+    				log.debug("DENTRO PAR 2");
+    				String dniP=misPares.get(i).getDniTrabajador();
+        			CompTrabajadores par=trabajadoresDao.trabajador(dniP);
+        			if(par.getCatcompetencial().equals(cat)) {
+        				listaTrabajadores.add(par);
+        			}
+    			}
+    			
+    		}
+    			
+    	}
+    	
+    	//COMPRUEBA SI HAY SUPERIORES/INFERIORES QUE EVALUAR
+    	for(int i=0;i<misSuperiores.size();i++) {
+    		if(misSuperiores.get(i).getDniTrabajador().equals(dniActual)) {
+    			log.debug("DENTRO sup 1");
+    			String dniS=misSuperiores.get(i).getDniSuperior();
+    			CompTrabajadores sup=trabajadoresDao.trabajador(dniS);
+    			if(sup.getCatcompetencial().equals(cat)) {
+    				listaTrabajadores.add(sup);
+    			}
+    		}
+    		else {
+    			if(misSuperiores.get(i).getDniSuperior().equals(dniActual)) {
+    				log.debug("DENTRO sup 2");
+    				String dniS=misSuperiores.get(i).getDniTrabajador();
+        			CompTrabajadores sup=trabajadoresDao.trabajador(dniS);
+        			if(sup.getCatcompetencial().equals(cat)) {
+        				listaTrabajadores.add(sup);
+        			}
+    			}
+    			
+    		}
+    			
+    	}
+    	
+    	//COMPRPBAR EN LISTA DE EVALUADORES INTERNOS, Y AÑADIR AQUELLOS DE LOS CUALES TU SEAS EVALUADOR
+    	for(int i=0;i<evaluadoresInternos.size();i++) {
+    	
+    			log.debug("DENTRO sup 1");
+    			String dniT=evaluadoresInternos.get(i).getDnitrabajador();
+    			CompTrabajadores tr=trabajadoresDao.trabajador(dniT);
+    			if(tr.getCatcompetencial().equals(cat)) {
+    				listaTrabajadores.add(tr);
+    			}
+    	
+    	
+    			
+    	}
+    	
+    	
     	return "evaluacionConcreta";
     }
 
@@ -641,6 +721,14 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setEvaluadoresInternos(List<CompEvaluadorInterno> evaluadoresInternos) {
 		this.evaluadoresInternos = evaluadoresInternos;
+	}
+
+	public List<String> getCompet() {
+		return compet;
+	}
+
+	public void setCompet(List<String> compet) {
+		this.compet = compet;
 	}
 
 

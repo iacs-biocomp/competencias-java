@@ -225,6 +225,10 @@ pageEncoding="UTF-8"%>
 											<s:iterator value="objCompCatcomp" status="incr">
 												<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
 											</s:iterator>
+<!-- 								LO PASARIA COMO VECTOR  -->
+<%-- 											<s:iterator value="objCompCatcomp" status="incr"> --%>
+<%-- 												<div class="checkbox"> <label> <input type="checkbox" name="compet" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div>  --%>
+<%-- 											</s:iterator> --%>
 										</div>
 										<ul class="list-inline list-action">
 												<input type="Submit" value="Guardar">
@@ -378,7 +382,7 @@ pageEncoding="UTF-8"%>
 										
 										<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
 									
-										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
+<%-- 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li> --%>
 									
 									</ul>
 								</div>
