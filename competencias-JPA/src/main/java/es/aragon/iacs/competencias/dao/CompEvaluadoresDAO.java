@@ -75,68 +75,74 @@ public class CompEvaluadoresDAO implements ICompEvaluadoresDAO{
 	
 	
 	@Override
-	public void insertInterno(Integer idEvaluacion,String dniTrabajador,String dniEvaluador,Integer grupo,String comp0,String comp1,String comp2,String comp3,String comp4,String comp5,String comp6,String comp7,String comp8,String comp9,String justificacion) {
-		Query query = em.createNamedQuery("CompEvaluadorInterno.findRelacion");
-		query.setParameter("idevaluacion", idEvaluacion).setParameter("dnitrabajador",dniTrabajador).setParameter("dnievaluador",dniEvaluador);
-		@SuppressWarnings("unchecked")
-		List<CompEvaluadorInterno> busqueda = query.getResultList();
+	public void insertInterno(Integer idEvaluacion, String dniTrabajador,String dniEvaluador,Integer grupo,String comp0,String comp1,String comp2,String comp3,String comp4,String comp5,String comp6,String comp7,String comp8,String comp9,String justificacion) {
 		
-		if(busqueda.size()==0) {
-			CompEvaluadorInterno nuevo=new CompEvaluadorInterno();
-			nuevo.setIdevaluacion(idEvaluacion);
-			nuevo.setDnitrabajador(dniTrabajador);
-			nuevo.setDnievaluador(dniEvaluador);
-			nuevo.setGrupo(grupo);
-			nuevo.setJustificacion(justificacion);
+		
 			
-			nuevo.setComp1(comp0);
-			nuevo.setComp2(comp1);
-			nuevo.setComp3(comp2);
-			nuevo.setComp4(comp3);
-			nuevo.setComp5(comp4);
-			nuevo.setComp6(comp5);
-			nuevo.setComp7(comp6);
-			nuevo.setComp8(comp7);
-			nuevo.setComp9(comp8);
-			nuevo.setComp10(comp9);
-			nuevo.setValidado(false);
-			em.persist(nuevo);
-			em.flush();
-		}
+			Query query = em.createNamedQuery("CompEvaluadorInterno.findRelacion");
+			query.setParameter("idevaluacion", idEvaluacion).setParameter("dnitrabajador",dniTrabajador).setParameter("dnievaluador",dniEvaluador);
+			@SuppressWarnings("unchecked")
+			List<CompEvaluadorInterno> busqueda = query.getResultList();
+			
+			if(busqueda.size()==0) {
+				CompEvaluadorInterno nuevo=new CompEvaluadorInterno();
+				nuevo.setIdevaluacion(idEvaluacion);
+				nuevo.setDnitrabajador(dniTrabajador);
+				nuevo.setDnievaluador(dniEvaluador);
+				nuevo.setGrupo(grupo);
+				nuevo.setJustificacion(justificacion);
+				
+				nuevo.setComp1(comp0);
+				nuevo.setComp2(comp1);
+				nuevo.setComp3(comp2);
+				nuevo.setComp4(comp3);
+				nuevo.setComp5(comp4);
+				nuevo.setComp6(comp5);
+				nuevo.setComp7(comp6);
+				nuevo.setComp8(comp7);
+				nuevo.setComp9(comp8);
+				nuevo.setComp10(comp9);
+				nuevo.setValidado(false);
+				em.persist(nuevo);
+				em.flush();
+			}
+		
+		
 		
 		
 	}
 	
 	@Override
 	public void insertExterno(Integer idEvaluacion,String dniTrabajador,Integer idEvaluador,Integer grupo,String comp0,String comp1,String comp2,String comp3,String comp4,String comp5,String comp6,String comp7,String comp8,String comp9,String justificacion) {
-		Query query = em.createNamedQuery("CompEvaluadorExterno.findRelacion");
-		query.setParameter("idevaluacion", idEvaluacion).setParameter("dnitrabajador",dniTrabajador).setParameter("idevaluador",idEvaluador);
-		@SuppressWarnings("unchecked")
-		List<CompEvaluadorExterno> busqueda = query.getResultList();
 		
-		if(busqueda.size()==0) {
-		
-			CompEvaluadorExterno nuevo=new CompEvaluadorExterno();
-			nuevo.setIdevaluacion(idEvaluacion);
-			nuevo.setDnitrabajador(dniTrabajador);
-			nuevo.setIdevaluador(idEvaluador);
-			nuevo.setGrupo(grupo);
-			nuevo.setJustificacion(justificacion);
+			Query query = em.createNamedQuery("CompEvaluadorExterno.findRelacion");
+			query.setParameter("idevaluacion", idEvaluacion).setParameter("dnitrabajador",dniTrabajador).setParameter("idevaluador",idEvaluador);
+			@SuppressWarnings("unchecked")
+			List<CompEvaluadorExterno> busqueda = query.getResultList();
 			
-			nuevo.setComp1(comp0);
-			nuevo.setComp2(comp1);
-			nuevo.setComp3(comp2);
-			nuevo.setComp4(comp3);
-			nuevo.setComp5(comp4);
-			nuevo.setComp6(comp5);
-			nuevo.setComp7(comp6);
-			nuevo.setComp8(comp7);
-			nuevo.setComp9(comp8);
-			nuevo.setComp10(comp9);
-			nuevo.setValidado(false);
-			em.persist(nuevo);
-			em.flush();
-		}
+			if(busqueda.size()==0) {
+			
+				CompEvaluadorExterno nuevo=new CompEvaluadorExterno();
+				nuevo.setIdevaluacion(idEvaluacion);
+				nuevo.setDnitrabajador(dniTrabajador);
+				nuevo.setIdevaluador(idEvaluador);
+				nuevo.setGrupo(grupo);
+				nuevo.setJustificacion(justificacion);
+				
+				nuevo.setComp1(comp0);
+				nuevo.setComp2(comp1);
+				nuevo.setComp3(comp2);
+				nuevo.setComp4(comp3);
+				nuevo.setComp5(comp4);
+				nuevo.setComp6(comp5);
+				nuevo.setComp7(comp6);
+				nuevo.setComp8(comp7);
+				nuevo.setComp9(comp8);
+				nuevo.setComp10(comp9);
+				nuevo.setValidado(false);
+				em.persist(nuevo);
+				em.flush();
+			}
 		
 	}
 	

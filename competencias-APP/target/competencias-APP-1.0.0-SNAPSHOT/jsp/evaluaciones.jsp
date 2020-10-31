@@ -379,9 +379,9 @@ pageEncoding="UTF-8"%>
 										<s:if test="%{finevaluacion !=null && finevaluacion != \"\" && fechaActual>finevaluacion}">
 											<li><a href="evaluacionConcretaResultados">Calcular evaluación</a></li>
 										</s:if>
-										
-										<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
-									
+										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+											<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
+										</s:if>
 <%-- 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li> --%>
 									
 									</ul>

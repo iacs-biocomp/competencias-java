@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.action;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import javax.ejb.EJB;
 
 import es.aragon.iacs.competencias.dao.ICompCompetenciasDAO;
@@ -12,12 +12,14 @@ import es.aragon.iacs.competencias.jpa.CompExternos;
 import es.aragon.iacs.competencias.dao.ICompExternosDAO;
 import es.aragon.iacs.competencias.dao.ICompEvaluadoresDAO;
 import es.aragon.iacs.competencias.dao.ICompOrganigramasDAO;
+import es.aragon.iacs.competencias.dao.ICompEvaluacionesDAO;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
 import es.aragon.iacs.competencias.jpa.CompPares;
 import es.aragon.iacs.competencias.jpa.CompSuperiores;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompOrganigramas;
+import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
 
 //import es.aragon.iacs.competencias.dao.ICompTrabajadoresDAO;
 //import es.aragon.iacs.competencias.jpa.CompTrabajadores;
@@ -36,6 +38,9 @@ public class EvaluadoresAction extends MidasActionSupport{
     private List<CompObjetivosCompCatcomp> compObjCompCatcomp;
     
     private List<CompTrabajadores> listaTrabajadores;
+    
+    @EJB(name="CompEvaluacionesDAO")
+    private ICompEvaluacionesDAO evaluacionesDao;
     
     @EJB(name="CompExternosDAO")
     private ICompExternosDAO externosDao;
@@ -79,6 +84,8 @@ public class EvaluadoresAction extends MidasActionSupport{
     private String dniEditar;
     private Integer idEditar;
     
+    private Boolean activoEvaluadores;
+    
 //    private Boolean externo;
     
     {
@@ -89,9 +96,71 @@ public class EvaluadoresAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	//Busca si es periodo de elgir evaluadores
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -113,12 +182,79 @@ public class EvaluadoresAction extends MidasActionSupport{
     	log.debug("Nueva propuesta de tipo interno dniEvaluador: "+dniEvaluador+" grupo "+grupo+" comp0 "+comp0+" comp1 "+comp1+" comp2 "+comp2+" justificacion "+justificacion);
     	dniActual=user.getIdd();
     	//Paso idEvaluacion=1 pero debería pasar el que corresponda para la evaluacion activa del trabajador
-    	evaluadoresDao.insertInterno(1,dniActual,dniEvaluador,grupo,comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9,justificacion);
     	trabajador=trabajadoresDao.trabajador(dniActual);
-    	String catCompetencial=trabajador.getCatcompetencial();
-    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+		String catcomp=trabajador.getCatcompetencial();
+		
+		List<CompEvaluaciones> activas=evaluacionesDao.findActiva(catcomp);
+		if(activas.size()==1) {
+			Integer idEvaluacion=activas.get(0).getId();
+			evaluadoresDao.insertInterno(idEvaluacion,dniActual,dniEvaluador,grupo,comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9,justificacion);
+		}
+    	
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catcomp);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catcomp);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -137,12 +273,85 @@ public class EvaluadoresAction extends MidasActionSupport{
     	log.debug("Nueva propuesta de tipo externo idEvaluador: "+idEvaluador+" grupo "+grupo+" comp0 "+comp0+" comp1 "+comp1+" comp2 "+comp2+" justificacion "+justificacion);
     	dniActual=user.getIdd();
     	//Paso idEvaluacion=1 pero debería pasar el que corresponda para la evaluacion activa del trabajador
-    	evaluadoresDao.insertExterno(1,dniActual,idEvaluador,grupo,comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9,justificacion);
+    	
     	trabajador=trabajadoresDao.trabajador(dniActual);
-    	String catCompetencial=trabajador.getCatcompetencial();
-    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
+		String catcomp=trabajador.getCatcompetencial();
+		
+		List<CompEvaluaciones> activas=evaluacionesDao.findActiva(catcomp);
+		if(activas.size()==1) {
+			Integer idEvaluacion=activas.get(0).getId();
+			evaluadoresDao.insertExterno(idEvaluacion,dniActual,idEvaluador,grupo,comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9,justificacion);
+		}
+    	
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catcomp);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
+    	compObjCompCatcomp=competenciasDao.compPorCatComp(catcomp);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	
+
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activas.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
+    	
+    	
+//    	listaCompetencias=competenciasDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -156,50 +365,6 @@ public class EvaluadoresAction extends MidasActionSupport{
     	idEditar=-1;
     	return "evaluadores";
     }
-//
-//    public String formInterno() {
-//    	log.debug("Nueva propuesta de tipo interno ");
-//    	dniActual=user.getIdd();
-//    	trabajador=trabajadoresDao.trabajador(dniActual);
-//    	String catCompetencial=trabajador.getCatcompetencial();
-//    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-//    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-//    	listaCompetencias=competenciasDao.findAll();
-//    	listaTrabajadores = trabajadoresDao.findAll();
-//        listaExternos = externosDao.findAll();
-//        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
-//        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
-//        CompOrganigramas actual=organigramasDao.findActivo();
-//        Integer idActual=actual.getId();
-//        listaPares=organigramasDao.findPares(idActual);
-//        listaSuperiores=organigramasDao.findSuperiores(idActual);
-//    	//interno=true;
-//    	dniEditar="";
-//    	idEditar=-1;
-//    	return "evaluadores";
-//    }
-    
-//    public String formExterno() {
-//    	log.debug("Nueva propuesta de tipo externo ");
-//    	dniActual=user.getIdd();
-//    	trabajador=trabajadoresDao.trabajador(dniActual);
-//    	String catCompetencial=trabajador.getCatcompetencial();
-//    	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-//    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-//    	listaCompetencias=competenciasDao.findAll();
-//    	listaTrabajadores = trabajadoresDao.findAll();
-//        listaExternos = externosDao.findAll();
-//        evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
-//        evaluadoresInternos=evaluadoresDao.findAllInternos(dniActual);
-//        CompOrganigramas actual=organigramasDao.findActivo();
-//        Integer idActual=actual.getId();
-//        listaPares=organigramasDao.findPares(idActual);
-//        listaSuperiores=organigramasDao.findSuperiores(idActual);
-//    	interno=false;
-//    	dniEditar="";
-//    	idEditar=-1;
-//    	return "evaluadores";
-//    }
     
     public String nuevoExterno() {
     	log.debug("Va a añadir evaluador externo con nombre "+nombre+" apellidos "+apellidos+" email "+email+" institucion "+institucion);
@@ -207,9 +372,70 @@ public class EvaluadoresAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -230,9 +456,70 @@ public class EvaluadoresAction extends MidasActionSupport{
     	evaluadoresDao.deleteExterno(idRelacion);
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -253,9 +540,70 @@ public class EvaluadoresAction extends MidasActionSupport{
     	evaluadoresDao.deleteInterno(idRelacion);
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -275,9 +623,70 @@ public class EvaluadoresAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -298,9 +707,70 @@ public class EvaluadoresAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -322,8 +792,69 @@ public class EvaluadoresAction extends MidasActionSupport{
     	evaluadoresDao.editEvaluadorExterno(idRelacion,justificacion);
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	log.debug("listaCompetencias "+listaCompetencias.size());
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -344,8 +875,68 @@ public class EvaluadoresAction extends MidasActionSupport{
     	evaluadoresDao.editEvaluadorInterno(idRelacion,justificacion);
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
+    	
+    	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
+		if(activoEv.size()==1) {
+			activoEvaluadores=true;
+		}
+		else {
+			activoEvaluadores=false;
+		}
+    	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=new ArrayList<CompCompetencias>();
+    	String nueva=activoEv.get(0).getComp1();
+    	List<CompCompetencias> nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	
+    	nueva=activoEv.get(0).getComp2();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp3();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp4();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp5();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp6();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp7();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp8();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp9();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
+    	nueva=activoEv.get(0).getComp10();
+    	nuevaComp=competenciasDao.findByCodigo(nueva);
+    	if (nuevaComp.size() !=0) {
+    		listaCompetencias.add(nuevaComp.get(0));
+    	}
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
         evaluadoresExternos=evaluadoresDao.findAllExternos(dniActual);
@@ -359,14 +950,6 @@ public class EvaluadoresAction extends MidasActionSupport{
     	idEditar=-1;
     	return "evaluadores";
     }
-
-//	public Boolean getInterno() {
-//		return interno;
-//	}
-//
-//	public void setInterno(Boolean interno) {
-//		this.interno = interno;
-//	}
 
 	public CompTrabajadores getTrabajador() {
 		return trabajador;
@@ -614,6 +1197,14 @@ public class EvaluadoresAction extends MidasActionSupport{
 
 	public void setListaCompetencias(List<CompCompetencias> listaCompetencias) {
 		this.listaCompetencias = listaCompetencias;
+	}
+
+	public Boolean getActivoEvaluadores() {
+		return activoEvaluadores;
+	}
+
+	public void setActivoEvaluadores(Boolean activoEvaluadores) {
+		this.activoEvaluadores = activoEvaluadores;
 	}
 
 
