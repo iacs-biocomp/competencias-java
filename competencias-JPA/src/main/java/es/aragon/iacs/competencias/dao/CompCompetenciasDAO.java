@@ -47,6 +47,17 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	}
 	
 	@Override
+	public List<CompCompetencias> findByCodigo(String codigo) {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompCompetencias.findById");
+		query.setParameter("codigo", codigo);
+		@SuppressWarnings("unchecked")
+		List<CompCompetencias> projects = query.getResultList();
+		
+		return projects;
+	}
+	
+	@Override
 	public List<CompObjetivosCompCatcomp> compPorCatComp(String codCatCompetencial) {
 		// TODO Auto-generated method stu
 		

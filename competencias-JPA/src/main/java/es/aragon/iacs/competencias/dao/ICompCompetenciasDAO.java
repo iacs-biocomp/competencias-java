@@ -28,5 +28,6 @@ public interface ICompCompetenciasDAO {
 	void deleteRelacionComportamientos(Integer idRelacion);
 	List<CompObjetivosCompCatcomp> allObjCompCatcomp();
 	void editRelacion(Integer idRelacion, Integer objetivo);
+	List<CompCompetencias> findByCodigo(String codigo);
 
 }
