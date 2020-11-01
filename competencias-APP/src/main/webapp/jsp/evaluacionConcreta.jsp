@@ -33,15 +33,15 @@ pageEncoding="UTF-8"%>
 															<tr> 
 																<td><s:property value="#rel.descripcion"/></td>
 																<td>
-																	<input type="radio" id="nota1" name="nota" value="nota1">
+																	<input type="radio" id="nota1" name="notatr<s:property value="idRel"/>" value="nota1">
 																	<label for="nota1">1</label>
-																	<input type="radio" id="nota2" name="nota" value="nota2">
+																	<input type="radio" id="nota2" name="notatr<s:property value="idRel"/>" value="nota2">
 																	<label for="nota2">2</label>
-																	<input type="radio" id="nota3" name="nota" value="nota3">
+																	<input type="radio" id="nota3" name="notatr<s:property value="idRel"/>" value="nota3">
 																	<label for="nota3">3</label>
-																	<input type="radio" id="nota4" name="nota" value="nota4">
+																	<input type="radio" id="nota4" name="notatr<s:property value="idRel"/>" value="nota4">
 																	<label for="nota4">4</label>
-																	<input type="radio" id="nota5" name="nota" value="nota5">
+																	<input type="radio" id="nota5" name="notatr<s:property value="idRel"/>" value="nota5">
 																	<label for="nota5">5</label>
 																
 																</td>
@@ -68,7 +68,7 @@ pageEncoding="UTF-8"%>
 		<div class="row">
 				<div class="col-lg-12">
 					<s:iterator value="listaTrabajadoresAll">
-						<s:if test="%{dni == dnitrabajador }">
+						<s:if test="%{#evaluacion.id == #evinterno.idevaluacion  && dni == dnitrabajador }">
 							<h2 class="title"><s:property value="nombre"/><s:property value="apellidos"/> ele</h2>
 							
 							
@@ -87,15 +87,15 @@ pageEncoding="UTF-8"%>
 																<tr> 
 																	<td><s:property value="#rel.descripcion"/></td>
 																	<td>
-																		<input type="radio" id="nota1" name="nota" value="nota1">
+																		<input type="radio" id="nota1" name="notaint<s:property value="idRel"/>" value="nota1">
 																		<label for="nota1">1</label>
-																		<input type="radio" id="nota2" name="nota" value="nota2">
+																		<input type="radio" id="nota2" name="notaint<s:property value="idRel"/>" value="nota2">
 																		<label for="nota2">2</label>
-																		<input type="radio" id="nota3" name="nota" value="nota3">
+																		<input type="radio" id="nota3" name="notaint<s:property value="idRel"/>" value="nota3">
 																		<label for="nota3">3</label>
-																		<input type="radio" id="nota4" name="nota" value="nota4">
+																		<input type="radio" id="nota4" name="notaint<s:property value="idRel"/>" value="nota4">
 																		<label for="nota4">4</label>
-																		<input type="radio" id="nota5" name="nota" value="nota5">
+																		<input type="radio" id="nota5" name="notaint<s:property value="idRel"/>" value="nota5">
 																		<label for="nota5">5</label>
 																	
 																	</td>

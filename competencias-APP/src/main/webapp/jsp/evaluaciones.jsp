@@ -221,7 +221,6 @@ pageEncoding="UTF-8"%>
 <!-- 										</div> -->
 										<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 										<input type="hidden" name="id" value="<s:property value="id"/>">
-										<div class="col-sm-offset-2 col-sm-10"> 
 											<s:iterator value="objCompCatcomp" status="incr">
 												<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
 											</s:iterator>
@@ -270,7 +269,7 @@ pageEncoding="UTF-8"%>
 											<p><strong>Periodo de aportación de evaluadores:</strong> <input id="iniaportacion" name="iniaportacion" type="date" value="<s:property value="iniaportacion"/>"> - <input id="finaportacion" name="finaportacion" type="date" value="<s:property value="finaportacion"/>"></p>
 											<p><strong>Periodo de validación de evaluadores:</strong> <input id="inivalidacion" name="inivalidacion" type="date" value="<s:property value="inivalidacion"/>"> - <input id="finvalidacion" name="finvalidacion" type="date" value="<s:property value="finvalidacion"/>"></p>
 											<p><strong>Periodo de evaluación:</strong> <input id="inievaluacion" name="inievaluacion" type="date" value="<s:property value="inievaluacion"/>"> - <input id="finevaluacion" name="finevaluacion" type="date" value="<s:property value="finevaluacion"/>"></p>
-											<p><strong> Puestos de trabajo evaluados o personas evaluadas: </strong> 
+											<p><strong> Puestos de trabajo evaluados: </strong> 
 											<select name="catcompetencial">
 													<s:iterator value="listaCatCompetenciales">
 														<s:if test="%{codigo ==catcompetencial }">
@@ -339,7 +338,12 @@ pageEncoding="UTF-8"%>
 										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
 										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
 										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
-									<p><strong> Puestos de trabajo evaluados o personas evaluadas:</strong> <s:property value="catcompetencial"/>. </p>
+									<p><strong> Puestos de trabajo evaluados:</strong> 
+									<s:iterator value="listaCatCompetenciales" var="cat">
+										<s:if test="%{codigo ==catcompetencial }">
+											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. </p>
+										</s:if>
+									</s:iterator>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">
@@ -455,7 +459,7 @@ pageEncoding="UTF-8"%>
 										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
 										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
 										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
-									<p><strong> Puestos de trabajo evaluados o personas evaluadas:</strong> <s:property value="catcompetencial"/>. </p>
+									<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">

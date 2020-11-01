@@ -178,18 +178,18 @@ pageEncoding="UTF-8"%>
 						<s:iterator value="listaTrabajadores">
 							<s:if test="%{dniTrabajador == dni}">
 								<div class="accordion-heading">
-									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6" href="#acc6<s:property value="%{#incr6.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion6" href="#acc6<s:property value="%{#incr9.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
 						<s:iterator value="listaExternos">
 							<s:if test="%{dniTrabajador == dni}">
 								<div class="accordion-heading">
-									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#<s:property value="%{#incr9.index}"/>9"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
+									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#acc6<s:property value="%{#incr9.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
 								</div>
 							</s:if>
 						</s:iterator>
-						<div id="<s:property value="acc6%{#incr6.index}"/>" class="accordion-body collapse">
+						<div id="acc6<s:property value="%{#incr9.index}"/>" class="accordion-body collapse">
 							<div class="accordion-inner">
 								<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
