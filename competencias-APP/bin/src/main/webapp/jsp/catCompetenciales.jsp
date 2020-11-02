@@ -21,8 +21,8 @@ pageEncoding="UTF-8"%>
 			     <td><a href="borrarCatCompetenciales?codigo=<s:property value="codigo"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><a href="/editarCatCompetenciales?codigo=<s:property value="codigo"/>"><i class="fas fa-edit" aria-hidden="true"></i></a></td>   
 			     <td><a href="concretaCompetencias?catCompetencial=<s:property value="codigo"/>"><s:property value="codigo"/></a></td>
 			     <td><a href="concretaCompetencias?catCompetencial=<s:property value="codigo"/>"><s:property value="nombre"/></a></td>
-				 <td><s:property value="alta"/></td>
-				 <td><s:property value="baja"/></td>
+				 <td><s:date name="alta" format="yyyy-MM-dd"/></td>
+				 <td><s:date name="baja" format="yyyy-MM-dd"/></td>
 			   </tr>
 			</s:iterator>
 		</tbody>
@@ -52,9 +52,7 @@ pageEncoding="UTF-8"%>
 					<label class="col-sm-2 control-label">Fecha de alta: </label> 
 						<div class="col-sm-10"> 
 							<div id="date-popup" class="input-group date"> 
-								<input type="date" id="alta" name="alta"
-			       value=""
-			       min="2018-01-01" max="2050-12-31" required>
+								<input type="date" id="alta" name="alta" required>
 							</div>
 						</div> 
 				</div>
@@ -62,9 +60,7 @@ pageEncoding="UTF-8"%>
 					<label class="col-sm-2 control-label">Fecha de baja: </label> 
 						<div class="col-sm-10"> 
 							<div id="date-popup" class="input-group date"> 
-								<input type="date" id="baja" name="baja"
-			       value=""
-			       min="2018-01-01" max="2050-12-31">	
+								<input type="date" id="baja" name="baja">	
 							</div>
 							<p class="help-block">No es necesario que lo rellenes ahora. Podrás añadirla más adelante.</p>
 						</div> 
@@ -109,8 +105,8 @@ pageEncoding="UTF-8"%>
 					     <td>
 					     <input id="codigo" name="codigo" type="hidden" value="<s:property value="codigo"/>">
 					     <input id="nombre" name="nombre" type="text" value="<s:property value="nombre"/>" size="80"></td>
-						<td><input id="alta" name="alta" type="date" value="<s:property value="alta"/>"></td>
-						<td><input id="baja" name="baja" type="date" value="<s:property value="baja"/>">
+						<td><input id="alta" name="alta" type="date" value="<s:date name="alta" format="yyyy-MM-dd"/>"></td>
+						<td><input id="baja" name="baja" type="date" value="<s:date name="baja" format="yyyy-MM-dd"/>">
 						<input type="Submit" value="Guardar">
 						</td>   
 					    
@@ -122,8 +118,8 @@ pageEncoding="UTF-8"%>
 						<td></td>   
 					     <td><s:property value="codigo"/></td>
 					     <td><s:property value="nombre"/></td>
-						<td><s:property value="alta"/></td>
-						<td><s:property value="baja"/></td>
+						<td><s:date name="alta" format="yyyy-MM-dd"/></td>
+						<td><s:date name="baja" format="yyyy-MM-dd"/></td>
 					</tr>
 				</s:else>
 			</s:iterator>

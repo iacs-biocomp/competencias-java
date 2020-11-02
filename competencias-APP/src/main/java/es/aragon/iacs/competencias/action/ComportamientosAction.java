@@ -15,8 +15,8 @@ public class ComportamientosAction extends MidasActionSupport{
     private ICompComportamientosDAO comportamientosDao;
     private Integer id;
     private String descripcion;
-    private String alta;
-    private String baja;
+    private Date alta;
+    private Date baja;
     
     private boolean editar;
     private Integer idEditar;
@@ -102,22 +102,6 @@ lista
 		this.descripcion = descripcion;
 	}
 
-	public String getAlta() {
-		return alta;
-	}
-
-	public void setAlta(String alta) {
-		this.alta = alta;
-	}
-
-	public String getBaja() {
-		return baja;
-	}
-
-	public void setBaja(String baja) {
-		this.baja = baja;
-	}
-
 	public boolean isEditar() {
 		return editar;
 	}
@@ -133,4 +117,22 @@ lista
 	public void setIdEditar(Integer idEditar) {
 		this.idEditar = idEditar;
 	}
+
+	public Date getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Date alta) {
+		this.alta = alta;
+	}
+
+	public Date getBaja() {
+		return baja;
+	}
+
+	public void setBaja(Date baja) {
+		this.baja = baja;
+	}
+
+
 }

@@ -2,7 +2,7 @@ package es.aragon.iacs.competencias.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import java.util.Date;
 
 /**
  * The persistent class for the comp_prueba database table.
@@ -30,7 +30,7 @@ public class CompTrabajadores implements Serializable{
 	private String area;
 	private String unidad;
 	private String departamento;
-	private String antiguedad;
+	private Date antiguedad;
 	private String dni;
 
 
@@ -108,12 +108,14 @@ public class CompTrabajadores implements Serializable{
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-	
-	public String getAntiguedad() {
-		return this.antiguedad;
+
+	public Date getAntiguedad() {
+		return antiguedad;
 	}
 
-	public void setAntiguedad(String antiguedad) {
+	public void setAntiguedad(Date antiguedad) {
 		this.antiguedad = antiguedad;
 	}
+	
+
 }

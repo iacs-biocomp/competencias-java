@@ -2,7 +2,7 @@ package es.aragon.iacs.competencias.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import java.util.Date;
 /**
  * The persistent class for the comp_prueba database table.
  * 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_cat_competenciales")
 @NamedQueries({
-	@NamedQuery(name="CompCatCompetenciales.findAll", query="SELECT c FROM CompCatCompetenciales c ORDER BY c.nombre"),
+	@NamedQuery(name="CompCatCompetenciales.findAll", query="SELECT c FROM CompCatCompetenciales c ORDER BY c.codigo"),
 	@NamedQuery(name="CompCatCompetenciales.findById", query="SELECT c FROM CompCatCompetenciales c WHERE c.codigo=:codigo")
 })
 
@@ -23,8 +23,8 @@ public class CompCatCompetenciales implements Serializable{
 	private String codigo;
 
 	private String nombre;
-	private String alta;
-	private String baja;
+	private Date alta;
+	private Date baja;
 
 	public CompCatCompetenciales() {
 	}
@@ -45,20 +45,21 @@ public class CompCatCompetenciales implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getAlta() {
+	public Date getAlta() {
 		return alta;
 	}
 
-	public void setAlta(String alta) {
+	public void setAlta(Date alta) {
 		this.alta = alta;
 	}
 
-	public String getBaja() {
+	public Date getBaja() {
 		return baja;
 	}
 
-	public void setBaja(String baja) {
+	public void setBaja(Date baja) {
 		this.baja = baja;
 	}
+
 	
 }

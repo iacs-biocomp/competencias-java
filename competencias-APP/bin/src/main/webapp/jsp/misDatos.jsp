@@ -43,8 +43,12 @@ pageEncoding="UTF-8"%>
 				<s:if test="%{catcontractual != null && catcontractual != \"\"}">
 					<h5><label class="col-sm-4 control-label">Categoría profesional contractual:</label>  <s:property value="catcontractual"/></h5>
 				</s:if>
-				<s:if test="%{catcompetencial != null catcompetencial != \"\"}">
-					<h5><label class="col-sm-4 control-label">Categoría competencial:</label>  <s:property value="catcompetencial"/></h5>
+				<s:if test="%{catcompetencial != null && catcompetencial != \"\"}">
+					<s:iterator value="catCompetenciales" var="cat">
+			   			<s:if test="%{#cat.codigo == catcompetencial}">
+							<h5><label class="col-sm-4 control-label">Categoría competencial:</label>  <s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/></h5>
+						</s:if>
+					</s:iterator>
 				</s:if>
 				<s:if test="%{area != null && area != \"\"}">
 					<h5><label class="col-sm-4 control-label">Área:</label>  <s:property value="area"/></h5>

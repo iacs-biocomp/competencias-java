@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.dao;
 
 import java.util.List;
-
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,7 +47,7 @@ public class CompCatCompetencialesDAO implements ICompCatCompetencialesDAO {
 		
 	}
 	@Override
-	public void insert(String codigo, String nombre, String alta, String baja) {
+	public void insert(String codigo, String nombre, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCatCompetenciales.findById");
 		query.setParameter("codigo", codigo);
@@ -67,7 +67,7 @@ public class CompCatCompetencialesDAO implements ICompCatCompetencialesDAO {
 	}
 	
 	@Override
-	public void edit(String codigo, String nombre, String alta, String baja) {
+	public void edit(String codigo, String nombre, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCatCompetenciales.findById");
 		query.setParameter("codigo", codigo);

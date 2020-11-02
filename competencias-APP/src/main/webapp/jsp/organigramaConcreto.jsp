@@ -2,7 +2,8 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<h1> Organigrama <s:property value="idOrganigrama"/> </h1><h3><s:property value="fechaIni"/>   -   <s:property value="fechaFin"/></h3>
+<s:iterator value="organigramaActual" var="org">
+<h1> Organigrama <s:property value="#org.id"/>: <s:property value="#org.nombre"/></h1><h3><s:date name="fechaIni" format="yyyy-MM-dd"/>   -   <s:date name="fechaFin" format="yyyy-MM-dd"/></h3>
 <br></br>
 <s:iterator value="listaTrabajadores">
 	<h3><b> <s:property value="nombre"/>  <s:property value="apellidos"/></b></h3>
@@ -119,7 +120,7 @@ pageEncoding="UTF-8"%>
 </div>
 <br></br>
 </s:iterator>
-
+</s:iterator>
 
 
 

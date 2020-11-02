@@ -1,6 +1,6 @@
 package es.aragon.iacs.competencias.dao;
 
-
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ import es.aragon.iacs.competencias.jpa.CompNiveles;
 import es.aragon.iacs.competencias.jpa.CompOrganigramas;
 import es.aragon.iacs.competencias.jpa.CompPares;
 import es.aragon.iacs.competencias.jpa.CompSuperiores;
+
 
 @Stateless
 public class CompOrganigramasDAO implements ICompOrganigramasDAO{
@@ -55,16 +56,20 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	
 	@Override
-	public List<CompPares> findParesTrabajador(Integer idOrganigrama, String dniTrabajador) {
+	public List<CompPares> findParesTrabajador(String dniTrabajador) {
+		CompOrganigramas orgActivo=findActivo();
+		Integer idOrgActivo=orgActivo.getId();
 		Query query = em.createNamedQuery("CompPares.findByTrabajador");
-		query.setParameter("idOrganigrama", idOrganigrama).setParameter("dniTrabajador", dniTrabajador);
+		query.setParameter("idOrganigrama", idOrgActivo).setParameter("dniTrabajador", dniTrabajador);
 		@SuppressWarnings("unchecked")
 		List<CompPares> projects = query.getResultList();
 		return projects;
 	}
 	
 	@Override
-	public List<CompSuperiores> findSuperioresTrabajador(Integer idOrganigrama, String dniTrabajador) {
+	public List<CompSuperiores> findSuperioresTrabajador(String dniTrabajador) {
+		CompOrganigramas orgActivo=findActivo();
+		Integer idOrganigrama=orgActivo.getId();
 		Query query = em.createNamedQuery("CompSuperiores.findByTrabajador");
 		query.setParameter("idOrganigrama", idOrganigrama).setParameter("dniTrabajador", dniTrabajador);
 		@SuppressWarnings("unchecked")
@@ -76,27 +81,49 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	public CompOrganigramas findActivo() {
 		Query query =em.createNamedQuery("CompOrganigramas.findActivo");
 		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaHoy=formateador.format(fechaActual);
-		query.setParameter("fechaHoy",fechaHoy);
-		@SuppressWarnings("unchecked")
-		List<CompOrganigramas> busqueda=query.getResultList();
-		if(busqueda.size()==1) {
-			return busqueda.get(0);
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+	        String fechaHoy=formateador.format(fechaActual);
+	        fechaActual = formateador.parse(fechaHoy);
+			query.setParameter("fechaHoy",fechaActual);
+			@SuppressWarnings("unchecked")
+			List<CompOrganigramas> busqueda=query.getResultList();
+			if(busqueda.size()==1) {
+				return busqueda.get(0);
+			}
+			else {
+				return null;
+			}
 		}
-		else {
+		catch(ParseException e) {
 			return null;
 		}
+        
 		
 	}
 	
 	@Override
-	public void insertOrganigrama(String nombre, String fechaIni, String fechaFin) {
+	public void insertOrganigrama(String nombre, Date fechaIni, Date fechaFin) {
 		Query query =em.createNamedQuery("CompOrganigramas.findActivos");
-		query.setParameter("fechaIni", fechaIni);
-		@SuppressWarnings("unchecked")
-		List<CompOrganigramas> busqueda=query.getResultList();
-		if(busqueda.size() == 0) {
+		
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+	        String fechaSistema=formateador.format(fechaIni);
+	        fechaIni = formateador.parse(fechaSistema);
+	        query.setParameter("fechaIni", fechaIni);
+			@SuppressWarnings("unchecked")
+			List<CompOrganigramas> busqueda=query.getResultList();
+			if(busqueda.size() == 0) {
+				CompOrganigramas nuevo=new CompOrganigramas();
+				nuevo.setNombre(nombre);
+				nuevo.setFechaIni(fechaIni);
+				nuevo.setFechaFin(fechaFin);
+				//COGER TODOS LOS ORGANIGRAMAS DE LA BD Y COMPROBAR QUE NINGUNO TIENE FECHA FIN POSTERIOR A FECHA INI DEL NUEVO, O FECHA FIN = NULL O =""
+				em.persist(nuevo);
+				em.flush();
+			}
+		}
+		catch(ParseException e) {
 			CompOrganigramas nuevo=new CompOrganigramas();
 			nuevo.setNombre(nombre);
 			nuevo.setFechaIni(fechaIni);
@@ -105,6 +132,10 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 			em.persist(nuevo);
 			em.flush();
 		}
+        
+	
+		
+		
 		
 	}
 	
@@ -120,7 +151,7 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	
 	@Override
-	public void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin) {
+	public void editOrganigrama(Integer idOrganigrama, String nombre, Date fechaIni, Date fechaFin) {
 		Query query = em.createNamedQuery("CompOrganigramas.findById");
 		query.setParameter("id", idOrganigrama);
 		@SuppressWarnings("unchecked")

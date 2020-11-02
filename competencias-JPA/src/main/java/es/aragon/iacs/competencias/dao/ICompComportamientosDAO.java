@@ -11,9 +11,9 @@ public interface ICompComportamientosDAO {
 
 	void delete(Integer id);
 
-	void insert(String descripcion, String alta, String baja);
+	void insert(String descripcion, Date alta, Date baja);
 
-	void edit(Integer codigo, String descripcion, String alta, String baja);
+	void edit(Integer codigo, String descripcion, Date alta, Date baja);
 
 	List<CompComportamientos> findActivos();
 }

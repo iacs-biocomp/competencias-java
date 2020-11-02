@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.dao;
 
 import java.util.List;
-
+import java.util.Date;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
@@ -13,9 +13,9 @@ public interface ICompCompetenciasDAO {
 
 	void delete(String codigo);
 
-	void insert(String codigo, String descripcion, String alta, String baja);
+	void insert(String codigo, String descripcion, Date alta, Date baja);
 
-	void edit(String codigo, String descripcion, String alta, String baja);
+	void edit(String codigo, String descripcion, Date alta, Date baja);
 
 	List<CompObjetivosCompCatcomp> compPorCatComp(String codCatCompetencial);
 

@@ -2,14 +2,15 @@ package es.aragon.iacs.competencias.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="comp_evaluaciones")
 @NamedQueries({
 	@NamedQuery(name="CompEvaluaciones.findAll", query="SELECT c FROM CompEvaluaciones c ORDER BY c.id DESC"),
 	@NamedQuery(name="CompEvaluaciones.findById", query="SELECT c FROM CompEvaluaciones c WHERE c.id=:id"),
-	@NamedQuery(name="CompEvaluaciones.findActivos", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finevaluacion=null OR c.finevaluacion='' OR c.finevaluacion>=:fechaHoy) ORDER BY c.id DESC"),
-	@NamedQuery(name="CompEvaluaciones.findActivoEvaluadores", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finaportacion=null OR c.finaportacion='' OR c.finaportacion>=:fechaHoy) ORDER BY c.id DESC")
+	@NamedQuery(name="CompEvaluaciones.findActivos", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finevaluacion=null  OR c.finevaluacion>=:fechaHoy) ORDER BY c.id DESC"),
+	@NamedQuery(name="CompEvaluaciones.findActivoEvaluadores", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finaportacion=null OR c.finaportacion>=:fechaHoy) ORDER BY c.id DESC")
 })
 public class CompEvaluaciones implements Serializable{
 	
@@ -18,14 +19,14 @@ public class CompEvaluaciones implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="comp_evaluaciones_id_seq")
 	private Integer id;
 	private String nombre;
-	private String iniaportacion;
-	private String finaportacion;
-	private String inivalidacion;
-	private String finvalidacion;
-	private String iniperiodo;
-	private String finperiodo;
-	private String inievaluacion;
-	private String finevaluacion;
+	private Date iniaportacion;
+	private Date finaportacion;
+	private Date inivalidacion;
+	private Date finvalidacion;
+	private Date iniperiodo;
+	private Date finperiodo;
+	private Date inievaluacion;
+	private Date finevaluacion;
 	private String catcompetencial;
 //	private String trabajador;
 	private String comp1;
@@ -50,66 +51,13 @@ public class CompEvaluaciones implements Serializable{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getIniaportacion() {
-		return iniaportacion;
-	}
-	public void setIniaportacion(String iniaportacion) {
-		this.iniaportacion = iniaportacion;
-	}
-	public String getFinaportacion() {
-		return finaportacion;
-	}
-	public void setFinaportacion(String finaportacion) {
-		this.finaportacion = finaportacion;
-	}
-	public String getInivalidacion() {
-		return inivalidacion;
-	}
-	public void setInivalidacion(String inivalidacion) {
-		this.inivalidacion = inivalidacion;
-	}
-	public String getFinvalidacion() {
-		return finvalidacion;
-	}
-	public void setFinvalidacion(String finvalidacion) {
-		this.finvalidacion = finvalidacion;
-	}
-	public String getIniperiodo() {
-		return iniperiodo;
-	}
-	public void setIniperiodo(String iniperiodo) {
-		this.iniperiodo = iniperiodo;
-	}
-	public String getFinperiodo() {
-		return finperiodo;
-	}
-	public void setFinperiodo(String finperiodo) {
-		this.finperiodo = finperiodo;
-	}
-	public String getInievaluacion() {
-		return inievaluacion;
-	}
-	public void setInievaluacion(String inievaluacion) {
-		this.inievaluacion = inievaluacion;
-	}
-	public String getFinevaluacion() {
-		return finevaluacion;
-	}
-	public void setFinevaluacion(String finevaluacion) {
-		this.finevaluacion = finevaluacion;
-	}
 	public String getCatcompetencial() {
 		return catcompetencial;
 	}
 	public void setCatcompetencial(String catcompetencial) {
 		this.catcompetencial = catcompetencial;
 	}
-//	public String getTrabajador() {
-//		return trabajador;
-//	}
-//	public void setTrabajador(String trabajador) {
-//		this.trabajador = trabajador;
-//	}
+
 	public String getComp1() {
 		return comp1;
 	}
@@ -169,6 +117,54 @@ public class CompEvaluaciones implements Serializable{
 	}
 	public void setComp10(String comp10) {
 		this.comp10 = comp10;
+	}
+	public Date getIniaportacion() {
+		return iniaportacion;
+	}
+	public void setIniaportacion(Date iniaportacion) {
+		this.iniaportacion = iniaportacion;
+	}
+	public Date getFinaportacion() {
+		return finaportacion;
+	}
+	public void setFinaportacion(Date finaportacion) {
+		this.finaportacion = finaportacion;
+	}
+	public Date getInivalidacion() {
+		return inivalidacion;
+	}
+	public void setInivalidacion(Date inivalidacion) {
+		this.inivalidacion = inivalidacion;
+	}
+	public Date getFinvalidacion() {
+		return finvalidacion;
+	}
+	public void setFinvalidacion(Date finvalidacion) {
+		this.finvalidacion = finvalidacion;
+	}
+	public Date getIniperiodo() {
+		return iniperiodo;
+	}
+	public void setIniperiodo(Date iniperiodo) {
+		this.iniperiodo = iniperiodo;
+	}
+	public Date getFinperiodo() {
+		return finperiodo;
+	}
+	public void setFinperiodo(Date finperiodo) {
+		this.finperiodo = finperiodo;
+	}
+	public Date getInievaluacion() {
+		return inievaluacion;
+	}
+	public void setInievaluacion(Date inievaluacion) {
+		this.inievaluacion = inievaluacion;
+	}
+	public Date getFinevaluacion() {
+		return finevaluacion;
+	}
+	public void setFinevaluacion(Date finevaluacion) {
+		this.finevaluacion = finevaluacion;
 	}
 	
 

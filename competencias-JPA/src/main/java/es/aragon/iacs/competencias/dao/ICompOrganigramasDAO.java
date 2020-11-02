@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.dao;
 
 import java.util.List;
-
+import java.util.Date;
 import es.aragon.iacs.competencias.jpa.CompOrganigramas;
 import es.aragon.iacs.competencias.jpa.CompPares;
 import es.aragon.iacs.competencias.jpa.CompSuperiores;
@@ -28,15 +28,15 @@ public interface ICompOrganigramasDAO {
 
 	CompOrganigramas findByIdOrganigrama(Integer idOrganigrama);
 
-	void insertOrganigrama(String nombre, String fechaIni, String fechaFin);
+	void insertOrganigrama(String nombre, Date fechaIni, Date fechaFin);
 
 	void deleteOrganigrama(Integer idOrganigrama);
 
-	void editOrganigrama(Integer idOrganigrama, String nombre, String fechaIni, String fechaFin);
+	void editOrganigrama(Integer idOrganigrama, String nombre, Date fechaIni, Date fechaFin);
 	
 	CompOrganigramas findActivo();
 	
-	List<CompPares> findParesTrabajador(Integer idOrganigrama, String dniTrabajador);
-	List<CompSuperiores> findSuperioresTrabajador(Integer idOrganigrama, String dniTrabajador);
+	List<CompPares> findParesTrabajador(String dniTrabajador);
+	List<CompSuperiores> findSuperioresTrabajador(String dniTrabajador);
 	
 }

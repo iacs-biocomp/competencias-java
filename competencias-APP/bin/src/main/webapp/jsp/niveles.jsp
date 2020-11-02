@@ -23,8 +23,8 @@ pageEncoding="UTF-8"%>
 	   	 <td><a href="borrarNiveles?id=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><a href="editarNiveles?id=<s:property value="id"/>"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
 	     <td><s:property value="nombre"/></td>
 	     <td><s:property value="valorporcentual"/></td>   
-	     <td><s:property value="alta"/></td> 
-	     <td><s:property value="baja"/></td> 
+	     <td><s:date name="alta" format="yyyy-MM-dd"/></td> 
+	     <td><s:date name="baja" format="yyyy-MM-dd"/></td> 
 	   </tr>
 	</s:iterator>
 	</tbody>
@@ -111,8 +111,8 @@ pageEncoding="UTF-8"%>
 					     <input id="nombre" name="nombre" type="text" value="<s:property value="nombre"/>" size="30">
 					</td>
 					     <td><input id="valorporcentual" name="valorporcentual" type="text" value="<s:property value="valorporcentual"/>"></td>
-						<td><input id="alta" name="alta" type="date" value="<s:property value="alta"/>"></td>
-						<td><input id="baja" name="baja" type="date" value="<s:property value="baja"/>">
+						<td><input id="alta" name="alta" type="date" value="<s:date name="alta" format="yyyy-MM-dd"/>"></td>
+						<td><input id="baja" name="baja" type="date" value="<s:date name="baja" format="yyyy-MM-dd"/>">
 						<input type="Submit" value="Guardar">
 						</td>   
 		   </tr>
@@ -123,8 +123,8 @@ pageEncoding="UTF-8"%>
 		   	 <td></td>
 		     <td><s:property value="nombre"/></td>
 		     <td><s:property value="valorporcentual"/></td>   
-		     <td><s:property value="alta"/></td> 
-		     <td><s:property value="baja"/></td> 
+		     <td><s:date name="alta" format="yyyy-MM-dd"/></td> 
+		     <td><s:date name="baja" format="yyyy-MM-dd"/></td> 
 		   </tr>
 		</s:else>
 	</s:iterator>

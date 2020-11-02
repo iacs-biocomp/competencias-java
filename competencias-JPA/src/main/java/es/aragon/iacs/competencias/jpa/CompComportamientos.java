@@ -25,8 +25,8 @@ public class CompComportamientos implements Serializable{
 	private int id;
 
 	private String descripcion;
-	private String alta;
-	private String baja;
+	private Date alta;
+	private Date baja;
 
 
 	public CompComportamientos() {
@@ -48,19 +48,22 @@ public class CompComportamientos implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public String getAlta() {
+	public Date getAlta() {
 		return alta;
 	}
 
-	public void setAlta(String alta) {
+	public void setAlta(Date alta) {
 		this.alta = alta;
 	}
 
-	public String getBaja() {
+	public Date getBaja() {
 		return baja;
 	}
 
-	public void setBaja(String baja2) {
-		this.baja = baja2;
+	public void setBaja(Date baja) {
+		this.baja = baja;
 	}
+
+
+
 }

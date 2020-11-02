@@ -3,16 +3,20 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <head>
+	
 	<script>
-		$(document).ready(function(){
-			$("#openModal3").on("click",function(){
-				var valor=$("#openModal3").parent().parent().find("input").get(1).value;
-				alert(valor);
-				$("#formModal3").find("input").get(2).value=valor;
-				});
-			
-			})
-		
+	function submitFormModal3(competencia, categoriaCompetencial){			
+			var i=0;
+			var idCompetencia="codComp"+i;
+			var idCatComp="codCatComp"+i;
+			while (document.getElementById(idCompetencia) != null){
+				document.getElementById(idCompetencia).value=competencia;
+				document.getElementById(idCatComp).value=categoriaCompetencial;
+				i++;
+				idCompetencia="codComp"+i;
+				idCatComp="codCatComp"+i;
+				}
+		}
 	</script>
 
 </head>
@@ -67,34 +71,6 @@ pageEncoding="UTF-8"%>
 	  </div>
 	</div>
 	
-	<script>
-// 	function pasarCatComp(){
-// 		console.log( "Ejecutando función pasarCatComp()" );
-// 		var codCatCompVar = document.getElementById('catcomp').value;
-// 		var codCompVar = document.getElementById('compet').value;
-// 		console.log( "codCatComp: "+ codCatCompVar + " codComp: "+codCompVar );
-// 		console.log(document.getElementById('codCatComp').value );
-// 		console.log(document.getElementById('codComp').value);
-// 		document.getElementById('codCatComp').value=codCatCompVar;
-// 		document.getElementById('codComp').value=codCompVar;
-// 		console.log(document.getElementById('codCatComp').value );
-// 		console.log(document.getElementById('codComp').value);
-// 		}
-// 		
-	//$('#modal-3').on('show.bs.modal', function (e) {
-// 			alert("dentro de la funcion")
-// // 		    $(this).getElementById('codComp').value=e.relatedTarget.value;
-		    
-// 		})
-// 	$('#myModal').on('show.bs.modal', function (e) {
-//        var button = e.relatedTarget;
-//        if (button != null)
-//        {
-//            alert("Launch Button ID='" + button.id + "'");
-//        }
-// })
-		
-	</script>
 
 
 	<div class="accordion" id="accordion">
@@ -128,7 +104,7 @@ pageEncoding="UTF-8"%>
 				<h4 class="title" style="text-align:right">
 					<a href="borrarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>&codCompetencia=<s:property value="codcompetencia"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a>
 					<a href="editarRelacionCompetencias?idRelacion=<s:property value="id"/>&catCompetencial=<s:property value="codcatcomp"/>"><i class="fas fa-edit" aria-hidden="true"></i></a>
-					<button id="openModal3" type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3" value="<s:property value="codcompetencia"/>" ><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
+					<button id="openModal3" onclick=" submitFormModal3('<s:property value="codcompetencia"/>','<s:property value="codCatCompetencial"/>')" type="button" class="btn btn-link" data-toggle="modal" data-target="#modal-3" value="<s:property value="codcompetencia"/>" ><i class="fa fa-plus" aria-hidden="true" ></i></button></h4>
 			</div>
 			<div id="<s:property value="%{#incr.index}"/>" class="accordion-body collapse">
 				<div class="accordion-inner">
@@ -162,7 +138,7 @@ pageEncoding="UTF-8"%>
 	</s:iterator>	
 	</div>
 		
-		<div id="modal-3" class="modal fade" tabindex="-1" role="dialog">
+	<div id="modal-3" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -178,22 +154,22 @@ pageEncoding="UTF-8"%>
 			     </tr>
 			   </thead>
 			   <tbody>
-			<s:iterator value="listaComportamientos">
-			<form id="formModal3" method="post" action="/nuevaRelacionComportamientosCompetencias">
-			   <input id="codCatComp" name="codCatComp" type="hidden"  value="" >
-			     <input id="idComportamiento" name="idComportamiento" type="hidden" value="<s:property value="id"/>" >
-			     <input id="codComp" name="codComp" type="hidden" value=""><s:property value="descripcion"/>
+			<s:iterator value="listaComportamientos" status="incr">
 			   <tr>
-			     
-			      
-			     <td><select name="idNivel" required>
-							<s:iterator value="listaNiveles">
-								<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
-							</s:iterator>
-							</select></td>
-				<td><input type="Submit" value="Guardar"></td>
+				<form id="formModal<s:property value="%{#incr.index}"/>" method="post" action="/nuevaRelacionComportamientosCompetencias">
+				   <td><input id="codCatComp<s:property value="%{#incr.index}"/>" name="codCatComp" type="hidden"  value="" >
+				     <input id="idComportamiento" name="idComportamiento" type="hidden" value="<s:property value="id"/>" >
+				     <input id="codComp<s:property value="%{#incr.index}"/>" name="codComp" type="hidden" value=""><s:property value="descripcion"/></td>
+				     
+				      
+				     <td><select name="idNivel" required>
+								<s:iterator value="listaNiveles">
+									<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
+								</s:iterator>
+								</select></td>
+					<td><input type="submit"  value="Guardar"></td>
+				</form>   
 			   </tr>
-			</form>   
 			</s:iterator>
 			</tbody>
 			</table>

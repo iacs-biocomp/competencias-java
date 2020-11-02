@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.action;
 
 import java.util.List;
-
+import java.util.Date;
 import javax.ejb.EJB;
 
 import es.aragon.iacs.competencias.dao.ICompNivelesDAO;
@@ -15,8 +15,10 @@ public class NivelesAction extends MidasActionSupport{
     private Integer id;
     private String nombre;
     private float valorporcentual;
-    private String alta;
-    private String baja;
+    private Date alta;
+    
+
+	private Date baja;
     
     private boolean editar;
     private Integer idEditar;
@@ -53,6 +55,8 @@ public class NivelesAction extends MidasActionSupport{
     public String nuevo() {
     	//NO COMPRUEBO SI VALORPORCENTUAL == NULL PORQ ME DICE Q !=NULL NO EXISTE PARA FLOAT NI DOUBLE
     	if (nombre !=null && alta != null) {
+    		//PONER FORMATO DE DATE BUENO
+    		log.debug("NIVEL: "+nombre+alta+baja);
     		nivelesDao.insert(nombre,valorporcentual,alta,baja);
     	}
     	editar=false;
@@ -109,22 +113,6 @@ lista
 		this.valorporcentual = valorporcentual;
 	}
 
-	public String getAlta() {
-		return alta;
-	}
-
-	public void setAlta(String alta) {
-		this.alta = alta;
-	}
-
-	public String getBaja() {
-		return baja;
-	}
-
-	public void setBaja(String baja) {
-		this.baja = baja;
-	}
-
 	public boolean isEditar() {
 		return editar;
 	}
@@ -140,4 +128,22 @@ lista
 	public void setIdEditar(Integer idEditar) {
 		this.idEditar = idEditar;
 	}
+
+	public Date getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Date alta) {
+		this.alta = alta;
+	}
+
+	public Date getBaja() {
+		return baja;
+	}
+
+	public void setBaja(Date baja) {
+		this.baja = baja;
+	}
+
+
 }

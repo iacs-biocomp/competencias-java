@@ -23,8 +23,8 @@ pageEncoding="UTF-8"%>
 	     <td><a href="borrarCompetencias?codigo=<s:property value="codigo"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><a href="editarCompetencias?codigo=<s:property value="codigo"/>"><i class="fas fa-edit" aria-hidden="true"></i></a></td> 
 	     <td><s:property value="codigo"/></td>
 	     <td><s:property value="descripcion"/></td>   
-	     <td><s:property value="Alta"/></td> 
-	     <td><s:property value="Baja"/></td> 
+	     <td><s:date name="alta" format="yyyy-MM-dd"/></td> 
+	     <td><s:date name="baja" format="yyyy-MM-dd"/></td> 
 	     
 	   </tr>
 	   
@@ -112,8 +112,8 @@ pageEncoding="UTF-8"%>
 					     <input id="codigo" name="codigo" type="hidden" value="<s:property value="codigo"/>">
 					     <input id="descripcion" name="descripcion" type="text" value="<s:property value="descripcion"/>" size="80">
 				</td>
-						<td><input id="alta" name="alta" type="date" value="<s:property value="alta"/>"></td>
-						<td><input id="baja" name="baja" type="date" value="<s:property value="baja"/>">
+						<td><input id="alta" name="alta" type="date" value="<s:date name="alta" format="yyyy-MM-dd"/>"></td>
+						<td><input id="baja" name="baja" type="date" value="<s:date name="baja" format="yyyy-MM-dd"/>">
 						<input type="Submit" value="Guardar">
 						</td> 
 			
@@ -125,8 +125,8 @@ pageEncoding="UTF-8"%>
 				<td></td> 
 			     <td><s:property value="codigo"/></td>
 			     <td><s:property value="descripcion"/></td>   
-			     <td><s:property value="Alta"/></td> 
-			     <td><s:property value="Baja"/></td>
+			     <td><s:date name="alta" format="yyyy-MM-dd"/></td> 
+			     <td><s:date name="alta" format="yyyy-MM-dd"/></td>
 			</tr>
 	    </s:else>
 	</s:iterator>

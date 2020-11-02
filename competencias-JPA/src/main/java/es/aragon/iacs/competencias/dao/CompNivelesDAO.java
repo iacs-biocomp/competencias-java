@@ -1,7 +1,9 @@
 package es.aragon.iacs.competencias.dao;
 
 import java.util.List;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,14 +40,19 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 	}
 	
 	@Override
-	public void insert(String nombre, float valorporcentual, String alta, String baja) {
+	public void insert(String nombre, float valorporcentual, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		
 		Query query = em.createNamedQuery("CompNiveles.findByNombre");
 		query.setParameter("nombre", nombre);
 		@SuppressWarnings("unchecked")
 		List<CompNiveles> busqueda = query.getResultList();
-		
+		//PASAR DE STRING A DATE CON FORMATO QUE QUIERO
+//	
+//		
+//		DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
+//		Date convertidoAlta = fecha.parse(alta);
+//		Date convertidoBaja = fecha.parse(baja);
 		if(busqueda.size()==0) {
 		
 			CompNiveles nueva=new CompNiveles();
@@ -61,7 +68,7 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 	
 	
 	@Override
-	public void edit(Integer id, String nombre, float valorporcentual, String alta, String baja) {
+	public void edit(Integer id, String nombre, float valorporcentual, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompNiveles.findById");
 		query.setParameter("id", id);

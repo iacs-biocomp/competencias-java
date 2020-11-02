@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.action;
 
 import java.util.List;
-
+import java.util.Date;
 import javax.ejb.EJB;
 
 import es.aragon.iacs.competencias.jpa.CompCatContractualesV;
@@ -47,7 +47,7 @@ public class TrabajadoresAction extends MidasActionSupport{
     private String area;
     private String unidad;
     private String departamento;
-    private String antiguedad;
+    private Date antiguedad;
     private Integer id;
     private String email;
     private String instituciones;
@@ -248,16 +248,6 @@ lista
 	}
 
 
-	public String getAntiguedad() {
-		return antiguedad;
-	}
-
-
-	public void setAntiguedad(String antiguedad) {
-		this.antiguedad = antiguedad;
-	}
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -315,6 +305,16 @@ lista
 
 	public void setContractual(CompCatContractualesV contractual) {
 		this.contractual = contractual;
+	}
+
+
+	public Date getAntiguedad() {
+		return antiguedad;
+	}
+
+
+	public void setAntiguedad(Date antiguedad) {
+		this.antiguedad = antiguedad;
 	}
 
 

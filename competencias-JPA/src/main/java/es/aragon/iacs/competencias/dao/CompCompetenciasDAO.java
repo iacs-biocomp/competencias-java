@@ -127,7 +127,7 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	}
 	
 	@Override
-	public void insert(String codigo, String descripcion, String alta, String baja) {
+	public void insert(String codigo, String descripcion, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCompetencias.findById");
 		query.setParameter("codigo", codigo);
@@ -146,7 +146,7 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	}
 	
 	@Override
-	public void edit(String codigo, String descripcion, String alta, String baja) {
+	public void edit(String codigo, String descripcion, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCompetencias.findById");
 		query.setParameter("codigo", codigo);

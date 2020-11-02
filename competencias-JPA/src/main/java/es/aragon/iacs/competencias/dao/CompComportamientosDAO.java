@@ -54,7 +54,7 @@ public class CompComportamientosDAO implements ICompComportamientosDAO {
 	}
 	
 	@Override
-	public void insert(String descripcion, String alta, String baja) {
+	public void insert(String descripcion, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		CompComportamientos nueva=new CompComportamientos();
 		nueva.setDescripcion(descripcion);
@@ -66,7 +66,7 @@ public class CompComportamientosDAO implements ICompComportamientosDAO {
 	}
 	
 	@Override
-	public void edit(Integer id, String descripcion, String alta, String baja) {
+	public void edit(Integer id, String descripcion, Date alta, Date baja) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompComportamientos.findById");
 		query.setParameter("id", id);

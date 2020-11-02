@@ -41,8 +41,8 @@ public class OrganigramasAction extends MidasActionSupport{
 	private String dniSuperior;
 	private String dniPar;
 	private String nombreOrganigrama;
-	private String fechaIni;
-	private String fechaFin;
+	private Date fechaIni;
+	private Date fechaFin;
 	private String fechaActual;
 	private boolean puedeEditar;
 	
@@ -63,19 +63,6 @@ public class OrganigramasAction extends MidasActionSupport{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
 	
-	private boolean puedeEditarF(String fechaFin) throws ParseException {
-		//Compara fechaFin con fecha Actual y devuelve true si es mayor la fechaFin, es decir, puede editar el organigrama
-		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaSistema=formateador.format(fechaActual);
-        Date fechaDate1 = formateador.parse(fechaFin);
-        Date fechaDate2 = formateador.parse(fechaSistema);
-		if ( fechaDate1.before(fechaDate2) ){
-		    return false;
-		}else{
-		     return true;
-		    }
-	}
 
     public String todos() {
         listaOrganigramas = organigramasDao.findAll();
@@ -87,6 +74,7 @@ public class OrganigramasAction extends MidasActionSupport{
     
     public String nuevo(){
     	if ( nombreOrganigrama!=null ) {
+    		log.debug("Se va a insertar organigrama: nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
     		organigramasDao.insertOrganigrama(nombreOrganigrama,fechaIni, fechaFin);
     		log.debug("Se ha insertado organigrama: nombre:" +nombreOrganigrama+" fechaIni "+fechaIni+" fechaFin "+fechaFin);
     	}
@@ -127,8 +115,14 @@ public class OrganigramasAction extends MidasActionSupport{
     	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
     	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null && !fechaFin.equals("")) {
-    		puedeEditar=puedeEditarF(fechaFin);
+    	if(fechaFin!=null) {
+    		
+    		
+    		Date fechaActual = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaSistema=formateador.format(fechaActual);
+            Date fechaHoy = formateador.parse(fechaSistema);
+    		puedeEditar=!fechaFin.before(fechaHoy);
     	}
     	else {
     		puedeEditar=true;
@@ -155,8 +149,12 @@ public class OrganigramasAction extends MidasActionSupport{
 	  	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
 	  	fechaIni=organigramaActual.getFechaIni();
 		fechaFin=organigramaActual.getFechaFin();
-		if(fechaFin!=null && !fechaFin.equals("")) {
-			puedeEditar=puedeEditarF(fechaFin);
+		if(fechaFin!=null) {
+			Date fechaActual = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaSistema=formateador.format(fechaActual);
+            Date fechaHoy = formateador.parse(fechaSistema);
+    		puedeEditar=!fechaFin.before(fechaHoy);
 		}
 		else {
 			puedeEditar=true;
@@ -177,8 +175,12 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null && !fechaFin.equals("")) {
-    		puedeEditar=puedeEditarF(fechaFin);
+    	if(fechaFin!=null ) {
+    		Date fechaActual = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaSistema=formateador.format(fechaActual);
+            Date fechaHoy = formateador.parse(fechaSistema);
+    		puedeEditar=!fechaFin.before(fechaHoy);
     	}
     	else {
     		puedeEditar=true;
@@ -200,8 +202,12 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null && !fechaFin.equals("")) {
-    		puedeEditar=puedeEditarF(fechaFin);
+    	if(fechaFin!=null ) {
+    		Date fechaActual = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaSistema=formateador.format(fechaActual);
+            Date fechaHoy = formateador.parse(fechaSistema);
+    		puedeEditar=!fechaFin.before(fechaHoy);
     	}
     	else {
     		puedeEditar=true;
@@ -223,8 +229,12 @@ public class OrganigramasAction extends MidasActionSupport{
       	organigramaActual=organigramasDao.findByIdOrganigrama(idOrganigrama);
       	fechaIni=organigramaActual.getFechaIni();
     	fechaFin=organigramaActual.getFechaFin();
-    	if(fechaFin!=null && !fechaFin.equals("")) {
-    		puedeEditar=puedeEditarF(fechaFin);
+    	if(fechaFin!=null) {
+    		Date fechaActual = new Date();
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaSistema=formateador.format(fechaActual);
+            Date fechaHoy = formateador.parse(fechaSistema);
+    		puedeEditar=!fechaFin.before(fechaHoy);
     	}
     	else {
     		puedeEditar=true;
@@ -313,21 +323,7 @@ public class OrganigramasAction extends MidasActionSupport{
 		this.organigramaActual = organigramaActual;
 	}
 
-	public String getFechaIni() {
-		return fechaIni;
-	}
 
-	public void setFechaIni(String fechaIni) {
-		this.fechaIni = fechaIni;
-	}
-
-	public String getFechaFin() {
-		return fechaFin;
-	}
-
-	public void setFechaFin(String fechaFin) {
-		this.fechaFin = fechaFin;
-	}
 
 	public String getFechaActual() {
 		return fechaActual;
@@ -340,7 +336,6 @@ public class OrganigramasAction extends MidasActionSupport{
 	public boolean isPuedeEditar() {
 		return puedeEditar;
 	}
-
 	public void setPuedeEditar(boolean puedeEditar) {
 		this.puedeEditar = puedeEditar;
 	}
@@ -367,6 +362,22 @@ public class OrganigramasAction extends MidasActionSupport{
 
 	public void setIdEditar(Integer idEditar) {
 		this.idEditar = idEditar;
+	}
+
+	public Date getFechaIni() {
+		return fechaIni;
+	}
+
+	public void setFechaIni(Date fechaIni) {
+		this.fechaIni = fechaIni;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
 	}
     
 

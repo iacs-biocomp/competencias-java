@@ -3,7 +3,7 @@ package es.aragon.iacs.competencias.action;
 import java.util.List;
 
 import javax.ejb.EJB;
-
+import java.util.Date;
 import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
 import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.midas.action.MidasActionSupport;
@@ -16,8 +16,8 @@ public class CatCompetencialesAction extends MidasActionSupport{
     private ICompCatCompetencialesDAO catCompetencialesDao;
     private String codigo;
     private String nombre;
-    private String alta;
-    private String baja;
+    private Date alta;
+    private Date baja;
 
     private boolean editar;
     private String codEditar;
@@ -103,21 +103,6 @@ lista
 		this.nombre = nombre;
 	}
 
-	public String getAlta() {
-		return alta;
-	}
-
-	public void setAlta(String alta) {
-		this.alta = alta;
-	}
-
-	public String getBaja() {
-		return baja;
-	}
-
-	public void setBaja(String baja) {
-		this.baja = baja;
-	}
 
 	public boolean isEditar() {
 		return editar;
@@ -133,6 +118,22 @@ lista
 
 	public void setCodEditar(String codEditar) {
 		this.codEditar = codEditar;
+	}
+
+	public Date getAlta() {
+		return alta;
+	}
+
+	public void setAlta(Date alta) {
+		this.alta = alta;
+	}
+
+	public Date getBaja() {
+		return baja;
+	}
+
+	public void setBaja(Date baja) {
+		this.baja = baja;
 	}
 	
 }

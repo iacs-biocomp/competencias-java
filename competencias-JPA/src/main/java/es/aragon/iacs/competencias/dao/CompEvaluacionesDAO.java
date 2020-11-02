@@ -1,5 +1,6 @@
 package es.aragon.iacs.competencias.dao;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -73,41 +74,78 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 	public List<CompEvaluaciones> findActiva(String catCompetencial) {
 		Query query = em.createNamedQuery("CompEvaluaciones.findActivos");
 		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaHoy=formateador.format(fechaActual);
-		query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catCompetencial);
-		@SuppressWarnings("unchecked")
-		List<CompEvaluaciones> activas = query.getResultList();
-		return activas;
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+			String fechaSistema=formateador.format(fechaActual);
+	        Date fechaHoy = formateador.parse(fechaSistema);
+			query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catCompetencial);
+			@SuppressWarnings("unchecked")
+			List<CompEvaluaciones> activas = query.getResultList();
+			return activas;
+		}catch(ParseException e) {
+			return null;
+		}
+        
 	}
 	
 	@Override
 	public List<CompEvaluaciones> findActivoEvaluadores(String catCompetencial) {
 		Query query = em.createNamedQuery("CompEvaluaciones.findActivoEvaluadores");
+		
 		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaHoy=formateador.format(fechaActual);
-		query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catCompetencial);
-		@SuppressWarnings("unchecked")
-		List<CompEvaluaciones> activas = query.getResultList();
-		return activas;
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+	        String fechaSistema=formateador.format(fechaActual);
+	        Date fechaHoy = formateador.parse(fechaSistema);
+			query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catCompetencial);
+			@SuppressWarnings("unchecked")
+			List<CompEvaluaciones> activas = query.getResultList();
+			return activas;
+		}catch(ParseException e) {
+			return null;
+		}
+        
 	}
 	
 	@Override
-	public Integer insert(String nombre, String iniaportacion, String finaportacion, String inivalidacion, String finvalidacion, 
-			String iniperiodo, String finperiodo, String inievaluacion, String finevaluacion, String catcompetencial) {
+	public Integer insert(String nombre, Date iniaportacion, Date finaportacion, Date inivalidacion, Date finvalidacion, 
+			Date iniperiodo, Date finperiodo, Date inievaluacion, Date finevaluacion, String catcompetencial) {
 		// TODO Auto-generated method stu
 		//COMPROBAR QUE NO HYA NINGUNA ACTIVA PARA ESA CATCOMP
 		
 		Query query = em.createNamedQuery("CompEvaluaciones.findActivos");
 		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaHoy=formateador.format(fechaActual);
-		query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catcompetencial);
-		@SuppressWarnings("unchecked")
-		List<CompEvaluaciones> activas = query.getResultList();
-		if (activas.size()==0) {
-		
+		try {
+			 SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+		        String fechaSistema=formateador.format(fechaActual);
+		        Date fechaHoy = formateador.parse(fechaSistema);
+				query.setParameter("fechaHoy", fechaHoy).setParameter("catcomp", catcompetencial);
+				@SuppressWarnings("unchecked")
+				List<CompEvaluaciones> activas = query.getResultList();
+				if (activas.size()==0) {
+				
+					CompEvaluaciones nueva=new CompEvaluaciones();
+					nueva.setNombre(nombre);
+					nueva.setIniaportacion(iniaportacion);
+					nueva.setFinaportacion(finaportacion);
+					nueva.setInivalidacion(inivalidacion);
+					nueva.setFinvalidacion(finvalidacion);
+					nueva.setIniperiodo(iniperiodo);
+					nueva.setFinperiodo(finperiodo);
+					nueva.setInievaluacion(inievaluacion);
+					nueva.setFinevaluacion(finevaluacion);
+					nueva.setCatcompetencial(catcompetencial);
+				
+					
+					em.persist(nueva);
+					
+					em.flush();
+					return nueva.getId();
+				}
+				else { 
+					return -1;
+				}
+		}catch(ParseException e) {
 			CompEvaluaciones nueva=new CompEvaluaciones();
 			nueva.setNombre(nombre);
 			nueva.setIniaportacion(iniaportacion);
@@ -125,15 +163,14 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 			
 			em.flush();
 			return nueva.getId();
+			
 		}
-		else { 
-			return -1;
-		}
+       
 	}
 	
 	@Override
-	public void guardar(Integer id, String nombre, String iniaportacion, String finaportacion, String inivalidacion, String finvalidacion, 
-			String iniperiodo, String finperiodo, String inievaluacion, String finevaluacion, String catcompetencial, 
+	public void guardar(Integer id, String nombre, Date iniaportacion, Date finaportacion, Date inivalidacion, Date finvalidacion, 
+			Date iniperiodo, Date finperiodo, Date inievaluacion, Date finevaluacion, String catcompetencial, 
 			String comp1, String comp2, String comp3, String comp4, String comp5, String comp6, String comp7, String comp8, String comp9, String comp10) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompEvaluaciones.findById");

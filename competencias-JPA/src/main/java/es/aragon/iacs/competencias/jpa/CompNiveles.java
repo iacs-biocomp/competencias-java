@@ -2,7 +2,7 @@ package es.aragon.iacs.competencias.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import java.util.Date;
 /**
  * The persistent class for the comp_prueba database table.
  * 
@@ -24,8 +24,8 @@ public class CompNiveles implements Serializable{
 
 	private String nombre;
 	private float valorporcentual;
-	private String alta;
-	private String baja;
+	private Date alta;
+	private Date baja;
 
 
 	public CompNiveles() {
@@ -54,20 +54,23 @@ public class CompNiveles implements Serializable{
 	public void setValorporcentual(float valorporcentual) {
 		this.valorporcentual = valorporcentual;
 	}
-	
-	public String getAlta() {
-		return this.alta;
+
+	public Date getAlta() {
+		return alta;
 	}
 
-	public void setAlta(String alta) {
+	public void setAlta(Date alta) {
 		this.alta = alta;
 	}
-	
-	public String getBaja() {
-		return this.baja;
+
+	public Date getBaja() {
+		return baja;
 	}
 
-	public void setBaja(String baja) {
+	public void setBaja(Date baja) {
 		this.baja = baja;
 	}
+
+
+
 }

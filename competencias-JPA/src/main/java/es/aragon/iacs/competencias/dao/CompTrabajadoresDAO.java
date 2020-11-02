@@ -1,7 +1,7 @@
 package es.aragon.iacs.competencias.dao;
 
 import java.util.List;
-
+import java.util.Date;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -48,7 +48,7 @@ public class CompTrabajadoresDAO implements ICompTrabajadoresDAO {
 	}
 	
 	@Override
-	public void editInterno(Integer codigo, String nombre,String apellidos,String catContractual, String catCompetencial,String area,String unidad, String departamento, String antiguedad,String dni) {
+	public void editInterno(Integer codigo, String nombre,String apellidos,String catContractual, String catCompetencial,String area,String unidad, String departamento, Date antiguedad,String dni) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompTrabajadores.findByDni");
 		query.setParameter("dni", dni);

@@ -30,7 +30,18 @@ pageEncoding="UTF-8"%>
 	     <td><s:property value="nombre"/></td>
 	     <td><s:property value="apellidos"/></td>
 	     <td><s:property value="catcontractual"/></td>
-	     <td><s:property value="catcompetencial"/></td>
+	     <s:if test="%{catcompetencial != null && catcompetencial !=\"\" }">
+	     	<td><s:property value="catcompetencial"/></td>
+	     </s:if>
+	     <s:else>
+	     	<s:iterator value="listaCatContractuales" var="cat">
+	     
+	     		<s:if test="%{ #cat.nombre ==catcontractual }">
+	     			<td><s:property value="#cat.codcatcomp"/></td>
+	     		</s:if>
+	     		
+	     	</s:iterator>
+	     </s:else>
 	     <td><s:property value="area"/></td>
 	     <td><s:property value="unidad"/></td>
 	     <td><s:property value="departamento"/></td>
@@ -105,7 +116,7 @@ pageEncoding="UTF-8"%>
 						<td><input id="apellidos" name="apellidos" type="text" value="<s:property value="apellidos"/>" size="15"></td>
 						
 						<td><select name="catcontractual">
-						<s:iterator value="catContractuales">
+						<s:iterator value="listaCatContractuales">
 						<s:if test="%{nombre == catcontractual}">
 							<option selected value="<s:property value="nombre"/>"><s:property value="nombre"/></option>
 						</s:if>
@@ -115,16 +126,43 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						</select></td>
 						
-						<td><select name="catcompetencial">
-						<s:iterator value="catCompetenciales">
-						<s:if test="%{catcompetencial == codigo}">
-							<option selected value="<s:property value="codigo"/>"><s:property value="codigo"/></option>
+						
+						
+						
+						<s:if test="%{ catcompetencial != null && catcompetencial != \"\" }">
+							<td><select name="catcompetencial">
+							<s:iterator value="catCompetenciales">
+								<s:if test="%{catcompetencial == codigo}">
+									<option selected value="<s:property value="codigo"/>"><s:property value="codigo"/></option>
+								</s:if>
+								<s:else>
+									<option value="<s:property value="codigo"/>"><s:property value="codigo"/></option>
+								</s:else>
+							</s:iterator>
+							</select></td>
 						</s:if>
 						<s:else>
-							<option value="<s:property value="codigo"/>"><s:property value="codigo"/></option>
+							<td><select name="catcompetencial">
+							<s:iterator value="listaCatContractuales" var="cat">
+							     <s:if test="%{ #cat.nombre ==catcontractual }">
+							     	<s:iterator value="catCompetenciales">
+										<s:if test="%{codigo == #cat.codcatcomp}">
+											<option selected value="<s:property value="#cat.codcatcomp"/>"><s:property value="#cat.codcatcomp"/></option>
+										</s:if>
+										<s:else>
+											<option value="<s:property value="codigo"/>"><s:property value="codigo"/></option>
+										</s:else>
+									</s:iterator>
+							     
+<%-- 							     	<option selected value="<s:property value="#cat.codcatcomp"/>"><s:property value="#cat.codcatcomp"/></option> --%>
+							     </s:if>
+							     		
+							 </s:iterator>
+						
+						
 						</s:else>
-						</s:iterator>
-						</select></td>
+							     	
+
 						
 						<td><input id="area" name="area" type="text" value="<s:property value="area"/>"></td>
 						<td><input id="unidad" name="unidad" type="text" value="<s:property value="unidad"/>" size="15"></td>
@@ -141,7 +179,18 @@ pageEncoding="UTF-8"%>
 		     <td><s:property value="nombre"/></td>
 		     <td><s:property value="apellidos"/></td>
 		     <td><s:property value="catcontractual"/></td>
-		     <td><s:property value="catcompetencial"/></td>
+		     <s:if test="%{catcompetencial != null && catcompetencial !=\"\" }">
+		     	<td><s:property value="catcompetencial"/></td>
+		     </s:if>
+		     <s:else>
+		     	<s:iterator value="listaCatContractuales" var="cat">
+		     
+		     		<s:if test="%{ #cat.nombre ==catcontractual }">
+		     			<td><s:property value="#cat.codcatcomp"/></td>
+		     		</s:if>
+		     		
+		     	</s:iterator>
+		     </s:else>
 		     <td><s:property value="area"/></td>
 		     <td><s:property value="unidad"/></td>
 		     <td><s:property value="departamento"/></td>
@@ -213,5 +262,7 @@ pageEncoding="UTF-8"%>
 </s:else>
 
 <div style="text-align:center">
-	<button type="button" class="btn btn-primary" href="todosOrganigramas" >Ver organigramas </button>
+	<form action="/todosOrganigramas">
+		<input type="Submit" class="btn btn-primary" value="Ver organigramas">
+	</form>
 </div>

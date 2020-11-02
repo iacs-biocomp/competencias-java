@@ -2,7 +2,7 @@ package es.aragon.iacs.competencias.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
+import java.util.Date;
 /**
  * The persistent class for the comp_prueba database table.
  * 
@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Entity
 @Table(name="comp_competencias")
 @NamedQueries({
-	@NamedQuery(name="CompCompetencias.findAll", query="SELECT c FROM CompCompetencias c ORDER BY c.descripcion"),
+	@NamedQuery(name="CompCompetencias.findAll", query="SELECT c FROM CompCompetencias c ORDER BY c.codigo"),
 	@NamedQuery(name="CompCompetencias.findById", query="SELECT c FROM CompCompetencias c WHERE c.codigo=:codigo"),
-	@NamedQuery(name="CompCompetencias.findActivas", query="SELECT c FROM CompCompetencias c WHERE c.baja=null OR c.baja='' OR c.baja>=:fechaHoy ORDER BY c.descripcion")
+	@NamedQuery(name="CompCompetencias.findActivas", query="SELECT c FROM CompCompetencias c WHERE c.baja=null OR c.baja='' OR c.baja>=:fechaHoy ORDER BY c.codigo")
 })
 public class CompCompetencias implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -22,8 +22,8 @@ public class CompCompetencias implements Serializable{
 	private String codigo;
 
 	private String descripcion;
-	private String alta;
-	private String baja;
+	private Date alta;
+	private Date baja;
 
 
 	public CompCompetencias() {
@@ -45,20 +45,21 @@ public class CompCompetencias implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public String getAlta() {
+	public Date getAlta() {
 		return alta;
 	}
 
-	public void setAlta(String alta) {
+	public void setAlta(Date alta) {
 		this.alta = alta;
 	}
 
-	public String getBaja() {
+	public Date getBaja() {
 		return baja;
 	}
 
-	public void setBaja(String baja) {
+	public void setBaja(Date baja) {
 		this.baja = baja;
 	}
+
 	
 }

@@ -97,7 +97,7 @@ public class EvaluadoresAction extends MidasActionSupport{
     	trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
     	//Busca si es periodo de elgir evaluadores
-    	
+    	log.debug("antes de buscar activoevaluadores");
     	List<CompEvaluaciones> activoEv=evaluacionesDao.findActivoEvaluadores(catCompetencial);
 		if(activoEv.size()==1) {
 			activoEvaluadores=true;
@@ -105,7 +105,7 @@ public class EvaluadoresAction extends MidasActionSupport{
 		else {
 			activoEvaluadores=false;
 		}
-    	
+		log.debug("despues de buscar activoevaluadores");
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
     	listaCompetencias=new ArrayList<CompCompetencias>();

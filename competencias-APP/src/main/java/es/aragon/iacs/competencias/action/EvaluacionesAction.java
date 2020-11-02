@@ -1,5 +1,6 @@
 package es.aragon.iacs.competencias.action;
 
+import java.text.ParseException;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,14 +75,14 @@ public class EvaluacionesAction extends MidasActionSupport{
     
     private Integer id;
 	private String nombre;
-	private String iniaportacion;
-	private String finaportacion;
-	private String inivalidacion;
-	private String finvalidacion;
-	private String iniperiodo;
-	private String finperiodo;
-	private String inievaluacion;
-	private String finevaluacion;
+	private Date iniaportacion;
+	private Date finaportacion;
+	private Date inivalidacion;
+	private Date finvalidacion;
+	private Date iniperiodo;
+	private Date finperiodo;
+	private Date inievaluacion;
+	private Date finevaluacion;
 	private String catcompetencial;
 //	private String trabajador;
 	private String comp0;
@@ -103,7 +104,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private Boolean editar;
 	private Boolean editar2;
 	private Integer idEditar;
-	private String fechaActual;
+	private Date fechaActual;
 	
 	private Integer idNueva;
 	private CompEvaluaciones nuevaEvaluacion;
@@ -127,12 +128,21 @@ public class EvaluacionesAction extends MidasActionSupport{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
 	
-	public String fechaActual() {
+	public Date fechaActual() {
 		
-			Date fechaActual = new Date();
-	        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-	        String fechaSistema=formateador.format(fechaActual);
-	        return fechaSistema;
+			Date fecha = new Date();
+			try {
+				SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+		        String fechaHoy=formateador.format(fecha);
+		        fecha = formateador.parse(fechaHoy);
+		        return fecha;
+			}
+			catch (ParseException e){
+				return fecha;
+			}
+	        
+
+	        
 	}
 	
     public String mis() {
@@ -142,9 +152,9 @@ public class EvaluacionesAction extends MidasActionSupport{
     	dniActual=user.getIdd();
     	CompTrabajadores trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
-    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
-    	misPares=organigramasDao.findParesTrabajador(idActual,dniActual);
-        misSuperiores=organigramasDao.findSuperioresTrabajador(idActual,dniActual);
+//    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
+    	misPares=organigramasDao.findParesTrabajador(dniActual);
+        misSuperiores=organigramasDao.findSuperioresTrabajador(dniActual);
     	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
 //    	evaluadoresExternos=evaluadoresDao.findByEvaluadorExt(dniActual);
     	listaEvaluaciones=new ArrayList<CompEvaluaciones>();
@@ -282,6 +292,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 	    	//    	listaCatCompetenciales=catCompetencialesDao.findAll();
 	    	listaTrabajadores = trabajadoresDao.findByCatcomp(catcompetencial);
 	//        listaEvaluaciones=evaluacionesDao.findAll();
+	    	
 	        objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
 	    	editar2=true;
     	}
@@ -363,8 +374,8 @@ public class EvaluacionesAction extends MidasActionSupport{
     	CompTrabajadores yo=trabajadoresDao.trabajador(dniActual);
     	String catCompYo=yo.getCatcompetencial();
 //    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
-    	misPares=organigramasDao.findParesTrabajador(id,dniActual);
-        misSuperiores=organigramasDao.findSuperioresTrabajador(id,dniActual);
+    	misPares=organigramasDao.findParesTrabajador(dniActual);
+        misSuperiores=organigramasDao.findSuperioresTrabajador(dniActual);
     	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
     	listaTrabajadoresAll = trabajadoresDao.findAll();
     	listaTrabajadores=new ArrayList<CompTrabajadores>();
@@ -603,69 +614,6 @@ public class EvaluacionesAction extends MidasActionSupport{
 		this.nombre = nombre;
 	}
 
-	public String getIniaportacion() {
-		return iniaportacion;
-	}
-
-	public void setIniaportacion(String iniaportacion) {
-		this.iniaportacion = iniaportacion;
-	}
-
-	public String getFinaportacion() {
-		return finaportacion;
-	}
-
-	public void setFinaportacion(String finaportacion) {
-		this.finaportacion = finaportacion;
-	}
-
-	public String getInivalidacion() {
-		return inivalidacion;
-	}
-
-	public void setInivalidacion(String inivalidacion) {
-		this.inivalidacion = inivalidacion;
-	}
-
-	public String getFinvalidacion() {
-		return finvalidacion;
-	}
-
-	public void setFinvalidacion(String finvalidacion) {
-		this.finvalidacion = finvalidacion;
-	}
-
-	public String getIniperiodo() {
-		return iniperiodo;
-	}
-
-	public void setIniperiodo(String iniperiodo) {
-		this.iniperiodo = iniperiodo;
-	}
-
-	public String getFinperiodo() {
-		return finperiodo;
-	}
-
-	public void setFinperiodo(String finperiodo) {
-		this.finperiodo = finperiodo;
-	}
-
-	public String getInievaluacion() {
-		return inievaluacion;
-	}
-
-	public void setInievaluacion(String inievaluacion) {
-		this.inievaluacion = inievaluacion;
-	}
-
-	public String getFinevaluacion() {
-		return finevaluacion;
-	}
-
-	public void setFinevaluacion(String finevaluacion) {
-		this.finevaluacion = finevaluacion;
-	}
 
 	public String getCatcompetencial() {
 		return catcompetencial;
@@ -772,13 +720,6 @@ public class EvaluacionesAction extends MidasActionSupport{
 		this.idEditar = idEditar;
 	}
 
-	public String getFechaActual() {
-		return fechaActual;
-	}
-
-	public void setFechaActual(String fechaActual) {
-		this.fechaActual = fechaActual;
-	}
 
 	public Integer getId() {
 		return id;
@@ -995,6 +936,78 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setDniActual(String dniActual) {
 		this.dniActual = dniActual;
+	}
+
+	public Date getIniaportacion() {
+		return iniaportacion;
+	}
+
+	public void setIniaportacion(Date iniaportacion) {
+		this.iniaportacion = iniaportacion;
+	}
+
+	public Date getFinaportacion() {
+		return finaportacion;
+	}
+
+	public void setFinaportacion(Date finaportacion) {
+		this.finaportacion = finaportacion;
+	}
+
+	public Date getInivalidacion() {
+		return inivalidacion;
+	}
+
+	public void setInivalidacion(Date inivalidacion) {
+		this.inivalidacion = inivalidacion;
+	}
+
+	public Date getFinvalidacion() {
+		return finvalidacion;
+	}
+
+	public void setFinvalidacion(Date finvalidacion) {
+		this.finvalidacion = finvalidacion;
+	}
+
+	public Date getIniperiodo() {
+		return iniperiodo;
+	}
+
+	public void setIniperiodo(Date iniperiodo) {
+		this.iniperiodo = iniperiodo;
+	}
+
+	public Date getFinperiodo() {
+		return finperiodo;
+	}
+
+	public void setFinperiodo(Date finperiodo) {
+		this.finperiodo = finperiodo;
+	}
+
+	public Date getInievaluacion() {
+		return inievaluacion;
+	}
+
+	public void setInievaluacion(Date inievaluacion) {
+		this.inievaluacion = inievaluacion;
+	}
+
+	public Date getFinevaluacion() {
+		return finevaluacion;
+	}
+
+	public void setFinevaluacion(Date finevaluacion) {
+		this.finevaluacion = finevaluacion;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
 	}
 
 
