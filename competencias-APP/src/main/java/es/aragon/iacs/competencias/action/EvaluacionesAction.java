@@ -28,6 +28,7 @@ import es.aragon.iacs.competencias.jpa.CompEvaluadorExterno;
 import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
 import es.aragon.iacs.competencias.jpa.CompSuperiores;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 public class EvaluacionesAction extends MidasActionSupport{
 	private static final long serialVersionUID = 2108264332221967943L;
@@ -95,7 +96,9 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private String comp9;
 	
 	private List<String> compet;
-
+	private List<String> competint;
+	private List<Integer> comport;
+	private List<Integer> comportint;
 	
 	private Boolean editar;
 	private Boolean editar2;
@@ -107,6 +110,18 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private Boolean mis;
 	
 	private List<CompRelCompCompleto> compRelCompCompleto;
+	
+	private List<Integer> notatr;
+	private List<Integer> notaint;
+	private List<String> dnitr;
+	private List<String> dniint;
+	
+	private List<Integer> idrel;
+	private List<Integer> idrelint;
+	
+	private List<CompValoraciones> listaValoraciones;
+	
+	private String dniActual;
 	
 	{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
@@ -124,7 +139,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	//List<CompEvaluaciones> listaEvaluaciones = new List<CompEvaluaciones>();
     	
     	List<CompEvaluaciones> todasEvaluaciones=evaluacionesDao.findAll(); //DEBERIA DEVOLVER SOLO MIS EVALUACIONES
-    	String dniActual=user.getIdd();
+    	dniActual=user.getIdd();
     	CompTrabajadores trabajador=trabajadoresDao.trabajador(dniActual);
     	String catCompetencial=trabajador.getCatcompetencial();
     	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
@@ -344,12 +359,12 @@ public class EvaluacionesAction extends MidasActionSupport{
     	// buscar de tus pares, superiores, inferiores, etc quienes tienen catcompetnecial y añadirlos a la lista de trabjaadores a evaluar
     	evaluacionActual=evaluacionesDao.findById(id);
     	String cat=evaluacionActual.getCatcompetencial();
-    	String dniActual=user.getIdd();
+    	dniActual=user.getIdd();
     	CompTrabajadores yo=trabajadoresDao.trabajador(dniActual);
     	String catCompYo=yo.getCatcompetencial();
-    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
-    	misPares=organigramasDao.findParesTrabajador(idActual,dniActual);
-        misSuperiores=organigramasDao.findSuperioresTrabajador(idActual,dniActual);
+//    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
+    	misPares=organigramasDao.findParesTrabajador(id,dniActual);
+        misSuperiores=organigramasDao.findSuperioresTrabajador(id,dniActual);
     	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
     	listaTrabajadoresAll = trabajadoresDao.findAll();
     	listaTrabajadores=new ArrayList<CompTrabajadores>();
@@ -479,10 +494,74 @@ public class EvaluacionesAction extends MidasActionSupport{
     	log.debug("cat "+cat);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(cat);
     	log.debug("compRelCompCompleto: "+compRelCompCompleto.size()+compRelCompCompleto);
+    	
+    	listaValoraciones=evaluacionesDao.valoracionesPorIdEvaluacion(id);
+    	log.debug("listaValoraciones: "+listaValoraciones.size()+listaValoraciones);
+    	
     	return "evaluacionConcreta";
     }
 
-
+    public String guardarValoracion() {
+    	log.debug("idEvaluacion (id): "+id);
+    	dniActual=user.getIdd();
+    	log.debug("dniEvaluador (dniActual): "+dniActual);
+    	if(notaint!=null && notaint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("notaint "+notaint.size()+notaint);
+    	}
+    	if(notatr!=null && notatr.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("notatr "+notatr.size()+notatr);
+   
+    	}
+    	
+    	if(dniint!=null && dniint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("dniint "+dniint.size()+dniint);
+   
+    	}
+    	if(dnitr!=null && dnitr.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("dnitr "+dnitr.size()+dnitr);
+    	
+    	}
+    	if(idrel!=null && idrel.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("idrel "+idrel.size()+idrel);
+    	
+    	}
+    	if(idrelint!=null && idrelint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("idrelint "+idrelint.size()+idrelint);
+    	
+    	}
+    	if (notatr !=null) {
+	    	for (int i=0; i<notatr.size();i++) {
+	    		Integer idRelacion=idrel.get(i);
+	    		Integer nota=notatr.get(i);
+	    		String dniEvaluado=dnitr.get(i);
+	    		//dniEvaluador es dniActual
+	    		//idEvaluacion es id
+	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idRelacion, nota);
+	    		
+	    	}
+    	}
+    	
+    	if (notaint !=null) {
+	    	for (int i=0; i<notaint.size();i++) {
+	    		Integer idRelacion=idrelint.get(i);
+	    		Integer nota=notaint.get(i);
+	    		String dniEvaluado=dniint.get(i);
+	    		//dniEvaluador es dniActual
+	    		//idEvaluacion es id
+	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idRelacion, nota);
+	    		
+	    	}
+    	}
+    	
+    	
+    	return concreta();
+    }
 
 	public List<CompCompetencias> getListaCompetencias() {
 		return listaCompetencias;
@@ -829,6 +908,96 @@ public class EvaluacionesAction extends MidasActionSupport{
 	public void setListaTrabajadoresAll(List<CompTrabajadores> listaTrabajadoresAll) {
 		this.listaTrabajadoresAll = listaTrabajadoresAll;
 	}
+
+	public List<String> getDnitr() {
+		return dnitr;
+	}
+
+	public void setDnitr(List<String> dnitr) {
+		this.dnitr = dnitr;
+	}
+
+	public List<String> getDniint() {
+		return dniint;
+	}
+
+	public void setDniint(List<String> dniint) {
+		this.dniint = dniint;
+	}
+
+	public List<String> getCompetint() {
+		return competint;
+	}
+
+	public void setCompetint(List<String> competint) {
+		this.competint = competint;
+	}
+
+	public List<Integer> getComport() {
+		return comport;
+	}
+
+	public void setComport(List<Integer> comport) {
+		this.comport = comport;
+	}
+
+	public List<Integer> getComportint() {
+		return comportint;
+	}
+
+	public void setComportint(List<Integer> comportint) {
+		this.comportint = comportint;
+	}
+
+	public List<Integer> getNotatr() {
+		return notatr;
+	}
+
+	public void setNotatr(List<Integer> notatr) {
+		this.notatr = notatr;
+	}
+
+	public List<Integer> getNotaint() {
+		return notaint;
+	}
+
+	public void setNotaint(List<Integer> notaint) {
+		this.notaint = notaint;
+	}
+
+	public List<Integer> getIdrel() {
+		return idrel;
+	}
+
+	public void setIdrel(List<Integer> idrel) {
+		this.idrel = idrel;
+	}
+
+	public List<Integer> getIdrelint() {
+		return idrelint;
+	}
+
+	public void setIdrelint(List<Integer> idrelint) {
+		this.idrelint = idrelint;
+	}
+
+	public List<CompValoraciones> getListaValoraciones() {
+		return listaValoraciones;
+	}
+
+	public void setListaValoraciones(List<CompValoraciones> listaValoraciones) {
+		this.listaValoraciones = listaValoraciones;
+	}
+
+	public String getDniActual() {
+		return dniActual;
+	}
+
+	public void setDniActual(String dniActual) {
+		this.dniActual = dniActual;
+	}
+
+
 
 
 

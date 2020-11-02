@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 @Stateless
 public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
@@ -164,5 +165,48 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 			
 			em.merge(e);
 			em.flush();
+	}
+	
+	@Override
+	public void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado, Integer idrelacion, Integer valoracion ) {
+		//DEBERIA COMPROBAR SI YA EXISTE ESA VALORACIÓN, Y ENTONCES HACER MERGE EN VEZ DE INSERTAR NUEVA
+		
+		Query query = em.createNamedQuery("CompValoraciones.findValoracion");
+		
+		query.setParameter("idevaluacion", idevaluacion).setParameter("dnievaluador", dnievaluador).setParameter("dnievaluado", dnievaluado).setParameter("idrelacion", idrelacion);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		if(encontrada.size()==0) {
+
+			CompValoraciones nueva=new CompValoraciones();
+			nueva.setIdevaluacion(idevaluacion);
+			nueva.setDnievaluador(dnievaluador);
+			nueva.setDnievaluado(dnievaluado);
+			nueva.setIdrelacion(idrelacion);
+			nueva.setValoracion(valoracion);
+			
+			em.persist(nueva);
+			
+			em.flush();
+		}
+		else {
+			encontrada.get(0).setValoracion(valoracion);
+			
+			em.merge(encontrada.get(0));
+			
+			em.flush();
+		}
+		
+	}
+	
+	@Override
+	public List<CompValoraciones> valoracionesPorIdEvaluacion (Integer idEvaluacion) {
+		Query query = em.createNamedQuery("CompValoraciones.findByIdEvaluacion");
+		
+		query.setParameter("idevaluacion", idEvaluacion);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
 	}
 }

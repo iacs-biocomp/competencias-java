@@ -3,6 +3,7 @@ package es.aragon.iacs.competencias.dao;
 import java.util.Date;
 import java.util.List;
 import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 public interface ICompEvaluacionesDAO {
 	List<CompEvaluaciones> findAll();
@@ -16,4 +17,6 @@ public interface ICompEvaluacionesDAO {
 	String getCatcompetencial(Integer id);
 	List<CompEvaluaciones> findActiva(String catCompetencial);
 	List<CompEvaluaciones> findActivoEvaluadores(String catCompetencial);
+	void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado, Integer idrelacion, Integer valoracion );
+	List<CompValoraciones> valoracionesPorIdEvaluacion (Integer idEvaluacion);
 }
