@@ -205,12 +205,12 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 	}
 	
 	@Override
-	public void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado, Integer idrelacion, Integer valoracion ) {
+	public void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado, Integer idcomp,String codcomp, Integer idnivel, Integer valoracion ) {
 		//DEBERIA COMPROBAR SI YA EXISTE ESA VALORACIÓN, Y ENTONCES HACER MERGE EN VEZ DE INSERTAR NUEVA
 		
 		Query query = em.createNamedQuery("CompValoraciones.findValoracion");
 		
-		query.setParameter("idevaluacion", idevaluacion).setParameter("dnievaluador", dnievaluador).setParameter("dnievaluado", dnievaluado).setParameter("idrelacion", idrelacion);
+		query.setParameter("idevaluacion", idevaluacion).setParameter("dnievaluador", dnievaluador).setParameter("dnievaluado", dnievaluado).setParameter("idcomp", idcomp).setParameter("idnivel", idnivel).setParameter("codcomp", codcomp);
 		@SuppressWarnings("unchecked")
 		List<CompValoraciones> encontrada = query.getResultList();
 		if(encontrada.size()==0) {
@@ -219,7 +219,9 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 			nueva.setIdevaluacion(idevaluacion);
 			nueva.setDnievaluador(dnievaluador);
 			nueva.setDnievaluado(dnievaluado);
-			nueva.setIdrelacion(idrelacion);
+			nueva.setIdcomp(idcomp);
+			nueva.setCodcomp(codcomp);
+			nueva.setIdnivel(idnivel);
 			nueva.setValoracion(valoracion);
 			
 			em.persist(nueva);

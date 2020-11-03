@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompValoraciones.findAll", query="SELECT c FROM CompValoraciones c ORDER BY c.id DESC"),
 	@NamedQuery(name="CompValoraciones.findById", query="SELECT c FROM CompValoraciones c WHERE c.id=:id"),
-	@NamedQuery(name="CompValoraciones.findValoracion", query="SELECT c FROM CompValoraciones c WHERE c.idevaluacion=:idevaluacion AND dnievaluador=:dnievaluador AND dnievaluado=:dnievaluado AND idrelacion=:idrelacion"),
+	@NamedQuery(name="CompValoraciones.findValoracion", query="SELECT c FROM CompValoraciones c WHERE c.idevaluacion=:idevaluacion AND dnievaluador=:dnievaluador AND dnievaluado=:dnievaluado AND idcomp=:idcomp AND idnivel=:idnivel AND codcomp=:codcomp"),
 	@NamedQuery(name="CompValoraciones.findByIdEvaluacion", query="SELECT c FROM CompValoraciones c WHERE c.idevaluacion=:idevaluacion")
 })
 public class CompValoraciones implements Serializable{
@@ -20,7 +20,9 @@ public class CompValoraciones implements Serializable{
 	private Integer idevaluacion;
 	private String dnievaluador;
 	private String dnievaluado;
-	private Integer idrelacion;
+	private Integer idcomp;
+	private String codcomp;
+	private Integer idnivel;
 	private Integer valoracion;
 	public Integer getId() {
 		return id;
@@ -46,17 +48,29 @@ public class CompValoraciones implements Serializable{
 	public void setDnievaluado(String dnievaluado) {
 		this.dnievaluado = dnievaluado;
 	}
-	public Integer getIdrelacion() {
-		return idrelacion;
-	}
-	public void setIdrelacion(Integer idrelacion) {
-		this.idrelacion = idrelacion;
-	}
 	public Integer getValoracion() {
 		return valoracion;
 	}
 	public void setValoracion(Integer valoracion) {
 		this.valoracion = valoracion;
+	}
+	public Integer getIdcomp() {
+		return idcomp;
+	}
+	public void setIdcomp(Integer idcomp) {
+		this.idcomp = idcomp;
+	}
+	public String getCodcomp() {
+		return codcomp;
+	}
+	public void setCodcomp(String codcomp) {
+		this.codcomp = codcomp;
+	}
+	public Integer getIdnivel() {
+		return idnivel;
+	}
+	public void setIdnivel(Integer idnivel) {
+		this.idnivel = idnivel;
 	}
 	
 }

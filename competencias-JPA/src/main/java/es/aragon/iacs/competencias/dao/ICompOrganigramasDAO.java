@@ -39,4 +39,7 @@ public interface ICompOrganigramasDAO {
 	List<CompPares> findParesTrabajador(String dniTrabajador);
 	List<CompSuperiores> findSuperioresTrabajador(String dniTrabajador);
 	
+	List<CompSuperiores> findSuperioresByTrabajador(String dniTrabajador);
+	List<CompSuperiores> findSuperioresBySuperior(String dniSuperior);
+	
 }

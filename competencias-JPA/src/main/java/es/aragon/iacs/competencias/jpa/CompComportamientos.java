@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name="CompComportamientos.findAll", query="SELECT c FROM CompComportamientos c ORDER BY c.descripcion"),
 	@NamedQuery(name="CompComportamientos.findById", query="SELECT c FROM CompComportamientos c WHERE c.id=:id"),
-	@NamedQuery(name="CompComportamientos.findActivos", query="SELECT c FROM CompComportamientos c WHERE c.baja=null OR c.baja='' OR c.baja>=:fechaHoy ORDER BY c.descripcion")
+	@NamedQuery(name="CompComportamientos.findActivos", query="SELECT c FROM CompComportamientos c WHERE c.baja=null OR c.baja>=:fechaHoy ORDER BY c.descripcion")
 })
 public class CompComportamientos implements Serializable{
 	private static final long serialVersionUID = 1L;

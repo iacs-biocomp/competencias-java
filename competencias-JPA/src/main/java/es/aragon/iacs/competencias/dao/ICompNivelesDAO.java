@@ -13,5 +13,7 @@ public interface ICompNivelesDAO {
 	void insert(String nombre, float valorporcentual, Date alta, Date baja);
 
 	void edit(Integer id, String nombre, float valorporcentual, Date alta, Date baja);
+	
+	List<CompNiveles> findActivos();
 
 }

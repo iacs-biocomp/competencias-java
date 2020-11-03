@@ -78,6 +78,28 @@ public class CompOrganigramasDAO implements ICompOrganigramasDAO{
 	}
 	
 	@Override
+	public List<CompSuperiores> findSuperioresByTrabajador(String dniTrabajador) {
+		CompOrganigramas orgActivo=findActivo();
+		Integer idOrganigrama=orgActivo.getId();
+		Query query = em.createNamedQuery("CompSuperiores.findSuperioresByTrabajador");
+		query.setParameter("id", idOrganigrama).setParameter("dniTrabajador", dniTrabajador);
+		@SuppressWarnings("unchecked")
+		List<CompSuperiores> projects = query.getResultList();
+		return projects;
+	}
+	
+	@Override
+	public List<CompSuperiores> findSuperioresBySuperior(String dniSuperior) {
+		CompOrganigramas orgActivo=findActivo();
+		Integer idOrganigrama=orgActivo.getId();
+		Query query = em.createNamedQuery("CompSuperiores.findSuperioresBySuperior");
+		query.setParameter("id", idOrganigrama).setParameter("dniSuperior", dniSuperior);
+		@SuppressWarnings("unchecked")
+		List<CompSuperiores> projects = query.getResultList();
+		return projects;
+	}
+	
+	@Override
 	public CompOrganigramas findActivo() {
 		Query query =em.createNamedQuery("CompOrganigramas.findActivo");
 		Date fechaActual = new Date();

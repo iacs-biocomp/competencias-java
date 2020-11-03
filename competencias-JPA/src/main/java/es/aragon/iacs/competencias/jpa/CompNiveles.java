@@ -12,7 +12,8 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="CompNiveles.findAll", query="SELECT c FROM CompNiveles c ORDER BY c.nombre"),
 	@NamedQuery(name="CompNiveles.findById", query="SELECT c FROM CompNiveles c WHERE c.id=:id"),
-	@NamedQuery(name="CompNiveles.findByNombre", query="SELECT c FROM CompNiveles c WHERE c.nombre=:nombre")
+	@NamedQuery(name="CompNiveles.findByNombre", query="SELECT c FROM CompNiveles c WHERE c.nombre=:nombre"),
+	@NamedQuery(name="CompNiveles.findActivos", query="SELECT c FROM CompNiveles c WHERE (c.baja=null  OR c.baja>=:fechaHoy)")
 })
 public class CompNiveles implements Serializable{
 	private static final long serialVersionUID = 1L;

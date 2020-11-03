@@ -36,14 +36,17 @@ pageEncoding="UTF-8"%>
 														<s:if test="%{ #rel.codcomp==#lacomp.codigo }">
 															<s:set var="lanota"><s:property value="inexistente"/></s:set>
 															<s:iterator value="listaValoraciones" var="val">
-																<s:if test="%{#val.dnievaluado==#trabajador.dni && #val.dnievaluador==dniActual && #val.idrelacion==#rel.idRel }">
+																<s:if test="%{#val.dnievaluado==#trabajador.dni && #val.dnievaluador==dniActual && #val.idcomp==#rel.idcomportamiento && #val.codcomp==#rel.codcomp}">
 																	<s:set var="lanota"><s:property value="#val.valoracion"/></s:set>
 																</s:if>
 															</s:iterator>
 																	<tr> 
 																		<td><s:property value="#rel.descripcion"/></td>
 																		<td>	
-																			<input type="hidden" name="idrel" value="<s:property value="#rel.idRel"/>">
+<%-- 																			<input type="hidden" name="idrel" value="<s:property value="#rel.idRel"/>"> --%>
+																			<input type="hidden" name="codcomp" value="<s:property value="#rel.codcomp"/>">
+																			<input type="hidden" name="idcomp" value="<s:property value="#rel.idcomportamiento"/>">
+																			<input type="hidden" name="idnivel" value="<s:property value="#rel.idnivel"/>">
 																			<input type="hidden" name="dnitr" value="<s:property value="dni"/>">
 																			<s:if test="%{ #lanota == 1 }">
 																				<input type="radio" id="nota1" name="notatr[<%=indice%>]" value="1" checked>
@@ -128,7 +131,7 @@ pageEncoding="UTF-8"%>
 															<s:if test="%{ #relint.codcomp==#lacomp.codigo }">
 																<s:set var="lanotaint"><s:property value="inexistente"/></s:set>
 																<s:iterator value="listaValoraciones" var="valint">
-																	<s:if test="%{#valint.dnievaluado==#evinterno.dnitrabajador && #valint.dnievaluador==dniActual && #valint.idrelacion==#relint.idRel }">
+																	<s:if test="%{#valint.dnievaluado==#evinterno.dnitrabajador && #valint.dnievaluador==dniActual && #valint.idcomp==#relint.idcomportamiento && #valint.codcomp==#relint.codcomp }">
 																	
 																		<s:set var="lanotaint"><s:property value="#valint.valoracion"/></s:set>
 																	
@@ -137,43 +140,45 @@ pageEncoding="UTF-8"%>
 																<tr> 
 																	<td><s:property value="#relint.descripcion"/></td>
 																	<td>
-																		<input type="hidden" name="idrelint" value="<s:property value="#relint.idRel"/>">
-
+<%-- 																		<input type="hidden" name="idrelint" value="<s:property value="#relint.idRel"/>"> --%>
+																		<input type="hidden" name="codcompint" value="<s:property value="#relint.codcomp"/>">
+																		<input type="hidden" name="idcompint" value="<s:property value="#relint.idcomportamiento"/>">
+																		<input type="hidden" name="idnivelint" value="<s:property value="#relint.idnivel"/>">
 																		<input type="hidden" name="dniint" value="<s:property value="#evinterno.dnitrabajador"/>">
 																		
 																			<s:if test="%{ #lanotaint == 1 }">
-																				<input type="radio" id="nota1" name="notaint[<%=indice%>]" value="1" checked>
+																				<input type="radio" id="nota1" name="notaint[<%=ind%>]" value="1" checked>
 																			</s:if>
 																			<s:else>
-																				<input type="radio" id="nota1" name="notaint[<%=indice%>]" value="1">
+																				<input type="radio" id="nota1" name="notaint[<%=ind%>]" value="1">
 																			</s:else>
 																			<label for="nota1">1</label>
 																			<s:if test="%{ #lanotaint == 2 }">
-																				<input type="radio" id="nota2" name="notaint[<%=indice%>]" value="2" checked>
+																				<input type="radio" id="nota2" name="notaint[<%=ind%>]" value="2" checked>
 																			</s:if>
 																			<s:else>
-																				<input type="radio" id="nota2" name="notaint[<%=indice%>]" value="2">
+																				<input type="radio" id="nota2" name="notaint[<%=ind%>]" value="2">
 																			</s:else>
 																			<label for="nota2">2</label>
 																			<s:if test="%{ #lanotaint == 3 }">
-																				<input type="radio" id="nota3" name="notaint[<%=indice%>]" value="3" checked>
+																				<input type="radio" id="nota3" name="notaint[<%=ind%>]" value="3" checked>
 																			</s:if>
 																			<s:else>
-																				<input type="radio" id="nota3" name="notaint[<%=indice%>]" value="3">
+																				<input type="radio" id="nota3" name="notaint[<%=ind%>]" value="3">
 																			</s:else>
 																			<label for="nota3">3</label>
 																			<s:if test="%{ #lanotaint == 4 }">
-																				<input type="radio" id="nota4" name="notaint[<%=indice%>]" value="4" checked>
+																				<input type="radio" id="nota4" name="notaint[<%=ind%>]" value="4" checked>
 																			</s:if>
 																			<s:else>
-																				<input type="radio" id="nota4" name="notaint[<%=indice%>]" value="4">
+																				<input type="radio" id="nota4" name="notaint[<%=ind%>]" value="4">
 																			</s:else>
 																			<label for="nota4">4</label>
 																			<s:if test="%{ #lanotaint == 5 }">
-																				<input type="radio" id="nota5" name="notaint[<%=indice%>]" value="5" checked>
+																				<input type="radio" id="nota5" name="notaint[<%=ind%>]" value="5" checked>
 																			</s:if>
 																			<s:else>
-																				<input type="radio" id="nota5" name="notaint[<%=indice%>]" value="5">
+																				<input type="radio" id="nota5" name="notaint[<%=ind%>]" value="5">
 																			</s:else>
 																			<label for="nota5">5</label>
 																		

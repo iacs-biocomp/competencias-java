@@ -382,7 +382,7 @@ pageEncoding="UTF-8"%>
 									<ul class="list-inline list-action">
 									
 										<s:if test="%{finevaluacion !=null  && fechaActual>finevaluacion}">
-											<li><a href="evaluacionConcretaResultados">Calcular evaluación</a></li>
+											<li><a href="calcularResultados?id=<s:property value="id"/>">Calcular evaluación</a></li>
 										</s:if>
 										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
@@ -456,10 +456,10 @@ pageEncoding="UTF-8"%>
 								<!-- Card content -->
 								<div class="card-content" style="width:100%;">
 								
-									<p><strong>Periodo evaluado:</strong> <s:property value="iniperiodo"/> - <s:property value="finperiodo"/></p>
-										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
-										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
-										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
+									<p><strong>Periodo evaluado:</strong> <s:date name="iniperiodo" format="yyyy-MM-dd"/>  - <s:date name="finperiodo" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/>  - <s:date name="finaportacion" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/>  - <s:date name="finvalidacion" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/>  - <s:date name="finevaluacion" format="yyyy-MM-dd"/> </p>
 									<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">

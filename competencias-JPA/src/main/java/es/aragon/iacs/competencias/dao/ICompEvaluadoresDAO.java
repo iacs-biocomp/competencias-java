@@ -18,4 +18,5 @@ public interface ICompEvaluadoresDAO {
 	List<CompEvaluadorInterno> internosFindAll();
 	List<CompEvaluadorExterno> findByEvaluadorExt(String dni);
 	List<CompEvaluadorInterno> findByEvaluadorInt(String dni);
+	List<CompEvaluadorInterno> findInternos(String dniTrabajador, Integer idEvaluacion,Integer grupo);
 }

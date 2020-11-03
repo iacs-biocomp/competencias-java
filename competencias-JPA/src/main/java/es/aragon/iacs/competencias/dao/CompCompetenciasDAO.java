@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -37,13 +38,20 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	public List<CompCompetencias> findActivas() {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompCompetencias.findActivas");
+		
 		Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaHoy=formateador.format(fechaActual);
-		query.setParameter("fechaHoy", fechaHoy);
-		@SuppressWarnings("unchecked")
-		List<CompCompetencias> projects = query.getResultList();
-		return projects;
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+			String fechaSistema=formateador.format(fechaActual);
+	        Date fechaHoy = formateador.parse(fechaSistema);
+			query.setParameter("fechaHoy", fechaHoy);
+			@SuppressWarnings("unchecked")
+			List<CompCompetencias> activas = query.getResultList();
+			return activas;
+		}catch(ParseException e) {
+			return null;
+		}
+
 	}
 	
 	@Override

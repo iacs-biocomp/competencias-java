@@ -11,7 +11,8 @@ import javax.persistence.*;
 	@NamedQuery(name="CompEvaluadorInterno.findByEvaluador", query="SELECT c FROM CompEvaluadorInterno c WHERE c.dnievaluador=:dnievaluador ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorInterno.findByDniTrabajador", query="SELECT c FROM CompEvaluadorInterno c WHERE c.dnitrabajador=:dnitrabajador ORDER BY c.idrelacion"),
 	@NamedQuery(name="CompEvaluadorInterno.findById", query="SELECT c FROM CompEvaluadorInterno c WHERE c.idrelacion=:idrelacion"),
-	@NamedQuery(name="CompEvaluadorInterno.findRelacion", query="SELECT c FROM CompEvaluadorInterno c WHERE c.idevaluacion=:idevaluacion AND c.dnievaluador=:dnievaluador AND c.dnitrabajador=:dnitrabajador")
+	@NamedQuery(name="CompEvaluadorInterno.findRelacion", query="SELECT c FROM CompEvaluadorInterno c WHERE c.idevaluacion=:idevaluacion AND c.dnievaluador=:dnievaluador AND c.dnitrabajador=:dnitrabajador"),
+	@NamedQuery(name="CompEvaluadorInterno.findInternos", query="SELECT c FROM CompEvaluadorInterno c WHERE c.dnitrabajador=:dnitrabajador AND grupo=:grupo AND idevaluacion=:idevaluacion ORDER BY c.idrelacion")
 })
 public class CompEvaluadorInterno implements Serializable{
 	

@@ -119,6 +119,12 @@ public class EvaluacionesAction extends MidasActionSupport{
 	
 	private List<Integer> idrel;
 	private List<Integer> idrelint;
+	private List<Integer> idcomp;
+	private List<String> codcomp;
+	private List<Integer> idcompint;
+	private List<String> codcompint;
+	private List<Integer> idnivel;
+	private List<Integer> idnivelint;
 	
 	private List<CompValoraciones> listaValoraciones;
 	
@@ -376,7 +382,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 //    	Integer idActual=4; //DEBERIA PONER EL ID ACTUAL
     	misPares=organigramasDao.findParesTrabajador(dniActual);
         misSuperiores=organigramasDao.findSuperioresTrabajador(dniActual);
-    	evaluadoresInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
+    	
     	listaTrabajadoresAll = trabajadoresDao.findAll();
     	listaTrabajadores=new ArrayList<CompTrabajadores>();
 //    	meHanElegido=new ArrayList<CompEvaluadorInterno>();
@@ -436,18 +442,20 @@ public class EvaluacionesAction extends MidasActionSupport{
     		}
     			
     	}
-    	
+    	List<CompEvaluadorInterno> evInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
+    	evaluadoresInternos=new ArrayList<CompEvaluadorInterno>();
     	//COMPRPBAR EN LISTA DE EVALUADORES INTERNOS, Y AÑADIR AQUELLOS DE LOS CUALES TU SEAS EVALUADOR
-//    	for(int i=0;i<evaluadoresInternos.size();i++) {
-//    	
-//    			log.debug("DENTRO sup 1");
-//    			String dniT=evaluadoresInternos.get(i).getDnitrabajador();
-//    			CompTrabajadores tr=trabajadoresDao.trabajador(dniT);
-//    			if(tr.getCatcompetencial().equals(cat)) {
-//    				listaTrabajadores.add(tr);
-//    			}
-//	
-//    	}
+    	for(int i=0;i<evInternos.size();i++) {
+    	
+    			log.debug("DENTRO sup 1");
+    			String dniT=evInternos.get(i).getDnitrabajador();
+    			CompTrabajadores tr=trabajadoresDao.trabajador(dniT);
+    			if(tr.getCatcompetencial().equals(cat)) {
+    				evaluadoresInternos.add(evInternos.get(i));
+    				log.debug("evaluadores internos: "+evaluadoresInternos);
+    			}
+	
+    	}
     	
     	listaCompetencias=new ArrayList<CompCompetencias>();
     	String nueva=evaluacionActual.getComp1();
@@ -536,36 +544,70 @@ public class EvaluacionesAction extends MidasActionSupport{
     		log.debug("dnitr "+dnitr.size()+dnitr);
     	
     	}
-    	if(idrel!=null && idrel.size()!=0) {
+//    	if(idrel!=null && idrel.size()!=0) {
+//    		//HACER LO QUE SEA CON LOS DATOS
+//    		log.debug("idrel "+idrel.size()+idrel);
+//    	
+//    	}
+    	if(idcomp!=null && idcomp.size()!=0) {
     		//HACER LO QUE SEA CON LOS DATOS
-    		log.debug("idrel "+idrel.size()+idrel);
+    		log.debug("idcomp "+idcomp.size()+idcomp);
     	
     	}
-    	if(idrelint!=null && idrelint.size()!=0) {
+    	if(codcomp!=null && codcomp.size()!=0) {
     		//HACER LO QUE SEA CON LOS DATOS
-    		log.debug("idrelint "+idrelint.size()+idrelint);
+    		log.debug("codcomp "+codcomp.size()+codcomp);
+    	
+    	}
+    	if(idcompint!=null && idcompint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("idcompint "+idcompint.size()+idcompint);
+    	
+    	}
+    	if(codcompint!=null && codcompint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("codcompint "+codcompint.size()+codcompint);
+    	
+    	}
+//    	if(idrelint!=null && idrelint.size()!=0) {
+//    		//HACER LO QUE SEA CON LOS DATOS
+//    		log.debug("idrelint "+idrelint.size()+idrelint);
+//    	
+//    	}
+    	if(idnivel!=null && idnivel.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("idnivel "+idnivel.size()+idnivel);
+    	
+    	}
+    	if(idnivelint!=null && idnivelint.size()!=0) {
+    		//HACER LO QUE SEA CON LOS DATOS
+    		log.debug("idnivelint "+idnivelint.size()+idnivelint);
     	
     	}
     	if (notatr !=null) {
 	    	for (int i=0; i<notatr.size();i++) {
-	    		Integer idRelacion=idrel.get(i);
+	    		Integer idcomportamiento=idcomp.get(i);
+	    		String codcompetencia=codcomp.get(i);
 	    		Integer nota=notatr.get(i);
 	    		String dniEvaluado=dnitr.get(i);
+	    		Integer nivel=idnivel.get(i);
 	    		//dniEvaluador es dniActual
 	    		//idEvaluacion es id
-	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idRelacion, nota);
+	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idcomportamiento,codcompetencia, nivel,nota);
 	    		
 	    	}
     	}
     	
     	if (notaint !=null) {
 	    	for (int i=0; i<notaint.size();i++) {
-	    		Integer idRelacion=idrelint.get(i);
+	    		Integer idcomportamiento=idcompint.get(i);
+	    		String codcompetencia=codcompint.get(i);
 	    		Integer nota=notaint.get(i);
 	    		String dniEvaluado=dniint.get(i);
+	    		Integer nivel=idnivelint.get(i);
 	    		//dniEvaluador es dniActual
 	    		//idEvaluacion es id
-	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idRelacion, nota);
+	    		evaluacionesDao.insertValoracion(id, dniActual, dniEvaluado, idcomportamiento,codcompetencia, nivel,nota);
 	    		
 	    	}
     	}
@@ -1008,6 +1050,54 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setFechaActual(Date fechaActual) {
 		this.fechaActual = fechaActual;
+	}
+
+	public List<Integer> getIdcomp() {
+		return idcomp;
+	}
+
+	public void setIdcomp(List<Integer> idcomp) {
+		this.idcomp = idcomp;
+	}
+
+	public List<String> getCodcomp() {
+		return codcomp;
+	}
+
+	public void setCodcomp(List<String> codcomp) {
+		this.codcomp = codcomp;
+	}
+
+	public List<Integer> getIdcompint() {
+		return idcompint;
+	}
+
+	public void setIdcompint(List<Integer> idcompint) {
+		this.idcompint = idcompint;
+	}
+
+	public List<String> getCodcompint() {
+		return codcompint;
+	}
+
+	public void setCodcompint(List<String> codcompint) {
+		this.codcompint = codcompint;
+	}
+
+	public List<Integer> getIdnivel() {
+		return idnivel;
+	}
+
+	public void setIdnivel(List<Integer> idnivel) {
+		this.idnivel = idnivel;
+	}
+
+	public List<Integer> getIdnivelint() {
+		return idnivelint;
+	}
+
+	public void setIdnivelint(List<Integer> idnivelint) {
+		this.idnivelint = idnivelint;
 	}
 
 

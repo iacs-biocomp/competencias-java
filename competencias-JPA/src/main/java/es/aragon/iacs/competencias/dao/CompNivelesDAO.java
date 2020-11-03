@@ -1,5 +1,6 @@
 package es.aragon.iacs.competencias.dao;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Date;
 import java.text.DateFormat;
@@ -24,6 +25,25 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 		@SuppressWarnings("unchecked")
 		List<CompNiveles> projects = query.getResultList();
 		return projects;
+	}
+	
+	@Override
+	public List<CompNiveles> findActivos() {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompNiveles.findActivos");
+		Date fechaActual = new Date();
+		try {
+			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+			String fechaSistema=formateador.format(fechaActual);
+	        Date fechaHoy = formateador.parse(fechaSistema);
+			query.setParameter("fechaHoy", fechaHoy);
+			@SuppressWarnings("unchecked")
+			List<CompNiveles> activos = query.getResultList();
+			return activos;
+		}catch(ParseException e) {
+			return null;
+		}
+
 	}
 	
 	@Override
