@@ -18,7 +18,7 @@ public class CompResultadosDAO implements ICompResultadosDAO{
 	//GRUPO EV 1: AUTOEVALUACION ; 2: JEFES ; 3: INFERIORES ; 4: PARES (+ELEGIDOS 1) ; 5: ELEGIDOS 2
 	
 	@Override
-	public void sumarValoracion(Integer idEvaluacion, String dni, Integer grupoev,String codcomp, Integer idnivel, Integer valoracion) {
+	public void sumarValoracion(Integer idEvaluacion, String dni, Integer grupoev,String codcomp, Integer idnivel, float valoracion) {
 		//BUSCO EN LA BD LA VALORACION CON ESTAS CARACTERISTICAS
 		Query query = em.createNamedQuery("CompResultados.findResultado");
 		query.setParameter("dni", dni).setParameter("grupoev", grupoev).setParameter("codcomp", codcomp).setParameter("idnivel", idnivel).setParameter("idevaluacion", idEvaluacion);

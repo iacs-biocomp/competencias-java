@@ -1,5 +1,9 @@
 package es.aragon.iacs.competencias.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import es.aragon.midas.action.MidasActionSupport;
 import javax.ejb.EJB;
@@ -28,6 +32,7 @@ public class ResultadosAction extends MidasActionSupport{
     @EJB(name="CompEvaluacionesDAO")
     private ICompEvaluacionesDAO evaluacionesDao;
     private CompEvaluaciones evaluacionActual;
+    private List<CompEvaluaciones> listaEvaluaciones;
     
     @EJB(name="CompTrabajadoresDAO")
     private ICompTrabajadoresDAO trabajadoresDao;
@@ -46,20 +51,51 @@ public class ResultadosAction extends MidasActionSupport{
     
     @EJB(name="CompCompetenciasDAO")
     private ICompCompetenciasDAO competenciasDao;
+    List<CompCompetencias> listaCompetencias;
     
     List<CompNiveles> niveles;
     List<CompTrabajadores> evaluados;
     List<CompCompetencias> competencias;
     
     List<CompResultados> resultados;
+    
+    private boolean editar;
+    private boolean editar2;
+    private boolean mis;
+    private Date fechaActual;
 	{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
     
+//	public Date fechaActual() {
+//		
+//		Date fecha = new Date();
+//		try {
+//			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+//	        String fechaHoy=formateador.format(fecha);
+//	        fecha = formateador.parse(fechaHoy);
+//	        return fecha;
+//		}
+//		catch (ParseException e){
+//			return fecha;
+//		}     
+//	}
+//	
+
+    
     public String mis() {
-    	
     	dniActual=user.getIdd();
-    	return "resultados";
+    	CompTrabajadores trabajador=trabajadoresDao.trabajador(dniActual);
+    	evaluados=new ArrayList<CompTrabajadores>();
+    	evaluados.add(trabajador);
+    	competencias=competenciasDao.findAll();
+    	niveles=nivelesDao.findActivos();
+    	evaluacionActual=evaluacionesDao.findById(id);
+    	String catcomp=evaluacionActual.getCatcompetencial();
+    	resultados=resultadosDao.evaluacionCalculada(id);
+    	
+    	
+    	return "resultadosConcretos";
     }
     
     public String calcular() {
@@ -202,6 +238,61 @@ public class ResultadosAction extends MidasActionSupport{
 	        		}
 	    			
 	    		}
+	    		
+	    		
+	    		//BUCLE PARA CALCULAR EL PROMEDIO EN CADA CASO
+	    		//Bucle para cada trabajador encontrado para calcular sus resultados
+		    	for(int a=0;a<evaluados.size();a++) {
+		    		log.debug("bucle evaluados");
+		    		dniEvaluado=evaluados.get(a).getDni();
+		    		resultados=resultadosDao.evaluacionCalculada(id);
+		    		for(int j=0;j<competencias.size();j++){
+		    			for(int k=0;k<niveles.size();k++) {
+		    				float promedio=0.0f;
+		    				boolean evaluado=false;
+		    				//Para cada grupo busca las correspondientes, y añade una que sea el promedio
+		    				for(int t=0;t<resultados.size();t++) {
+//		    					log.debug("dentro bucle resultados");
+		    					if(resultados.get(t).getGrupoev()==1 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    						log.debug("pongo evaluado a true");
+		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						evaluado=true;
+		    					}
+		    					if(resultados.get(t).getGrupoev()==2 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						log.debug("pongo evaluado a true");
+		    						evaluado=true;
+		    					}
+		    					if(resultados.get(t).getGrupoev()==3 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						log.debug("pongo evaluado a true");
+		    						evaluado=true;
+		    					}
+		    					if(resultados.get(t).getGrupoev()==4 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						log.debug("pongo evaluado a true");
+		    						evaluado=true;
+		    					}
+		    					if(resultados.get(t).getGrupoev()==5 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						log.debug("pongo evaluado a true");
+		    						evaluado=true;
+		    					}
+		    					
+		    				}
+		    				if(evaluado) {
+		    					log.debug("voy a añadir el promedio");
+		    					resultadosDao.sumarValoracion(id,dniEvaluado,niveles.get(k).getId(),competencias.get(j).getCodigo(),-1, promedio);
+		    				}
+		    				
+		    				
+		    				
+		    			}
+		    			
+		    		}
+		    	}	
+	    		
+	    		
 	    	}
 	    	resultados=resultadosDao.evaluacionCalculada(id);
     	}
@@ -262,6 +353,54 @@ public class ResultadosAction extends MidasActionSupport{
 
 	public void setCompetencias(List<CompCompetencias> competencias) {
 		this.competencias = competencias;
+	}
+
+	public List<CompEvaluaciones> getListaEvaluaciones() {
+		return listaEvaluaciones;
+	}
+
+	public void setListaEvaluaciones(List<CompEvaluaciones> listaEvaluaciones) {
+		this.listaEvaluaciones = listaEvaluaciones;
+	}
+
+	public boolean isEditar() {
+		return editar;
+	}
+
+	public void setEditar(boolean editar) {
+		this.editar = editar;
+	}
+
+	public boolean isEditar2() {
+		return editar2;
+	}
+
+	public void setEditar2(boolean editar2) {
+		this.editar2 = editar2;
+	}
+
+	public boolean isMis() {
+		return mis;
+	}
+
+	public void setMis(boolean mis) {
+		this.mis = mis;
+	}
+
+	public List<CompCompetencias> getListaCompetencias() {
+		return listaCompetencias;
+	}
+
+	public void setListaCompetencias(List<CompCompetencias> listaCompetencias) {
+		this.listaCompetencias = listaCompetencias;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
 	}
 	
 }

@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 				     	<s:iterator value="niveles">
 				      		<th scope="col"><s:property value="nombre"/> </th>
 				      	</s:iterator>
-		
+						<th scope="col">Promedio </th>
 				
 				     </tr>
 				   </thead>
@@ -30,11 +30,18 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==1 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
 				      </s:iterator>
+				      <s:set var="lanota">-</s:set>
+				   	 	<s:iterator value="resultados">
+				   	 		<s:if test="%{ dnievaluado==dni && grupoev==1 && idnivel==-1 && #competencia.codigo ==codcomp}">
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      		</s:if>
+				      	</s:iterator>
+				      	<td><s:property value="lanota"/></td>
 				   </tr>
 			
 					<tr>
@@ -44,11 +51,18 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==2 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
 				      </s:iterator>
+				      <s:set var="lanota">-</s:set>
+				   	 	<s:iterator value="resultados">
+				   	 		<s:if test="%{ dnievaluado==dni && grupoev==2 && idnivel==-1 && #competencia.codigo ==codcomp}">
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      		</s:if>
+				      	</s:iterator>
+				      	<td><s:property value="lanota"/></td>
 				   </tr>
 					<tr>
 				   	 <th>Personas a las que les organizo el trabajo</th>
@@ -57,11 +71,18 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==3 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
 				      </s:iterator>
+				      <s:set var="lanota">-</s:set>
+				   	 	<s:iterator value="resultados">
+				   	 		<s:if test="%{ dnievaluado==dni && grupoev==3 && idnivel==-1 && #competencia.codigo ==codcomp}">
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      		</s:if>
+				      	</s:iterator>
+				      	<td><s:property value="lanota"/></td>
 				   </tr>
 				   <tr>
 				   	 <th>Personas que trabajan conmigo</th>
@@ -70,11 +91,18 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==4 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
 				      </s:iterator>
+				      <s:set var="lanota">-</s:set>
+				   	 	<s:iterator value="resultados">
+				   	 		<s:if test="%{ dnievaluado==dni && grupoev==4 && idnivel==-1 && #competencia.codigo ==codcomp}">
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      		</s:if>
+				      	</s:iterator>
+				      	<td><s:property value="lanota"/></td>
 				   </tr>
 				   <tr>
 				   	 <th>Personas a las que entrego mi trabajo</th>
@@ -83,11 +111,18 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==5 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
 				      </s:iterator>
+				      <s:set var="lanota">-</s:set>
+				   	 	<s:iterator value="resultados">
+				   	 		<s:if test="%{ dnievaluado==dni && grupoev==5 && idnivel==-1 && #competencia.codigo ==codcomp}">
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      		</s:if>
+				      	</s:iterator>
+				      	<td><s:property value="lanota"/></td>
 				   </tr>
 				</tbody>
 				</table>

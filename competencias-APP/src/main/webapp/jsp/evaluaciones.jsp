@@ -321,7 +321,7 @@ pageEncoding="UTF-8"%>
 									<!-- Card short description -->
 									<div class="card-short-description">
 										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<span class="badge badge-primary">Activa</span>
 										</s:if>
 										</h5>
@@ -442,7 +442,7 @@ pageEncoding="UTF-8"%>
 									<!-- Card short description -->
 									<div class="card-short-description">
 										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<span class="badge badge-primary">Activa</span>
 										</s:if>
 										</h5>
@@ -498,6 +498,9 @@ pageEncoding="UTF-8"%>
 									<ul class="list-inline list-action">
 									<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
+									</s:if>
+									<s:if test="%{ verResultados}">
+										<li><a href="misResultados?id=<s:property value="id"/>">Ver resultados</a></li>
 									</s:if>
 									</ul>
 								</div>

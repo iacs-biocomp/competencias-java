@@ -30,6 +30,8 @@ import es.aragon.iacs.competencias.jpa.CompEvaluadorInterno;
 import es.aragon.iacs.competencias.jpa.CompSuperiores;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 import es.aragon.iacs.competencias.jpa.CompValoraciones;
+import es.aragon.iacs.competencias.jpa.CompResultados;
+import es.aragon.iacs.competencias.dao.ICompResultadosDAO;
 
 public class EvaluacionesAction extends MidasActionSupport{
 	private static final long serialVersionUID = 2108264332221967943L;
@@ -55,6 +57,9 @@ public class EvaluacionesAction extends MidasActionSupport{
     
     @EJB(name="CompExternosDAO")
     private ICompExternosDAO externosDao;
+    
+    @EJB(name="CompResultadosDAO")
+    private ICompResultadosDAO resultadosDao;
     
     @EJB(name="CompEvaluacionesDAO")
     private ICompEvaluacionesDAO evaluacionesDao;
@@ -105,6 +110,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private Boolean editar2;
 	private Integer idEditar;
 	private Date fechaActual;
+	private Boolean verResultados;
 	
 	private Integer idNueva;
 	private CompEvaluaciones nuevaEvaluacion;
@@ -145,10 +151,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 			}
 			catch (ParseException e){
 				return fecha;
-			}
-	        
-
-	        
+			}     
 	}
 	
     public String mis() {
@@ -260,12 +263,47 @@ public class EvaluacionesAction extends MidasActionSupport{
         editar=false;
         editar2=false;
         idEditar=-1;
+        verResultados=false;
 //        listaEvaluaciones = evaluacionesDao.findAll();
 //        log.debug("Devolviendo lista de pruebas: " + listaNiveles.size());
 //        editar=false;
         return "evaluaciones"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
     }
+    
+    
+    public String misResultados() {
+    	
+    	dniActual=user.getIdd();
+    	
+    	List<CompEvaluaciones> todasEvaluaciones=evaluacionesDao.findAll(); 
+    	dniActual=user.getIdd();
+    	CompTrabajadores trabajador=trabajadoresDao.trabajador(dniActual);
+    	String catCompetencial=trabajador.getCatcompetencial();
+    	listaEvaluaciones=new ArrayList<CompEvaluaciones>();
+    	for(int i=0;i<todasEvaluaciones.size();i++) {
+    		//SOLO COMPRUEBA SI ES AUTOEVALUACION
+    		if(todasEvaluaciones.get(i).getCatcompetencial()!= null && todasEvaluaciones.get(i).getCatcompetencial().equals(catCompetencial)) {
+    			//COMPRUEBA SI ESTAN CALCULADOS SUS RESULTADOS
+    			List<CompResultados> resultados=resultadosDao.evaluacionCalculada(todasEvaluaciones.get(i).getId());
+    			if(resultados.size()!=0) {
+    				listaEvaluaciones.add(todasEvaluaciones.get(i));
+    			}
+    		}
+    	}
+    	
+    	mis=true;
+        listaCompetencias=competenciasDao.findAll();
+        fechaActual=fechaActual();
+        editar=false;
+        editar2=false;
+        idEditar=-1;
+        verResultados=true;
+
+        return "evaluaciones";
+
+    }
+    
     
     public String list() {
     	listaCatCompetenciales=catCompetencialesDao.findAll();
@@ -279,10 +317,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         mis=false;
         idEditar=-1;
         log.debug("Listará sin editar");
-//        listaOrganigramas = organigramasDao.findAll();
-////        log.debug("Devolviendo lista de pruebas: " + listaNiveles.size());
-//        editar=false;
-    	//NECESITO: listaCatCompetenciales, listaTrabajadores, listaExternos,listaCompetencias
+        verResultados=false;
         return "evaluaciones"; // Este es el valor de retorno que struts.xml asocia a tiles.
                         // Sirve para indicar qué visualización queremos como resultado
     }
@@ -317,6 +352,7 @@ public class EvaluacionesAction extends MidasActionSupport{
          editar=false;
          idEditar=-1;
 	      mis=false;
+	      verResultados=false;
     	return "evaluaciones"; 
     }
     
@@ -336,6 +372,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	editar2=false;
     	mis=false;
         idEditar=-1;
+        verResultados=false;
     	return "evaluaciones"; 
     }
     public String editar() {
@@ -350,6 +387,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	 editar2=false;
     	 mis=false;
     	idEditar=id;
+    	verResultados=false;
     	return "evaluaciones"; 
     }
     public String guardar() {
@@ -367,6 +405,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	 editar2=false;
     	 mis=false;
         idEditar=-1;
+        verResultados=false;
     	return "evaluaciones"; 
     }
     
@@ -516,7 +555,6 @@ public class EvaluacionesAction extends MidasActionSupport{
     	
     	listaValoraciones=evaluacionesDao.valoracionesPorIdEvaluacion(id);
     	log.debug("listaValoraciones: "+listaValoraciones.size()+listaValoraciones);
-    	
     	return "evaluacionConcreta";
     }
 
@@ -544,11 +582,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     		log.debug("dnitr "+dnitr.size()+dnitr);
     	
     	}
-//    	if(idrel!=null && idrel.size()!=0) {
-//    		//HACER LO QUE SEA CON LOS DATOS
-//    		log.debug("idrel "+idrel.size()+idrel);
-//    	
-//    	}
+
     	if(idcomp!=null && idcomp.size()!=0) {
     		//HACER LO QUE SEA CON LOS DATOS
     		log.debug("idcomp "+idcomp.size()+idcomp);
@@ -569,11 +603,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     		log.debug("codcompint "+codcompint.size()+codcompint);
     	
     	}
-//    	if(idrelint!=null && idrelint.size()!=0) {
-//    		//HACER LO QUE SEA CON LOS DATOS
-//    		log.debug("idrelint "+idrelint.size()+idrelint);
-//    	
-//    	}
+
     	if(idnivel!=null && idnivel.size()!=0) {
     		//HACER LO QUE SEA CON LOS DATOS
     		log.debug("idnivel "+idnivel.size()+idnivel);
@@ -1098,6 +1128,14 @@ public class EvaluacionesAction extends MidasActionSupport{
 
 	public void setIdnivelint(List<Integer> idnivelint) {
 		this.idnivelint = idnivelint;
+	}
+
+	public Boolean getVerResultados() {
+		return verResultados;
+	}
+
+	public void setVerResultados(Boolean verResultados) {
+		this.verResultados = verResultados;
 	}
 
 
