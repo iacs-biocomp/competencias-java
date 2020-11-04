@@ -5,6 +5,7 @@ import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
+import javax.ejb.EJB;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,11 +20,15 @@ import es.aragon.iacs.competencias.jpa.CompObjetivos;
 import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 import es.aragon.iacs.competencias.jpa.CompRelacionesComportamientos;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 @Stateless
 public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	@PersistenceContext(unitName = "competenciasPU")
 	private EntityManager em;	
+	
+	@EJB(name="CompEvaluacionesDAO")
+    private ICompEvaluacionesDAO evaluacionesDao;
 	
 	@Override
 	public List<CompCompetencias> findAll() {
@@ -125,13 +130,16 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	@Override
 	public void delete(String codigo) {
 		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompCompetencias.findById");
-		query.setParameter("codigo", codigo);
-		@SuppressWarnings("unchecked")
-		CompCompetencias cat=(CompCompetencias)query.getSingleResult();
-		//if cat is not null comprobar
-		em.remove(cat);
-		em.flush();
+		List<CompValoraciones> resultado=evaluacionesDao.valoracionesPorCodcomp(codigo);
+		if(resultado.size()==0) {
+			Query query = em.createNamedQuery("CompCompetencias.findById");
+			query.setParameter("codigo", codigo);
+			@SuppressWarnings("unchecked")
+			CompCompetencias cat=(CompCompetencias)query.getSingleResult();
+			//if cat is not null comprobar
+			em.remove(cat);
+			em.flush();
+		}
 	}
 	
 	@Override

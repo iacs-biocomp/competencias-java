@@ -9,6 +9,7 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="CompEvaluaciones.findAll", query="SELECT c FROM CompEvaluaciones c ORDER BY c.id DESC"),
 	@NamedQuery(name="CompEvaluaciones.findById", query="SELECT c FROM CompEvaluaciones c WHERE c.id=:id"),
+	@NamedQuery(name="CompEvaluaciones.findByCatcompetencial", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcompetencial"),
 	@NamedQuery(name="CompEvaluaciones.findActivos", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finevaluacion=null  OR c.finevaluacion>=:fechaHoy) ORDER BY c.id DESC"),
 	@NamedQuery(name="CompEvaluaciones.findActivoEvaluadores", query="SELECT c FROM CompEvaluaciones c WHERE c.catcompetencial=:catcomp AND (c.finaportacion=null OR c.finaportacion>=:fechaHoy) ORDER BY c.id DESC")
 })

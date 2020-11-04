@@ -19,4 +19,8 @@ public interface ICompEvaluacionesDAO {
 	List<CompEvaluaciones> findActivoEvaluadores(String catCompetencial);
 	void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado,  Integer idcomp,String codcomp, Integer idnivel, Integer valoracion );
 	List<CompValoraciones> valoracionesPorIdEvaluacion (Integer idEvaluacion);
+	List<CompValoraciones> valoracionesPorIdcomp (Integer idComp);
+	List<CompValoraciones> valoracionesPorCodcomp (String codcomp);
+	List<CompValoraciones> valoracionesPorIdnivel (Integer idnivel);
+	List<CompEvaluaciones> evaluacionesPorCatcompetencial (String catcompetencial);
 }

@@ -8,6 +8,7 @@ import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 public interface ICompCatCompetencialesDAO {
 
 	List<CompCatCompetenciales> findAll();
+	List<CompCatCompetenciales> findActivas();
 
 	void delete(String codigo);
 

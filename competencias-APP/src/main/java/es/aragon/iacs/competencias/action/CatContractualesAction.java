@@ -27,7 +27,7 @@ public class CatContractualesAction extends MidasActionSupport{
     private String catcomp;
 
     {
-        setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
+        setGrantRequired("PUBLIC"); // Esto se puede cambiar, segï¿½n interese la seguridad
     }
 
     public String list() {
@@ -35,7 +35,7 @@ public class CatContractualesAction extends MidasActionSupport{
         log.debug("Devolviendo lista de pruebas: " + listaCatContractuales.size());
         editar=false;
         return "catContractuales"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
 
     }
     
@@ -45,7 +45,7 @@ public class CatContractualesAction extends MidasActionSupport{
         log.debug("Devolviendo lista de pruebas: " + listaCatContractuales.size());
         editar=true;
         return "catContractuales"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
 
     }
     public String guardar() {
@@ -58,7 +58,7 @@ public class CatContractualesAction extends MidasActionSupport{
         editar=false;
         
         return "catContractuales"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
 
     }
 

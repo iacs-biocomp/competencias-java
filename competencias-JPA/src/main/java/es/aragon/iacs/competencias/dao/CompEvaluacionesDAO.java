@@ -206,7 +206,7 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 	
 	@Override
 	public void insertValoracion(Integer idevaluacion, String dnievaluador, String dnievaluado, Integer idcomp,String codcomp, Integer idnivel, Integer valoracion ) {
-		//DEBERIA COMPROBAR SI YA EXISTE ESA VALORACIÓN, Y ENTONCES HACER MERGE EN VEZ DE INSERTAR NUEVA
+		//DEBERIA COMPROBAR SI YA EXISTE ESA VALORACIï¿½N, Y ENTONCES HACER MERGE EN VEZ DE INSERTAR NUEVA
 		
 		Query query = em.createNamedQuery("CompValoraciones.findValoracion");
 		
@@ -245,6 +245,50 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 		query.setParameter("idevaluacion", idEvaluacion);
 		@SuppressWarnings("unchecked")
 		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
+
+	@Override
+	public List<CompValoraciones> valoracionesPorIdcomp (Integer idComp) {
+		Query query = em.createNamedQuery("CompValoraciones.findByIdcomp");
+		
+		query.setParameter("idcomp", idComp);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
+
+	@Override
+	public List<CompValoraciones> valoracionesPorCodcomp (String codcomp) {
+		Query query = em.createNamedQuery("CompValoraciones.findByCodcomp");
+		
+		query.setParameter("codcomp", codcomp);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
+
+	@Override
+	public List<CompValoraciones> valoracionesPorIdnivel (Integer idnivel) {
+		Query query = em.createNamedQuery("CompValoraciones.findByIdNivel");
+		
+		query.setParameter("idnivel", idnivel);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
+	
+	@Override
+	public List<CompEvaluaciones> evaluacionesPorCatcompetencial (String catcompetencial) {
+		Query query = em.createNamedQuery("CompEvaluaciones.findByCatcompetencial");
+		
+		query.setParameter("catcompetencial", catcompetencial);
+		@SuppressWarnings("unchecked")
+		List<CompEvaluaciones> encontrada = query.getResultList();
 		return encontrada;
 		
 	}

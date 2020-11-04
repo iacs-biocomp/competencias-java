@@ -9,14 +9,21 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
+import javax.ejb.EJB;
 import es.aragon.iacs.competencias.jpa.CompComportamientos;
 import es.aragon.iacs.competencias.jpa.CompNiveles;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
+//import src.main.java.es.aragon.iacs.competencias.action.EJB;
+//import src.main.java.es.aragon.iacs.competencias.action.ICompNivelesDAO;
+import es.aragon.iacs.competencias.dao.ICompEvaluacionesDAO;
 
 @Stateless
 public class CompNivelesDAO implements ICompNivelesDAO {
 	@PersistenceContext(unitName = "competenciasPU")
 	private EntityManager em;	
+	
+	@EJB(name="CompEvaluacionesDAO")
+    private ICompEvaluacionesDAO evaluacionesDao;
 
 	@Override
 	public List<CompNiveles> findAll() {
@@ -49,13 +56,17 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompNiveles.findById");
-		query.setParameter("id", id);
-		@SuppressWarnings("unchecked")
-		CompNiveles n=(CompNiveles)query.getSingleResult();
-		//if cat is not null comprobar
-		em.remove(n);
-		em.flush();
+		List<CompValoraciones> resultado=evaluacionesDao.valoracionesPorIdnivel(id);
+		if(resultado.size()==0) { //No ha sido evaluado aun, se puede eliminar
+			Query query = em.createNamedQuery("CompNiveles.findById");
+			query.setParameter("id", id);
+			@SuppressWarnings("unchecked")
+			CompNiveles n=(CompNiveles)query.getSingleResult();
+			//if cat is not null comprobar
+			em.remove(n);
+			em.flush();
+		}
+		
 		
 	}
 	

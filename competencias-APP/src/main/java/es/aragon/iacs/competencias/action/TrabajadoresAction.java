@@ -78,7 +78,7 @@ public class TrabajadoresAction extends MidasActionSupport{
 
     public String editar() {
     	log.debug("Editando trabajdor con dni="+dni+" nombre=" + nombre);
-        catCompetenciales = catCompetencialesDao.findAll();
+        catCompetenciales = catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findAll();
     	listaExternos = externosDao.findAll();
     	listaCatContractuales = catContractualesDao.findAll();

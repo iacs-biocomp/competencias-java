@@ -11,7 +11,8 @@ import java.util.Date;
 @Table(name="comp_cat_competenciales")
 @NamedQueries({
 	@NamedQuery(name="CompCatCompetenciales.findAll", query="SELECT c FROM CompCatCompetenciales c ORDER BY c.codigo"),
-	@NamedQuery(name="CompCatCompetenciales.findById", query="SELECT c FROM CompCatCompetenciales c WHERE c.codigo=:codigo")
+	@NamedQuery(name="CompCatCompetenciales.findById", query="SELECT c FROM CompCatCompetenciales c WHERE c.codigo=:codigo"),
+	@NamedQuery(name="CompCatCompetenciales.findActivas", query="SELECT c FROM CompCatCompetenciales c WHERE c.baja=null OR c.baja>=:fechaHoy ORDER BY c.codigo")
 })
 
 public class CompCatCompetenciales implements Serializable{

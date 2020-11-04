@@ -1,5 +1,6 @@
 package es.aragon.iacs.competencias.dao;
 
+import javax.ejb.EJB;
 import java.util.Date;
 import java.util.List;
 import java.text.SimpleDateFormat;
@@ -13,12 +14,16 @@ import javax.persistence.Query;
 import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.iacs.competencias.jpa.CompCompetencias;
 import es.aragon.iacs.competencias.jpa.CompComportamientos;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 @Stateless
 public class CompComportamientosDAO implements ICompComportamientosDAO {
 	@PersistenceContext(unitName = "competenciasPU")
 	private EntityManager em;	
 
+	@EJB(name="CompEvaluacionesDAO")
+    private ICompEvaluacionesDAO evaluacionesDao;
+	
 	@Override
 	public List<CompComportamientos> findAll() {
 		// TODO Auto-generated method stu
@@ -50,14 +55,18 @@ public class CompComportamientosDAO implements ICompComportamientosDAO {
 	
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompComportamientos.findById");
-		query.setParameter("id", id);
-		@SuppressWarnings("unchecked")
-		CompComportamientos comp=(CompComportamientos)query.getSingleResult();
-		//if cat is not null comprobar
-		em.remove(comp);
-		em.flush();
+		
+		List<CompValoraciones> resultado=evaluacionesDao.valoracionesPorIdcomp(id);
+		if(resultado.size()==0) {
+			Query query = em.createNamedQuery("CompComportamientos.findById");
+			query.setParameter("id", id);
+			@SuppressWarnings("unchecked")
+			CompComportamientos comp=(CompComportamientos)query.getSingleResult();
+			//if cat is not null comprobar
+			em.remove(comp);
+			em.flush();
+		}
+
 		
 	}
 	

@@ -7,13 +7,17 @@ import java.util.Date;
 import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
 import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.midas.action.MidasActionSupport;
-
+import es.aragon.iacs.competencias.dao.ICompEvaluacionesDAO;
+import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
+import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 public class CatCompetencialesAction extends MidasActionSupport{
 
     private static final long serialVersionUID = 2108264332221967943L;
     @EJB(name="CompCatCompetencialesDAO")
     private ICompCatCompetencialesDAO catCompetencialesDao;
+    @EJB(name="CompEvaluacionesDAO")
+    private ICompEvaluacionesDAO evaluacionesDao;
     private String codigo;
     private String nombre;
     private Date alta;

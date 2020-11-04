@@ -137,7 +137,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 	private String dniActual;
 	
 	{
-        setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
+        setGrantRequired("PUBLIC"); // Esto se puede cambiar, segï¿½n interese la seguridad
     }
 	
 	public Date fechaActual() {
@@ -200,7 +200,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     				}
     				
     			}
-    			//HACER BUCLE CON LOS SUPERIORES E INFERIORES, SI NO SE HA AÑADIDO YA
+    			//HACER BUCLE CON LOS SUPERIORES E INFERIORES, SI NO SE HA Aï¿½ADIDO YA
     			if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
     				for(int k=0;k<misSuperiores.size();k++) {
     					log.debug("Dentro de bucle superiores");
@@ -229,7 +229,7 @@ public class EvaluacionesAction extends MidasActionSupport{
         				
         				}
         				
-        			} //BUCLE CON LOS EVALUADORES INTERNOS  SI NO SE HA AÑADIDO YA
+        			} //BUCLE CON LOS EVALUADORES INTERNOS  SI NO SE HA Aï¿½ADIDO YA
     				if (listaEvaluaciones.size()!=0 && listaEvaluaciones.get(listaEvaluaciones.size()-1).getId() !=todasEvaluaciones.get(i).getId()) {
     					log.debug("dentro if internos");
     					for(int p=0;p<evaluadoresInternos.size();p++) {
@@ -254,11 +254,11 @@ public class EvaluacionesAction extends MidasActionSupport{
     	}
     	
     	mis=true;
-    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findAll();
         
         objCompCatcomp=competenciasDao.allObjCompCatcomp();
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
         editar=false;
         editar2=false;
@@ -268,7 +268,7 @@ public class EvaluacionesAction extends MidasActionSupport{
 //        log.debug("Devolviendo lista de pruebas: " + listaNiveles.size());
 //        editar=false;
         return "evaluaciones"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
     }
     
     
@@ -291,9 +291,9 @@ public class EvaluacionesAction extends MidasActionSupport{
     			}
     		}
     	}
-    	
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	mis=true;
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
         editar=false;
         editar2=false;
@@ -306,28 +306,28 @@ public class EvaluacionesAction extends MidasActionSupport{
     
     
     public String list() {
-    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaEvaluaciones=evaluacionesDao.findAll();
         objCompCatcomp=competenciasDao.allObjCompCatcomp();
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
         editar=false;
         editar2=false;
         mis=false;
         idEditar=-1;
-        log.debug("Listará sin editar");
+        log.debug("Listarï¿½ sin editar");
         verResultados=false;
         return "evaluaciones"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
     }
     
     public String nueva() {
-    	log.debug("Se va a añadir: "+nombre);
-    	//COMPROBAR QUE PUEDE AÑADIRSE: CATCOMPETNECIAL NO ESTA SINEDO EVALUADA YA DURANTE ESE PERIODO
+    	log.debug("Se va a aï¿½adir: "+nombre);
+    	//COMPROBAR QUE PUEDE Aï¿½ADIRSE: CATCOMPETNECIAL NO ESTA SINEDO EVALUADA YA DURANTE ESE PERIODO
     	
     	idNueva=evaluacionesDao.insert(nombre, iniaportacion, finaportacion, inivalidacion, finvalidacion,iniperiodo, finperiodo, inievaluacion, finevaluacion, catcompetencial);
-    	log.debug("Se ha añadido: "+nombre);
+    	log.debug("Se ha aï¿½adido: "+nombre);
     	if(idNueva != -1) {
 	    	nuevaEvaluacion=evaluacionesDao.findById(idNueva);
 	    	//    	listaCatCompetenciales=catCompetencialesDao.findAll();
@@ -337,9 +337,9 @@ public class EvaluacionesAction extends MidasActionSupport{
 	        objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
 	    	editar2=true;
     	}
-    	else { //NO SE HA PODIDO AÑADIR
-    		log.debug("no se ha podido añadir idNueva: "+idNueva);
-    		listaCatCompetenciales=catCompetencialesDao.findAll();
+    	else { //NO SE HA PODIDO Aï¿½ADIR
+    		log.debug("no se ha podido aï¿½adir idNueva: "+idNueva);
+    		listaCatCompetenciales=catCompetencialesDao.findActivas();
         	listaTrabajadores = trabajadoresDao.findAll();
             listaEvaluaciones=evaluacionesDao.findAll();
             objCompCatcomp=competenciasDao.allObjCompCatcomp();
@@ -347,7 +347,7 @@ public class EvaluacionesAction extends MidasActionSupport{
             editar2=false;
             
     	}
-    	 listaCompetencias=competenciasDao.findAll();
+    	 listaCompetencias=competenciasDao.findActivas();
          fechaActual=fechaActual();
          editar=false;
          idEditar=-1;
@@ -357,16 +357,16 @@ public class EvaluacionesAction extends MidasActionSupport{
     }
     
     public String nuevaInfo() {
-    	log.debug("Se va a añadir: "+id+comp0+comp1+comp2+comp3+comp4);
+    	log.debug("Se va a aï¿½adir: "+id+comp0+comp1+comp2+comp3+comp4);
 //    	log.debug("PROBANDO COMPET: "+compet);
     	evaluacionesDao.insertInfo(id, comp0,comp1,comp2,comp3,comp4,comp5,comp6,comp7,comp8,comp9);
-    	log.debug("Se ha añadido: "+id+comp0+comp1+comp2+comp3+comp4);
+    	log.debug("Se ha aï¿½adido: "+id+comp0+comp1+comp2+comp3+comp4);
     	catcompetencial=evaluacionesDao.getCatcompetencial(id);
-    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findByCatcomp(catcompetencial);
         listaEvaluaciones=evaluacionesDao.findAll();
         objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
     	editar=false;
     	editar2=false;
@@ -376,12 +376,12 @@ public class EvaluacionesAction extends MidasActionSupport{
     	return "evaluaciones"; 
     }
     public String editar() {
-    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaEvaluaciones=evaluacionesDao.findAll();
         catcompetencial=evaluacionesDao.getCatcompetencial(id);
         objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
     	editar=true;
     	 editar2=false;
@@ -394,12 +394,12 @@ public class EvaluacionesAction extends MidasActionSupport{
     	log.debug("se va a guardar elemento con id: "+id);
     	evaluacionesDao.guardar(id, nombre, iniaportacion, finaportacion, inivalidacion, finvalidacion,iniperiodo, finperiodo, inievaluacion, finevaluacion, 
     			catcompetencial, comp0,comp1, comp2, comp3, comp4, comp5, comp6, comp7, comp8, comp9);
-    	listaCatCompetenciales=catCompetencialesDao.findAll();
+    	listaCatCompetenciales=catCompetencialesDao.findActivas();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaEvaluaciones=evaluacionesDao.findAll();
         catcompetencial=evaluacionesDao.getCatcompetencial(id);
         objCompCatcomp=competenciasDao.compPorCatComp(catcompetencial);
-        listaCompetencias=competenciasDao.findAll();
+        listaCompetencias=competenciasDao.findActivas();
         fechaActual=fechaActual();
     	editar=false;
     	 editar2=false;
@@ -412,7 +412,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     public String concreta() {
     	log.debug("se va a evaluar evaluacion con id: "+id);
     	// Sacar la catcompetencial que se evalua en la evaluacion con id id
-    	// buscar de tus pares, superiores, inferiores, etc quienes tienen catcompetnecial y añadirlos a la lista de trabjaadores a evaluar
+    	// buscar de tus pares, superiores, inferiores, etc quienes tienen catcompetnecial y aï¿½adirlos a la lista de trabjaadores a evaluar
     	evaluacionActual=evaluacionesDao.findById(id);
     	String cat=evaluacionActual.getCatcompetencial();
     	dniActual=user.getIdd();
@@ -483,7 +483,7 @@ public class EvaluacionesAction extends MidasActionSupport{
     	}
     	List<CompEvaluadorInterno> evInternos=evaluadoresDao.findByEvaluadorInt(dniActual);
     	evaluadoresInternos=new ArrayList<CompEvaluadorInterno>();
-    	//COMPRPBAR EN LISTA DE EVALUADORES INTERNOS, Y AÑADIR AQUELLOS DE LOS CUALES TU SEAS EVALUADOR
+    	//COMPRPBAR EN LISTA DE EVALUADORES INTERNOS, Y Aï¿½ADIR AQUELLOS DE LOS CUALES TU SEAS EVALUADOR
     	for(int i=0;i<evInternos.size();i++) {
     	
     			log.debug("DENTRO sup 1");

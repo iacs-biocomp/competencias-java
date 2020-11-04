@@ -104,7 +104,7 @@ public class CompetenciasAction extends MidasActionSupport{
     public String concreta() {
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -126,7 +126,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	codCatCompetencial=cat.getCodigo();
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=false;
@@ -142,7 +142,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Se ha eliminado la relación con id: " + idRelacion);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -159,7 +159,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Se ha añadido relacion entre competencia con codigo: "+codigo+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -177,7 +177,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Se ha eliminado la relación con id: " + idRelacion);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -194,7 +194,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	log.debug("Se ha añadido relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatComp);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatComp);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(codCatComp);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -228,7 +228,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();
@@ -244,7 +244,7 @@ public class CompetenciasAction extends MidasActionSupport{
     	competenciasDao.editRelacion(idRelacion,objetivo);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
-    	listaNiveles=compNivelesDao.findAll();
+    	listaNiveles=compNivelesDao.findActivos();
     	CompCatCompetenciales cat=catCompetencialesDao.findById(catCompetencial);
     	nombreCatCompetencial=cat.getNombre();
     	codCatCompetencial=cat.getCodigo();

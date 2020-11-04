@@ -73,7 +73,7 @@ public class SupervisadosAction extends MidasActionSupport{
 //    	String catCompetencial=trabajador.getCatcompetencial();
     	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
 //    	log.debug("CompObjCompCatcomp: "+compObjCompCatcomp.size()+compObjCompCatcomp);
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=competenciasDao.findActivas();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
@@ -102,7 +102,7 @@ public class SupervisadosAction extends MidasActionSupport{
     	evaluadoresDao.deleteExterno(idRelacion);
     	
     	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=competenciasDao.findActivas();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();
@@ -126,7 +126,7 @@ public class SupervisadosAction extends MidasActionSupport{
     	
     	evaluadoresDao.deleteInterno(idRelacion);
     	compObjCompCatcomp=competenciasDao.allObjCompCatcomp();
-    	listaCompetencias=competenciasDao.findAll();
+    	listaCompetencias=competenciasDao.findActivas();
 //    	posiblesSupervisados = trabajadoresDao.findAll();
     	listaTrabajadores = trabajadoresDao.findAll();
         listaExternos = externosDao.findAll();

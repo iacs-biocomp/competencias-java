@@ -212,7 +212,14 @@ pageEncoding="UTF-8"%>
 											<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/> - <s:date name="finaportacion" format="yyyy-MM-dd"/></p>
 											<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/> - <s:date name="finvalidacion" format="yyyy-MM-dd"/></p>
 											<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/> - <s:date name="finevaluacion" format="yyyy-MM-dd"/></p>
-										<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
+									
+										<p><strong> Puestos de trabajo evaluados:</strong> 
+											<s:iterator value="listaCatCompetenciales" var="cat">
+												<s:if test="%{codigo ==catcompetencial }">
+													<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
+												</s:if>
+											</s:iterator>
+											</p>
 <%-- 										<p><strong> Trabajadores evaluados:</strong>  </p> --%>
 <!-- 										<div class="col-sm-offset-2 col-sm-10">  -->
 <%-- 											<s:iterator value="listaTrabajadores" status="incr"> --%>
@@ -342,9 +349,10 @@ pageEncoding="UTF-8"%>
 									<p><strong> Puestos de trabajo evaluados:</strong> 
 									<s:iterator value="listaCatCompetenciales" var="cat">
 										<s:if test="%{codigo ==catcompetencial }">
-											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. </p>
+											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
 										</s:if>
 									</s:iterator>
+									</p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">
@@ -460,7 +468,14 @@ pageEncoding="UTF-8"%>
 										<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/>  - <s:date name="finaportacion" format="yyyy-MM-dd"/> </p>
 										<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/>  - <s:date name="finvalidacion" format="yyyy-MM-dd"/> </p>
 										<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/>  - <s:date name="finevaluacion" format="yyyy-MM-dd"/> </p>
-									<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
+									
+									<p><strong> Puestos de trabajo evaluados:</strong> 
+									<s:iterator value="listaCatCompetenciales" var="cat">
+										<s:if test="%{codigo ==catcompetencial }">
+											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
+										</s:if>
+									</s:iterator>
+									</p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">
