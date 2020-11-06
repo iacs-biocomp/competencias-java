@@ -281,6 +281,27 @@ public class CompEvaluacionesDAO implements ICompEvaluacionesDAO{
 		return encontrada;
 		
 	}
+	@Override
+	public List<CompValoraciones> valoracionesPorRelacion(Integer idevaluacion, String codcomp) {
+		Query query = em.createNamedQuery("CompValoraciones.findByRelacion");
+		
+		query.setParameter("idevaluacion", idevaluacion).setParameter("codcomp", codcomp);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
+	
+	@Override
+	public List<CompValoraciones> valoracionesPorRelacionComportamientos(Integer idevaluacion, String codcomp, Integer idnivel, Integer idcomportamiento) {
+		Query query = em.createNamedQuery("CompValoraciones.findByRelacionComportamientos");
+		
+		query.setParameter("idevaluacion", idevaluacion).setParameter("codcomp", codcomp).setParameter("idnivel", idnivel).setParameter("idcomp", idcomportamiento);
+		@SuppressWarnings("unchecked")
+		List<CompValoraciones> encontrada = query.getResultList();
+		return encontrada;
+		
+	}
 	
 	@Override
 	public List<CompEvaluaciones> evaluacionesPorCatcompetencial (String catcompetencial) {

@@ -78,12 +78,7 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 		query.setParameter("nombre", nombre);
 		@SuppressWarnings("unchecked")
 		List<CompNiveles> busqueda = query.getResultList();
-		//PASAR DE STRING A DATE CON FORMATO QUE QUIERO
-//	
-//		
-//		DateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
-//		Date convertidoAlta = fecha.parse(alta);
-//		Date convertidoBaja = fecha.parse(baja);
+
 		if(busqueda.size()==0) {
 		
 			CompNiveles nueva=new CompNiveles();
@@ -101,16 +96,20 @@ public class CompNivelesDAO implements ICompNivelesDAO {
 	@Override
 	public void edit(Integer id, String nombre, float valorporcentual, Date alta, Date baja) {
 		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompNiveles.findById");
-		query.setParameter("id", id);
-		@SuppressWarnings("unchecked")
-		CompNiveles n=(CompNiveles)query.getSingleResult();
-		n.setNombre(nombre);
-		n.setValorporcentual(valorporcentual);
-		n.setAlta(alta);
-		n.setBaja(baja);
-		//if cat is not null comprobar
-		em.merge(n);
-		em.flush();
+		List<CompValoraciones> resultado=evaluacionesDao.valoracionesPorIdnivel(id);
+		if(resultado.size()==0) { //No ha sido evaluado aun, se puede editar
+			Query query = em.createNamedQuery("CompNiveles.findById");
+			query.setParameter("id", id);
+			@SuppressWarnings("unchecked")
+			CompNiveles n=(CompNiveles)query.getSingleResult();
+			n.setNombre(nombre);
+			n.setValorporcentual(valorporcentual);
+			n.setAlta(alta);
+			n.setBaja(baja);
+			//if cat is not null comprobar
+			em.merge(n);
+			em.flush();
+		}
+		
 	}
 }

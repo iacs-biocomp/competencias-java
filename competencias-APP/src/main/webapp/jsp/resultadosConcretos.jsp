@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 
 <h1> Resultados ev concreta</h1>
 <s:iterator value="evaluacionActual">
-<s:iterator value="evaluados">
+<s:iterator value="evaluados" var="ev">
 <div class="row">
 	<div class="col-lg-12">
 		<h2 class="title"><s:property value="nombre"/> <s:property value="apellidos"/> </h2>
@@ -18,6 +18,13 @@ pageEncoding="UTF-8"%>
 				      		<th scope="col"><s:property value="nombre"/> </th>
 				      	</s:iterator>
 						<th scope="col">Promedio </th>
+						<th scope="col">Objetivo: <s:iterator value="objCompCatcomp" var="obj">
+										      		<s:if test="%{#ev.catcompetencial==#obj.codcatcomp && #competencia.codigo==#obj.codcompetencia}">
+										      			<s:property value="objetivo"/>
+										      		</s:if>
+										      	</s:iterator>
+						
+						 </th>
 				
 				     </tr>
 				   </thead>
@@ -42,6 +49,7 @@ pageEncoding="UTF-8"%>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
+				      
 				   </tr>
 			
 					<tr>
@@ -63,6 +71,7 @@ pageEncoding="UTF-8"%>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
+				   
 				   </tr>
 					<tr>
 				   	 <th>Personas a las que les organizo el trabajo</th>
@@ -83,6 +92,7 @@ pageEncoding="UTF-8"%>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
+				      
 				   </tr>
 				   <tr>
 				   	 <th>Personas que trabajan conmigo</th>
@@ -103,6 +113,7 @@ pageEncoding="UTF-8"%>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
+				 
 				   </tr>
 				   <tr>
 				   	 <th>Personas a las que entrego mi trabajo</th>
@@ -123,6 +134,7 @@ pageEncoding="UTF-8"%>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
+			
 				   </tr>
 				</tbody>
 				</table>

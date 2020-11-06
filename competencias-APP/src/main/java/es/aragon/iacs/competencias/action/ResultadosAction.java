@@ -23,6 +23,7 @@ import es.aragon.iacs.competencias.dao.ICompNivelesDAO;
 import es.aragon.iacs.competencias.dao.ICompResultadosDAO;
 import es.aragon.iacs.competencias.dao.ICompCompetenciasDAO;
 import es.aragon.iacs.competencias.jpa.CompResultados;
+import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 
 public class ResultadosAction extends MidasActionSupport{
 	private static final long serialVersionUID = 2108264332221967943L;
@@ -59,6 +60,8 @@ public class ResultadosAction extends MidasActionSupport{
     
     List<CompResultados> resultados;
     
+    private List<CompObjetivosCompCatcomp> objCompCatcomp;
+    
     private boolean editar;
     private boolean editar2;
     private boolean mis;
@@ -66,22 +69,6 @@ public class ResultadosAction extends MidasActionSupport{
 	{
         setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
     }
-    
-//	public Date fechaActual() {
-//		
-//		Date fecha = new Date();
-//		try {
-//			SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-//	        String fechaHoy=formateador.format(fecha);
-//	        fecha = formateador.parse(fechaHoy);
-//	        return fecha;
-//		}
-//		catch (ParseException e){
-//			return fecha;
-//		}     
-//	}
-//	
-
     
     public String mis() {
     	dniActual=user.getIdd();
@@ -93,6 +80,7 @@ public class ResultadosAction extends MidasActionSupport{
     	evaluacionActual=evaluacionesDao.findById(id);
     	String catcomp=evaluacionActual.getCatcompetencial();
     	resultados=resultadosDao.evaluacionCalculada(id);
+    	objCompCatcomp=competenciasDao.allObjCompCatcomp();
     	
     	
     	return "resultadosConcretos";
@@ -401,6 +389,14 @@ public class ResultadosAction extends MidasActionSupport{
 
 	public void setFechaActual(Date fechaActual) {
 		this.fechaActual = fechaActual;
+	}
+
+	public List<CompObjetivosCompCatcomp> getObjCompCatcomp() {
+		return objCompCatcomp;
+	}
+
+	public void setObjCompCatcomp(List<CompObjetivosCompCatcomp> objCompCatcomp) {
+		this.objCompCatcomp = objCompCatcomp;
 	}
 	
 }

@@ -13,7 +13,9 @@ import javax.persistence.*;
 	@NamedQuery(name="CompValoraciones.findByIdEvaluacion", query="SELECT c FROM CompValoraciones c WHERE c.idevaluacion=:idevaluacion"),
 	@NamedQuery(name="CompValoraciones.findByIdcomp", query="SELECT c FROM CompValoraciones c WHERE c.idcomp=:idcomp"),
 	@NamedQuery(name="CompValoraciones.findByCodcomp", query="SELECT c FROM CompValoraciones c WHERE c.codcomp=:codcomp"),
-	@NamedQuery(name="CompValoraciones.findByIdNivel", query="SELECT c FROM CompValoraciones c WHERE c.idnivel=:idnivel")
+	@NamedQuery(name="CompValoraciones.findByIdNivel", query="SELECT c FROM CompValoraciones c WHERE c.idnivel=:idnivel"),
+	@NamedQuery(name="CompValoraciones.findByRelacion", query="SELECT c FROM CompValoraciones c WHERE c.codcomp=:codcomp AND c.idevaluacion=:idevaluacion"),
+	@NamedQuery(name="CompValoraciones.findByRelacionComportamientos", query="SELECT c FROM CompValoraciones c WHERE c.codcomp=:codcomp AND c.idevaluacion=:idevaluacion AND idnivel=:idnivel AND idcomp=:idcomp")
 })
 public class CompValoraciones implements Serializable{
 	@Id

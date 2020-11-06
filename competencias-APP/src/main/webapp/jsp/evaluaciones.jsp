@@ -511,7 +511,7 @@ pageEncoding="UTF-8"%>
 									</s:iterator>	
 									
 									<ul class="list-inline list-action">
-									<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
+									<s:if test="%{!verResultados && (finevaluacion ==null || !(fechaActual>finevaluacion))}">
 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
 									</s:if>
 									<s:if test="%{ verResultados}">

@@ -23,4 +23,6 @@ public interface ICompEvaluacionesDAO {
 	List<CompValoraciones> valoracionesPorCodcomp (String codcomp);
 	List<CompValoraciones> valoracionesPorIdnivel (Integer idnivel);
 	List<CompEvaluaciones> evaluacionesPorCatcompetencial (String catcompetencial);
+	List<CompValoraciones> valoracionesPorRelacion(Integer idevaluacion, String codcomp);
+	List<CompValoraciones> valoracionesPorRelacionComportamientos(Integer idevaluacion, String codcomp, Integer idnivel, Integer idcomportamiento);
 }

@@ -209,7 +209,9 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{dnievaluador == dni}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<s:property value="%{#incr1.index}"/>"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-									<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									<s:if test="%{ activoEvaluadores == true}">
+										<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									</s:if>
 								</div>
 							</s:if>
 						</s:iterator>
@@ -291,7 +293,9 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{idevaluador == id}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<s:property value="%{#incr2.index}"/>2"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-									<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									<s:if test="%{ activoEvaluadores == true}">
+										<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									</s:if>
 								</div>
 							</s:if>
 						</s:iterator>
@@ -382,7 +386,9 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{dnievaluador == dni}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#<s:property value="%{#incr3.index}"/>3"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-									<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									<s:if test="%{ activoEvaluadores == true}">
+										<h4 class="title" style="text-align:right"><a href="editarEvaluadorInternoEvaluadores?dniEvaluador=<s:property value="dnievaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorInternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									</s:if>
 								</div>
 							</s:if>
 						</s:iterator>
@@ -465,7 +471,9 @@ pageEncoding="UTF-8"%>
 							<s:if test="%{idevaluador == id}">
 								<div class="accordion-heading">
 									<h4 class="title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#<s:property value="%{#incr4.index}"/>4"><s:property value="nombre"/> <s:property value="apellidos"/></a></h4>
-									<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									<s:if test="%{ activoEvaluadores == true}">
+										<h4 class="title" style="text-align:right"><a href="editarEvaluadorExternoEvaluadores?idEvaluador=<s:property value="idevaluador"/>"><i class="fas fa-edit" aria-hidden="true"></i></a><a href="borrarEvaluadorExternoEvaluadores?idRelacion=<s:property value="idrelacion"/>"/><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a></h4>
+									</s:if>
 								</div>
 							</s:if>
 						</s:iterator>

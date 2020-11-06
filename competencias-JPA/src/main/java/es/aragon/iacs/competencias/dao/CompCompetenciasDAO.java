@@ -21,6 +21,7 @@ import es.aragon.iacs.competencias.jpa.CompObjetivosCompCatcomp;
 import es.aragon.iacs.competencias.jpa.CompRelCompCompleto;
 import es.aragon.iacs.competencias.jpa.CompRelacionesComportamientos;
 import es.aragon.iacs.competencias.jpa.CompValoraciones;
+import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
 
 @Stateless
 public class CompCompetenciasDAO implements ICompCompetenciasDAO {
@@ -177,15 +178,66 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 	}
 	
 	@Override
-	public void deleteRelacion(Integer idRelacion) {
+	public boolean deleteRelacion(Integer idRelacion) {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompObjetivos.findById");
 		query.setParameter("id", idRelacion);
 		@SuppressWarnings("unchecked")
 		CompObjetivos o=(CompObjetivos)query.getSingleResult();
-		//if cat is not null comprobar
-		em.remove(o);
-		em.flush();
+		//Buscar si hay valoraciones hechas para esos elementos
+		String codcompetencia=o.getCodcompetencia();
+		String codcatcomp=o.getCodcatcomp();
+	
+		//Buscar evaluacion con ese codigo de catcomp
+		List<CompEvaluaciones> resultado=evaluacionesDao.evaluacionesPorCatcompetencial(codcatcomp);
+		if(resultado.size()!=0) {
+			Integer idEvaluacion=resultado.get(0).getId();
+			//Buscar valoraciones de esa evaluacion
+			List<CompValoraciones> resultado2=evaluacionesDao.valoracionesPorRelacion(idEvaluacion,codcompetencia);
+			if(resultado2.size()==0) {
+				//if cat is not null comprobar
+				em.remove(o);
+				em.flush();
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			em.remove(o);
+			em.flush();
+			return true;
+		}
+	}
+	
+	@Override
+	public void editRelacion(Integer idRelacion, Integer objetivo)  {
+		// TODO Auto-generated method stu
+		Query query = em.createNamedQuery("CompObjetivos.findById");
+		query.setParameter("id", idRelacion);
+		@SuppressWarnings("unchecked")
+//		
+		//Lista de relaciones devueltas por la query hacer remove
+		List<CompObjetivos> resultado=query.getResultList();
+		
+		String codcompetencia=resultado.get(0).getCodcompetencia();
+		String codcatcomp=resultado.get(0).getCodcatcomp();
+	
+		//Buscar evaluacion con ese codigo de catcomp
+		List<CompEvaluaciones> resultado3=evaluacionesDao.evaluacionesPorCatcompetencial(codcatcomp);
+		if(resultado3.size()!=0) {
+			Integer idEvaluacion=resultado3.get(0).getId();
+			//Buscar valoraciones de esa evaluacion
+			List<CompValoraciones> resultado2=evaluacionesDao.valoracionesPorRelacion(idEvaluacion,codcompetencia);
+			if(resultado2.size()==0) {
+				//if cat is not null comprobar
+				CompObjetivos o=resultado.get(0);
+				
+				o.setIdnivel(objetivo);
+				em.merge(o);
+				em.flush();
+			}
+		}
+		
 	}
 	
 	@Override
@@ -232,38 +284,16 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 		// TODO Auto-generated method stu
 		Query query = em.createNamedQuery("CompRelacionesComportamientos.findByCatCompCompetencia");
 		query.setParameter("codcompetencia", codCompetencia).setParameter("codcatcomp", catCompetencial);
-//		@SuppressWarnings("unchecked")
-//		
-		//Lista de relaciones devueltas por la query hacer remove
+
 		List<CompRelacionesComportamientos> resultado=query.getResultList();
-		//COMPROBAR QE NO ES NUL Y HACER BUCLE ELIMINANDO TODOS LOS ELEMENTOS
-		
+
 		for (int i = 0; i < resultado.size(); ++i) {
 		    em.remove(resultado.get(i));
 		}
 		em.flush();
 	}
 	
-	@Override
-	public void editRelacion(Integer idRelacion, Integer objetivo)  {
-		// TODO Auto-generated method stu
-		Query query = em.createNamedQuery("CompObjetivos.findById");
-		query.setParameter("id", idRelacion);
-		@SuppressWarnings("unchecked")
-//		
-		//Lista de relaciones devueltas por la query hacer remove
-		List<CompObjetivos> resultado=query.getResultList();
-		
-		
-		if(resultado.size()==1) {
-			CompObjetivos o=resultado.get(0);
-			
-			o.setIdnivel(objetivo);
-			em.merge(o);
-			em.flush();
-		}
-		
-	}
+
 	
 	@Override
 	public void deleteRelacionComportamientos(Integer idRelacion)  {
@@ -272,8 +302,29 @@ public class CompCompetenciasDAO implements ICompCompetenciasDAO {
 		query.setParameter("id", idRelacion);
 
 		CompRelacionesComportamientos resultado=(CompRelacionesComportamientos)query.getSingleResult();
+		String codcatcomp=resultado.getCodcatcomp();
+		Integer idnivel=resultado.getIdnivel();
+		String codcomp=resultado.getCodcomp();
+		Integer idcomportamiento=resultado.getIdcomportamiento();
 		
-		em.remove(resultado);
-		em.flush();
+		//Buscar si hay valoracion con estas caracteristicas o evaluacion que evalue esta comp para esta catcomp
+		List<CompEvaluaciones> result=evaluacionesDao.evaluacionesPorCatcompetencial(codcatcomp);
+		
+		if(result.size()!=0) {
+			Integer idEvaluacion=result.get(0).getId();
+			//Buscar valoraciones de esa evaluacion
+			List<CompValoraciones> resultado2=evaluacionesDao.valoracionesPorRelacionComportamientos(idEvaluacion,codcomp,idnivel,idcomportamiento);
+			if(resultado2.size()==0) {
+				//if cat is not null comprobar
+				em.remove(resultado);
+				em.flush();
+			}
+		}else {
+			em.remove(resultado);
+			em.flush();
+		}
+		
+		
+		
 	}
 }
