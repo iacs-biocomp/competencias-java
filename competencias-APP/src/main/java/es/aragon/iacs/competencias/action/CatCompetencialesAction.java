@@ -8,8 +8,6 @@ import es.aragon.iacs.competencias.dao.ICompCatCompetencialesDAO;
 import es.aragon.iacs.competencias.jpa.CompCatCompetenciales;
 import es.aragon.midas.action.MidasActionSupport;
 import es.aragon.iacs.competencias.dao.ICompEvaluacionesDAO;
-import es.aragon.iacs.competencias.jpa.CompEvaluaciones;
-import es.aragon.iacs.competencias.jpa.CompValoraciones;
 
 public class CatCompetencialesAction extends MidasActionSupport{
 
@@ -30,7 +28,7 @@ public class CatCompetencialesAction extends MidasActionSupport{
 
 
     {
-        setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
+        setGrantRequired("PUBLIC"); // Esto se puede cambiar, segï¿½n interese la seguridad
     }
 
 
@@ -44,7 +42,7 @@ public class CatCompetencialesAction extends MidasActionSupport{
         log.debug("Devolviendo lista de pruebas: " + listaCatCompetenciales.size());
         editar=false;
         return "catCompetenciales"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
 
     }
     
@@ -84,7 +82,7 @@ public class CatCompetencialesAction extends MidasActionSupport{
     }
     
     /**
-     * Esta función "getter" es la que utilizará JSP para visualizar la
+     * Esta funciï¿½n "getter" es la que utilizarï¿½ JSP para visualizar la
 lista
      */
     public List<CompCatCompetenciales> getCatCompetenciales() {
