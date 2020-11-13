@@ -67,7 +67,7 @@
 	
 		<!-- Site header  -->
 		<header class="site-header">
-		  <div class="site-logo"><a href="index.html"><img src="<s:url value="/images/logo.png"/>" 
+		  <div class="site-logo"><a href="index.html"><img src="<s:url value="/images/rival.png"/>" 
 		  	alt="<tiles:insertAttribute name="title" ignore="true" />" 
 		  	title="<tiles:insertAttribute name="title" ignore="true" />"></a></div>
 		  <div class="sidebar-collapse hidden-xs"><a class="sidebar-collapse-icon" href="#"><i class="icon-menu"></i></a></div>
