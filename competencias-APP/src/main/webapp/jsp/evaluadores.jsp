@@ -3,6 +3,16 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 
+<style type="text/css">
+
+	.col-center{
+	  float: none;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+
+</style>
+
 <!-- Site favicon -->
 <link rel='shortcut icon' type='image/x-icon' href='images/favicon.ico' />
 <!-- /site favicon -->
@@ -20,10 +30,10 @@ pageEncoding="UTF-8"%>
 <!-- /bootstrap stylesheet min version -->
 
 <!-- Mouldifi core stylesheet -->
-<link href="css/mouldifi-core.css" rel="stylesheet">
+<link href="css/mouldifi-core-comp.css" rel="stylesheet">
 <!-- /mouldifi core stylesheet -->
 
-<link href="css/mouldifi-forms.css" rel="stylesheet">
+<link href="css/mouldifi-core-comp.css" rel="stylesheet">
 
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>

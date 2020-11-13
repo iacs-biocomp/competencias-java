@@ -28,7 +28,7 @@ pageEncoding="UTF-8"%>
 
 <link href="css/plugins/select2/select2.css" rel="stylesheet">
 
-<link href="css/mouldifi-forms.css" rel="stylesheet">
+<link href="css/mouldifi-core-comp.css" rel="stylesheet">
 
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
