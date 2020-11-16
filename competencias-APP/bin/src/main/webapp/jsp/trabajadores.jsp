@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
 	     <td><s:property value="area"/></td>
 	     <td><s:property value="unidad"/></td>
 	     <td><s:property value="departamento"/></td>
-	     <td><s:property value="antiguedad"/></td> 
+	     <td><s:date name="antiguedad" format="yyyy-MM-dd"/></td> 
 	     <td><s:property value="dni"/></td>     
 	   </tr>
 	</s:iterator>
@@ -167,7 +167,7 @@ pageEncoding="UTF-8"%>
 						<td><input id="area" name="area" type="text" value="<s:property value="area"/>"></td>
 						<td><input id="unidad" name="unidad" type="text" value="<s:property value="unidad"/>" size="15"></td>
 						<td><input id="departamento" name="departamento" type="text" value="<s:property value="departamento"/>"></td>
-						<td><input id="antiguedad" name="antiguedad" type="date" value="<s:property value="antiguedad"/>" size="7"></td>
+						<td><input id="antiguedad" name="antiguedad" type="date" value="<s:date name="antiguedad" format="yyyy-MM-dd"/>" size="7"></td>
 						<td><s:property value="dni"/><input id="dni" name="dni" type="hidden" value="<s:property value="dni"/>"></td>
 						<td><input type="Submit" value="Guardar">
 						</td>

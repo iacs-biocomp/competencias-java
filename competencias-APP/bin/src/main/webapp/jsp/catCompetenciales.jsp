@@ -3,12 +3,14 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <h1>Categorías competenciales</h1>
+<s:set var="size"><s:property value="catCompetenciales.size"/></s:set>
 
 <s:if test="%{editar == false}">
+	<s:if test="%{ #size != 0}">
 	<table class="table">
 	   <thead>
 	     <tr>
-	       <th scope="col">      </th>
+	       <th scope="col">   </th>
 	       <th scope="col">Código</th>
 	       <th scope="col">Nombre</th>
 	       <th scope="col">Alta</th>
@@ -27,7 +29,7 @@ pageEncoding="UTF-8"%>
 			</s:iterator>
 		</tbody>
 	</table>
-
+	</s:if>
 	
 	<div class="col-lg-6">
 	<div class="panel panel-default">
@@ -45,7 +47,8 @@ pageEncoding="UTF-8"%>
 				<div class="form-group"> 
 					<label class="col-sm-2 control-label">Nombre: </label> 
 						<div class="col-sm-10"> 
-							<input type="text" id="nombre" name="nombre" required>
+							<textarea name="nombre" id="nombre" rows="2" cols="40" required></textarea>
+<!-- 							<input type="text" id="nombre" name="nombre" required> -->
 						</div> 
 				</div>
 				<div class="form-group"> 

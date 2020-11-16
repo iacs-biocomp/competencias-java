@@ -4,8 +4,9 @@ pageEncoding="UTF-8"%>
 <!-- <link rel="stylesheet" href="css/acordeon.css" type="text/css"></link> -->
 
 <h1>Competencias</h1>
-
+<s:set var="size"><s:property value="competencias.size"/></s:set>
 <s:if test="%{editar == false}">
+	<s:if test="%{ #size != 0}">
 	<table class="table">
 	   <thead>
 	     <tr>
@@ -31,6 +32,7 @@ pageEncoding="UTF-8"%>
 	</s:iterator>
 	</tbody>
 	</table>
+	</s:if>
 	
 		<div class="col-lg-6">
 			<div class="panel panel-default">

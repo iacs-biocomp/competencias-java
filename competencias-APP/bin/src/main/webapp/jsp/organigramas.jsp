@@ -20,8 +20,8 @@ pageEncoding="UTF-8"%>
 			   <tr>  
 			   <td><a href="borrarOrganigramas?idOrganigrama=<s:property value="id"/>"><i class="fa fa-trash" aria-hidden="true">&nbsp; &nbsp;</i></a><a href="editarOrganigramas?idOrganigrama=<s:property value="id"/>"><i class="fas fa-edit" aria-hidden="true"></i></a></td>
 				<td><a href="concretoOrganigramas?idOrganigrama=<s:property value="id"/>"><s:property value="nombre"/></a></td>               
-				 <td><s:property value="fechaIni"/></td>
-				 <td><s:property value="fechaFin"/></td>
+				 <td><s:date name="fechaIni" format="yyyy-MM-dd"/></td>
+				 <td><s:date name="fechaFin" format="yyyy-MM-dd"/></td>
 			   </tr>
 			</s:iterator>
 	</tbody>
@@ -98,8 +98,8 @@ pageEncoding="UTF-8"%>
 					   <td></td>
 						<td><input id="idOrganigrama" name="idOrganigrama" type="hidden" value="<s:property value="id"/>">
 						     <input id="nombreOrganigrama" name="nombreOrganigrama" type="text" value="<s:property value="nombre"/>"></td>               
-						<td><input id="fechaIni" name="fechaIni" type="date" value="<s:property value="fechaIni"/>"></td>
-						<td><input id="fechaFin" name="fechaFin" type="date" value="<s:property value="fechaFin"/>">
+						<td><input id="fechaIni" name="fechaIni" type="date" value="<s:date name="fechaIni" format="yyyy-MM-dd"/>"></td>
+						<td><input id="fechaFin" name="fechaFin" type="date" value="<s:date name="fechaFin" format="yyyy-MM-dd"/>">
 							<input type="Submit" value="Guardar">
 						</td> 
 				   	</tr>
@@ -110,8 +110,8 @@ pageEncoding="UTF-8"%>
 				 <tr>  
 			   <td></td>
 				<td><s:property value="nombre"/></td>               
-				 <td><s:property value="fechaIni"/></td>
-				 <td><s:property value="fechaFin"/></td>
+				 <td><s:date name="fechaini" format="yyyy-MM-dd"/></td>
+				 <td><s:date name="fechafin" format="yyyy-MM-dd"/></td>
 			   </tr>
 			
 			</s:else>

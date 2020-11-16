@@ -3,8 +3,9 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <h1>Niveles</h1>
-
+<s:set var="size"><s:property value="niveles.size"/></s:set>
 <s:if test="%{editar == false}">
+	<s:if test="%{ #size != 0}">
 	<table class="table">
 	   <thead>
 	     <tr>
@@ -29,6 +30,7 @@ pageEncoding="UTF-8"%>
 	</s:iterator>
 	</tbody>
 	</table>
+	</s:if>
 	
 		<div class="col-lg-6">
 			<div class="panel panel-default">

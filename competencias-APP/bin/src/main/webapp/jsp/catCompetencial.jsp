@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
 											<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
 										</s:iterator>
 										</select></td>
-							<td><input type="Submit" value="Guardar"></td>
+							<td><input type="Submit" value="Añadir"></td>
 						   </tr>
 						</form>   
 
@@ -167,7 +167,7 @@ pageEncoding="UTF-8"%>
 									<option value="<s:property value="id"/>"><s:property value="nombre"/></option>
 								</s:iterator>
 								</select></td>
-					<td><input type="submit"  value="Guardar"></td>
+					<td><input type="submit"  value="Añadir"></td>
 				</form>   
 			   </tr>
 			</s:iterator>

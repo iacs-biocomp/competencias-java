@@ -194,9 +194,9 @@ pageEncoding="UTF-8"%>
 									<!-- Card short description -->
 									<div class="card-short-description">
 										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
-											<span class="badge badge-primary">Activa</span>
-										</s:if>
+<%-- 										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}"> --%>
+<%-- 											<span class="badge badge-primary">Activa</span> --%>
+<%-- 										</s:if> --%>
 										</h5>
 										
 									</div>
@@ -208,11 +208,18 @@ pageEncoding="UTF-8"%>
 								<!-- Card content -->
 								<div class="card-content" style="width:100%;">
 									<form name="formEdit" method="post" action="/nuevaInfoEvaluaciones">
-										<p><strong>Periodo evaluado:</strong> <s:property value="iniperiodo"/> - <s:property value="finperiodo"/></p>
-											<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
-											<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
-											<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
-										<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
+										<p><strong>Periodo evaluado:</strong> <s:date name="iniperiodo" format="yyyy-MM-dd"/> - <s:date name="finperiodo" format="yyyy-MM-dd"/></p>
+											<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/> - <s:date name="finaportacion" format="yyyy-MM-dd"/></p>
+											<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/> - <s:date name="finvalidacion" format="yyyy-MM-dd"/></p>
+											<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/> - <s:date name="finevaluacion" format="yyyy-MM-dd"/></p>
+									
+										<p><strong> Puestos de trabajo evaluados:</strong> 
+											<s:iterator value="listaCatCompetenciales" var="cat">
+												<s:if test="%{codigo ==catcompetencial }">
+													<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
+												</s:if>
+											</s:iterator>
+											</p>
 <%-- 										<p><strong> Trabajadores evaluados:</strong>  </p> --%>
 <!-- 										<div class="col-sm-offset-2 col-sm-10">  -->
 <%-- 											<s:iterator value="listaTrabajadores" status="incr"> --%>
@@ -221,6 +228,7 @@ pageEncoding="UTF-8"%>
 <!-- 										</div> -->
 										<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 										<input type="hidden" name="id" value="<s:property value="id"/>">
+										<div class="col-sm-offset-2 col-sm-10"> 
 											<s:iterator value="objCompCatcomp" status="incr">
 												<div class="checkbox"> <label> <input type="checkbox" name="comp<s:property value="%{#incr.index}"/>" value="<s:property value="codcompetencia"/>"><s:property value="descripcion"/> </label> </div> 
 											</s:iterator>
@@ -265,10 +273,10 @@ pageEncoding="UTF-8"%>
 									<!-- Card content -->
 									<div class="card-content" style="width:100%;">
 											 <input id="id" name="id" type="hidden" value="<s:property value="id"/>">
-											<p><strong>Periodo evaluado:</strong> <input id="iniperiodo" name="iniperiodo" type="date" value="<s:property value="iniperiodo"/>"> - <input id="finperiodo" name="finperiodo" type="date" value="<s:property value="finperiodo"/>"></p>
-											<p><strong>Periodo de aportación de evaluadores:</strong> <input id="iniaportacion" name="iniaportacion" type="date" value="<s:property value="iniaportacion"/>"> - <input id="finaportacion" name="finaportacion" type="date" value="<s:property value="finaportacion"/>"></p>
-											<p><strong>Periodo de validación de evaluadores:</strong> <input id="inivalidacion" name="inivalidacion" type="date" value="<s:property value="inivalidacion"/>"> - <input id="finvalidacion" name="finvalidacion" type="date" value="<s:property value="finvalidacion"/>"></p>
-											<p><strong>Periodo de evaluación:</strong> <input id="inievaluacion" name="inievaluacion" type="date" value="<s:property value="inievaluacion"/>"> - <input id="finevaluacion" name="finevaluacion" type="date" value="<s:property value="finevaluacion"/>"></p>
+											<p><strong>Periodo evaluado:</strong> <input id="iniperiodo" name="iniperiodo" type="date" value="<s:date name="iniperiodo" format="yyyy-MM-dd"/>"> - <input id="finperiodo" name="finperiodo" type="date" value="<s:date name="finperiodo" format="yyyy-MM-dd"/>"></p>
+											<p><strong>Periodo de aportación de evaluadores:</strong> <input id="iniaportacion" name="iniaportacion" type="date" value="<s:date name="iniaportacion" format="yyyy-MM-dd"/>"> - <input id="finaportacion" name="finaportacion" type="date" value="<s:date name="finaportacion" format="yyyy-MM-dd"/>"></p>
+											<p><strong>Periodo de validación de evaluadores:</strong> <input id="inivalidacion" name="inivalidacion" type="date" value="<s:date name="inivalidacion" format="yyyy-MM-dd"/>"> - <input id="finvalidacion" name="finvalidacion" type="date" value="<s:date name="finvalidacion" format="yyyy-MM-dd"/>"></p>
+											<p><strong>Periodo de evaluación:</strong> <input id="inievaluacion" name="inievaluacion" type="date" value="<s:date name="inievaluacion" format="yyyy-MM-dd"/>"> - <input id="finevaluacion" name="finevaluacion" type="date" value="<s:date name="finevaluacion" format="yyyy-MM-dd"/>"></p>
 											<p><strong> Puestos de trabajo evaluados: </strong> 
 											<select name="catcompetencial">
 													<s:iterator value="listaCatCompetenciales">
@@ -320,7 +328,7 @@ pageEncoding="UTF-8"%>
 									<!-- Card short description -->
 									<div class="card-short-description">
 										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<span class="badge badge-primary">Activa</span>
 										</s:if>
 										</h5>
@@ -334,16 +342,17 @@ pageEncoding="UTF-8"%>
 								<!-- Card content -->
 								<div class="card-content" style="width:100%;">
 								
-									<p><strong>Periodo evaluado:</strong> <s:property value="iniperiodo"/> - <s:property value="finperiodo"/></p>
-										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
-										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
-										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
+									<p><strong>Periodo evaluado:</strong> <s:date name="iniperiodo" format="yyyy-MM-dd"/> - <s:date name="finperiodo" format="yyyy-MM-dd"/></p>
+										<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/> - <s:date name="finaportacion" format="yyyy-MM-dd"/></p>
+										<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/> - <s:date name="finvalidacion" format="yyyy-MM-dd"/></p>
+										<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/> - <s:date name="finevaluacion" format="yyyy-MM-dd"/></p>
 									<p><strong> Puestos de trabajo evaluados:</strong> 
 									<s:iterator value="listaCatCompetenciales" var="cat">
 										<s:if test="%{codigo ==catcompetencial }">
-											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. </p>
+											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
 										</s:if>
 									</s:iterator>
+									</p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">
@@ -380,10 +389,10 @@ pageEncoding="UTF-8"%>
 									
 									<ul class="list-inline list-action">
 									
-										<s:if test="%{finevaluacion !=null && finevaluacion != \"\" && fechaActual>finevaluacion}">
-											<li><a href="evaluacionConcretaResultados">Calcular evaluación</a></li>
+										<s:if test="%{finevaluacion !=null  && fechaActual>finevaluacion}">
+											<li><a href="calcularResultados?id=<s:property value="id"/>">Calcular evaluación</a></li>
 										</s:if>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<li><a href="editarEvaluaciones?id=<s:property value="id"/>">Editar evaluación</a></li>
 										</s:if>
 <%-- 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li> --%>
@@ -441,7 +450,7 @@ pageEncoding="UTF-8"%>
 									<!-- Card short description -->
 									<div class="card-short-description">
 										<h5><span class="user-name"><a href="#/"><s:property value="nombre"/></a></span>
-										<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+										<s:if test="%{finevaluacion ==null || !(fechaActual>finevaluacion)}">
 											<span class="badge badge-primary">Activa</span>
 										</s:if>
 										</h5>
@@ -455,11 +464,18 @@ pageEncoding="UTF-8"%>
 								<!-- Card content -->
 								<div class="card-content" style="width:100%;">
 								
-									<p><strong>Periodo evaluado:</strong> <s:property value="iniperiodo"/> - <s:property value="finperiodo"/></p>
-										<p><strong>Periodo de aportación de evaluadores:</strong> <s:property value="iniaportacion"/> - <s:property value="finaportacion"/></p>
-										<p><strong>Periodo de validación de evaluadores:</strong> <s:property value="inivalidacion"/> - <s:property value="finvalidacion"/></p>
-										<p><strong>Periodo de evaluación:</strong> <s:property value="inievaluacion"/> - <s:property value="finevaluacion"/></p>
-									<p><strong> Puestos de trabajo evaluados:</strong> <s:property value="catcompetencial"/>. </p>
+									<p><strong>Periodo evaluado:</strong> <s:date name="iniperiodo" format="yyyy-MM-dd"/>  - <s:date name="finperiodo" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de aportación de evaluadores:</strong> <s:date name="iniaportacion" format="yyyy-MM-dd"/>  - <s:date name="finaportacion" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de validación de evaluadores:</strong> <s:date name="inivalidacion" format="yyyy-MM-dd"/>  - <s:date name="finvalidacion" format="yyyy-MM-dd"/> </p>
+										<p><strong>Periodo de evaluación:</strong> <s:date name="inievaluacion" format="yyyy-MM-dd"/>  - <s:date name="finevaluacion" format="yyyy-MM-dd"/> </p>
+									
+									<p><strong> Puestos de trabajo evaluados:</strong> 
+									<s:iterator value="listaCatCompetenciales" var="cat">
+										<s:if test="%{codigo ==catcompetencial }">
+											<s:property value="catcompetencial"/>- <s:property value="#cat.nombre"/>. 
+										</s:if>
+									</s:iterator>
+									</p>
 									<p><strong> Competencias de las cuales serán evaluados:</strong>  </p>
 									<s:iterator value="listaCompetencias">
 										<s:if test="%{comp1 != null && comp1 == codigo}">
@@ -495,8 +511,11 @@ pageEncoding="UTF-8"%>
 									</s:iterator>	
 									
 									<ul class="list-inline list-action">
-									<s:if test="%{finevaluacion ==null || finevaluacion == \"\" || !(fechaActual>finevaluacion)}">
+									<s:if test="%{!verResultados && (finevaluacion ==null || !(fechaActual>finevaluacion))}">
 										<li><a href="concretaEvaluaciones?id=<s:property value="id"/>">Evaluar</a></li>
+									</s:if>
+									<s:if test="%{ verResultados}">
+										<li><a href="misResultados?id=<s:property value="id"/>">Ver resultados</a></li>
 									</s:if>
 									</ul>
 								</div>
