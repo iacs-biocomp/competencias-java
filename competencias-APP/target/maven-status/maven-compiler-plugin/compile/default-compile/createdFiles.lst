@@ -1,0 +1,12 @@
+es\aragon\iacs\competencias\action\EvaluacionesAction.class
+es\aragon\iacs\competencias\action\CatContractualesAction.class
+es\aragon\iacs\competencias\action\ResultadosAction.class
+es\aragon\iacs\competencias\action\CatCompetencialesAction.class
+es\aragon\iacs\competencias\action\TrabajadoresAction.class
+es\aragon\iacs\competencias\action\MisDatosAction.class
+es\aragon\iacs\competencias\action\NivelesAction.class
+es\aragon\iacs\competencias\action\OrganigramasAction.class
+es\aragon\iacs\competencias\action\CompetenciasAction.class
+es\aragon\iacs\competencias\action\ComportamientosAction.class
+es\aragon\iacs\competencias\action\EvaluadoresAction.class
+es\aragon\iacs\competencias\action\SupervisadosAction.class

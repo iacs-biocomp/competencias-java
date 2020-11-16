@@ -54,9 +54,7 @@ pageEncoding="UTF-8"%>
 								</div>
 						<div id="yoAcordeon" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dni != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dni"/></h5>
-								</s:if>
+								
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
 								<s:iterator value="listaCompetencias">
 									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
@@ -93,9 +91,6 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr8.index}"/>8" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dniSuperior != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniSuperior"/></h5>
-								</s:if>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
 								<s:iterator value="listaCompetencias">
 									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
@@ -131,9 +126,6 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr9.index}"/>9" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dniTrabajador != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
-								</s:if>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
 								<s:iterator value="listaCompetencias">
 									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
@@ -171,9 +163,6 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr9.index}"/>9" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dniPar != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniPar"/></h5>
-								</s:if>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
 								<s:iterator value="listaCompetencias">
 									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
@@ -201,7 +190,6 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="acc6<s:property value="%{#incr9.index}"/>" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dniTrabajador"/></h5>
 								<h5><label class="col-sm-2 control-label">Competencias que evalúa:</label> </h5><br></br>
 								<s:iterator value="listaCompetencias">
 									<h5><label class="col-sm-2 control-label"></label><s:property value="descripcion"/></h5>
@@ -311,9 +299,7 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr2.index}"/>2" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dnievaluador != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
-								</s:if>
+								
 								<s:if test="%{validado == true}">
 									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
@@ -404,9 +390,7 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr3.index}"/>3" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dnievaluador != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
-								</s:if>
+					
 								<s:if test="%{validado == true}">
 									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>
@@ -489,9 +473,7 @@ pageEncoding="UTF-8"%>
 						</s:iterator>
 						<div id="<s:property value="%{#incr4.index}"/>4" class="accordion-body collapse">
 							<div class="accordion-inner">
-								<s:if test="%{dnievaluador != null}">
-									<h5><label class="col-sm-2 control-label">DNI:</label>  <s:property value="dnievaluador"/></h5>
-								</s:if>
+							
 								<s:if test="%{validado == true}">
 									<h5><label class="col-sm-2 control-label">Validado:</label> Si</h5>
 								</s:if>

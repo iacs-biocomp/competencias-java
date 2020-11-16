@@ -8,10 +8,8 @@ pageEncoding="UTF-8"%>
 	
 	<form class="form-horizontal" method="post" action="/guardarValoracionEvaluaciones">
 	
-	<h1> Evaluacion <s:property value="id"/>: <s:property value="nombre"/></h1>
+	<h1> <s:property value="nombre"/></h1>
 	<h1 style="text-align:right"><button class="btn btn-default" type="submit">Guardar evaluación  <i class="fa fa-save" aria-hidden="true">&nbsp; &nbsp;</i></button> </h1>
-	<p> Puedes evaluar y guardar los resultados cuando quieras. Cada vez que regargas la pag se recargan los resultados que hay hasta el momento. Puedes editar siempre
-	que quieras. Cuando se acaba la fecha de evaluar se quedan los guardados y ya no se pueden editar ni añadir </p>
 	
 	<input type="hidden" name="id" value="<s:property value="id"/>">
 	<%! int indice = 0; %>
@@ -19,7 +17,7 @@ pageEncoding="UTF-8"%>
 		
 			<div class="row">
 				<div class="col-lg-12">
-					<h2 class="title"><s:property value="nombre"/> <s:property value="apellidos"/> Tr</h2>
+					<h2 class="title"><s:property value="nombre"/> <s:property value="apellidos"/></h2>
 
 							<div class="accordion" id="accordion">
 							<s:iterator value="listaCompetencias" status="incr" var="lacomp">
@@ -113,7 +111,7 @@ pageEncoding="UTF-8"%>
 				<div class="col-lg-12">
 					<s:iterator value="listaTrabajadoresAll">
 						<s:if test="%{#evaluacion.id == #evinterno.idevaluacion  && dni == dnitrabajador }">
-							<h2 class="title"><s:property value="nombre"/><s:property value="apellidos"/> ele</h2>
+							<h2 class="title"><s:property value="nombre"/><s:property value="apellidos"/> </h2>
 							
 							
 							<div class="accordion" id="accordion">

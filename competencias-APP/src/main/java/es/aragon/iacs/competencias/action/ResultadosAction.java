@@ -235,42 +235,30 @@ public class ResultadosAction extends MidasActionSupport{
 		    		dniEvaluado=evaluados.get(a).getDni();
 		    		resultados=resultadosDao.evaluacionCalculada(id);
 		    		for(int j=0;j<competencias.size();j++){
-		    			for(int k=0;k<niveles.size();k++) {
+		    			for(int k=1;k<6;k++) {
 		    				float promedio=0.0f;
 		    				boolean evaluado=false;
 		    				//Para cada grupo busca las correspondientes, y añade una que sea el promedio
 		    				for(int t=0;t<resultados.size();t++) {
-//		    					log.debug("dentro bucle resultados");
-		    					if(resultados.get(t).getGrupoev()==1 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
+		    					
+		    					if(resultados.get(t).getGrupoev()==k && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
 		    						log.debug("pongo evaluado a true");
-		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
+		    						//bucle con los niveles 
+		    						for(int v=0; v<niveles.size();v++) {
+		    							if(resultados.get(t).getIdnivel()==niveles.get(v).getId()) {
+		    								promedio=promedio+resultados.get(t).getSuma()/resultados.get(t).getNumvaloraciones()*niveles.get(v).getValorporcentual();
+		    								
+		    							}
+		    						}
 		    						evaluado=true;
+		    						
 		    					}
-		    					if(resultados.get(t).getGrupoev()==2 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
-		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
-		    						log.debug("pongo evaluado a true");
-		    						evaluado=true;
-		    					}
-		    					if(resultados.get(t).getGrupoev()==3 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
-		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
-		    						log.debug("pongo evaluado a true");
-		    						evaluado=true;
-		    					}
-		    					if(resultados.get(t).getGrupoev()==4 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
-		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
-		    						log.debug("pongo evaluado a true");
-		    						evaluado=true;
-		    					}
-		    					if(resultados.get(t).getGrupoev()==5 && resultados.get(t).getDnievaluado().equals(dniEvaluado) && resultados.get(t).getIdnivel()==niveles.get(k).getId() && resultados.get(t).getCodcomp().equals(competencias.get(j).getCodigo())) {
-		    						//sumas el valor suma aplicando el valorporcentual del nivel (preguntar vega)
-		    						log.debug("pongo evaluado a true");
-		    						evaluado=true;
-		    					}
+		    					
 		    					
 		    				}
 		    				if(evaluado) {
 		    					log.debug("voy a añadir el promedio");
-		    					resultadosDao.sumarValoracion(id,dniEvaluado,niveles.get(k).getId(),competencias.get(j).getCodigo(),-1, promedio);
+		    					resultadosDao.sumarValoracion(id,dniEvaluado,k,competencias.get(j).getCodigo(),-1, promedio);
 		    				}
 		    				
 		    				

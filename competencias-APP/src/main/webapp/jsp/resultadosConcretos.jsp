@@ -2,8 +2,9 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<h1> Resultados ev concreta</h1>
+
 <s:iterator value="evaluacionActual">
+<h1> Resultados <s:property value="nombre"/></h1>
 <s:iterator value="evaluados" var="ev">
 <div class="row">
 	<div class="col-lg-12">
@@ -37,7 +38,7 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==1 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -45,7 +46,7 @@ pageEncoding="UTF-8"%>
 				      <s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==1 && idnivel==-1 && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -59,7 +60,7 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==2 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -67,7 +68,7 @@ pageEncoding="UTF-8"%>
 				      <s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==2 && idnivel==-1 && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -80,7 +81,7 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==3 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -88,7 +89,7 @@ pageEncoding="UTF-8"%>
 				      <s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==3 && idnivel==-1 && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -101,7 +102,7 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==4 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -109,7 +110,7 @@ pageEncoding="UTF-8"%>
 				      <s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==4 && idnivel==-1 && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -122,7 +123,7 @@ pageEncoding="UTF-8"%>
 				   	 	<s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==5 && #nivel.id==idnivel && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
@@ -130,7 +131,7 @@ pageEncoding="UTF-8"%>
 				      <s:set var="lanota">-</s:set>
 				   	 	<s:iterator value="resultados">
 				   	 		<s:if test="%{ dnievaluado==dni && grupoev==5 && idnivel==-1 && #competencia.codigo ==codcomp}">
-				      			<s:set var="lanota"><s:property value="suma/numvaloraciones*100/5"/></s:set>
+				      			<s:set var="lanota"><s:property value="suma/numvaloraciones"/></s:set>
 				      		</s:if>
 				      	</s:iterator>
 				      	<td><s:property value="lanota"/></td>
