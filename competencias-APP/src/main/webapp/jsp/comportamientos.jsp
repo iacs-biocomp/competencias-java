@@ -2,6 +2,19 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<script src="jquery.ui.datepicker-es.js"></script>
+<script>
+$(function () {
+$("#datepicker").datepicker();
+});
+</script>
+<script>
+$(function () {
+$("#datepicker2").datepicker();
+});
+</script>
+
+
 <h1>Comportamientos</h1>
 <s:set var="size"><s:property value="comportamientos.size"/></s:set>
 <s:if test="%{editar == false}">
@@ -47,7 +60,7 @@ pageEncoding="UTF-8"%>
 							<label class="col-sm-2 control-label">Fecha de alta: </label> 
 								<div class="col-sm-10"> 
 									<div id="date-popup" class="input-group date"> 
-										<input type="date" id="alta" name="alta" required>
+										<input type="text" id="datepicker" name="alta" class="form-control" required readonly>
 									</div>
 								</div> 
 						</div>
@@ -55,7 +68,7 @@ pageEncoding="UTF-8"%>
 							<label class="col-sm-2 control-label">Fecha de baja: </label> 
 								<div class="col-sm-10"> 
 									<div id="date-popup" class="input-group date"> 
-										<input type="date" id="baja" name="baja">	
+										<input type="text" id="datepicker2" name="baja" class="form-control" readonly>
 									</div>
 									<p class="help-block">No es necesario que lo rellenes ahora. Podrás añadirla más adelante.</p>
 								</div> 
