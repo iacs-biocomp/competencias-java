@@ -2,7 +2,7 @@
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<script src="jquery.ui.datepicker-es.js"></script>
+
 <script>
 $(function () {
 $("#datepicker").datepicker();
@@ -68,7 +68,7 @@ $("#datepicker2").datepicker();
 					<label class="col-sm-2 control-label">Fecha de alta: </label> 
 						<div class="col-sm-10"> 						
 							<div id="date-popup" class="input-group date"> 
-								<input type="text" id="datepicker" name="alta" class="form-control" required readonly>
+								<input type="text" id="datepicker" name="alta" class="form-control" data-date-format="dd/mm/yyyy" required readonly>
 							</div> 
 						</div>
 				</div>

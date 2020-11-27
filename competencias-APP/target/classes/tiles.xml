@@ -63,6 +63,11 @@
          <put-attribute name="body" value="/jsp/competencias.jsp"/>
      </definition>
      
+     <definition name="misCompetencias" extends="loggedLayout">
+         <put-attribute name="body" value="/jsp/misCompetencias.jsp"/>
+     </definition>
+     
+     
      <definition name="niveles" extends="loggedLayout">
          <put-attribute name="body" value="/jsp/niveles.jsp"/>
      </definition>

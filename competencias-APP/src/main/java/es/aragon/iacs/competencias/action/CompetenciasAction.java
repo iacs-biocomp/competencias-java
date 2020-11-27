@@ -63,8 +63,10 @@ public class CompetenciasAction extends MidasActionSupport{
     private ICompNivelesDAO compNivelesDao;
     
     {
-        setGrantRequired("PUBLIC"); // Esto se puede cambiar, según interese la seguridad
+        setGrantRequired("PUBLIC"); // Esto se puede cambiar, segï¿½n interese la seguridad
     }
+    
+    //TODO refactorizar codigo
 
 
 
@@ -77,7 +79,7 @@ public class CompetenciasAction extends MidasActionSupport{
         log.debug("Devolviendo lista de pruebas: " + listaCompetencias.size());
         editar=false;
         return "competencias"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+                        // Sirve para indicar quï¿½ visualizaciï¿½n queremos como resultado
 
     }
     
@@ -130,17 +132,16 @@ public class CompetenciasAction extends MidasActionSupport{
     	listaCompetencias = competenciasDao.findActivas();
     	listaComportamientos = comportamientosDao.findActivos();
     	editar=false;
-        return "catCompetencialConcreta"; // Este es el valor de retorno que struts.xml asocia a tiles.
-                        // Sirve para indicar qué visualización queremos como resultado
+        return "misCompetencias"; 
 
     }
     
     public String borrarRelacion() {
-    	log.debug("Aqui estaría eliminando la relación con id: " + idRelacion+" codCompetencia "+ codCompetencia+ " codCatComp "+ catCompetencial);
+    	log.debug("Aqui estarï¿½a eliminando la relaciï¿½n con id: " + idRelacion+" codCompetencia "+ codCompetencia+ " codCatComp "+ catCompetencial);
     	boolean eliminada=competenciasDao.deleteRelacion(idRelacion);
     	if(eliminada) {
     		competenciasDao.deleteRelacionComportamientos(catCompetencial, codCompetencia );
-        	log.debug("Se ha eliminado la relación con id: " + idRelacion);
+        	log.debug("Se ha eliminado la relaciï¿½n con id: " + idRelacion);
     	}
     	
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
@@ -173,9 +174,9 @@ public class CompetenciasAction extends MidasActionSupport{
     
     
     public String nuevaRelacion() {
-    	log.debug("Se va a añadir relacion entre competencia con codigo: "+codigo+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel);
+    	log.debug("Se va a aï¿½adir relacion entre competencia con codigo: "+codigo+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel);
     	competenciasDao.insertRelacion(codigo,codCatCompetencial,idNivel);
-    	log.debug("Se ha añadido relacion entre competencia con codigo: "+codigo+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel);
+    	log.debug("Se ha aï¿½adido relacion entre competencia con codigo: "+codigo+ " codCatCompetencial: " + codCatCompetencial+ " idNivel: "+ idNivel);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatCompetencial);
     	listaNiveles=compNivelesDao.findActivos();
@@ -192,7 +193,7 @@ public class CompetenciasAction extends MidasActionSupport{
     public String borrarRelacionComportamientos() {
     	//competenciasDao.deleteRelacion(idRelacion);
     	competenciasDao.deleteRelacionComportamientos(idRelacion );
-//    	log.debug("Se ha eliminado la relación con id: " + idRelacion);
+//    	log.debug("Se ha eliminado la relaciï¿½n con id: " + idRelacion);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(catCompetencial);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(catCompetencial);
     	listaNiveles=compNivelesDao.findActivos();
@@ -207,9 +208,9 @@ public class CompetenciasAction extends MidasActionSupport{
     }
 //    
     public String nuevaRelacionComportamientos() {
-    	log.debug("Se va a añadir relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
+    	log.debug("Se va a aï¿½adir relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
     	competenciasDao.insertRelacionComportamientos(codComp,codCatComp,idNivel,idComportamiento);
-    	log.debug("Se ha añadido relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
+    	log.debug("Se ha aï¿½adido relacionComportamiento entre competencia con codigo: "+codComp+ " codCatCompetencial: " + codCatComp+ " idNivel: "+ idNivel+ " comportamiento: "+ idComportamiento);
     	compObjCompCatcomp=competenciasDao.compPorCatComp(codCatComp);
     	compRelCompCompleto=competenciasDao.relacionesPorCatComp(codCatComp);
     	listaNiveles=compNivelesDao.findActivos();
@@ -261,7 +262,7 @@ public class CompetenciasAction extends MidasActionSupport{
     
 
     /**
-     * Esta función "getter" es la que utilizará JSP para visualizar la
+     * Esta funcion "getter" es la que utilizara JSP para visualizar la
 lista
      */
     public List<CompCompetencias> getCompetencias() {
